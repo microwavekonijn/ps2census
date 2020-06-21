@@ -10,7 +10,7 @@
 The PS2 Census Client is a tool to simplify the interaction with the Planetside 2 Census API. Note that it is still in
 a Alpha state and that things might change in the future.
 
-### Requirements
+## Requirements
 
 - Node.js v12+;
 - DBG Census API Service ID.
