@@ -2,8 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/ps2census.svg)](https://www.npmjs.com/package/ps2census)
 [![David DM Badge](https://david-dm.org/microwavekonijn/ps2census.svg)](https://david-dm.org/microwavekonijn/ps2census)
-[![David DM Badge](https://david-dm.org/microwavekonijn/ps2census/dev-status.svg)](https://david-dm.org/microwavekonijn/ps2census?type=dev)
-[![David DM Badge](https://david-dm.org/microwavekonijn/ps2census/optional-status.svg)](https://david-dm.org/microwavekonijn/ps2census?type=optional)
 
 ## About
 
