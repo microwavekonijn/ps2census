@@ -1,4 +1,13 @@
 import Timeout = NodeJS.Timeout;
+import {
+    AchievementEarned,
+    BattleRankUp, ContinentLock, ContinentUnlock,
+    Death, FacilityControl,
+    GainExperience, GenericEvent,
+    ItemAdded, MetagameEvent,
+    PlayerFacilityCapture,
+    PlayerFacilityDefend, PlayerLogin, PlayerLogout, SkillAdded, VehicleDestroy,
+} from './PS2Events';
 
 export default class DuplicateFilter {
     private cache = new Set<string>();
@@ -8,6 +17,26 @@ export default class DuplicateFilter {
      * Events that can be ignored
      */
     private readonly ignore: string[];
+
+    private readonly hashers = {
+        /** Character centric events */
+        AchievementEarned: ({character_id, timestamp, achievement_id}: AchievementEarned) => `0:${character_id}:${timestamp}:${achievement_id}`,
+        BattleRankUp: ({character_id, timestamp, battle_rank}: BattleRankUp) => `1:${character_id}:${timestamp}:${battle_rank}`,
+        Death: ({character_id, timestamp}: Death) => `2:${character_id}:${timestamp}`,
+        GainExperience: ({character_id, timestamp}: GainExperience) => `3:${character_id}:${timestamp}`,
+        ItemAdded: ({character_id, timestamp, item_id}: ItemAdded) => `4:${character_id}:${timestamp}:${item_id}`,
+        PlayerFacilityCapture: ({character_id, timestamp}: PlayerFacilityCapture) => `5:${character_id}:${timestamp}`,
+        PlayerFacilityDefend: ({character_id, timestamp}: PlayerFacilityDefend) => `6:${character_id}:${timestamp}`,
+        PlayerLogin: ({character_id, timestamp}: PlayerLogin) => `7:${character_id}:${timestamp}`,
+        PlayerLogout: ({character_id, timestamp}: PlayerLogout) => `8:${character_id}:${timestamp}`,
+        SkillAdded: ({character_id, timestamp}: SkillAdded) => `9:${character_id}:${timestamp}`,
+        VehicleDestroy: ({character_id, timestamp, attacker_character_id}: VehicleDestroy) => `10:${character_id}:${timestamp}:${attacker_character_id}`,
+        /** World centric events */
+        FacilityControl: ({world_id, zone_id, timestamp, facility_id}: FacilityControl) => `11:${world_id}:${zone_id}:${timestamp}:${facility_id}`,
+        MetagameEvent: ({world_id, timestamp}: MetagameEvent) => `12:${world_id}:${timestamp}`,
+        ContinentLock: ({world_id, zone_id, timestamp}: ContinentLock) => `13:${world_id}:${zone_id}:${timestamp}`,
+        ContinentUnlock: ({world_id, zone_id, timestamp}: ContinentUnlock) => `14:${world_id}:${zone_id}:${timestamp}`,
+    };
 
     /**
      * Interval that will decay older values
@@ -60,68 +89,16 @@ export default class DuplicateFilter {
 
     /**
      * Generates a hash for the event payload
-     * TODO: Every event should probably be wrapped inside a object with their own hash method
      *
      * @param {object} event
      * @return {string}
      */
-    public hash(event: any): string {
-        switch (event.event_name) {
-            /** Character centric events */
-            case 'AchievementEarned':
-                return `c0:${this.characterHash(event)}:${event.achievement_id}`;
-            case 'BattleRankUp':
-                return `c1:${this.characterHash(event)}`;
-            case 'Death':
-                return `c2:${this.characterHash(event)}`;
-            case 'GainExperience':
-                return `c3:${this.characterHash(event)}:${event.experience_id}:${event.other_id}`;
-            case 'ItemAdded':
-                return `c4:${this.characterHash(event)}`;
-            case 'PlayerFacilityCapture':
-                return `c5:${this.characterHash(event)}`;
-            case 'PlayerFacilityDefend':
-                return `c6:${this.characterHash(event)}`;
-            case 'PlayerLogin':
-                return `c7:${this.characterHash(event)}`;
-            case 'PlayerLogout':
-                return `c8:${this.characterHash(event)}`;
-            case 'SkillAdded':
-                return `c9:${this.characterHash(event)}`;
-            case 'VehicleDestroy':
-                return `c10:${this.characterHash(event)}`;
-
-            /** World centric events */
-            case 'FacilityControl':
-                return `w0:${this.worldHash(event)}`;
-            case 'MetagameEvent':
-                return `w1:${this.worldHash(event)}`;
-            case 'ContinentLock':
-                return `w2:${this.worldHash(event)}`;
-            case 'ContinentUnlock':
-                return `w3:${this.worldHash(event)}`;
-            default:
-                throw new Error(`Unable to create hash for "${event.event_name}" with payload: ${JSON.stringify(event)}`);
+    public hash(event: GenericEvent): string {
+        if (this.hashers[event.event_name]) {
+            // @ts-ignore
+            return this.hashers[event.event_name](event);
         }
-    }
 
-    /**
-     * Generate generic hash for character centric event
-     *
-     * @param event
-     * @return {string}
-     */
-    private characterHash(event: any): string {
-        return `${event.character_id}:${event.timestamp}`;
-    }
-
-    /**
-     * Generate generic hash for world centric event
-     *
-     * @param event
-     * @return {string}
-     */
-    private worldHash(event: any): string {
-        return `${event.world_id}:${event.zone_id}:${event.timestamp}`;
+        throw new Error(`Unable to create hash for "${event.event_name}" with payload: ${JSON.stringify(event)}`);
     }
 }
