@@ -90,7 +90,7 @@ export default class DuplicateFilter {
     /**
      * Generates a hash for the event payload
      *
-     * @param {object} event
+     * @param {GenericEvent} event
      * @return {string}
      */
     public hash(event: GenericEvent): string {

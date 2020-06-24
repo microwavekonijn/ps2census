@@ -3,7 +3,15 @@ import WebSocket, { Data } from 'ws';
 import { PS2ClientConfig, PS2ClientSubscription, PS2Environment } from './utils/Types';
 import Timeout = NodeJS.Timeout;
 import DuplicateFilter from './utils/DuplicateFilter';
-import { GenericEvent } from './utils/PS2Events';
+import {
+    AchievementEarned,
+    BattleRankUp, ContinentLock, ContinentUnlock,
+    Death, FacilityControl,
+    GainExperience,
+    GenericEvent,
+    ItemAdded, MetagameEvent,
+    PlayerFacilityCapture, PlayerFacilityDefend, PlayerLogin, PlayerLogout, SkillAdded, VehicleDestroy,
+} from './utils/PS2Events';
 import { ClientEvents, State } from './utils/Contants';
 
 declare interface Client {
@@ -17,6 +25,22 @@ declare interface Client {
     on(event: 'duplicate', listener: (event: GenericEvent) => void): this;
     on(event: 'subscribed', listener: (subscription: GenericEvent) => void): this;
 
+    on(event: 'AchievementEarned', listener: (event: AchievementEarned) => void): this;
+    on(event: 'BattleRankUp', listener: (event: BattleRankUp) => void): this;
+    on(event: 'Death', listener: (event: Death) => void): this;
+    on(event: 'GainExperience', listener: (event: GainExperience) => void): this;
+    on(event: 'ItemAdded', listener: (event: ItemAdded) => void): this;
+    on(event: 'PlayerFacilityCapture', listener: (event: PlayerFacilityCapture) => void): this;
+    on(event: 'PlayerFacilityDefend', listener: (event: PlayerFacilityDefend) => void): this;
+    on(event: 'PlayerLogin', listener: (event: PlayerLogin) => void): this;
+    on(event: 'PlayerLogout', listener: (event: PlayerLogout) => void): this;
+    on(event: 'SkillAdded', listener: (event: SkillAdded) => void): this;
+    on(event: 'VehicleDestroy', listener: (event: VehicleDestroy) => void): this;
+    on(event: 'ContinentLock', listener: (event: ContinentLock) => void): this;
+    // on(event: 'ContinentUnlock', listener: (event: ContinentUnlock)=> void):this;
+    on(event: 'FacilityControl', listener: (event: FacilityControl) => void): this;
+    on(event: 'MetagameEvent', listener: (event: MetagameEvent) => void): this;
+
     once(event: 'ready', listener: () => void): this;
     once(event: 'disconnected', listener: () => void): this;
     once(event: 'reconnecting', listener: () => void): this;
@@ -26,6 +50,22 @@ declare interface Client {
     once(event: 'event', listener: (event: GenericEvent) => void): this;
     once(event: 'duplicate', listener: (event: GenericEvent) => void): this;
     once(event: 'subscribed', listener: (subscription: GenericEvent) => void): this;
+
+    once(event: 'AchievementEarned', listener: (event: AchievementEarned) => void): this;
+    once(event: 'BattleRankUp', listener: (event: BattleRankUp) => void): this;
+    once(event: 'Death', listener: (event: Death) => void): this;
+    once(event: 'GainExperience', listener: (event: GainExperience) => void): this;
+    once(event: 'ItemAdded', listener: (event: ItemAdded) => void): this;
+    once(event: 'PlayerFacilityCapture', listener: (event: PlayerFacilityCapture) => void): this;
+    once(event: 'PlayerFacilityDefend', listener: (event: PlayerFacilityDefend) => void): this;
+    once(event: 'PlayerLogin', listener: (event: PlayerLogin) => void): this;
+    once(event: 'PlayerLogout', listener: (event: PlayerLogout) => void): this;
+    once(event: 'SkillAdded', listener: (event: SkillAdded) => void): this;
+    once(event: 'VehicleDestroy', listener: (event: VehicleDestroy) => void): this;
+    once(event: 'ContinentLock', listener: (event: ContinentLock) => void): this;
+    // once(event: 'ContinentUnlock', listener: (event: ContinentUnlock)=> void):this;
+    once(event: 'FacilityControl', listener: (event: FacilityControl) => void): this;
+    once(event: 'MetagameEvent', listener: (event: MetagameEvent) => void): this;
 }
 
 class PS2EventClient extends EventEmitter {
@@ -81,8 +121,28 @@ class PS2EventClient extends EventEmitter {
     /**
      * @type {Function} Filter/recorder function to call to check duplicates
      */
-    // eslint-disable-next-line @typescript-eslint/ban-types
+        // eslint-disable-next-line @typescript-eslint/ban-types
     private readonly duplicateRecorder: Function;
+
+    /**
+     * @type {object} Map event names to ClientEvents
+     */
+    private readonly eventRoutes = new Map<string, ClientEvents>([
+        ['AchievementEarned', ClientEvents.PS2_ACHIEVEMENT],
+        ['BattleRankUp', ClientEvents.PS2_RANKUP],
+        ['Death', ClientEvents.PS2_DEATH],
+        ['GainExperience', ClientEvents.PS2_EXPERIENCE],
+        ['ItemAdded', ClientEvents.PS2_ITEM],
+        ['PlayerFacilityCapture', ClientEvents.PS2_CAPTURE],
+        ['PlayerFacilityDefend', ClientEvents.PS2_DEFEND],
+        ['PlayerLogin', ClientEvents.PS2_LOGIN],
+        ['PlayerLogout', ClientEvents.PS2_LOGOUT],
+        ['SkillAdded', ClientEvents.PS2_SKILL],
+        ['VehicleDestroy', ClientEvents.PS2_VEHICLE_DESTROYED],
+        ['ContinentLock', ClientEvents.PS2_CONTINENT],
+        ['FacilityControl', ClientEvents.PS2_CONTROL],
+        ['MetagameEvent', ClientEvents.PS2_META_EVENT],
+    ]);
 
     /**
      * @param {string} serviceId Used to as authentication to connect to the gateway
@@ -229,9 +289,16 @@ class PS2EventClient extends EventEmitter {
                     // TODO: Together with the heartbeats, the statuses of servers can be monitored
                     break;
                 case 'serviceMessage':
-                    this.duplicateRecorder(data.payload)
-                        ? this.emit(ClientEvents.PS2_EVENT, data.payload)
-                        : this.emit(ClientEvents.PS2_DUPLICATE, data.payload);
+                    const eventRoute = this.eventRoutes.get(data.payload.event_name);
+                    if (!eventRoute) throw new Error(`Received unkown game event: ${JSON.stringify(data)}`);
+
+                    if (!this.duplicateRecorder(data.payload)) {
+                        this.emit(ClientEvents.PS2_DUPLICATE, data.payload);
+                    } else {
+                        this.emit(ClientEvents.PS2_EVENT, data.payload);
+                        this.emit(eventRoute, data.payload);
+                    }
+
                     break;
                 default:
                     throw new Error(`Received unknown event service: ${JSON.stringify(data)}`);
