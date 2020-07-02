@@ -186,6 +186,6 @@ export type GenericEvent =
     | SkillAdded
     | VehicleDestroy
     | ContinentLock
-    // | ContinentUnlock
+    | ContinentUnlock
     | FacilityControl
     | MetagameEvent;
