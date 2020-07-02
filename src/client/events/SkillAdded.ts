@@ -1,6 +1,5 @@
 import BaseEvent from './BaseEvent';
 import { SkillAdded as SkillAddedData } from '../utils/PS2Events';
-import Client from '../Client';
 
 export default class SkillAdded extends BaseEvent implements SkillAddedData {
     public readonly character_id: string;
@@ -10,14 +9,7 @@ export default class SkillAdded extends BaseEvent implements SkillAddedData {
     public readonly world_id: string;
     public readonly zone_id: string;
 
-    public constructor(
-        private readonly client: Client,
-        data: any,
-    ) {
-        super(data);
-    }
-
     public toHash(): string {
-        return '';
+        return `SkillAdded:${this.character_id}:${this.timestamp}`;
     }
 }

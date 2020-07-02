@@ -10,6 +10,6 @@ export default class BattleRankUp extends BaseEvent implements BattleRankUpData 
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `BattleRankUp:${this.character_id}:${this.timestamp}:${this.battle_rank}`;
     }
 }

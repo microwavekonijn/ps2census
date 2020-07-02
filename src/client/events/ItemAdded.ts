@@ -12,6 +12,6 @@ export default class ItemAdded extends BaseEvent implements ItemAddedData {
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `ItemAdded:${this.character_id}:${this.timestamp}:${this.item_id}`;
     }
 }

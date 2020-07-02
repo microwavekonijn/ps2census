@@ -13,6 +13,6 @@ export default class GainExperience extends BaseEvent implements GainExperienceD
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `GainExperience:${this.character_id}:${this.timestamp}`;
     }
 }

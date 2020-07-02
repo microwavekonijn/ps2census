@@ -8,6 +8,6 @@ export default class PlayerLogout extends BaseEvent implements PlayerLogoutData 
     public readonly world_id: string;
 
     public toHash(): string {
-        return '';
+        return `PlayerLogout:${this.character_id}:${this.timestamp}`;
     }
 }

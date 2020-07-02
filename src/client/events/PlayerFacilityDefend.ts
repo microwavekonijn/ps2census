@@ -11,6 +11,6 @@ export default class PlayerFacilityDefend extends BaseEvent implements PlayerFac
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `PlayerFacilityDefend:${this.character_id}:${this.timestamp}`;
     }
 }

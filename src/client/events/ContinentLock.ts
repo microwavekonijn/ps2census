@@ -15,6 +15,6 @@ export default class ContinentLock extends BaseEvent implements ContinentLockDat
     public zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `ContinentLock:${this.world_id}:${this.zone_id}:${this.timestamp}`;
     }
 }

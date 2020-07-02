@@ -1,5 +1,5 @@
 import BaseEvent from './BaseEvent';
-import { AchievementEarned as AchievementEarnedData } from '../utils/PS2Events';
+import { AchievementEarned as AchievementEarnedData, } from '../utils/PS2Events';
 
 export default class AchievementEarned extends BaseEvent implements AchievementEarnedData {
     public readonly achievement_id: string;
@@ -10,6 +10,6 @@ export default class AchievementEarned extends BaseEvent implements AchievementE
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `AchievementEarned:${this.character_id}:${this.timestamp}:${this.achievement_id}`;
     }
 }

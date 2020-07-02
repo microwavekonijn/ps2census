@@ -11,6 +11,6 @@ export default class PlayerFacilityCapture extends BaseEvent implements PlayerFa
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `PlayerFacilityCapture:${this.character_id}:${this.timestamp}`;
     }
 }

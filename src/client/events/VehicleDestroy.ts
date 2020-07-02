@@ -1,6 +1,5 @@
 import BaseEvent from './BaseEvent';
 import { VehicleDestroy as VehicleDestroyData } from '../utils/PS2Events';
-import Client from '../Client';
 
 export default class VehicleDestroy extends BaseEvent implements VehicleDestroyData {
     public readonly attacker_character_id: string;
@@ -16,14 +15,7 @@ export default class VehicleDestroy extends BaseEvent implements VehicleDestroyD
     public readonly world_id: string;
     public readonly zone_id: string;
 
-    public constructor(
-        private readonly client: Client,
-        data: any,
-    ) {
-        super(data);
-    }
-
     public toHash(): string {
-        return '';
+        return `VehicleDestroy:${this.character_id}:${this.timestamp}:${this.attacker_character_id}`;
     }
 }

@@ -16,6 +16,6 @@ export default class Death extends BaseEvent implements DeathData {
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `Death:${this.character_id}:${this.timestamp}`;
     }
 }

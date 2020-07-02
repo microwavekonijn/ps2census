@@ -13,6 +13,6 @@ export default class FacilityControl extends BaseEvent implements FacilityContro
     public readonly zone_id: string;
 
     public toHash(): string {
-        return '';
+        return `FacilityControl:${this.world_id}:${this.zone_id}:${this.timestamp}:${this.facility_id}`;
     }
 }
