@@ -46,6 +46,9 @@ client.on('error', () => {}); // Error
 client.on('warn', () => {}); // Error, when receiving a corrupt message
 
 client.connect();
+
+// To terminate a connection:
+client.destroy();
 ```
 
 ## Documentation
