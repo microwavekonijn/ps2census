@@ -1,15 +1,21 @@
 import DuplicateFilter from './DuplicateFilter';
+import { EventEmitter } from 'events';
 
 export type PS2Environment = 'ps2' | 'ps2ps2us' | 'ps2ps4eu';
 
-export type PS2ClientConfig = {
-    environment?: PS2Environment,
-    heartbeatInterval?: number,
-    subscriptions?: PS2ClientSubscription[],
-    duplicateFilter?: DuplicateFilter | null
+export type ClientConfig = {
+    serviceId?: string,
+    environment?: PS2Environment
 }
 
-export type PS2ClientSubscription = {
+export type EventStreamConfig = {
+    heartbeatInterval?: number,
+    subscriptions?: EventStreamSubscription[],
+    duplicateFilter?: DuplicateFilter | null,
+    emitter?: EventEmitter
+}
+
+export type EventStreamSubscription = {
     characters: string[],
     worlds?: string[],
     eventNames: string[]

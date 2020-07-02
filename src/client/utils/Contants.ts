@@ -4,13 +4,15 @@ export enum State {
     NEARLY,
     RECONNECTING,
     READY,
-    DISCONNECTED
+    DISCONNECTED,
 }
 
-export enum ClientEvents {
-    CLIENT_READY = 'ready',
-    CLIENT_DISCONNECTED = 'disconnected',
-    CLIENT_RECONNECTING = 'reconnecting',
+export enum Events {
+    STREAM_READY = 'ready',
+    STREAM_DISCONNECTED = 'disconnected',
+    STREAM_RECONNECTING = 'reconnecting',
+    STREAM_DESTROYED = 'destroyed',
+    STREAM_CLOSE = 'close',
     ERROR = 'error',
     WARN = 'warn',
     DEBUG = 'debug',
