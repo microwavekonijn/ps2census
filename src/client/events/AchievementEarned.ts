@@ -1,5 +1,5 @@
 import BaseEvent from './BaseEvent';
-import { AchievementEarned as AchievementEarnedData, } from '../utils/PS2Events';
+import { AchievementEarned as AchievementEarnedData } from '../utils/PS2Events';
 
 export default class AchievementEarned extends BaseEvent implements AchievementEarnedData {
     public readonly achievement_id: string;
