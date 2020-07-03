@@ -170,7 +170,7 @@ export type MetagameEvent = {
     metagame_event_state_name: string, // Added
     timestamp: string,
     world_id: string,
-    // zone_id: string
+    instance_id: string
 }
 
 export type GenericEvent =
