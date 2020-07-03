@@ -13,9 +13,8 @@ export default class MetagameEvent extends BaseEvent implements MetagameEventDat
     public readonly timestamp: string;
     public readonly world_id: string;
     public readonly instance_id: string;
-    public readonly zone_id: string;
 
     public toHash(): string {
-        return `MetagameEvent:${this.world_id}:${this.instance_id}:${this.timestamp}`;
+        return `MetagameEvent:${this.world_id}:${this.timestamp}`;
     }
 }
