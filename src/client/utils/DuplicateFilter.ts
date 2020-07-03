@@ -33,7 +33,7 @@ export default class DuplicateFilter {
         VehicleDestroy: ({character_id, timestamp, attacker_character_id}: VehicleDestroy) => `10:${character_id}:${timestamp}:${attacker_character_id}`,
         /** World centric events */
         FacilityControl: ({world_id, zone_id, timestamp, facility_id}: FacilityControl) => `11:${world_id}:${zone_id}:${timestamp}:${facility_id}`,
-        MetagameEvent: ({world_id, timestamp}: MetagameEvent) => `12:${world_id}:${timestamp}`,
+        MetagameEvent: ({world_id,instance_id, timestamp}: MetagameEvent) => `12:${world_id}:${instance_id}:${timestamp}`,
         ContinentLock: ({world_id, zone_id, timestamp}: ContinentLock) => `13:${world_id}:${zone_id}:${timestamp}`,
         ContinentUnlock: ({world_id, zone_id, timestamp}: ContinentUnlock) => `14:${world_id}:${zone_id}:${timestamp}`,
     };
