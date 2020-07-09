@@ -27,9 +27,9 @@ export default class DuplicateFilter implements EventStreamFilter {
     }
 
     /**
-     * Records an event if it is has not been before
+     * Whether to filter the event or not
      *
-     * @param event
+     * @param {PS2Event} event
      * @return {boolean} whether it has been recorded before
      */
     public filter(event: PS2Event): boolean {
@@ -39,10 +39,10 @@ export default class DuplicateFilter implements EventStreamFilter {
         const hash = event.toHash();
 
         if (this.cache.has(hash))
-            return false;
+            return true;
 
         this.cache.add(hash);
 
-        return true;
+        return false;
     }
 }
