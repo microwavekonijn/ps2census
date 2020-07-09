@@ -16,6 +16,6 @@ export default class FacilityControl extends PS2Event implements FacilityControl
     public readonly zone_id: string;
 
     public toHash(): string {
-        return `FacilityControl:${this.world_id}:${this.zone_id}:${this.timestamp}:${this.facility_id}`;
+        return `FacilityControl:${this.world_id}:${this.timestamp}:${this.facility_id}`;
     }
 }
