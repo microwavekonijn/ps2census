@@ -89,7 +89,7 @@ class EventStreamManager extends EventEmitter {
          * Stream ready
          */
         this.stream.on(Events.STREAM_READY, () => {
-            this.emit(Events.DEBUG, `Subscribing.`);
+            this.client.emit(Events.DEBUG, `Subscribing.`);
 
             this.subscriptions.forEach((sub) => this.stream.send(JSON.stringify({
                 service: 'event',
@@ -103,11 +103,11 @@ class EventStreamManager extends EventEmitter {
          */
         this.stream.on(Events.STREAM_CLOSE, (code, reason) => {
             if (this.destroyed) {
-                this.emit(Events.STREAM_DISCONNECTED, code, reason);
+                this.client.emit(Events.STREAM_DISCONNECTED, code, reason);
                 return;
             }
 
-            this.emit(Events.STREAM_RECONNECTING);
+            this.client.emit(Events.STREAM_RECONNECTING);
 
             this.reconnect();
         });
@@ -116,7 +116,7 @@ class EventStreamManager extends EventEmitter {
          * Stream destroyed without connection
          */
         this.stream.on(Events.STREAM_DESTROYED, () => {
-            this.emit(Events.STREAM_RECONNECTING);
+            this.client.emit(Events.STREAM_RECONNECTING);
 
             this.reconnect();
         });
@@ -130,7 +130,7 @@ class EventStreamManager extends EventEmitter {
         if (this.stream.isReady) return;
 
         const ready = () => {
-            this.emit(Events.STREAM_READY);
+            this.client.emit(Events.STREAM_READY);
         };
 
         this.stream.once(Events.STREAM_READY, ready);
@@ -155,7 +155,7 @@ class EventStreamManager extends EventEmitter {
     public disconnect(): void {
         if (this.destroyed) return;
 
-        this.emit(Events.DEBUG, `Manager disconnected.`);
+        this.client.emit(Events.DEBUG, `Manager disconnected.`);
 
         if (this.reconnectTimeout) {
             clearTimeout(this.reconnectTimeout);
@@ -164,7 +164,7 @@ class EventStreamManager extends EventEmitter {
 
         this.stream.destroy({code: 1000, emit: false});
 
-        this.emit(Events.STREAM_DISCONNECTED);
+        this.client.emit(Events.STREAM_DISCONNECTED);
     }
 
     /**
@@ -176,13 +176,13 @@ class EventStreamManager extends EventEmitter {
         } catch (e) {
             if ([403].includes(e.httpState)) {
 
-                this.emit(Events.ERROR, new Error(`Service ID rejected while trying to reconnect.`));
+                this.client.emit(Events.ERROR, new Error(`Service ID rejected while trying to reconnect.`));
                 this.disconnect();
 
                 return;
             }
 
-            this.emit(Events.DEBUG, `Reconnect failed, trying again in ${this.reconnectDelay}ms.`);
+            this.client.emit(Events.DEBUG, `Reconnect failed, trying again in ${this.reconnectDelay}ms.`);
 
             if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);
             this.reconnectTimeout = setTimeout(() => this.reconnect(), this.reconnectDelay);
