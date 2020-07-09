@@ -46,10 +46,9 @@ export default class EventStreamHandler implements EventStreamHandlerContract {
     public handleEvent(event: PS2EventData): void {
         const wrapped = this.wrapEvent(event);
 
-        if (!this.filter(wrapped))
-            this.client.emit(wrapped.emit, wrapped);
-        else
-            this.client.emit(Events.PS2_DUPLICATE, wrapped);
+        this.client.emit(Events.PS2_EVENT, wrapped);
+        this.client.emit(wrapped.emit, wrapped);
+
     }
 
     /**

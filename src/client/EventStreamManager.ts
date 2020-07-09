@@ -7,22 +7,6 @@ import Timeout = NodeJS.Timeout;
 import EventStreamHandler from './EventStreamHandler';
 import DuplicateFilter from './utils/DuplicateFilter';
 
-// declare interface EventStreamManager {
-//     on(event: 'ready', listener: () => void): this;
-//     on(event: 'disconnected', listener: (code: number, reason: string) => void): this;
-//     on(event: 'reconnecting', listener: () => void): this;
-//     on(event: 'error', listener: (e: Error) => void): this;
-//     on(event: 'warn', listener: (e: Error) => void): this;
-//     on(event: 'debug', listener: (info: string) => void): this;
-//
-//     once(event: 'ready', listener: () => void): this;
-//     once(event: 'disconnected', listener: (code: number, reason: string) => void): this;
-//     once(event: 'reconnecting', listener: () => void): this;
-//     once(event: 'error', listener: (e: Error) => void): this;
-//     once(event: 'warn', listener: (e: Error) => void): this;
-//     once(event: 'debug', listener: (info: string) => void): this;
-// }
-
 class EventStreamManager extends EventEmitter {
     /**
      * The event stream
@@ -123,6 +107,7 @@ class EventStreamManager extends EventEmitter {
     }
 
     /**
+     * Start connection
      *
      * @return {Promise<void>}
      */
@@ -149,6 +134,7 @@ class EventStreamManager extends EventEmitter {
     }
 
     /**
+     * Bye bye
      *
      * @return {Promise<void>}
      */
@@ -168,7 +154,7 @@ class EventStreamManager extends EventEmitter {
     }
 
     /**
-     *
+     * Connection has done something, now we need a new one
      */
     private async reconnect(): Promise<void> {
         try {
