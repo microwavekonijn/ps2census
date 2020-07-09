@@ -4,7 +4,7 @@ import {
     ItemAddedData, MetagameEventData, PlayerFacilityCaptureData, PlayerFacilityDefendData, PlayerLoginData,
     PlayerLogoutData, SkillAddedData, VehicleDestroyData,
 } from './utils/PS2Events';
-import { ClientConfig, PS2Environment } from './utils/Types';
+import { ClientConfig, EventStreamSubscription, PS2Environment } from './utils/Types';
 import EventStreamManager from './EventStreamManager';
 import PS2Event from './events/PS2Event';
 
@@ -16,7 +16,7 @@ declare interface Client {
     on(event: 'warn', listener: (e: Error) => void): this;
     on(event: 'debug', listener: (info: string) => void): this;
     on(event: 'duplicate', listener: (event: PS2Event) => void): this;
-    on(event: 'subscribed', listener: (subscription: any) => void): this;
+    on(event: 'subscribed', listener: (subscription: EventStreamSubscription) => void): this;
 
     on(event: 'ps2Event', listener: (event: PS2Event) => void): this;
     on(event: 'achievementEarned', listener: (event: AchievementEarnedData) => void): this;
@@ -42,7 +42,7 @@ declare interface Client {
     once(event: 'warn', listener: (e: Error) => void): this;
     once(event: 'debug', listener: (info: string) => void): this;
     once(event: 'duplicate', listener: (event: PS2Event) => void): this;
-    once(event: 'subscribed', listener: (subscription: any) => void): this;
+    once(event: 'subscribed', listener: (subscription: EventStreamSubscription) => void): this;
 
     once(event: 'ps2Event', listener: (event: PS2Event) => void): this;
     once(event: 'achievementEarned', listener: (event: AchievementEarnedData) => void): this;

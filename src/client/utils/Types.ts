@@ -25,9 +25,11 @@ export type EventStreamConfig = {
 export type EventStreamSubscription = {
     characters: string[],
     worlds?: string[],
-    eventNames: string[]
+    eventNames: string[],
+    logicalAndCharactersWithWorlds: boolean
 } | {
     characters?: string[],
     worlds: string[],
-    eventNames: string[]
+    eventNames: string[],
+    logicalAndCharactersWithWorlds: boolean
 }
