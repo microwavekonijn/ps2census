@@ -1,6 +1,6 @@
 /** Character centric events */
 
-export type AchievementEarned = {
+export type AchievementEarnedData = {
     event_name: 'AchievementEarned',
     character_id: string,
     timestamp: string,
@@ -9,7 +9,7 @@ export type AchievementEarned = {
     zone_id: string
 }
 
-export type BattleRankUp = {
+export type BattleRankUpData = {
     battle_rank: string,
     character_id: string,
     event_name: 'BattleRankUp',
@@ -18,7 +18,7 @@ export type BattleRankUp = {
     zone_id: string
 }
 
-export type Death = {
+export type DeathData = {
     attacker_character_id: string,
     attacker_fire_mode_id: string,
     attacker_loadout_id: string,
@@ -35,7 +35,7 @@ export type Death = {
     zone_id: string
 }
 
-export type GainExperience = {
+export type GainExperienceData = {
     amount: string,
     character_id: string,
     event_name: 'GainExperience',
@@ -47,7 +47,7 @@ export type GainExperience = {
     zone_id: string
 }
 
-export type ItemAdded = {
+export type ItemAddedData = {
     character_id: string,
     context: string,
     event_name: 'ItemAdded',
@@ -58,7 +58,7 @@ export type ItemAdded = {
     zone_id: string
 }
 
-export type PlayerFacilityCapture = {
+export type PlayerFacilityCaptureData = {
     character_id: string,
     event_name: 'PlayerFacilityCapture',
     facility_id: string,
@@ -68,7 +68,7 @@ export type PlayerFacilityCapture = {
     zone_id: string
 }
 
-export type PlayerFacilityDefend = {
+export type PlayerFacilityDefendData = {
     character_id: string,
     event_name: 'PlayerFacilityDefend',
     facility_id: string,
@@ -78,21 +78,21 @@ export type PlayerFacilityDefend = {
     zone_id: string
 }
 
-export type PlayerLogin = {
+export type PlayerLoginData = {
     character_id: string,
     event_name: 'PlayerLogin',
     timestamp: string,
     world_id: string
 }
 
-export type PlayerLogout = {
+export type PlayerLogoutData = {
     character_id: string,
     event_name: 'PlayerLogout',
     timestamp: string,
     world_id: string
 }
 
-export type SkillAdded = {
+export type SkillAddedData = {
     character_id: string,
     event_name: 'SkillAdded',
     skill_id: string,
@@ -101,7 +101,7 @@ export type SkillAdded = {
     zone_id: string
 }
 
-export type VehicleDestroy = {
+export type VehicleDestroyData = {
     attacker_character_id: string,
     attacker_loadout_id: string,
     attacker_vehicle_id: string,
@@ -119,7 +119,7 @@ export type VehicleDestroy = {
 
 /** World centric events */
 
-export type ContinentLock = {
+export type ContinentLockData = {
     event_name: 'ContinentLock',
     event_type: string,
     metagame_event_id: string,
@@ -133,7 +133,7 @@ export type ContinentLock = {
     zone_id: string
 }
 
-export type ContinentUnlock = {
+export type ContinentUnlockData = {
     event_name: 'ContinentUnlock',
     event_type: string,
     metagame_event_id: string,
@@ -147,7 +147,7 @@ export type ContinentUnlock = {
     zone_id: string
 }
 
-export type FacilityControl = {
+export type FacilityControlData = {
     duration_held: string,
     event_name: 'FacilityControl',
     facility_id: string,
@@ -159,7 +159,7 @@ export type FacilityControl = {
     zone_id: string
 }
 
-export type MetagameEvent = {
+export type MetagameEventData = {
     event_name: 'MetagameEvent',
     experience_bonus: string,
     faction_nc: string,
@@ -173,19 +173,19 @@ export type MetagameEvent = {
     instance_id: string
 }
 
-export type PS2EventType =
-    AchievementEarned
-    | BattleRankUp
-    | Death
-    | GainExperience
-    | ItemAdded
-    | PlayerFacilityCapture
-    | PlayerFacilityDefend
-    | PlayerLogin
-    | PlayerLogout
-    | SkillAdded
-    | VehicleDestroy
-    | ContinentLock
-    | ContinentUnlock
-    | FacilityControl
-    | MetagameEvent;
+export type PS2EventData =
+    AchievementEarnedData
+    | BattleRankUpData
+    | DeathData
+    | GainExperienceData
+    | ItemAddedData
+    | PlayerFacilityCaptureData
+    | PlayerFacilityDefendData
+    | PlayerLoginData
+    | PlayerLogoutData
+    | SkillAddedData
+    | VehicleDestroyData
+    | ContinentLockData
+    | ContinentUnlockData
+    | FacilityControlData
+    | MetagameEventData;

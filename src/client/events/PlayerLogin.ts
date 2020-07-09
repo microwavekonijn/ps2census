@@ -1,5 +1,5 @@
 import PS2Event from './PS2Event';
-import { PlayerLogin as PlayerLoginData } from '../utils/PS2Events';
+import { PlayerLoginData } from '../utils/PS2Events';
 import { Events } from '../utils/Contants';
 
 export default class PlayerLogin extends PS2Event implements PlayerLoginData {

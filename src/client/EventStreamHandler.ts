@@ -1,5 +1,5 @@
 import EventStreamHandlerContract from './concerns/EventStreamHandler';
-import { PS2EventType } from './utils/PS2Events';
+import { PS2EventData } from './utils/PS2Events';
 import EventStreamFilter from './concerns/EventStreamFilter';
 import PS2Event from './events/PS2Event';
 import Client from './Client';
@@ -41,9 +41,9 @@ export default class EventStreamHandler implements EventStreamHandlerContract {
     /**
      * Handles the event
      *
-     * @param {PS2EventType} event
+     * @param {PS2EventData} event
      */
-    public handleEvent(event: PS2EventType): void {
+    public handleEvent(event: PS2EventData): void {
         const wrapped = this.wrapEvent(event);
 
         if (!this.filter(wrapped))
@@ -64,10 +64,10 @@ export default class EventStreamHandler implements EventStreamHandlerContract {
     /**
      * Factory that wraps events, I don't know what more to say
      *
-     * @param {PS2EventType} event
+     * @param {PS2EventData} event
      * @return {PS2Event}
      */
-    private wrapEvent(event: PS2EventType): PS2Event {
+    private wrapEvent(event: PS2EventData): PS2Event {
         switch (event.event_name) {
             case 'AchievementEarned':
                 return new AchievementEarned(this.client, event);

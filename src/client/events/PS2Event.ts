@@ -1,5 +1,5 @@
 import Client from '../Client';
-import { PS2EventType } from '../utils/PS2Events';
+import { PS2EventData } from '../utils/PS2Events';
 import { Events } from '../utils/Contants';
 
 export default abstract class PS2Event {
@@ -11,11 +11,11 @@ export default abstract class PS2Event {
     /**
      *
      * @param {Client} client
-     * @param {PS2EventType} data
+     * @param {PS2EventData} data
      */
     public constructor(
         protected readonly client: Client,
-        data: PS2EventType,
+        data: PS2EventData,
     ) {
         Object.assign(this, data);
     }

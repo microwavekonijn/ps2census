@@ -1,5 +1,5 @@
 import PS2Event from './PS2Event';
-import { AchievementEarned as AchievementEarnedData } from '../utils/PS2Events';
+import { AchievementEarnedData } from '../utils/PS2Events';
 import { Events } from '../utils/Contants';
 
 export default class AchievementEarned extends PS2Event implements AchievementEarnedData {

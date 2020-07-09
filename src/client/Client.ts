@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import {
-    AchievementEarned, BattleRankUp, ContinentLock, Death, FacilityControl, GainExperience, PS2EventType, ItemAdded,
+    AchievementEarned, BattleRankUp, ContinentLock, Death, FacilityControl, GainExperience, PS2Event, ItemAdded,
     MetagameEvent, PlayerFacilityCapture, PlayerFacilityDefend, PlayerLogin, PlayerLogout, SkillAdded, VehicleDestroy,
 } from './utils/PS2Events';
 import { ClientConfig, PS2Environment } from './utils/Types';
@@ -13,8 +13,8 @@ declare interface Client {
     on(event: 'error', listener: (e: Error) => void): this;
     on(event: 'warn', listener: (e: Error) => void): this;
     on(event: 'debug', listener: (info: string) => void): this;
-    on(event: 'ps2Event', listener: (event: PS2EventType) => void): this;
-    on(event: 'duplicate', listener: (event: PS2EventType) => void): this;
+    on(event: 'ps2Event', listener: (event: PS2Event) => void): this;
+    on(event: 'duplicate', listener: (event: PS2Event) => void): this;
     on(event: 'subscribed', listener: (subscription: any) => void): this;
 
     on(event: 'AchievementEarned', listener: (event: AchievementEarned) => void): this;
@@ -39,8 +39,8 @@ declare interface Client {
     once(event: 'error', listener: (e: Error) => void): this;
     once(event: 'warn', listener: (e: Error) => void): this;
     once(event: 'debug', listener: (info: string) => void): this;
-    once(event: 'ps2Event', listener: (event: PS2EventType) => void): this;
-    once(event: 'duplicate', listener: (event: PS2EventType) => void): this;
+    once(event: 'ps2Event', listener: (event: PS2Event) => void): this;
+    once(event: 'duplicate', listener: (event: PS2Event) => void): this;
     once(event: 'subscribed', listener: (subscription: any) => void): this;
 
     once(event: 'AchievementEarned', listener: (event: AchievementEarned) => void): this;

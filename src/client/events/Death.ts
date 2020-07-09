@@ -1,5 +1,5 @@
 import PS2Event from './PS2Event';
-import { Death as DeathData } from '../utils/PS2Events';
+import { DeathData } from '../utils/PS2Events';
 import { Events } from '../utils/Contants';
 
 export default class Death extends PS2Event implements DeathData {
