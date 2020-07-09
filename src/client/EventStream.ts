@@ -60,6 +60,11 @@ class EventStream extends EventEmitter {
     private connectedAt?: number;
 
     /**
+     * @type {Timeout?} Timeout to make sure the connection is established within a reasonable time
+     */
+    private connectionTimeout?: Timeout;
+
+    /**
      * The emitter used for events like debug, warn, and error
      */
     private readonly emitter: EventEmitter;
@@ -138,6 +143,7 @@ class EventStream extends EventEmitter {
 
             this.state = this.state === State.DISCONNECTED ? State.RECONNECTING : State.CONNECTING;
             this.connectedAt = Date.now();
+            this.setConnectionTimeout(true);
 
             const ws = this.connection = new WebSocket(this.gatewayUri);
 
@@ -195,7 +201,7 @@ class EventStream extends EventEmitter {
                     if (data.connected) {
                         this.emit(Events.STREAM_READY);
                         this.state = State.READY;
-
+                        this.setConnectionTimeout(false);
                         this.setHeartbeatTimer(this.heartbeatInterval);
                     } else {
                         this.destroy();
@@ -235,6 +241,7 @@ class EventStream extends EventEmitter {
         this.emitter.emit(Events.DEBUG, `Connection closed. ${JSON.stringify({code, reason})}`);
 
         this.setHeartbeatTimer(-1);
+        this.setConnectionTimeout(false);
         this.cleanupConnection();
 
         this.state = State.DISCONNECTED;
@@ -265,6 +272,7 @@ class EventStream extends EventEmitter {
      */
     public destroy({code = 1000, emit = true} = {}): void {
         this.setHeartbeatTimer(-1);
+        this.setConnectionTimeout(false);
 
         if (this.connection) {
             if (this.connection.readyState === WebSocket.OPEN) {
@@ -288,6 +296,28 @@ class EventStream extends EventEmitter {
         }
 
         this.state = State.DISCONNECTED;
+    }
+
+    /**
+     * Toggle connection timeout
+     *
+     * @param {boolean} toggle
+     */
+    private setConnectionTimeout(toggle: boolean): void {
+        if (!toggle) {
+            if (this.connectionTimeout) {
+                this.emit(Events.DEBUG, `Connection timeout cleared`);
+                clearTimeout(this.connectionTimeout);
+                delete this.connectionTimeout;
+            }
+            return;
+        }
+
+        this.emit(Events.DEBUG, `Connection timeout set`);
+        this.connectionTimeout = setTimeout(() => {
+            this.emit(Events.DEBUG, `Connection timed out.`);
+            this.destroy({code: 1001});
+        }, 5000);
     }
 
     /**
