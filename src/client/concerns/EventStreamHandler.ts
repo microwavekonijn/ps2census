@@ -1,4 +1,4 @@
-import { PS2Event } from '../utils/PS2Events';
+import { PS2EventData } from '../utils/PS2Events';
 
 export default interface EventStreamHandler {
     /**
@@ -6,7 +6,7 @@ export default interface EventStreamHandler {
      *
      * @param {PS2Event} event
      */
-    handleEvent(event: PS2Event): void;
+    handleEvent(event: PS2EventData): void;
 
     /**
      * Handle a subscription notification
