@@ -1,6 +1,6 @@
 {
   "name": "ps2census",
-  "version": "0.2.2-0",
+  "version": "0.2.3-0",
   "description": "Client to connect to the PS2 Event Stream websocket.",
   "main": "dist",
   "types": "dist/index.d.ts",
