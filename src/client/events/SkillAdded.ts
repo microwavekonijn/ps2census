@@ -1,7 +1,7 @@
-import BaseEvent from './BaseEvent';
+import PS2Event from './PS2Event';
 import { SkillAdded as SkillAddedData } from '../utils/PS2Events';
 
-export default class SkillAdded extends BaseEvent implements SkillAddedData {
+export default class SkillAdded extends PS2Event implements SkillAddedData {
     public readonly character_id: string;
     public readonly event_name: 'SkillAdded';
     public readonly skill_id: string;

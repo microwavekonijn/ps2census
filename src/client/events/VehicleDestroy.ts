@@ -1,7 +1,7 @@
-import BaseEvent from './BaseEvent';
+import PS2Event from './PS2Event';
 import { VehicleDestroy as VehicleDestroyData } from '../utils/PS2Events';
 
-export default class VehicleDestroy extends BaseEvent implements VehicleDestroyData {
+export default class VehicleDestroy extends PS2Event implements VehicleDestroyData {
     public readonly attacker_character_id: string;
     public readonly attacker_loadout_id: string;
     public readonly attacker_vehicle_id: string;

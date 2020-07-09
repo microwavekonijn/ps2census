@@ -1,6 +1,6 @@
 import Client from '../Client';
 
-export default abstract class BaseEvent {
+export default abstract class PS2Event {
     public constructor(
         protected readonly client: Client,
         data: any,

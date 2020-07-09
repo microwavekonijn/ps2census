@@ -1,7 +1,7 @@
-import BaseEvent from './BaseEvent';
+import PS2Event from './PS2Event';
 import { ItemAdded as ItemAddedData } from '../utils/PS2Events';
 
-export default class ItemAdded extends BaseEvent implements ItemAddedData {
+export default class ItemAdded extends PS2Event implements ItemAddedData {
     public readonly character_id: string;
     public readonly context: string;
     public readonly event_name: 'ItemAdded';

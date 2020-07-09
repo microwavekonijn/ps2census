@@ -1,7 +1,7 @@
-import BaseEvent from './BaseEvent';
+import PS2Event from './PS2Event';
 import { BattleRankUp as BattleRankUpData } from '../utils/PS2Events';
 
-export default class BattleRankUp extends BaseEvent implements BattleRankUpData {
+export default class BattleRankUp extends PS2Event implements BattleRankUpData {
     public readonly battle_rank: string;
     public readonly character_id: string;
     public readonly event_name: 'BattleRankUp';

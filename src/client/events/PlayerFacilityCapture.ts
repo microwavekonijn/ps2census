@@ -1,7 +1,7 @@
-import BaseEvent from './BaseEvent';
+import PS2Event from './PS2Event';
 import { PlayerFacilityCapture as PlayerFacilityCaptureData } from '../utils/PS2Events';
 
-export default class PlayerFacilityCapture extends BaseEvent implements PlayerFacilityCaptureData {
+export default class PlayerFacilityCapture extends PS2Event implements PlayerFacilityCaptureData {
     public readonly character_id: string;
     public readonly event_name: 'PlayerFacilityCapture';
     public readonly facility_id: string;

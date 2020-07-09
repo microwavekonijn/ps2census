@@ -3,7 +3,7 @@ import Client from './Client';
 import EventStream from './EventStream';
 import { EventStreamSubscription } from './utils/Types';
 import { Events } from './utils/Contants';
-import { GenericEvent } from './utils/PS2Events';
+import { PS2Event } from './utils/PS2Events';
 import Timeout = NodeJS.Timeout;
 import FacilityControl from './events/FacilityControl';
 
@@ -208,9 +208,9 @@ class EventStreamManager extends EventEmitter {
 
     /**
      *
-     * @param {GenericEvent} event
+     * @param {PS2Event} event
      */
-    public handleEvent(event: GenericEvent): void {
+    public handleEvent(event: PS2Event): void {
         // TODO: write code
     }
 }

@@ -1,7 +1,7 @@
-import BaseEvent from './BaseEvent';
+import PS2Event from './PS2Event';
 import { GainExperience as GainExperienceData } from '../utils/PS2Events';
 
-export default class GainExperience extends BaseEvent implements GainExperienceData {
+export default class GainExperience extends PS2Event implements GainExperienceData {
     public readonly amount: string;
     public readonly character_id: string;
     public readonly event_name: 'GainExperience';

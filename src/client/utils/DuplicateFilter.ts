@@ -3,7 +3,7 @@ import {
     AchievementEarned,
     BattleRankUp, ContinentLock, ContinentUnlock,
     Death, FacilityControl,
-    GainExperience, GenericEvent,
+    GainExperience, PS2Event,
     ItemAdded, MetagameEvent,
     PlayerFacilityCapture,
     PlayerFacilityDefend, PlayerLogin, PlayerLogout, SkillAdded, VehicleDestroy,
@@ -90,10 +90,10 @@ export default class DuplicateFilter {
     /**
      * Generates a hash for the event payload
      *
-     * @param {GenericEvent} event
+     * @param {PS2Event} event
      * @return {string}
      */
-    public hash(event: GenericEvent): string {
+    public hash(event: PS2Event): string {
         if (this.hashers[event.event_name]) {
             // @ts-ignore
             return this.hashers[event.event_name](event);

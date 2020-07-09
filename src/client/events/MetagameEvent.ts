@@ -1,7 +1,7 @@
-import BaseEvent from './BaseEvent';
+import PS2Event from './PS2Event';
 import { MetagameEvent as MetagameEventData } from '../utils/PS2Events';
 
-export default class MetagameEvent extends BaseEvent implements MetagameEventData {
+export default class MetagameEvent extends PS2Event implements MetagameEventData {
     public readonly event_name: 'MetagameEvent';
     public readonly experience_bonus: string;
     public readonly faction_nc: string;
