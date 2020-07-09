@@ -25,22 +25,22 @@ import DuplicateFilter from './utils/DuplicateFilter';
 
 class EventStreamManager extends EventEmitter {
     /**
-     *
+     * The event stream
      */
     private stream: EventStream;
 
     /**
-     * @type {boolean}
+     * @type {boolean} wheter the connection has been destroyed
      */
     private destroyed = false;
 
     /**
-     * @type {number}
+     * @type {number} delay before trying to reconnect
      */
-    private reconnectDelay = 1000;
+    private reconnectDelay = 2000;
 
     /**
-     *
+     * @type {Timeout?} The reconnect timeout
      */
     private reconnectTimeout?: Timeout;
 
@@ -55,7 +55,6 @@ class EventStreamManager extends EventEmitter {
     private readonly handler: EventStreamHandler;
 
     /**
-     *
      * @param {Client} client
      * @param {EventStreamManagerConfig} config
      */

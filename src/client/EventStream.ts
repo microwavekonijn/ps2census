@@ -72,7 +72,7 @@ class EventStream extends EventEmitter {
     /**
      * Timeout time for when we waited long enough
      */
-    private connectionTimeoutTime: number;
+    private readonly connectionTimeoutTime: number;
 
     /**
      * The emitter used for events like debug, warn, and error
@@ -232,7 +232,7 @@ class EventStream extends EventEmitter {
                     this.acknowledgeHeartbeat(data.online);
                     break;
                 case 'serviceStateChanged':
-                    // TODO: Together with the heartbeats, the statees of servers can be monitored
+                    // TODO: Together with the heartbeats, the statuses of servers can be monitored
                     break;
                 case 'serviceMessage':
                     this.handler.handleEvent(data.payload);

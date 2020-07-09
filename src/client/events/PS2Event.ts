@@ -17,6 +17,10 @@ export default abstract class PS2Event {
         protected readonly client: Client,
         data: PS2EventData,
     ) {
+        this.hydrateObject(data);
+    }
+
+    public hydrateObject(data: PS2EventData) {
         Object.assign(this, data);
     }
 
