@@ -48,6 +48,8 @@ export default class EventStreamHandler implements EventStreamHandlerContract {
 
         if (!this.filter(wrapped))
             this.client.emit(wrapped.emit, wrapped);
+        else
+            this.client.emit(Events.PS2_DUPLICATE, wrapped);
     }
 
     /**

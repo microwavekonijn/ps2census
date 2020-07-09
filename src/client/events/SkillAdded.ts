@@ -1,6 +1,6 @@
 import PS2Event from './PS2Event';
 import { SkillAdded as SkillAddedData } from '../utils/PS2Events';
-import { Events } from '../..';
+import { Events } from '../utils/Contants';
 
 export default class SkillAdded extends PS2Event implements SkillAddedData {
     public readonly emit = Events.PS2_SKILL;

@@ -1,6 +1,6 @@
 import Client from '../Client';
 import { PS2EventType } from '../utils/PS2Events';
-import { Events } from '../..';
+import { Events } from '../utils/Contants';
 
 export default abstract class PS2Event {
     public readonly emit: Events;
