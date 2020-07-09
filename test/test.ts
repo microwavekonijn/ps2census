@@ -1,7 +1,7 @@
 import { Client, Events } from '../src';
 
 const client = new Client({
-    serviceId: 'maketheelement',
+    serviceId: process.env.CENSUS_SERVICE_ID,
     streamManagerConfig: {
         subscriptions: [{
             characters: ['all'],
