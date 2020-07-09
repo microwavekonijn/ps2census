@@ -24,7 +24,7 @@ For better performance it is recommended to install `bufferutil` and `utf-8-vali
 
 ## Getting started
 
-```
+```js
 const { Client } = require('ps2census');
 
 const subscriptions = [{
@@ -32,22 +32,29 @@ const subscriptions = [{
     eventNames: ['MetagameEvent']
 }];
 
-const client = new Client('ServiceID', { subscriptions });
+const client = new Client('ServiceID', {
+        streamManagerConfig: {
+            subscriptions
+        },
+    });
 
-client.on('event', (event) => {
+client.on('ps2Event', (event) => {
     // Handle the event, for more information see http://census.daybreakgames.com/#websocket-details
 });
+// or
+client.on('facilityControl', (event) => {}); // Note that the event always starts with a lower case letter
 
+client.on('subscribed', (subscription) => {}); // Notification of a subscription made by the event stream
 client.on('duplicate', (event) => {}); // When a duplicate event has been received
 client.on('ready', () => {}); // Client is ready
 client.on('reconnecting', () => {}); // Client is reconnecting
 client.on('disconnected', () => {}); // Client got disconnected
-client.on('error', () => {}); // Error
-client.on('warn', () => {}); // Error, when receiving a corrupt message
+client.on('error', (error) => {}); // Error
+client.on('warn', (error) => {}); // Error, when receiving a corrupt message
 
-client.connect();
+client.watch();
 
-// To terminate a connection:
+// To terminate the client
 client.destroy();
 ```
 
