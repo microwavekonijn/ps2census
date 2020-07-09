@@ -81,11 +81,13 @@ class Client extends EventEmitter {
      * @param {ClientConfig} config
      */
     public constructor({
+                           serviceId,
                            environment = 'ps2',
                            streamManagerConfig,
                        }: ClientConfig = {}) {
         super();
 
+        this.serviceId = serviceId;
         this.environment = environment;
 
         if (this.serviceId)
