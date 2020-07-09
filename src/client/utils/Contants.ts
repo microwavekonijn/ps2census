@@ -30,7 +30,8 @@ export enum Events {
     PS2_LOGOUT = 'playerLogout',
     PS2_SKILL = 'skillAdded',
     PS2_VEHICLE_DESTROYED = 'vehicleDestroy',
-    PS2_CONTINENT = 'continentLock',
+    PS2_LOCK = 'continentLock',
+    PS2_UNLOCK = 'continentUnlock',
     PS2_CONTROL = 'facilityControl',
     PS2_META_EVENT = 'metagameEvent',
 }

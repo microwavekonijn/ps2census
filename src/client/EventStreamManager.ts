@@ -3,9 +3,9 @@ import Client from './Client';
 import EventStream from './EventStream';
 import { EventStreamSubscription } from './utils/Types';
 import { Events } from './utils/Contants';
-import { PS2Event } from './utils/PS2Events';
 import Timeout = NodeJS.Timeout;
-import FacilityControl from './events/FacilityControl';
+import EventStreamHandler from './EventStreamHandler';
+import DuplicateFilter from './utils/DuplicateFilter';
 
 declare interface EventStreamManager {
     on(event: 'ready', listener: () => void): this;
@@ -44,37 +44,15 @@ class EventStreamManager extends EventEmitter {
      */
     private reconnectTimeout?: Timeout;
 
-    private readonly emitter: EventEmitter;
-
-    /**
-     *
-     */
-    private readonly dataEmitter: EventEmitter;
-
     /**
      * @type {EventStreamSubscription[]} Array of subscriptions
      */
     private subscriptions: EventStreamSubscription[];
 
     /**
-     * @type {object} Map event names to Events
+     *
      */
-    private readonly eventRoutes = new Map<string, Events>([
-        ['AchievementEarned', Events.PS2_ACHIEVEMENT],
-        ['BattleRankUp', Events.PS2_RANKUP],
-        ['Death', Events.PS2_DEATH],
-        ['GainExperience', Events.PS2_EXPERIENCE],
-        ['ItemAdded', Events.PS2_ITEM],
-        ['PlayerFacilityCapture', Events.PS2_CAPTURE],
-        ['PlayerFacilityDefend', Events.PS2_DEFEND],
-        ['PlayerLogin', Events.PS2_LOGIN],
-        ['PlayerLogout', Events.PS2_LOGOUT],
-        ['SkillAdded', Events.PS2_SKILL],
-        ['VehicleDestroy', Events.PS2_VEHICLE_DESTROYED],
-        ['ContinentLock', Events.PS2_CONTINENT],
-        ['FacilityControl', Events.PS2_CONTROL],
-        ['MetagameEvent', Events.PS2_META_EVENT],
-    ]);
+    private readonly handler: EventStreamHandler;
 
     /**
      *
@@ -85,15 +63,13 @@ class EventStreamManager extends EventEmitter {
         public readonly client: Client,
         {
             subscriptions = [],
-            emitter,
-            dataEmitter,
         }: any = {},
     ) {
         super();
 
-        this.dataEmitter = dataEmitter ?? this.client;
         this.subscriptions = subscriptions;
-        this.stream = new EventStream(this, {emitter});
+        this.handler = new EventStreamHandler(this.client, new DuplicateFilter());
+        this.stream = new EventStream(this, {emitter: this});
 
         this.prepareEventStream();
     }
@@ -204,14 +180,6 @@ class EventStreamManager extends EventEmitter {
             if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);
             this.reconnectTimeout = setTimeout(() => this.reconnect(), this.reconnectDelay);
         }
-    }
-
-    /**
-     *
-     * @param {PS2Event} event
-     */
-    public handleEvent(event: PS2Event): void {
-        // TODO: write code
     }
 }
 

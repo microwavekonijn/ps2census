@@ -1,7 +1,10 @@
 import PS2Event from './PS2Event';
 import { GainExperience as GainExperienceData } from '../utils/PS2Events';
+import { Events } from '../..';
 
 export default class GainExperience extends PS2Event implements GainExperienceData {
+    public readonly emit = Events.PS2_EXPERIENCE;
+
     public readonly amount: string;
     public readonly character_id: string;
     public readonly event_name: 'GainExperience';

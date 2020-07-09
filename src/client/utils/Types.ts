@@ -9,10 +9,12 @@ export type ClientConfig = {
 }
 
 export type EventStreamConfig = {
+    environment?: PS2Environment,
+    connectionTimeout?: number,
     heartbeatInterval?: number,
     subscriptions?: EventStreamSubscription[],
     duplicateFilter?: DuplicateFilter | null,
-    emitter?: EventEmitter
+    emitter?: EventEmitter,
 }
 
 export type EventStreamSubscription = {

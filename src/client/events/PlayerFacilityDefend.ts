@@ -1,7 +1,10 @@
 import PS2Event from './PS2Event';
 import { PlayerFacilityDefend as PlayerFacilityDefendData } from '../utils/PS2Events';
+import { Events } from '../..';
 
 export default class PlayerFacilityDefend extends PS2Event implements PlayerFacilityDefendData {
+    public readonly emit = Events.PS2_DEFEND;
+
     public readonly character_id: string;
     public readonly event_name: 'PlayerFacilityDefend';
     public readonly facility_id: string;

@@ -1,9 +1,9 @@
 import { EventEmitter } from 'events';
 import WebSocket, { Data } from 'ws';
 import Timeout = NodeJS.Timeout;
-import { EventStreamConfig } from './utils/Types';
+import { EventStreamConfig, PS2Environment } from './utils/Types';
 import { Events, State } from './utils/Contants';
-import EventStreamManager from './EventStreamManager';
+import EventStreamHandler from './concerns/EventStreamHandler';
 
 declare interface EventStream {
     on(event: 'ready', listener: () => void): this;
@@ -23,6 +23,11 @@ declare interface EventStream {
 
 class EventStream extends EventEmitter {
     private static readonly baseUri = 'wss://push.planetside2.com/streaming';
+
+    /**
+     * The environment to stream
+     */
+    private readonly environment: PS2Environment;
 
     /**
      * @type {number} Period of the heartbeat in milliseconds
@@ -65,29 +70,40 @@ class EventStream extends EventEmitter {
     private connectionTimeout?: Timeout;
 
     /**
+     * Timeout time for when we waited long enough
+     */
+    private connectionTimeoutTime: number;
+
+    /**
      * The emitter used for events like debug, warn, and error
      */
     private readonly emitter: EventEmitter;
 
     /**
-     * @param {EventStreamManager} manager
+     * @param serviceId
+     * @param {EventStreamHandler} handler
      * @param {EventStreamConfig} config
      */
     public constructor(
-        private readonly manager: EventStreamManager,
+        private readonly serviceId: string,
+        private readonly handler: EventStreamHandler,
         {
+            connectionTimeout = 20000,
             heartbeatInterval = 30000,
             emitter,
+            environment = 'ps2',
         }: EventStreamConfig = {},
     ) {
         super();
 
-        this.emitter = emitter ?? this.manager;
+        this.environment = environment;
+        this.emitter = emitter ?? this;
         this.heartbeatInterval = heartbeatInterval;
+        this.connectionTimeoutTime = connectionTimeout;
     }
 
     /**
-     *
+     * Maybe, is ready, maybe is not, who knows
      */
     public get isReady(): boolean {
         return this.state === State.READY;
@@ -158,7 +174,7 @@ class EventStream extends EventEmitter {
      * @return {string} Gateway to connect to
      */
     private get gatewayUri(): string {
-        return `${EventStream.baseUri}?environment=${this.manager.client.environment}&service-id=s:${this.manager.client.serviceId}`;
+        return `${EventStream.baseUri}?environment=${this.environment}&service-id=s:${this.serviceId}`;
     }
 
     /**
@@ -219,13 +235,13 @@ class EventStream extends EventEmitter {
                     // TODO: Together with the heartbeats, the statees of servers can be monitored
                     break;
                 case 'serviceMessage':
-                    this.manager.handleEvent(data.payload);
+                    this.handler.handleEvent(data.payload);
                     break;
                 default:
                     throw new Error(`Received unknown event service: ${JSON.stringify(data)}`);
             }
         } else if (data.subscription) {
-            this.emit(Events.PS2_SUBSCRIBED, data.subscription);
+            this.handler.handleSubscription(data.subscription);
         } else if (data['send this for help']) {
             // Beep beep
         } else {
@@ -317,7 +333,7 @@ class EventStream extends EventEmitter {
         this.connectionTimeout = setTimeout(() => {
             this.emit(Events.DEBUG, `Connection timed out.`);
             this.destroy({code: 1001});
-        }, 5000);
+        }, this.connectionTimeoutTime);
     }
 
     /**
@@ -378,7 +394,7 @@ class EventStream extends EventEmitter {
         if (!this.connection) throw new Error(`Connection not available`);
 
         this.connection.send(data, e => {
-            if (e) this.manager.client.emit(Events.ERROR, e);
+            if (e) this.emitter.emit(Events.ERROR, e);
         });
     }
 }

@@ -1,7 +1,10 @@
 import PS2Event from './PS2Event';
 import { ItemAdded as ItemAddedData } from '../utils/PS2Events';
+import { Events } from '../..';
 
 export default class ItemAdded extends PS2Event implements ItemAddedData {
+    public readonly emit = Events.PS2_ITEM;
+
     public readonly character_id: string;
     public readonly context: string;
     public readonly event_name: 'ItemAdded';

@@ -1,7 +1,10 @@
 import PS2Event from './PS2Event';
 import { AchievementEarned as AchievementEarnedData } from '../utils/PS2Events';
+import { Events } from '../..';
 
 export default class AchievementEarned extends PS2Event implements AchievementEarnedData {
+    public readonly emit = Events.PS2_ACHIEVEMENT;
+
     public readonly achievement_id: string;
     public readonly character_id: string;
     public readonly event_name: 'AchievementEarned';

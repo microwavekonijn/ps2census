@@ -1,7 +1,10 @@
 import PS2Event from './PS2Event';
 import { Death as DeathData } from '../utils/PS2Events';
+import { Events } from '../..';
 
 export default class Death extends PS2Event implements DeathData {
+    public readonly emit = Events.PS2_DEATH;
+
     public readonly attacker_character_id: string;
     public readonly attacker_fire_mode_id: string;
     public readonly attacker_loadout_id: string;

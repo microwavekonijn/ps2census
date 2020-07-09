@@ -173,7 +173,7 @@ export type MetagameEvent = {
     instance_id: string
 }
 
-export type PS2Event =
+export type PS2EventType =
     AchievementEarned
     | BattleRankUp
     | Death
