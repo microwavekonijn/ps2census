@@ -13,7 +13,7 @@ declare interface Client {
     on(event: 'error', listener: (e: Error) => void): this;
     on(event: 'warn', listener: (e: Error) => void): this;
     on(event: 'debug', listener: (info: string) => void): this;
-    on(event: 'event', listener: (event: PS2EventType) => void): this;
+    on(event: 'ps2Event', listener: (event: PS2EventType) => void): this;
     on(event: 'duplicate', listener: (event: PS2EventType) => void): this;
     on(event: 'subscribed', listener: (subscription: any) => void): this;
 
@@ -29,6 +29,7 @@ declare interface Client {
     on(event: 'SkillAdded', listener: (event: SkillAdded) => void): this;
     on(event: 'VehicleDestroy', listener: (event: VehicleDestroy) => void): this;
     on(event: 'ContinentLock', listener: (event: ContinentLock) => void): this;
+    on(event: 'ContinentUnlock', listener: (event: ContinentLock) => void): this;
     on(event: 'FacilityControl', listener: (event: FacilityControl) => void): this;
     on(event: 'MetagameEvent', listener: (event: MetagameEvent) => void): this;
 
@@ -38,7 +39,7 @@ declare interface Client {
     once(event: 'error', listener: (e: Error) => void): this;
     once(event: 'warn', listener: (e: Error) => void): this;
     once(event: 'debug', listener: (info: string) => void): this;
-    once(event: 'event', listener: (event: PS2EventType) => void): this;
+    once(event: 'ps2Event', listener: (event: PS2EventType) => void): this;
     once(event: 'duplicate', listener: (event: PS2EventType) => void): this;
     once(event: 'subscribed', listener: (subscription: any) => void): this;
 
@@ -54,36 +55,59 @@ declare interface Client {
     once(event: 'SkillAdded', listener: (event: SkillAdded) => void): this;
     once(event: 'VehicleDestroy', listener: (event: VehicleDestroy) => void): this;
     once(event: 'ContinentLock', listener: (event: ContinentLock) => void): this;
+    once(event: 'ContinentUnlock', listener: (event: ContinentLock) => void): this;
     once(event: 'FacilityControl', listener: (event: FacilityControl) => void): this;
     once(event: 'MetagameEvent', listener: (event: MetagameEvent) => void): this;
 }
 
 class Client extends EventEmitter {
+    /**
+     * @type{string?} service Id for the Census API
+     */
     public readonly serviceId?: string;
 
+    /**
+     * @type{PS2Environment} the environment the client is configured for
+     */
     public readonly environment: PS2Environment;
 
-    private readonly streamManager: EventStreamManager;
+    /**
+     * @type{EventStreamManager?} the event stream manager
+     */
+    private readonly streamManager?: EventStreamManager;
 
     /**
      * @param {ClientConfig} config
      */
     public constructor({
                            environment = 'ps2',
+                           streamManagerConfig,
                        }: ClientConfig = {}) {
         super();
 
         this.environment = environment;
+
+        if (this.serviceId)
+            this.streamManager = new EventStreamManager(this, streamManagerConfig);
     }
 
-    public watch(): void {
-        if (!this.serviceId) throw new Error('A service ID is required to connect to the Event Stream');
+    /**
+     * Start watching the event stream
+     *
+     * @return {Promise<void>}
+     */
+    public async watch(): Promise<void> {
+        if (!this.streamManager)
+            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
 
-        // Connect
+        await this.streamManager.connect();
     }
 
-    public close(): void {
-
+    /**
+     * Doom and destruction, WUHAHAHAHA!
+     */
+    public destroy(): void {
+        this.streamManager?.disconnect();
     }
 }
 

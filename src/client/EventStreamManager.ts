@@ -1,27 +1,27 @@
 import { EventEmitter } from 'events';
 import Client from './Client';
 import EventStream from './EventStream';
-import { EventStreamSubscription } from './utils/Types';
+import { EventStreamManagerConfig, EventStreamSubscription } from './utils/Types';
 import { Events } from './utils/Contants';
 import Timeout = NodeJS.Timeout;
 import EventStreamHandler from './EventStreamHandler';
 import DuplicateFilter from './utils/DuplicateFilter';
 
-declare interface EventStreamManager {
-    on(event: 'ready', listener: () => void): this;
-    on(event: 'disconnected', listener: (code: number, reason: string) => void): this;
-    on(event: 'reconnecting', listener: () => void): this;
-    on(event: 'error', listener: (e: Error) => void): this;
-    on(event: 'warn', listener: (e: Error) => void): this;
-    on(event: 'debug', listener: (info: string) => void): this;
-
-    once(event: 'ready', listener: () => void): this;
-    once(event: 'disconnected', listener: (code: number, reason: string) => void): this;
-    once(event: 'reconnecting', listener: () => void): this;
-    once(event: 'error', listener: (e: Error) => void): this;
-    once(event: 'warn', listener: (e: Error) => void): this;
-    once(event: 'debug', listener: (info: string) => void): this;
-}
+// declare interface EventStreamManager {
+//     on(event: 'ready', listener: () => void): this;
+//     on(event: 'disconnected', listener: (code: number, reason: string) => void): this;
+//     on(event: 'reconnecting', listener: () => void): this;
+//     on(event: 'error', listener: (e: Error) => void): this;
+//     on(event: 'warn', listener: (e: Error) => void): this;
+//     on(event: 'debug', listener: (info: string) => void): this;
+//
+//     once(event: 'ready', listener: () => void): this;
+//     once(event: 'disconnected', listener: (code: number, reason: string) => void): this;
+//     once(event: 'reconnecting', listener: () => void): this;
+//     once(event: 'error', listener: (e: Error) => void): this;
+//     once(event: 'warn', listener: (e: Error) => void): this;
+//     once(event: 'debug', listener: (info: string) => void): this;
+// }
 
 class EventStreamManager extends EventEmitter {
     /**
@@ -50,26 +50,34 @@ class EventStreamManager extends EventEmitter {
     private subscriptions: EventStreamSubscription[];
 
     /**
-     *
+     * @type {EventStreamHandler} handles events, and subscriptions
      */
     private readonly handler: EventStreamHandler;
 
     /**
      *
      * @param {Client} client
-     * @param {any} config
+     * @param {EventStreamManagerConfig} config
      */
     public constructor(
         public readonly client: Client,
         {
             subscriptions = [],
-        }: any = {},
+            streamConfig,
+        }: EventStreamManagerConfig = {},
     ) {
         super();
 
+        if (!this.client.serviceId)
+            throw new Error('A service ID is required to connect to the Event Stream');
+
         this.subscriptions = subscriptions;
         this.handler = new EventStreamHandler(this.client, new DuplicateFilter());
-        this.stream = new EventStream(this, {emitter: this});
+        this.stream = new EventStream(this.client.serviceId, this.handler, {
+            emitter: this,
+            environment: this.client.environment,
+            ...streamConfig,
+        });
 
         this.prepareEventStream();
     }
