@@ -1,9 +1,9 @@
 import EventStreamFilter from '../concerns/EventStreamFilter';
 import PS2Event from '../events/PS2Event';
-// import DecayingSet from './DecayingSet';
+import DecayingSet from './DecayingSet';
 
 export default class DuplicateFilter implements EventStreamFilter {
-    private cache: Set<string>;
+    private cache: DecayingSet<string>;
 
     /**
      * Events that can be ignored
@@ -23,7 +23,7 @@ export default class DuplicateFilter implements EventStreamFilter {
                        } = {}) {
 
         this.ignore = ignore;
-        this.cache = new Set<string>();
+        this.cache = new DecayingSet<string>(partitions, decay);
     }
 
     /**

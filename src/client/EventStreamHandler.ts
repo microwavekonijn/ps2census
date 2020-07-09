@@ -23,19 +23,13 @@ import VehicleDestroy from './events/VehicleDestroy';
 
 export default class EventStreamHandler implements EventStreamHandlerContract {
     /**
-     * @type {Function} filter function
-     */
-    private readonly filter: (event: PS2Event) => boolean;
-
-    /**
      * @param {Client} client
      * @param {EventStreamFilter} filter
      */
     public constructor(
         private readonly client: Client,
-        filter?: EventStreamFilter,
+        private readonly filter: EventStreamFilter,
     ) {
-        this.filter = filter ? filter.filter : () => false;
     }
 
     /**
@@ -46,9 +40,12 @@ export default class EventStreamHandler implements EventStreamHandlerContract {
     public handleEvent(event: PS2EventData): void {
         const wrapped = this.wrapEvent(event);
 
-        this.client.emit(Events.PS2_EVENT, wrapped);
-        this.client.emit(wrapped.emit, wrapped);
-
+        if (!this.filter.filter(wrapped)) {
+            this.client.emit(Events.PS2_EVENT, wrapped);
+            this.client.emit(wrapped.emit, wrapped);
+        } else {
+            this.client.emit(Events.PS2_DUPLICATE, wrapped);
+        }
     }
 
     /**

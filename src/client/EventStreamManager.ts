@@ -150,8 +150,6 @@ class EventStreamManager extends EventEmitter {
         }
 
         this.stream.destroy({code: 1000, emit: false});
-
-        this.client.emit(Events.STREAM_DISCONNECTED);
     }
 
     /**
