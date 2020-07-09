@@ -140,6 +140,7 @@ class EventStreamManager extends EventEmitter {
      */
     public disconnect(): void {
         if (this.destroyed) return;
+        this.destroyed = true;
 
         this.client.emit(Events.DEBUG, `Manager disconnected.`);
 
