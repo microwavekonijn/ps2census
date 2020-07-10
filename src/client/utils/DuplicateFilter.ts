@@ -18,7 +18,7 @@ export default class DuplicateFilter implements EventStreamFilter {
      */
     public constructor({
                            decay = 2000,
-                           partitions = 1,
+                           partitions = 8,
                            ignore = ['GainExperience'],
                        } = {}) {
 
