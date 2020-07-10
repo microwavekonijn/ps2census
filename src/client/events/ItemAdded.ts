@@ -11,7 +11,6 @@ export default class ItemAdded extends PS2Event implements ItemAddedData {
     public readonly item_count: string;
     public readonly item_id: string;
     public readonly timestamp: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {

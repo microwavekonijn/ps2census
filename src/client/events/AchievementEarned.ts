@@ -9,7 +9,6 @@ export default class AchievementEarned extends PS2Event implements AchievementEa
     public readonly character_id: string;
     public readonly event_name: 'AchievementEarned';
     public readonly timestamp: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {

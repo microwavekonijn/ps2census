@@ -14,7 +14,6 @@ export default class ContinentUnlock extends PS2Event implements ContinentUnlock
     public tr_population: string;
     public triggering_faction: string;
     public vs_population: string;
-    public world_id: string;
     public zone_id: string;
 
     public toHash(): string {

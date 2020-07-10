@@ -9,7 +9,6 @@ export default class SkillAdded extends PS2Event implements SkillAddedData {
     public readonly event_name: 'SkillAdded';
     public readonly skill_id: string;
     public readonly timestamp: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {

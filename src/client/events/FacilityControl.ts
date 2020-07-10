@@ -12,7 +12,6 @@ export default class FacilityControl extends PS2Event implements FacilityControl
     public readonly old_faction_id: string;
     public readonly outfit_id: string;
     public readonly timestamp: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {

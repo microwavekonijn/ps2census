@@ -15,7 +15,6 @@ export default class Death extends PS2Event implements DeathData {
     public readonly event_name: 'Death';
     public readonly is_headshot: string;
     public readonly timestamp: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {
