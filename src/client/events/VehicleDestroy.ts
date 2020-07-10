@@ -15,7 +15,6 @@ export default class VehicleDestroy extends PS2Event implements VehicleDestroyDa
     public readonly faction_id: string;
     public readonly timestamp: string;
     public readonly vehicle_id: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {

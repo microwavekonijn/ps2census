@@ -10,7 +10,6 @@ export default class PlayerFacilityCapture extends PS2Event implements PlayerFac
     public readonly facility_id: string;
     public readonly outfit_id: string;
     public readonly timestamp: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {

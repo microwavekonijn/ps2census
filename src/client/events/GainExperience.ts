@@ -12,7 +12,6 @@ export default class GainExperience extends PS2Event implements GainExperienceDa
     public readonly loadout_id: string;
     public readonly other_id: string;
     public readonly timestamp: string;
-    public readonly world_id: string;
     public readonly zone_id: string;
 
     public toHash(): string {

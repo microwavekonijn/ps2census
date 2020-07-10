@@ -7,6 +7,7 @@ export default abstract class PS2Event {
 
     public readonly event_name: string;
     public readonly timestamp: string;
+    public readonly world_id: string;
 
     /**
      *
