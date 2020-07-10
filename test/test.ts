@@ -1,10 +1,10 @@
 import { Client, Events } from '../src';
 
 const client = new Client({
-    serviceId: process.env.CENSUS_SERVICE_ID,
+    serviceId: process.argv[2],
     streamManagerConfig: {
         subscriptions: [{
-            characters: ['all'],
+            worlds: ['all'],
             eventNames: ['Death'],
         }],
     },
@@ -16,14 +16,20 @@ client.on('disconnected', () => console.log('Disconnected'));
 client.on('warn', (e) => console.log(e));
 client.on('subscribed', (s) => console.log(JSON.stringify(s)));
 
-client.on(Events.PS2_DEATH, (e) => console.log(e));
+client.on(Events.PS2_DEATH, (e) => {
+    if (e.world_id !== '10') {
+        console.log('Nope');
+    }
+});
 // client.on(Events.PS2_DUPLICATE, (e) => console.log(e));
 
 
 let aborting = false;
-const abort = (code = 0) => {
+const abort = (code = 0, e: Error) => {
     if (aborting) return;
     aborting = true;
+
+    if (e) console.error(e);
 
     console.log('Bye bye');
     client.destroy();

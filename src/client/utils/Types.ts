@@ -26,10 +26,10 @@ export type EventStreamSubscription = {
     characters: string[],
     worlds?: string[],
     eventNames: string[],
-    logicalAndCharactersWithWorlds: boolean
+    logicalAndCharactersWithWorlds?: boolean
 } | {
     characters?: string[],
     worlds: string[],
     eventNames: string[],
-    logicalAndCharactersWithWorlds: boolean
+    logicalAndCharactersWithWorlds?: boolean
 }
