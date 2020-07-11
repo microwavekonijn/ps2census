@@ -33,3 +33,10 @@ export type EventStreamSubscription = {
     eventNames: string[],
     logicalAndCharactersWithWorlds?: boolean
 }
+
+export type EventStreamSubscribed = {
+    characterCount: number,
+    worlds: string[],
+    eventNames: string[],
+    logicalAndCharactersWithWorlds: boolean
+}

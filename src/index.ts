@@ -25,7 +25,6 @@ export { default as VehicleDestroy } from './client/events/VehicleDestroy';
 
 export { Events } from './client/utils/Contants';
 export { default as DuplicateFilter } from './client/utils/DuplicateFilter';
-
 export {
     PS2EventData,
     AchievementEarnedData,
@@ -44,4 +43,11 @@ export {
     SkillAddedData,
     VehicleDestroyData,
 } from './client/utils/PS2Events';
-
+export {
+    PS2Environment,
+    ClientConfig,
+    EventStreamManagerConfig,
+    EventStreamConfig,
+    EventStreamSubscription,
+    EventStreamSubscribed,
+} from './client/utils/Types';
