@@ -7,21 +7,23 @@ export type experienceRankData = {
     vs: {
         title: lang,
         image_set_id: string,
-        image_id: string
+        image_id: string,
     },
     vs_image_path: string,
     nc: {
         title: lang,
         image_set_id: string,
-        image_id: string
-    }
+        image_id: string,
+    },
     nc_image_path: string,
     tr: {
-        title: lang
+        title: lang,
         image_set_id: string,
-        image_id: string
+        image_id: string,
     },
-    tr_image_path: string
+    tr_image_path: string,
 };
 
-export default defineCensusType<Partial<experienceRankData>, experienceRankData[]>('experience_rank');
+export type experienceRankQuery = Partial<experienceRankData>
+
+export default defineCensusType<experienceRankQuery, experienceRankData[]>('experience_rank');

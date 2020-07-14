@@ -6,7 +6,9 @@ export type charactersDirectiveObjectiveData = {
     objective_id: string,
     objective_group_id: string,
     status: string,
-    state_data: string
+    state_data: string,
 };
 
-export default defineCensusType<Partial<charactersDirectiveObjectiveData>, charactersDirectiveObjectiveData[]>('characters_directive_objective');
+export type charactersDirectiveObjectiveQuery = Partial<charactersDirectiveObjectiveData>
+
+export default defineCensusType<charactersDirectiveObjectiveQuery, charactersDirectiveObjectiveData[]>('characters_directive_objective');

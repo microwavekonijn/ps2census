@@ -20,7 +20,9 @@ export type charactersStatByFactionData = {
     value_one_life_max_nc: string,
     value_one_life_max_tr: string,
     last_save: string,
-    last_save_date: string
+    last_save_date: string,
 };
 
-export default defineCensusType<Partial<charactersStatByFactionData>, charactersStatByFactionData[]>('characters_stat_by_faction');
+export type charactersStatByFactionQuery = Partial<charactersStatByFactionData>
+
+export default defineCensusType<charactersStatByFactionQuery, charactersStatByFactionData[]>('characters_stat_by_faction');

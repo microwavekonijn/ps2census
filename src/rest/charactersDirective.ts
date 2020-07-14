@@ -5,7 +5,9 @@ export type charactersDirectiveData = {
     directive_tree_id: string,
     directive_id: string,
     completion_time: string,
-    completion_time_date: string
+    completion_time_date: string,
 };
 
-export default defineCensusType<Partial<charactersDirectiveData>, charactersDirectiveData[]>('characters_directive');
+export type charactersDirectiveQuery = Partial<charactersDirectiveData>
+
+export default defineCensusType<charactersDirectiveQuery, charactersDirectiveData[]>('characters_directive');

@@ -3,7 +3,9 @@ import { defineCensusType } from './Base';
 export type experienceData = {
     experience_id: string,
     description: string,
-    xp: string
+    xp: string,
 };
 
-export default defineCensusType<Partial<experienceData>, experienceData[]>('experience');
+export type experienceQuery = Partial<experienceData>
+
+export default defineCensusType<experienceQuery, experienceData[]>('experience');

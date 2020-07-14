@@ -2,7 +2,9 @@ import { defineCensusType } from './Base';
 
 export type abilityData = {
     ability_id: string,
-    ability_type_id: string
+    ability_type_id: string,
 };
 
-export default defineCensusType<Partial<abilityData>, abilityData[]>('ability');
+export type abilityQuery = Partial<abilityData>
+
+export default defineCensusType<abilityQuery, abilityData[]>('ability');

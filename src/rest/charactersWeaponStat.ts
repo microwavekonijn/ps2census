@@ -1,4 +1,5 @@
 import { defineCensusType } from './Base';
+import { lang } from './types/base';
 
 export type charactersWeaponStatData = {
     character_id: string,
@@ -7,7 +8,20 @@ export type charactersWeaponStatData = {
     vehicle_id: string,
     value: string,
     last_save: string,
-    last_save_date: string
+    last_save_date: string,
+    vehicle: {
+        name: lang,
+        description: lang,
+        type_id: string,
+        type_name: string,
+        cost: string,
+        cost_resource_id: string,
+        image_set_id: string,
+        image_id: string,
+        image_path: string,
+    },
 };
 
-export default defineCensusType<Partial<charactersWeaponStatData>, charactersWeaponStatData[]>('characters_weapon_stat');
+export type charactersWeaponStatQuery = Partial<charactersWeaponStatData>
+
+export default defineCensusType<charactersWeaponStatQuery, charactersWeaponStatData[]>('characters_weapon_stat');

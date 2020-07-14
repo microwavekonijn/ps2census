@@ -11,7 +11,9 @@ export type achievementData = {
     description: lang,
     image_set_id: string,
     image_id: string,
-    image_path: string
+    image_path: string,
 };
 
-export default defineCensusType<Partial<achievementData>, achievementData[]>('achievement');
+export type achievementQuery = Partial<achievementData>
+
+export default defineCensusType<achievementQuery, achievementData[]>('achievement');

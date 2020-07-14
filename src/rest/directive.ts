@@ -10,7 +10,9 @@ export type directiveData = {
     description: lang,
     image_set_id: string,
     image_id: string,
-    image_path: string
+    image_path: string,
 };
 
-export default defineCensusType<Partial<directiveData>, directiveData[]>('directive');
+export type directiveQuery = Partial<directiveData>
+
+export default defineCensusType<directiveQuery, directiveData[]>('directive');

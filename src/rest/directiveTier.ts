@@ -9,7 +9,9 @@ export type directiveTierData = {
     name: lang,
     image_set_id: string,
     image_id: string,
-    image_path: string
+    image_path: string,
 };
 
-export default defineCensusType<Partial<directiveTierData>, directiveTierData[]>('directive_tier');
+export type directiveTierQuery = Partial<directiveTierData>
+
+export default defineCensusType<directiveTierQuery, directiveTierData[]>('directive_tier');

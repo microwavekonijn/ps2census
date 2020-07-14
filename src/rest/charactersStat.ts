@@ -10,7 +10,9 @@ export type charactersStatData = {
     value_daily: string,
     value_one_life_max: string,
     last_save: string,
-    last_save_date: string
+    last_save_date: string,
 };
 
-export default defineCensusType<Partial<charactersStatData>, charactersStatData[]>('characters_stat');
+export type charactersStatQuery = Partial<charactersStatData>
+
+export default defineCensusType<charactersStatQuery, charactersStatData[]>('characters_stat');

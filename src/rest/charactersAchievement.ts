@@ -1,6 +1,6 @@
 import { defineCensusType } from './Base';
 
-export type charactersAchievementsData = {
+export type charactersAchievementData = {
     character_id: string,
     achievement_id: string,
     start: string,
@@ -8,7 +8,9 @@ export type charactersAchievementsData = {
     finish: string,
     finish_date: string,
     last_save: string,
-    last_save_date: string
+    last_save_date: string,
 };
 
-export default defineCensusType<Partial<charactersAchievementsData>, charactersAchievementsData[]>('characters_achievement');
+export type charactersAchievementQuery = Partial<charactersAchievementData>
+
+export default defineCensusType<charactersAchievementQuery, charactersAchievementData[]>('characters_achievement');

@@ -7,7 +7,9 @@ export type directiveTreeData = {
     name: lang,
     image_set_id: string,
     image_id: string,
-    image_path: string
+    image_path: string,
 };
 
-export default defineCensusType<Partial<directiveTreeData>, directiveTreeData[]>('directive_tree');
+export type directiveTreeQuery = Partial<directiveTreeData>
+
+export default defineCensusType<directiveTreeQuery, directiveTreeData[]>('directive_tree');

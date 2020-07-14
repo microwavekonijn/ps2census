@@ -6,7 +6,9 @@ export type charactersDirectiveTreeData = {
     current_directive_tier_id: string,
     current_level: string,
     completion_time: string,
-    completion_time_date: string
+    completion_time_date: string,
 };
 
-export default defineCensusType<Partial<charactersDirectiveTreeData>, charactersDirectiveTreeData[]>('characters_directive_tree');
+export type charactersDirectiveTreeQuery = Partial<charactersDirectiveTreeData>
+
+export default defineCensusType<charactersDirectiveTreeQuery, charactersDirectiveTreeData[]>('characters_directive_tree');

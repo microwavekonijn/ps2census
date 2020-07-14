@@ -8,7 +8,9 @@ export type empireScoresData = {
     start_time: string,
     end_date: string,
     end_time: string,
-    name: lang
+    name: lang,
 };
 
-export default defineCensusType<Partial<empireScoresData>, empireScoresData[]>('empire_scores');
+export type empireScoresQuery = Partial<empireScoresData>
+
+export default defineCensusType<empireScoresQuery, empireScoresData[]>('empire_scores');

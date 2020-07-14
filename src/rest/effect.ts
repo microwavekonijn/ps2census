@@ -12,7 +12,9 @@ export type effectData = {
     param6: string,
     param7: string,
     param8: string,
-    param9: string
+    param9: string,
 };
 
-export default defineCensusType<Partial<effectData>, effectData[]>('effect');
+export type effectQuery = Partial<effectData>
+
+export default defineCensusType<effectQuery, effectData[]>('effect');
