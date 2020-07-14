@@ -17,7 +17,7 @@ export const defineCensusType = <Q, T>(
 
         // Why can't you just be normal?!?
         const baseUrl = opts.serviceId
-            ? `https://census.daybreakgames.com/c:${opts.serviceId}/get/${opts.environment}:v2`
+            ? `https://census.daybreakgames.com/s:${opts.serviceId}/get/${opts.environment}:v2`
             : `https://census.daybreakgames.com/get/${opts.environment}:v2`;
 
         return axiosInstance.get(`${baseUrl}/${type}`, {
