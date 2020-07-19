@@ -60,9 +60,9 @@ client.destroy();
 
 ### Event Emitting
 
-You are able to emit fake events in order to test your application without requiring to wait for Census to emit such an event. Below is an example of how to trigger a MetagameEvent (an Alert):
+You are able to emit fake events in order to test your application without requiring to wait for Census to emit such an event. Below is an example of how to trigger a `MetagameEvent` (an Alert):
 
-```
+```js
 const client = new Client(); // Bootstrap this however you wish
 
 const event = new MetagameEvent(client, {
