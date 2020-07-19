@@ -58,6 +58,30 @@ client.watch();
 client.destroy();
 ```
 
+### Event Emitting
+
+You are able to emit fake events in order to test your application without requiring to wait for Census to emit such an event. Below is an example of how to trigger a MetagameEvent (an Alert):
+
+```
+const client = new Client(); // Bootstrap this however you wish
+
+const event = new MetagameEvent(client, {
+    event_name: 'MetagameEvent',
+    experience_bonus: '25.000000',
+    faction_nc: '6.274510',
+    faction_tr: '19.607843',
+    faction_vs: '9.803922',
+    instance_id: '12358',
+    metagame_event_id: '190',
+    metagame_event_state: '137',
+    metagame_event_state_name: 'started',
+    timestamp: '123456789',
+    world_id: '10',
+});
+
+client.emit(Events.PS2_EVENT, event);
+```
+
 ## Documentation
 
 To be added.
