@@ -1,27 +1,13 @@
 import { baseOperations, baseRequest } from '../baseTypes';
 
-export type PS2EnvironmentAPI = 'ps2' | 'ps2ps4us' | 'ps2ps4eu';
-
-export type requestOpts = {
-    environment: PS2EnvironmentAPI
-    serviceId?: string,
-    show?: string,
-    hide?: string,
-    sort?: string,
-    has?: string,
-    resolve?: string,
-    case?: boolean,
-    limit?: number,
-    limitPerDB?: number,
-    start?: number,
-    includeNull?: number,
-    lang?: 'en' | 'de' | 'es' | 'fr' | 'it' | 'tr',
-    join?: string,
-    tree?: string,
-    timing?: boolean,
-    exactMatchFirst?: boolean,
-    distinct?: string,
-    retry?: boolean
-}
-
 export type ApplyOperation<E, Q, T, O extends baseOperations, R> = E extends O ? baseRequest<Q, T, Exclude<O, E>, R> : never;
+
+export type lang = {
+    en: string,
+    de: string,
+    es: string,
+    fr: string,
+    it: string,
+    tr: string
+}
+export type langs = keyof lang;

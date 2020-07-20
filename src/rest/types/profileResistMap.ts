@@ -1,0 +1,16 @@
+import { baseOperations } from '../baseTypes';
+import { requestFactory } from '../utils/Helpers';
+
+
+export type typeData = {
+    profile_id: string,
+    resist_info_id: string,
+    rank: string,
+};
+
+export type query = Partial<typeData>
+
+export type resolve = never;
+
+export const request = requestFactory<query, typeData[], baseOperations, resolve>('profileResistMap');
+
