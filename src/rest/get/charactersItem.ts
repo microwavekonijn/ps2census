@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type charactersItemData = {
     character_id: string,

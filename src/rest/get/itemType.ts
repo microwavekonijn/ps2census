@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type itemTypeData = {
     item_type_id: string,

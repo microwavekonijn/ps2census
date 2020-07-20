@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type weaponToAttachmentData = {
     weapon_group_id: string,

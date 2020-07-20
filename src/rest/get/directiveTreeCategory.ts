@@ -1,5 +1,5 @@
-import { defineCensusType } from '../Base';
-import { lang } from '../types/base';
+import { defineCensusType } from '../get';
+import { lang } from '../types/lang';
 
 export type directiveTreeCategoryData = {
     directive_tree_category_id: string,

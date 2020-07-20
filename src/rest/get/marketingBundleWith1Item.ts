@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type marketingBundleWith1ItemData = {
     marketing_bundle_id: string,

@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type rewardSetToRewardGroupData = {
     reward_set_id: string,

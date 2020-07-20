@@ -1,7 +1,8 @@
-import { defineCensusType } from '../Base';
-import { lang } from '../types/base';
+import { baseOperations } from '../baseTypes';
+import { lang } from '../types/lang';
+import { requestFactory } from '../utils/Helpers';
 
-export type characterData = {
+export type typeData = {
     character_id: string,
     name: {
         first: string,
@@ -136,6 +137,26 @@ export type characterData = {
     },
 };
 
-export type characterQuery = Partial<characterData>
+export type query = {
+    character_id: string
+}
 
-export default defineCensusType<characterQuery, characterData[]>('character');
+export type resolve =
+    'item'
+    | 'item_full'
+    | 'profile'
+    | 'faction'
+    | 'stat'
+    | 'stat_by_faction'
+    | 'weapon_stat'
+    | 'weapon_stat_by_faction'
+    | 'stat_history'
+    | 'online_status'
+    | 'friends'
+    | 'world'
+    | 'outfit'
+    | 'outfit_member'
+    | 'outfit_member_extended'
+    | 'currency';
+
+export const request = requestFactory<query, typeData[], baseOperations, never>('character');

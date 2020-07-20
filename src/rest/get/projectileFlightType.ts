@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type projectileFlightTypeData = {
     projectile_flight_type_id: string,

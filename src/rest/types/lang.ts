@@ -1,4 +1,4 @@
-export type lang = string | {
+export type lang = {
     en: string,
     de: string,
     es: string,
@@ -6,3 +6,5 @@ export type lang = string | {
     it: string,
     tr: string
 }
+
+export type langs = keyof lang;

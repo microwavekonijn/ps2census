@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type playerStateGroup2Data = {
     player_state_group_id: string,

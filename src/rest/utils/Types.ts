@@ -1,3 +1,5 @@
+import { baseOperations, baseRequest } from '../baseTypes';
+
 export type PS2EnvironmentAPI = 'ps2' | 'ps2ps4us' | 'ps2ps4eu';
 
 export type requestOpts = {
@@ -21,3 +23,5 @@ export type requestOpts = {
     distinct?: string,
     retry?: boolean
 }
+
+export type ApplyOperation<E, Q, T, O extends baseOperations, R> = E extends O ? baseRequest<Q, T, Exclude<O, E>, R> : never;

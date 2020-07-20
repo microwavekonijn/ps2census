@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type charactersDirectiveObjectiveData = {
     character_id: string,

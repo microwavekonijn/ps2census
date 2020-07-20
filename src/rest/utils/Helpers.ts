@@ -1,13 +1,15 @@
-import { requestOpts } from './Types';
+import { baseOperations, baseRequest } from '../baseTypes';
 
-export function generateRequest(params: Record<string, any>, opts: requestOpts) {
-    if (typeof params !== 'object')
-        throw new TypeError(`Parameter 'params' expected to be a 'object, got a '${typeof params}'`);
-
-    Object.keys(opts).forEach((key) => {
-        // @ts-ignore
-        params[`c:${key}`] = opts[key];
+export function requestFactory<Q, T, O extends baseOperations, R>(type: string): baseRequest<Q, T, O, R> {
+    return Object.freeze({
+        type,
+        params: Object.freeze({}),
     });
+}
 
-    return params;
+export function setParam<Q, T, O extends baseOperations, R>({type, params}: baseRequest<Q, T, O, R>, key: string, value: any): baseRequest<Q, T, O, R> {
+    return Object.freeze({
+        type,
+        params: {...params, [key]: value},
+    });
 }

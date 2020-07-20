@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type zoneEffectTypeData = {
     zone_effect_type_id: string,

@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type fireModeTypeData = {
     fire_mode_type_id: string,

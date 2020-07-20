@@ -1,4 +1,4 @@
-import { defineCensusType } from '../Base';
+import { defineCensusType } from '../get';
 
 export type metagameEventStateData = {
     metagame_event_state_id: string,
