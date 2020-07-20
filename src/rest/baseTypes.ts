@@ -1,5 +1,5 @@
 export type baseOperations =
-    'caseSensitive'
+    'case'
     | 'distinct'
     | 'exactMatchFirst'
     | 'has'
@@ -19,6 +19,7 @@ export type baseOperations =
 
 export type baseRequest<Q, T, O extends baseOperations, R> = {
     type: string,
+    extract?: (data: any) => T,
     params: Record<string, any>
 }
 
