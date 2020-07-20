@@ -45,7 +45,8 @@ function joinToString(join: joinType): string {
     return (typeof join === 'string' ? join : extendedJoinToString(join)) + nested;
 }
 
-export default function <T, Q, O extends baseOperations, R>(request: baseRequest<Q, T, O, R>, joins: joinType[]): ApplyOperation<'join', Q, T, O, R> {
+// TODO: Fix return type
+export default function <T, Q, O extends baseOperations, R>(request: baseRequest<Q, T, O, R>, joins: joinType[]): ApplyOperation<'join', Q, any, O, R> {
     // @ts-ignore
     return setParam(
         request,

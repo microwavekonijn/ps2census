@@ -17,9 +17,9 @@ export type baseOperations =
     | 'tree';
 
 
-export type baseRequest<Q, T, O extends baseOperations, R> = {
+export type baseRequest<Q, T, O extends baseOperations, R> = Readonly<{
     type: string,
-    extract?: (data: any) => T,
-    params: Record<string, any>
-}
+    extract: (data: any) => T,
+    params: Readonly<Record<string, any>>
+}>
 

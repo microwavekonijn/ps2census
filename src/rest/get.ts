@@ -22,7 +22,6 @@ export function getFactory(environment: PS2Environment, serviceId?: string) {
         },
     });
 
-    return <Q, T, O extends baseOperations, R>({type, params}: baseRequest<Q, T, O, R>): Promise<T> =>
-        census.get(type, {params})
-            .then(({data}) => data[`${type}_list`]);
+    return <Q, T, O extends baseOperations, R>({type, extract, params}: baseRequest<Q, T, O, R>): Promise<T> =>
+        census.get(type, {params}).then(extract);
 }
