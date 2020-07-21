@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import WebSocket, { Data } from 'ws';
 import Timeout = NodeJS.Timeout;
 import { EventStreamConfig} from './utils/Types';
-import { Events, State } from './utils/Contants';
+import { Events, State } from './utils/Constants';
 import EventStreamHandler from './concerns/EventStreamHandler';
 import { PS2Environment } from '../utils/Types';
 

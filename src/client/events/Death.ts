@@ -1,6 +1,6 @@
 import PS2Event from './PS2Event';
 import { DeathData } from '../utils/PS2Events';
-import { Events } from '../utils/Contants';
+import { Events } from '../utils/Constants';
 
 export default class Death extends PS2Event implements DeathData {
     public readonly emit = Events.PS2_DEATH;

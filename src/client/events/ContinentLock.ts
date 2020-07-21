@@ -1,6 +1,6 @@
 import PS2Event from './PS2Event';
 import { ContinentLockData } from '../utils/PS2Events';
-import { Events } from '../utils/Contants';
+import { Events } from '../utils/Constants';
 
 export default class ContinentLock extends PS2Event implements ContinentLockData {
     public readonly emit = Events.PS2_LOCK;

@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import Client from './Client';
 import EventStream from './EventStream';
 import { EventStreamManagerConfig, EventStreamSubscription } from './utils/Types';
-import { Events } from './utils/Contants';
+import { Events } from './utils/Constants';
 import Timeout = NodeJS.Timeout;
 import EventStreamHandler from './EventStreamHandler';
 import DuplicateFilter from './utils/DuplicateFilter';

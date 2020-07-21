@@ -1,6 +1,6 @@
 import PS2Event from './PS2Event';
 import { MetagameEventData } from '../utils/PS2Events';
-import { Events } from '../utils/Contants';
+import { Events } from '../utils/Constants';
 
 export default class MetagameEvent extends PS2Event implements MetagameEventData {
     public readonly emit = Events.PS2_META_EVENT;

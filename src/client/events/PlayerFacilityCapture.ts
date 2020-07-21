@@ -1,6 +1,6 @@
 import PS2Event from './PS2Event';
 import { PlayerFacilityCaptureData } from '../utils/PS2Events';
-import { Events } from '../utils/Contants';
+import { Events } from '../utils/Constants';
 
 export default class PlayerFacilityCapture extends PS2Event implements PlayerFacilityCaptureData {
     public readonly emit = Events.PS2_CAPTURE;
