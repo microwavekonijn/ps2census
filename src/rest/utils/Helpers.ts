@@ -1,6 +1,6 @@
-import { baseOperations, baseRequest } from '../baseTypes';
+import { commands, baseRequest } from '../baseTypes';
 
-export function requestFactory<Q, T, O extends baseOperations, R>(type: string): baseRequest<Q, T, O, R> {
+export function requestFactory<O extends 'get' | 'count', Q, T, C extends commands, R>(type: string): baseRequest<O, Q, T, C, R> {
     return Object.freeze({
         type,
         extract: (data: any) => data[`${type}_list`],
@@ -8,7 +8,7 @@ export function requestFactory<Q, T, O extends baseOperations, R>(type: string):
     });
 }
 
-export function setParam<Q, T, O extends baseOperations, R>({type, extract, params}: baseRequest<Q, T, O, R>, key: string, value: any): baseRequest<Q, T, O, R> {
+export function setParam<O extends 'get' | 'count', Q, T, C extends commands, R>({type, extract, params}: baseRequest<O, Q, T, C, R>, key: string, value: any): baseRequest<O, Q, T, C, R> {
     return Object.freeze({
         type,
         extract,
@@ -16,7 +16,7 @@ export function setParam<Q, T, O extends baseOperations, R>({type, extract, para
     });
 }
 
-export function setExtract<Q, T, TN, O extends baseOperations, R>({type, params}: baseRequest<Q, T, O, R>, extract: (data: any) => TN): baseRequest<Q, TN, O, R> {
+export function setExtract<O extends 'get' | 'count', Q, T, TN, C extends commands, R>({type, params}: baseRequest<O, Q, T, C, R>, extract: (data: any) => TN): baseRequest<O, Q, TN, C, R> {
     return Object.freeze({
         type,
         extract,

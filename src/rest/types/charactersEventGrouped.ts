@@ -1,4 +1,4 @@
-import { baseOperations } from '../baseTypes';
+import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
 
@@ -125,5 +125,5 @@ export type resolve =
     | 'character_name'
     | 'characters_stat_history';
 
-export const request = requestFactory<query, typeData[], baseOperations, resolve>('charactersEventGrouped');
+export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersEventGrouped');
 

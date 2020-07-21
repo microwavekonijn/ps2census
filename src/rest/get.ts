@@ -2,7 +2,7 @@ import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { PS2Environment } from '../client/utils/Types';
-import { baseOperations, baseRequest } from './baseTypes';
+import { commands, baseRequest } from './baseTypes';
 
 export function getFactory(environment: PS2Environment, serviceId?: string) {
     const census = axios.create({
@@ -22,6 +22,6 @@ export function getFactory(environment: PS2Environment, serviceId?: string) {
         },
     });
 
-    return <Q, T, O extends baseOperations, R>({type, extract, params}: baseRequest<Q, T, O, R>): Promise<T> =>
+    return <Q, T, C extends commands, R>({type, extract, params}: baseRequest<'get', Q, T, C, R>): Promise<T> =>
         census.get(type, {params}).then(extract);
 }

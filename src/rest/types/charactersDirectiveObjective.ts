@@ -1,4 +1,4 @@
-import { baseOperations } from '../baseTypes';
+import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
 export type typeData = {
@@ -14,5 +14,5 @@ export type query = Partial<typeData>
 
 export type resolve = never;
 
-export const request = requestFactory<query, typeData[], baseOperations, resolve>('charactersDirectiveObjective');
+export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersDirectiveObjective');
 

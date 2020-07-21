@@ -1,4 +1,4 @@
-import { baseOperations } from '../baseTypes';
+import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 import { lang } from '../utils/Types';
 
@@ -233,5 +233,5 @@ export type resolve =
     | 'outfit_member_extended'
     | 'currency';
 
-export const request = requestFactory<query, typeData[], baseOperations, resolve>('character');
+export const request = requestFactory<operations, query, typeData[], commands, resolve>('character');
 

@@ -1,10 +1,10 @@
-import { baseOperations, baseRequest } from './baseTypes';
+import { commands, operations, baseRequest } from './baseTypes';
 import { ApplyOperation } from './utils/Types';
 import { setParam } from './utils/Helpers';
 
 export type resolveType<R> = R | [R, string[]];
 
-export default function <T, Q, O extends baseOperations, R>(request: baseRequest<Q, T, O, R>, resolve: resolveType<R>[]): ApplyOperation<'resolve', Q, T, O, R> {
+export default function <O extends operations, T, Q, C extends commands, R>(request: baseRequest<O, Q, T, C, R>, resolve: resolveType<R>[]): ApplyOperation<'resolve', O, Q, T, C, R> {
     // @ts-ignore
     return setParam(
         request,

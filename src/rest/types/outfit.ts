@@ -1,4 +1,4 @@
-import { baseOperations } from '../baseTypes';
+import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
 
@@ -260,5 +260,5 @@ export type resolve =
     | 'member_characters_stat_history'
     | 'member_online_status';
 
-export const request = requestFactory<query, typeData[], baseOperations, resolve>('outfit');
+export const request = requestFactory<operations, query, typeData[], commands, resolve>('outfit');
 

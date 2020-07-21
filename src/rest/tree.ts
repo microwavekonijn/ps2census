@@ -1,4 +1,4 @@
-import { baseOperations, baseRequest } from './baseTypes';
+import { commands, operations, baseRequest } from './baseTypes';
 import { ApplyOperation } from './utils/Types';
 import { setParam } from './utils/Helpers';
 
@@ -24,7 +24,7 @@ function treeToString(tree: treeType): string {
     return r;
 }
 
-export default function <T, Q, O extends baseOperations, R>(request: baseRequest<Q, T, O, R>, tree: treeType): ApplyOperation<'tree', Q, any, O, R> {
+export default function <O extends operations, T, Q, C extends commands, R>(request: baseRequest<O, Q, T, C, R>, tree: treeType): ApplyOperation<'tree', O, Q, any, C, R> {
     // @ts-ignore
     return setParam(request, 'c:tree', treeToString(tree));
 }

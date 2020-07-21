@@ -1,4 +1,6 @@
-export type baseOperations =
+export type operations = 'get' | 'count'
+
+export type commands =
     'case'
     | 'distinct'
     | 'exactMatchFirst'
@@ -17,7 +19,7 @@ export type baseOperations =
     | 'tree';
 
 
-export type baseRequest<Q, T, O extends baseOperations, R> = Readonly<{
+export type baseRequest<O extends operations, Q, T, C extends commands, R> = Readonly<{
     type: string,
     extract: (data: any) => T,
     params: Readonly<Record<string, any>>

@@ -1,4 +1,4 @@
-import { baseOperations, baseRequest } from './baseTypes';
+import { commands, operations, baseRequest } from './baseTypes';
 import { ApplyOperation } from './utils/Types';
 import { setParam } from './utils/Helpers';
 
@@ -46,7 +46,7 @@ function joinToString(join: joinType): string {
 }
 
 // TODO: Fix return type
-export default function <T, Q, O extends baseOperations, R>(request: baseRequest<Q, T, O, R>, joins: joinType[]): ApplyOperation<'join', Q, any, O, R> {
+export default function <O extends operations, T, Q, C extends commands, R>(request: baseRequest<O, Q, T, C, R>, joins: joinType[]): ApplyOperation<'join', O, Q, any, C, R> {
     // @ts-ignore
     return setParam(
         request,

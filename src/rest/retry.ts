@@ -1,8 +1,8 @@
-import { baseOperations, baseRequest } from './baseTypes';
+import { commands, baseRequest, operations } from './baseTypes';
 import { ApplyOperation } from './utils/Types';
 import { setParam } from './utils/Helpers';
 
-export default function <T, Q, O extends baseOperations, R>(request: baseRequest<Q, T, O, R>, retry = false): ApplyOperation<'retry', Q, T, O, R> {
+export default function <O extends operations, T, Q, C extends commands, R>(request: baseRequest<O, Q, T, C, R>, retry = false): ApplyOperation<'retry', O, Q, T, C, R> {
     // @ts-ignore
     return setParam(request, 'c:retry', retry);
 }

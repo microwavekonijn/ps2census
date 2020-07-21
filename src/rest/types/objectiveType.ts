@@ -1,4 +1,4 @@
-import { baseOperations } from '../baseTypes';
+import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
 
@@ -15,5 +15,5 @@ export type query = Partial<typeData>
 
 export type resolve = never;
 
-export const request = requestFactory<query, typeData[], baseOperations, resolve>('objectiveType');
+export const request = requestFactory<operations, query, typeData[], commands, resolve>('objectiveType');
 

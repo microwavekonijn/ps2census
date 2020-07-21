@@ -1,6 +1,6 @@
-import { baseOperations, baseRequest } from '../baseTypes';
+import { commands, baseRequest, operations } from '../baseTypes';
 
-export type ApplyOperation<E, Q, T, O extends baseOperations, R> = E extends O ? baseRequest<Q, T, Exclude<O, E>, R> : never;
+export type ApplyOperation<E, O extends operations, Q, T, C extends commands, R> = E extends O ? baseRequest<O, Q, T, Exclude<C, E>, R> : never;
 
 export type lang = {
     en: string,
