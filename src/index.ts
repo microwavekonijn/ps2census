@@ -44,10 +44,10 @@ export {
     VehicleDestroyData,
 } from './client/utils/PS2Events';
 export {
-    PS2Environment,
     ClientConfig,
     EventStreamManagerConfig,
     EventStreamConfig,
     EventStreamSubscription,
     EventStreamSubscribed,
 } from './client/utils/Types';
+export { PS2Environment } from './utils/Types';
