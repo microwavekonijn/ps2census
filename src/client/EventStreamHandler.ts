@@ -3,7 +3,7 @@ import { PS2EventData } from './utils/PS2Events';
 import EventStreamFilter from './concerns/EventStreamFilter';
 import PS2Event from './events/PS2Event';
 import Client from './Client';
-import { Events } from './utils/Contants';
+import { Events } from './utils/Constants';
 
 import AchievementEarned from './events/AchievementEarned';
 import BattleRankUp from './events/BattleRankUp';

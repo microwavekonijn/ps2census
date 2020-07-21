@@ -23,7 +23,7 @@ export { default as PlayerLogout } from './client/events/PlayerLogout';
 export { default as SkillAdded } from './client/events/SkillAdded';
 export { default as VehicleDestroy } from './client/events/VehicleDestroy';
 
-export { Events } from './client/utils/Contants';
+export { Events } from './client/utils/Constants';
 export { default as DuplicateFilter } from './client/utils/DuplicateFilter';
 export {
     PS2EventData,
