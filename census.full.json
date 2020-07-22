@@ -838,7 +838,7 @@
         "user_selectable": "string"
       }
     },
-    "query": {"character_id": "string"}
+    "query": ["character_id"]
   },
   {
     "name": "character",
@@ -1637,7 +1637,7 @@
     "name": "characters_item",
     "resolve_list": [],
     "type": {"character_id": "string", "item_id": "string"},
-    "query": {"character_id": "string"}
+    "query": ["character_id"]
   },
   {
     "name": "ability",
@@ -3705,7 +3705,7 @@
     "name": "characters_online_status",
     "resolve_list": [],
     "type": {"character_id": "string", "online_status": "string"},
-    "query": {"character_id": "string"}
+    "query": ["character_id"]
   },
   {
     "name": "map",
@@ -3780,7 +3780,7 @@
         }
       ]
     },
-    "query": {"character_id": "string"}
+    "query": ["character_id"]
   },
   {
     "name": "leaderboard",
@@ -5379,7 +5379,7 @@
         }
       }
     },
-    "query": {"character_id": "string"}
+    "query": ["character_id"]
   },
   {
     "name": "characters_event",
@@ -5500,7 +5500,7 @@
         }
       }
     },
-    "query": {"character_id": "string"}
+    "query": ["character_id"]
   },
   {
     "name": "event",
