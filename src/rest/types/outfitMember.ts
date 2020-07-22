@@ -1,7 +1,6 @@
 import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
-
 export type typeData = {
     outfit_id: string,
     character_id: string,
@@ -132,7 +131,14 @@ export type typeData = {
     online_status: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    character_id: string,
+    member_since: string,
+    member_since_date: string,
+    outfit_id: string,
+    rank: string,
+    rank_ordinal: string
+}
 
 export type resolve =
     'character'
@@ -141,5 +147,4 @@ export type resolve =
     | 'online_status'
     | 'outfit';
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('outfitMember');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('outfitMember');

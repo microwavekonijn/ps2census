@@ -213,7 +213,39 @@ export type typeData = {
     },
 };
 
-export type query = Partial<typeData>
+export type query = {
+    battle_rank: string,
+    'battle_rank.percent_to_next': string,
+    'battle_rank.value': string,
+    certs: string,
+    'certs.available_points': string,
+    'certs.earned_points': string,
+    'certs.gifted_points': string,
+    'certs.percent_to_next': string,
+    'certs.spent_points': string,
+    character_id: string,
+    daily_ribbon: string,
+    'daily_ribbon.count': string,
+    'daily_ribbon.date': string,
+    'daily_ribbon.time': string,
+    faction_id: string,
+    head_id: string,
+    name: string,
+    'name.first': string,
+    'name.first_lower': string,
+    prestige_level: string,
+    profile_id: string,
+    times: string,
+    'times.creation': string,
+    'times.creation_date': string,
+    'times.last_login': string,
+    'times.last_login_date': string,
+    'times.last_save': string,
+    'times.last_save_date': string,
+    'times.login_count': string,
+    'times.minutes_played': string,
+    title_id: string
+}
 
 export type resolve =
     'item'
@@ -233,5 +265,4 @@ export type resolve =
     | 'outfit_member_extended'
     | 'currency';
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('character');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('character');

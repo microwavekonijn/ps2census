@@ -1,15 +1,16 @@
 import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
-
 export type typeData = {
     profile_id: string,
     description: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    description: string,
+    profile_id: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('profile2');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('profile2');

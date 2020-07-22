@@ -9,9 +9,19 @@ export type typeData = {
     inventory_cap: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    currency_id: string,
+    icon_id: string,
+    inventory_cap: string,
+    name: string,
+    'name.de': string,
+    'name.en': string,
+    'name.es': string,
+    'name.fr': string,
+    'name.it': string,
+    'name.tr': string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('currency');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('currency');

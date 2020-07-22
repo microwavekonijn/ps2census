@@ -6,9 +6,11 @@ export type typeData = {
     description: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    armor_facing_id: string,
+    description: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('armorFacing');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('armorFacing');

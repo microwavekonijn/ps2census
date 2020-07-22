@@ -15,9 +15,14 @@ export type typeData = {
     outfit_id: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    after: string,
+    before: string,
+    id: string,
+    type: string,
+    world_id: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('worldEvent');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('worldEvent');

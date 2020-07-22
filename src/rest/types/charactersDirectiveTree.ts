@@ -10,9 +10,15 @@ export type typeData = {
     completion_time_date: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    character_id: string,
+    completion_time: string,
+    completion_time_date: string,
+    current_directive_tier_id: string,
+    current_level: string,
+    directive_tree_id: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersDirectiveTree');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('charactersDirectiveTree');

@@ -9,9 +9,14 @@ export type typeData = {
     prestige_currency: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    character_id: string,
+    currency_id: string,
+    currency_name: string,
+    prestige_currency: string,
+    quantity: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersCurrency');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('charactersCurrency');

@@ -1,7 +1,6 @@
 import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
-
 export type typeData = {
     outfit_id: string,
     ordinal: string,
@@ -9,9 +8,13 @@ export type typeData = {
     description: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    description: string,
+    name: string,
+    ordinal: string,
+    outfit_id: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('outfitRank');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('outfitRank');

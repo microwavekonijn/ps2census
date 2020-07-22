@@ -1,7 +1,6 @@
 import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
-
 export type typeData = {
     item_id: string,
     vehicle_id: string,
@@ -10,9 +9,14 @@ export type typeData = {
     slot_id: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    description: string,
+    faction_id: string,
+    item_id: string,
+    slot_id: string,
+    vehicle_id: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('vehicleAttachment');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('vehicleAttachment');

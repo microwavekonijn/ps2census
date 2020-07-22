@@ -1,7 +1,6 @@
 import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
-
 export type typeData = {
     character_id: string,
     stat_name: string,
@@ -25,9 +24,29 @@ export type typeData = {
     last_save_date: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    character_id: string,
+    last_save: string,
+    last_save_date: string,
+    profile_id: string,
+    stat_name: string,
+    value_daily_nc: string,
+    value_daily_tr: string,
+    value_daily_vs: string,
+    value_forever_nc: string,
+    value_forever_tr: string,
+    value_forever_vs: string,
+    value_monthly_nc: string,
+    value_monthly_tr: string,
+    value_monthly_vs: string,
+    value_one_life_max_nc: string,
+    value_one_life_max_tr: string,
+    value_one_life_max_vs: string,
+    value_weekly_nc: string,
+    value_weekly_tr: string,
+    value_weekly_vs: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersStatByFaction');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('charactersStatByFaction');

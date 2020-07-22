@@ -8,9 +8,13 @@ export type typeData = {
     name: lang,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    description_t4id: string,
+    name_t4id: string,
+    state: string,
+    world_id: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('world');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('world');

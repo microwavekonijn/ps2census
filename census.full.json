@@ -3724,10 +3724,10 @@
         ]
       }
     },
-    "query": {
-      "world_id": "string",
-      "zone_ids": "string[]"
-    }
+    "query": [
+      "world_id",
+      "zone_ids"
+    ]
   },
   {
     "name": "characters_friend",
@@ -4522,11 +4522,11 @@
         ]
       }
     },
-    "query": {
-      "name": "string",
-      "period": "string",
-      "world": "string"
-    }
+    "query": [
+      "name",
+      "period",
+      "world"
+    ]
   },
   {
     "name": "characters_leaderboard",
@@ -5268,11 +5268,11 @@
         ]
       }
     },
-    "query": {
-      "name": "string",
-      "period": "string",
-      "character_id": "string"
-    }
+    "query": [
+      "name",
+      "period",
+      "character_id"
+    ]
   },
   {
     "name": "characters_event_grouped",

@@ -1,16 +1,18 @@
 import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
-
 export type typeData = {
     player_state_group_id: string,
     player_state: string,
     min_cone_of_fire: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    min_cone_of_fire: string,
+    player_state: string,
+    player_state_group_id: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('playerStateGroup');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('playerStateGroup');

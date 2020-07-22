@@ -23,11 +23,18 @@ export type typeData = {
     },
 };
 
-export type query = Partial<typeData>
+export type query = {
+    character_id: string,
+    item_id: string,
+    last_save: string,
+    last_save_date: string,
+    stat_name: string,
+    value: string,
+    vehicle_id: string
+}
 
 export type resolve =
     'item'
     | 'vehicle';
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersWeaponStat');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('charactersWeaponStat');

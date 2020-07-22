@@ -7,9 +7,17 @@ export type typeData = {
     name: lang,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    item_category_id: string,
+    name: string,
+    'name.de': string,
+    'name.en': string,
+    'name.es': string,
+    'name.fr': string,
+    'name.it': string,
+    'name.tr': string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('itemCategory');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('itemCategory');

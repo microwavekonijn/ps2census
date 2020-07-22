@@ -2,15 +2,17 @@ import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
 export type typeData = {
-    table_type: string,
-    count: string,
     character_id: string,
+    achievement_id: string,
+    timestamp: string,
+    zone_id: string,
+    world_id: string,
+    event_type: string,
+    table_type: string,
     character: {
         name: {
             first: string,
             first_lower: string,
-            first_merged: string,
-            first_lower_merged: string,
         },
         faction_id: string,
         head_id: string,
@@ -118,12 +120,17 @@ export type typeData = {
 };
 
 export type query = {
-    character_id: string
+    after: string,
+    before: string,
+    type: string
 }
 
 export type resolve =
     'character'
     | 'character_name'
-    | 'characters_stat_history';
+    | 'characters_stat_history'
+    | 'attacker'
+    | 'attacker_name'
+    | 'attackers_stat_history';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('charactersEventGrouped');
+export default requestFactory<operations, query, typeData[], commands, resolve>('event');

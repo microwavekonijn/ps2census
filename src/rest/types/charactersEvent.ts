@@ -1,7 +1,6 @@
 import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
 
-
 export type typeData = {
     character_id: string,
     achievement_id: string,
@@ -122,7 +121,9 @@ export type typeData = {
     },
 };
 
-export type query = Partial<typeData>
+export type query = {
+    character_id: string
+}
 
 export type resolve =
     'character'
@@ -132,5 +133,4 @@ export type resolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersEvent');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('charactersEvent');

@@ -10,9 +10,15 @@ export type typeData = {
     state_data: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    character_id: string,
+    directive_id: string,
+    objective_group_id: string,
+    objective_id: string,
+    state_data: string,
+    status: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersDirectiveObjective');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('charactersDirectiveObjective');

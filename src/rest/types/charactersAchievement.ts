@@ -4,7 +4,6 @@ import { requestFactory } from '../utils/Helpers';
 export type typeData = {
     character_id: string,
     achievement_id: string,
-    earned_count: string,
     start: string,
     start_date: string,
     finish: string,
@@ -13,9 +12,18 @@ export type typeData = {
     last_save_date: string,
 };
 
-export type query = Partial<typeData>
+export type query = {
+    achievement_id: string,
+    character_id: string,
+    earned_count: string,
+    finish: string,
+    finish_date: string,
+    last_save: string,
+    last_save_date: string,
+    start: string,
+    start_date: string
+}
 
 export type resolve = never;
 
-export const request = requestFactory<operations, query, typeData[], commands, resolve>('charactersAchievement');
-
+export default requestFactory<operations, query, typeData[], commands, resolve>('charactersAchievement');
