@@ -1,8 +1,7 @@
 import PS2Event from './PS2Event';
-import { ContinentUnlockData } from '../utils/PS2Events';
 import { Events } from '../utils/Constants';
 
-export default class ContinentUnlock extends PS2Event implements ContinentUnlockData {
+export default class ContinentUnlock extends PS2Event {
     public readonly emit = Events.PS2_UNLOCK;
 
     public event_name: 'ContinentUnlock';

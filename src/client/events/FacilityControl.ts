@@ -1,8 +1,7 @@
 import PS2Event from './PS2Event';
-import { FacilityControlData } from '../utils/PS2Events';
 import { Events } from '../utils/Constants';
 
-export default class FacilityControl extends PS2Event implements FacilityControlData {
+export default class FacilityControl extends PS2Event {
     public readonly emit = Events.PS2_CONTROL;
 
     public readonly duration_held: string;

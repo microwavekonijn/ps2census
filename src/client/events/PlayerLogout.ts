@@ -1,8 +1,7 @@
-import { PlayerLogoutData } from '../utils/PS2Events';
 import { Events } from '../utils/Constants';
 import CharacterEvent from './CharacterEvent';
 
-export default class PlayerLogout extends CharacterEvent implements PlayerLogoutData {
+export default class PlayerLogout extends CharacterEvent {
     public readonly emit = Events.PS2_LOGOUT;
 
     public readonly event_name: 'PlayerLogout';
