@@ -1,5 +1,5 @@
-import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
+import { commands, operations } from '../utils/Types';
 
 export type typeData = {
     metagame_event_state_id: string,

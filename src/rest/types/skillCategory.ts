@@ -1,6 +1,5 @@
-import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
-import { lang } from '../utils/Types';
+import { commands, lang, operations } from '../utils/Types';
 
 export type typeData = {
     skill_category_id: string,

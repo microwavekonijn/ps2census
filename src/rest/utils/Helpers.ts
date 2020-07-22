@@ -1,4 +1,4 @@
-import { commands, baseRequest } from '../baseTypes';
+import { baseRequest, commands } from './Types';
 
 export function requestFactory<O extends 'get' | 'count', Q, T, C extends commands, R>(type: string): baseRequest<O, Q, T, C, R> {
     return Object.freeze({

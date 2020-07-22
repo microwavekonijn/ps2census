@@ -1,5 +1,5 @@
-import { commands, operations } from '../baseTypes';
 import { requestFactory } from '../utils/Helpers';
+import { commands, operations } from '../utils/Types';
 
 export type typeData = {
     image_set_id: string,

@@ -1,5 +1,4 @@
-import { commands, operations, baseRequest } from './baseTypes';
-import { ApplyOperation } from './utils/Types';
+import { ApplyOperation, baseRequest, commands, operations } from './utils/Types';
 import { setParam } from './utils/Helpers';
 
 export type treeType = {

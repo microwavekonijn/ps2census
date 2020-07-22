@@ -51,3 +51,5 @@ export {
     EventStreamSubscribed,
 } from './client/utils/Types';
 export { PS2Environment } from './utils/Types';
+
+export * as rest from './rest';
