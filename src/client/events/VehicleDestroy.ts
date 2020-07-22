@@ -1,6 +1,6 @@
 import PS2Event from './PS2Event';
 import { VehicleDestroyData } from '../utils/PS2Events';
-import { Events } from '../utils/Contants';
+import { Events } from '../utils/Constants';
 
 export default class VehicleDestroy extends PS2Event implements VehicleDestroyData {
     public readonly emit = Events.PS2_VEHICLE_DESTROYED;

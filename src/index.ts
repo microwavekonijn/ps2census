@@ -23,7 +23,7 @@ export { default as PlayerLogout } from './client/events/PlayerLogout';
 export { default as SkillAdded } from './client/events/SkillAdded';
 export { default as VehicleDestroy } from './client/events/VehicleDestroy';
 
-export { Events } from './client/utils/Contants';
+export { Events } from './client/utils/Constants';
 export { default as DuplicateFilter } from './client/utils/DuplicateFilter';
 export {
     PS2EventData,
@@ -44,10 +44,12 @@ export {
     VehicleDestroyData,
 } from './client/utils/PS2Events';
 export {
-    PS2Environment,
     ClientConfig,
     EventStreamManagerConfig,
     EventStreamConfig,
     EventStreamSubscription,
     EventStreamSubscribed,
 } from './client/utils/Types';
+export { PS2Environment } from './utils/Types';
+
+export * as rest from './rest';

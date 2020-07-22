@@ -1,7 +1,6 @@
 import DuplicateFilter from './DuplicateFilter';
 import { EventEmitter } from 'events';
-
-export type PS2Environment = 'ps2' | 'ps2ps2us' | 'ps2ps4eu';
+import { PS2Environment } from '../../utils/Types';
 
 export type ClientConfig = {
     serviceId?: string,

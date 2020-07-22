@@ -1,0 +1,640 @@
+[
+  {
+    "resolve_list": [
+      "online_status",
+      "friends",
+      "world",
+      "outfit",
+      "item",
+      "profile",
+      "faction"
+    ],
+    "count": "dynamic",
+    "name": "single_character_by_id"
+  },
+  {
+    "resolve_list": [
+      "item",
+      "item_full",
+      "profile",
+      "faction",
+      "stat",
+      "stat_by_faction",
+      "weapon_stat",
+      "weapon_stat_by_faction",
+      "stat_history",
+      "online_status",
+      "friends",
+      "world",
+      "outfit",
+      "outfit_member",
+      "outfit_member_extended",
+      "currency"
+    ],
+    "count": 13373797,
+    "name": "character"
+  },
+  {
+    "resolve_list": [],
+    "count": 13373797,
+    "name": "character_name"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "characters_achievement"
+  },
+  {
+    "resolve_list": [],
+    "count": 13373797,
+    "name": "characters_currency"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "characters_directive"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "characters_directive_objective"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "characters_directive_tier"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "characters_directive_tree"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "characters_skill"
+  },
+  {
+    "resolve_list": [],
+    "count": 13373807,
+    "name": "characters_stat"
+  },
+  {
+    "resolve_list": [],
+    "count": 13373807,
+    "name": "characters_stat_by_faction"
+  },
+  {
+    "resolve_list": [],
+    "count": 11994254,
+    "name": "characters_stat_history"
+  },
+  {
+    "resolve_list": [
+      "item",
+      "vehicle"
+    ],
+    "count": 13373807,
+    "name": "characters_weapon_stat"
+  },
+  {
+    "resolve_list": [
+      "item",
+      "vehicle"
+    ],
+    "count": 13373807,
+    "name": "characters_weapon_stat_by_faction"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "world_stat_history"
+  },
+  {
+    "resolve_list": [],
+    "count": "dynamic",
+    "name": "characters_item",
+    "hidden": "false"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "ability"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "ability_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "achievement"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "armor_facing"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "armor_info"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "currency"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "directive"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "directive_tier"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "directive_tree"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "directive_tree_category"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "effect"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "effect_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "empire_scores"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "experience"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "experience_rank"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "facility_link"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "facility_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "faction"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "fire_group"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "fire_group_to_fire_mode"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "fire_mode"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "fire_mode_2"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "fire_mode_to_projectile"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "fire_mode_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "image"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "image_set"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "image_set_default"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "item"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "item_attachment"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "item_category"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "item_profile"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "item_to_weapon"
+
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "item_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "loadout"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "map_hex"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "map_region"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "marketing_bundle"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "marketing_bundle_item"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "marketing_bundle_with_1_item"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "metagame_event"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "metagame_event_state"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "objective"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "objective_set_to_objective"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "objective_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "player_state"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "player_state_group"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "player_state_group_2"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "profile"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "profile_2"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "profile_armor_map"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "profile_resist_map"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "projectile"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "projectile_flight_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "region"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "resist_info"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "resist_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "resource_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "reward"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "reward_group_to_reward"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "reward_set_to_reward_group"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "reward_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "skill"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "skill_category"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "skill_line"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "skill_set"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "target_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "title"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "vehicle"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "vehicle_attachment"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "vehicle_faction"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "vehicle_skill_set"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "weapon"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "weapon_ammo_slot"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "weapon_datasheet"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "weapon_to_attachment"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "weapon_to_fire_group"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "zone"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "zone_effect"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "zone_effect_type"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "characters_world"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "world"
+  },
+  {
+    "resolve_list": [
+      "leader",
+      "leader_name",
+      "leaders_stat_history",
+      "member",
+      "rank",
+      "member_character",
+      "member_character_name",
+      "member_characters_stat_history",
+      "member_online_status"
+    ],
+    "count": "?",
+    "name": "outfit"
+  },
+  {
+    "resolve_list": [
+      "character",
+      "character_name",
+      "characters_stat_history",
+      "online_status",
+      "outfit"
+    ],
+    "count": "?",
+    "name": "outfit_member"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "outfit_member_extended"
+  },
+  {
+    "resolve_list": [],
+    "count": "?",
+    "name": "outfit_rank"
+  },
+  {
+    "resolve_list": [],
+    "count": "dynamic",
+    "name": "characters_online_status",
+    "hidden": "false"
+  },
+  {
+    "resolve_list": [],
+    "count": "dynamic",
+    "name": "map",
+    "hidden": "false"
+  },
+  {
+    "resolve_list": [
+      "character",
+      "character_name",
+      "world"
+    ],
+    "count": "dynamic",
+    "name": "characters_friend"
+  },
+  {
+    "resolve_list": [
+      "character",
+      "world",
+      "character_name",
+      "characters_stat_history"
+    ],
+    "count": "dynamic",
+    "name": "leaderboard"
+  },
+  {
+    "resolve_list": [
+      "character",
+      "character_name",
+      "characters_stat_history",
+      "world"
+    ],
+    "count": "dynamic",
+    "name": "characters_leaderboard"
+  },
+  {
+    "resolve_list": [
+      "character",
+      "character_name",
+      "characters_stat_history"
+    ],
+    "count": "dynamic",
+    "name": "characters_event_grouped"
+  },
+  {
+    "resolve_list": [
+      "character",
+      "character_name",
+      "characters_stat_history",
+      "attacker",
+      "attacker_name",
+      "attackers_stat_history"
+    ],
+    "count": "dynamic",
+    "name": "characters_event"
+  },
+  {
+    "resolve_list": [
+      "character",
+      "character_name",
+      "characters_stat_history",
+      "attacker",
+      "attacker_name",
+      "attackers_stat_history"
+    ],
+    "count": "dynamic",
+    "name": "event"
+  },
+  {
+    "resolve_list": [],
+    "count": "dynamic",
+    "name": "world_event"
+  }
+]

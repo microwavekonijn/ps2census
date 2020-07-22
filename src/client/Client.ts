@@ -4,9 +4,10 @@ import {
     ItemAddedData, MetagameEventData, PlayerFacilityCaptureData, PlayerFacilityDefendData, PlayerLoginData,
     PlayerLogoutData, SkillAddedData, VehicleDestroyData,
 } from './utils/PS2Events';
-import { ClientConfig, EventStreamSubscribed, PS2Environment } from './utils/Types';
+import { ClientConfig, EventStreamSubscribed} from './utils/Types';
 import EventStreamManager from './EventStreamManager';
 import PS2Event from './events/PS2Event';
+import { PS2Environment } from '../utils/Types';
 
 declare interface Client {
     on(event: 'ready', listener: () => void): this;
