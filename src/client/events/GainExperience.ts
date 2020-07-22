@@ -1,17 +1,15 @@
-import PS2Event from './PS2Event';
 import { GainExperienceData } from '../utils/PS2Events';
 import { Events } from '../utils/Constants';
+import CharacterEvent from './CharacterEvent';
 
-export default class GainExperience extends PS2Event implements GainExperienceData {
+export default class GainExperience extends CharacterEvent implements GainExperienceData {
     public readonly emit = Events.PS2_EXPERIENCE;
 
     public readonly amount: string;
-    public readonly character_id: string;
     public readonly event_name: 'GainExperience';
     public readonly experience_id: string;
     public readonly loadout_id: string;
     public readonly other_id: string;
-    public readonly timestamp: string;
     public readonly zone_id: string;
 
     public toHash(): string {

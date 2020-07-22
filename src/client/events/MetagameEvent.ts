@@ -13,7 +13,6 @@ export default class MetagameEvent extends PS2Event implements MetagameEventData
     public readonly metagame_event_id: string;
     public readonly metagame_event_state: string;
     public readonly metagame_event_state_name: string;
-    public readonly timestamp: string;
     public readonly instance_id: string;
 
     public toHash(): string {

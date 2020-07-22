@@ -1,14 +1,12 @@
-import PS2Event from './PS2Event';
 import { BattleRankUpData } from '../utils/PS2Events';
 import { Events } from '../utils/Constants';
+import CharacterEvent from './CharacterEvent';
 
-export default class BattleRankUp extends PS2Event implements BattleRankUpData {
+export default class BattleRankUp extends CharacterEvent implements BattleRankUpData {
     public readonly emit = Events.PS2_RANKUP;
 
     public readonly battle_rank: string;
-    public readonly character_id: string;
     public readonly event_name: 'BattleRankUp';
-    public readonly timestamp: string;
     public readonly zone_id: string;
 
     public toHash(): string {

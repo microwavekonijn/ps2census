@@ -10,7 +10,6 @@ export default class ContinentUnlock extends PS2Event implements ContinentUnlock
     public metagame_event_id: string;
     public nc_population: string;
     public previous_faction: string;
-    public timestamp: string;
     public tr_population: string;
     public triggering_faction: string;
     public vs_population: string;

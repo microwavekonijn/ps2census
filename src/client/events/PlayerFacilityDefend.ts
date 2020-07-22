@@ -1,15 +1,13 @@
-import PS2Event from './PS2Event';
 import { PlayerFacilityDefendData } from '../utils/PS2Events';
 import { Events } from '../utils/Constants';
+import CharacterEvent from './CharacterEvent';
 
-export default class PlayerFacilityDefend extends PS2Event implements PlayerFacilityDefendData {
+export default class PlayerFacilityDefend extends CharacterEvent implements PlayerFacilityDefendData {
     public readonly emit = Events.PS2_DEFEND;
 
-    public readonly character_id: string;
     public readonly event_name: 'PlayerFacilityDefend';
     public readonly facility_id: string;
     public readonly outfit_id: string;
-    public readonly timestamp: string;
     public readonly zone_id: string;
 
     public toHash(): string {
