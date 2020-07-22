@@ -5,13 +5,12 @@
 
 ## About
 
-The PS2 Census Client is a tool to simplify the interaction with the Planetside 2 Census API. Note that it is still in
-a Alpha state and that things might change in the future.
+The PS2 Census Client is a tool to simplify the interaction with the Planetside 2 Census API.
 
 ## Requirements
 
 - Node.js v12+;
-- DBG Census API Service ID.
+- DBG Census API Service ID(required for the Event Stream).
 
 ## Installation
 
@@ -23,6 +22,8 @@ For better performance it is recommended to install `bufferutil` and `utf-8-vali
 `--save-optional` flag can be used to install them as optionalDependencies.
 
 ## Getting started
+
+### Event Stream
 
 ```js
 const { Client } = require('ps2census');
@@ -58,33 +59,37 @@ client.watch();
 client.destroy();
 ```
 
-### Event Emitting
+### Rest API
 
-You are able to emit fake events in order to test your application without requiring to wait for Census to emit such an event. Below is an example of how to trigger a `MetagameEvent` (an Alert):
+The Rest API is based on functional programming, which helps with functions like tree shaking(Webpack).
+This implementation can thus easily be minified and is perfect for browser based applications.
 
 ```js
-const client = new Client(); // Bootstrap this however you wish
+const { rest } from 'ps2census';
 
-const event = new MetagameEvent(client, {
-    event_name: 'MetagameEvent',
-    experience_bonus: '25.000000',
-    faction_nc: '6.274510',
-    faction_tr: '19.607843',
-    faction_vs: '9.803922',
-    instance_id: '12358',
-    metagame_event_id: '190',
-    metagame_event_state: '137',
-    metagame_event_state_name: 'started',
-    timestamp: '123456789',
-    world_id: '10',
-});
+const get = rest.getFactory('ps2ps4eu', 'serviceId');
 
-client.emit(Events.PS2_EVENT, event);
+// Get character and resolve items
+get(
+  rest.resolve(
+    rest.exactMatchFirst(
+      rest.character
+    )
+    ['item']  
+  ),
+  {
+    'name.first_lower': '^microwave'
+  }
+)
 ```
+
+Note: First argument of any command function is the request object.
+There are also type guards that help with making sure in typescript that the chaining and commands are allowed.
+If you encounter bugs or problems report them in the Census Rest API thread on GitHub.
 
 ## Documentation
 
-To be added.
+Check `/docs`.
 
 ## Contribution
 
