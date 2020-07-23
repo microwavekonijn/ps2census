@@ -34,4 +34,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('marketingBundle');
+export default requestFactory<operations, query, typeData[], commands, resolve>('marketing_bundle');

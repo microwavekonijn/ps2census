@@ -19,4 +19,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('directiveTreeCategory');
+export default requestFactory<operations, query, typeData[], commands, resolve>('directive_tree_category');

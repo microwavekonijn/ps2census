@@ -13,4 +13,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('playerState');
+export default requestFactory<operations, query, typeData[], commands, resolve>('player_state');

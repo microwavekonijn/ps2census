@@ -61,4 +61,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('fireMode');
+export default requestFactory<operations, query, typeData[], commands, resolve>('fire_mode');

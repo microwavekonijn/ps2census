@@ -147,4 +147,4 @@ export type resolve =
     | 'online_status'
     | 'outfit';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('outfitMember');
+export default requestFactory<operations, query, typeData[], commands, resolve>('outfit_member');

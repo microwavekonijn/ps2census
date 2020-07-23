@@ -13,4 +13,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('resourceType');
+export default requestFactory<operations, query, typeData[], commands, resolve>('resource_type');

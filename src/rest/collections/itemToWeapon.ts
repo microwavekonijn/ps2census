@@ -13,4 +13,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('itemToWeapon');
+export default requestFactory<operations, query, typeData[], commands, resolve>('item_to_weapon');

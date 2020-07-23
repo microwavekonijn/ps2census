@@ -36,4 +36,4 @@ export type resolve =
     'item'
     | 'vehicle';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('charactersWeaponStat');
+export default requestFactory<operations, query, typeData[], commands, resolve>('characters_weapon_stat');

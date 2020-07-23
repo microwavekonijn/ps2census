@@ -28,4 +28,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('effectType');
+export default requestFactory<operations, query, typeData[], commands, resolve>('effect_type');

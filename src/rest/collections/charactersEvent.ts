@@ -133,4 +133,4 @@ export type resolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('charactersEvent');
+export default requestFactory<operations, query, typeData[], commands, resolve>('characters_event');

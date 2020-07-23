@@ -39,4 +39,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('zoneEffect');
+export default requestFactory<operations, query, typeData[], commands, resolve>('zone_effect');

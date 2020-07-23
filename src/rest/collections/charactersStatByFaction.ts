@@ -49,4 +49,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('charactersStatByFaction');
+export default requestFactory<operations, query, typeData[], commands, resolve>('characters_stat_by_faction');

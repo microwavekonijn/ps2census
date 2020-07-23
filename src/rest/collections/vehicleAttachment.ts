@@ -19,4 +19,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('vehicleAttachment');
+export default requestFactory<operations, query, typeData[], commands, resolve>('vehicle_attachment');

@@ -38,4 +38,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('skillCategory');
+export default requestFactory<operations, query, typeData[], commands, resolve>('skill_category');

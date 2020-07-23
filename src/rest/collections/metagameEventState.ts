@@ -13,4 +13,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('metagameEventState');
+export default requestFactory<operations, query, typeData[], commands, resolve>('metagame_event_state');

@@ -30,4 +30,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('abilityType');
+export default requestFactory<operations, query, typeData[], commands, resolve>('ability_type');

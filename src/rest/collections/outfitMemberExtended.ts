@@ -37,4 +37,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('outfitMemberExtended');
+export default requestFactory<operations, query, typeData[], commands, resolve>('outfit_member_extended');

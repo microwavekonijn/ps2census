@@ -31,4 +31,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('mapRegion');
+export default requestFactory<operations, query, typeData[], commands, resolve>('map_region');

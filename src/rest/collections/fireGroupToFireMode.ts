@@ -15,4 +15,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('fireGroupToFireMode');
+export default requestFactory<operations, query, typeData[], commands, resolve>('fire_group_to_fire_mode');

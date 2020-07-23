@@ -126,4 +126,4 @@ export type resolve =
     | 'character_name'
     | 'characters_stat_history';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('charactersEventGrouped');
+export default requestFactory<operations, query, typeData[], commands, resolve>('characters_event_grouped');

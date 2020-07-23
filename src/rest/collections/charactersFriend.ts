@@ -57,4 +57,4 @@ export type resolve =
     | 'character_name'
     | 'world';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('charactersFriend');
+export default requestFactory<operations, query, typeData[], commands, resolve>('characters_friend');

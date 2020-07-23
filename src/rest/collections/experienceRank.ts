@@ -64,4 +64,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('experienceRank');
+export default requestFactory<operations, query, typeData[], commands, resolve>('experience_rank');

@@ -13,4 +13,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('objectiveSetToObjective');
+export default requestFactory<operations, query, typeData[], commands, resolve>('objective_set_to_objective');

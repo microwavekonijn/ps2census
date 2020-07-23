@@ -13,4 +13,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('rewardGroupToReward');
+export default requestFactory<operations, query, typeData[], commands, resolve>('reward_group_to_reward');

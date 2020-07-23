@@ -855,4 +855,4 @@ export type resolve =
     | 'profile'
     | 'faction';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('singleCharacterById');
+export default requestFactory<operations, query, typeData[], commands, resolve>('single_character_by_id');

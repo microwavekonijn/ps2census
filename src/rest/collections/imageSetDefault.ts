@@ -21,4 +21,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('imageSetDefault');
+export default requestFactory<operations, query, typeData[], commands, resolve>('image_set_default');

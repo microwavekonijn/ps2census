@@ -19,4 +19,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('weaponAmmoSlot');
+export default requestFactory<operations, query, typeData[], commands, resolve>('weapon_ammo_slot');

@@ -20,4 +20,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('resistInfo');
+export default requestFactory<operations, query, typeData[], commands, resolve>('resist_info');

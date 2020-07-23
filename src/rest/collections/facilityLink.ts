@@ -16,4 +16,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('facilityLink');
+export default requestFactory<operations, query, typeData[], commands, resolve>('facility_link');

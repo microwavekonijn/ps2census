@@ -25,4 +25,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('worldEvent');
+export default requestFactory<operations, query, typeData[], commands, resolve>('world_event');

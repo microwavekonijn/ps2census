@@ -128,4 +128,4 @@ export type resolve =
     | 'characters_stat_history'
     | 'world';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('charactersLeaderboard');
+export default requestFactory<operations, query, typeData[], commands, resolve>('characters_leaderboard');

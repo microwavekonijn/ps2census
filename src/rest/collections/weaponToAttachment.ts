@@ -15,4 +15,4 @@ export type query = {
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('weaponToAttachment');
+export default requestFactory<operations, query, typeData[], commands, resolve>('weapon_to_attachment');
