@@ -1,5 +1,5 @@
-import { ApplyOperation, baseRequest, commands, operations } from './utils/Types';
-import { setExtract, setParam } from './utils/Helpers';
+import { ApplyOperation, baseRequest, commands, operations } from '../utils/Types';
+import { setExtract, setParam } from '../utils/Helpers';
 
 export type timingType = {
     'item-ms': number,
