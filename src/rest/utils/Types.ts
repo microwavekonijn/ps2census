@@ -34,3 +34,5 @@ export type lang = {
     tr: string
 }
 export type langs = keyof lang;
+
+export type Tree<T> = Record<string, T[]>;
