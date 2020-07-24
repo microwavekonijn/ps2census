@@ -1,7 +1,6 @@
-import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+export default worldEvent;
 
-export type typeData = {
+type worldEvent = {
     facility_id: string,
     faction_old: string,
     faction_new: string,
@@ -14,15 +13,3 @@ export type typeData = {
     table_type: string,
     outfit_id: string,
 };
-
-export type query = {
-    after: string,
-    before: string,
-    id: string,
-    type: string,
-    world_id: string
-}
-
-export type resolve = never;
-
-export default requestFactory<operations, query, typeData[], commands, resolve>('worldEvent');

@@ -1,16 +1,6 @@
-import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+export default profile2;
 
-export type typeData = {
+type profile2 = {
     profile_id: string,
     description: string,
 };
-
-export type query = {
-    description: string,
-    profile_id: string
-}
-
-export type resolve = never;
-
-export default requestFactory<operations, query, typeData[], commands, resolve>('profile2');

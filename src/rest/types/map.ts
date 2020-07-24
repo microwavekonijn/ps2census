@@ -1,7 +1,6 @@
-import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+export default map;
 
-export type typeData = {
+type map = {
     ZoneId: string,
     Regions: {
         IsList: string,
@@ -13,12 +12,3 @@ export type typeData = {
         }[],
     },
 };
-
-export type query = {
-    world_id: string,
-    zone_ids: string
-}
-
-export type resolve = never;
-
-export default requestFactory<operations, query, typeData[], commands, resolve>('map');

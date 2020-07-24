@@ -1,17 +1,7 @@
-import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+export default image;
 
-export type typeData = {
+type image = {
     image_id: string,
+    description: string,
     path: string,
 };
-
-export type query = {
-    description: string,
-    image_id: string,
-    path: string
-}
-
-export type resolve = never;
-
-export default requestFactory<operations, query, typeData[], commands, resolve>('image');
