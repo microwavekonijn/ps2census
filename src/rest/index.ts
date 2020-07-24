@@ -27,7 +27,10 @@ export { default as start } from './commands/start';
 export { default as timing } from './commands/timing';
 export { default as tree } from './commands/tree';
 
-/** Types */
+/** Collection types */
+export * as collectionTypes from './types';
+
+/** Collections */
 export * as singleCharacterById from './collections/singleCharacterById';
 export * as character from './collections/character';
 export * as characterName from './collections/characterName';
