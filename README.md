@@ -1,16 +1,21 @@
-# PS2 Census Client
+# PS2 Census Library
 
 [![npm version](https://badge.fury.io/js/ps2census.svg)](https://www.npmjs.com/package/ps2census)
 [![David DM Badge](https://david-dm.org/microwavekonijn/ps2census.svg)](https://david-dm.org/microwavekonijn/ps2census)
 
 ## About
 
-The PS2 Census Client is a tool to simplify the interaction with the Planetside 2 Census API.
+The PS2 Census library is here to simplify the interaction with the Planetside 2 Census API for Javascript and Typescript projects.
 
 ## Requirements
 
+### Event Stream
 - Node.js v12+;
-- DBG Census API Service ID(required for the Event Stream).
+- DBG Census API Service ID.
+
+### Rest API
+- ES6;
+- DBG Census API Service ID(optional, but recommended).
 
 ## Installation
 
@@ -84,12 +89,12 @@ get(
 ```
 
 Note: First argument of any command function is the request object.
-There are also type guards that help with making sure in typescript that the chaining and commands are allowed.
+There are also type guards that help with making sure in typescript that the chaining of commands are correct.
 If you encounter bugs or problems report them in the Census Rest API thread on GitHub.
 
 ## Documentation
 
-Check `/docs`.
+Check the [docs](https://github.com/microwavekonijn/ps2census/tree/master/docs).
 
 ## Contribution
 
