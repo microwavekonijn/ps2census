@@ -4,7 +4,7 @@ import characterAchievement from '../types/characterAchievement';
 
 export type typeData = characterAchievement;
 
-export type query = {
+export type query = Partial<{
     achievement_id: string,
     character_id: string,
     earned_count: string,
@@ -14,7 +14,7 @@ export type query = {
     last_save_date: string,
     start: string,
     start_date: string
-}
+}>;
 
 export type resolve = never;
 

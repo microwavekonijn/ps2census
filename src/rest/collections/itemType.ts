@@ -4,11 +4,11 @@ import itemType from '../types/itemType';
 
 export type typeData = itemType;
 
-export type query = {
+export type query = Partial<{
     code: string,
     item_type_id: string,
     name: string
-}
+}>;
 
 export type resolve = never;
 

@@ -4,7 +4,7 @@ import achievement from '../types/achievement';
 
 export type typeData = achievement;
 
-export type query = {
+export type query = Partial<{
     achievement_id: string,
     description: string,
     'description.de': string,
@@ -27,7 +27,7 @@ export type query = {
     objective_group_id: string,
     repeatable: string,
     reward_id: string
-}
+}>;
 
 export type resolve = never;
 

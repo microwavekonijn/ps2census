@@ -12,11 +12,11 @@ export type typeData = event & {
     },
 };
 
-export type query = {
+export type query = Partial<{
     after: string,
     before: string,
     type: string
-}
+}>;
 
 // TODO: Find associated attacker* types
 export type resolve =

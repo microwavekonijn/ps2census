@@ -4,7 +4,7 @@ import playerStateGroup2 from '../types/playerStateGroup2';
 
 export type typeData = playerStateGroup2;
 
-export type query = {
+export type query = Partial<{
     can_iron_sight: string,
     cof_grow_rate: string,
     cof_max: string,
@@ -16,7 +16,7 @@ export type query = {
     cof_turn_penalty: string,
     player_state_group_id: string,
     player_state_id: string
-}
+}>;
 
 export type resolve = never;
 

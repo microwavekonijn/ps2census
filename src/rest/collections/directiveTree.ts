@@ -4,7 +4,7 @@ import directiveTree from '../types/directiveTree';
 
 export type typeData = directiveTree;
 
-export type query = {
+export type query = Partial<{
     description: string,
     'description.de': string,
     'description.en': string,
@@ -24,7 +24,7 @@ export type query = {
     'name.fr': string,
     'name.it': string,
     'name.tr': string
-}
+}>;
 
 export type resolve = never;
 

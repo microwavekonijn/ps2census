@@ -4,10 +4,10 @@ import targetType from '../types/targetType';
 
 export type typeData = targetType;
 
-export type query = {
+export type query = Partial<{
     description: string,
     target_type_id: string
-}
+}>;
 
 export type resolve = never;
 

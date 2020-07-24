@@ -4,7 +4,7 @@ import world from '../types/world';
 
 export type typeData = world;
 
-export type query = {
+export type query = Partial<{
     // this API man...
     // description_t4id: string,
     // name_t4id: string,
@@ -24,7 +24,7 @@ export type query = {
     'name.tr': string,
     state: string,
     world_id: string,
-}
+}>;
 
 export type resolve = never;
 

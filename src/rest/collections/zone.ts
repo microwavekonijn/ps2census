@@ -4,7 +4,7 @@ import zone from '../types/zone';
 
 export type typeData = zone;
 
-export type query = {
+export type query = Partial<{
     code: string,
     description: string,
     'description.de': string,
@@ -22,7 +22,7 @@ export type query = {
     'name.it': string,
     'name.tr': string,
     zone_id: string
-}
+}>;
 
 export type resolve = never;
 

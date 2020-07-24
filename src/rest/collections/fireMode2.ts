@@ -4,7 +4,7 @@ import fireMode2 from '../types/fireMode2';
 
 export type typeData = fireMode2;
 
-export type query = {
+export type query = Partial<{
     ability_id: string,
     ammo_slot: string,
     armor_penetration: string,
@@ -99,7 +99,7 @@ export type query = {
     turn_modifier: string,
     use_in_water: string,
     zoom_default: string
-}
+}>;
 
 export type resolve = never;
 

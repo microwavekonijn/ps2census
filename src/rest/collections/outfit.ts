@@ -21,7 +21,7 @@ export type typeData = outfit & {
     }[],
 };
 
-export type query = {
+export type query = Partial<{
     alias: string,
     alias_lower: string,
     leader_character_id: string,
@@ -31,7 +31,7 @@ export type query = {
     outfit_id: string,
     time_created: string,
     time_created_date: string
-}
+}>;
 
 export type resolve =
     'leader' //

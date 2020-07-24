@@ -4,7 +4,7 @@ import itemCategory from '../types/itemCategory';
 
 export type typeData = itemCategory;
 
-export type query = {
+export type query = Partial<{
     item_category_id: string,
     name: string,
     'name.de': string,
@@ -13,7 +13,7 @@ export type query = {
     'name.fr': string,
     'name.it': string,
     'name.tr': string
-}
+}>;
 
 export type resolve = never;
 

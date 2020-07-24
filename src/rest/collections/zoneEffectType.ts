@@ -4,7 +4,7 @@ import zoneEffectType from '../types/zoneEffectType';
 
 export type typeData = zoneEffectType;
 
-export type query = {
+export type query = Partial<{
     description: string,
     param1: string,
     param10: string,
@@ -25,7 +25,7 @@ export type query = {
     string3: string,
     string4: string,
     zone_effect_type_id: string
-}
+}>;
 
 export type resolve = never;
 

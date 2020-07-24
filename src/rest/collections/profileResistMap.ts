@@ -4,11 +4,11 @@ import profileResistMap from '../types/profileResistMap';
 
 export type typeData = profileResistMap;
 
-export type query = {
+export type query = Partial<{
     profile_id: string,
     rank: string,
     resist_info_id: string
-}
+}>;
 
 export type resolve = never;
 

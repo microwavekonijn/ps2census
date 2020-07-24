@@ -12,10 +12,10 @@ export type typeData = characterEventGrouped & {
     },
 };
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     type: string,
-}
+}>;
 
 export type resolve =
     'character'

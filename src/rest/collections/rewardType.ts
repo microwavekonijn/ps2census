@@ -4,7 +4,7 @@ import rewardType from '../types/rewardType';
 
 export type typeData = rewardType;
 
-export type query = {
+export type query = Partial<{
     count_max: string,
     count_min: string,
     description: string,
@@ -14,7 +14,7 @@ export type query = {
     param4: string,
     param5: string,
     reward_type_id: string
-}
+}>;
 
 export type resolve = never;
 

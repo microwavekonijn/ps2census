@@ -4,10 +4,10 @@ import playerState from '../types/playerState';
 
 export type typeData = playerState;
 
-export type query = {
+export type query = Partial<{
     description: string,
     player_state_id: string
-}
+}>;
 
 export type resolve = never;
 

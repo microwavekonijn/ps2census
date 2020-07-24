@@ -9,7 +9,7 @@ export type typeData = characterWeaponStatByFaction & {
     vehicle: vehicle, // vehicle
 };
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     item_id: string,
     last_save: string,
@@ -19,7 +19,7 @@ export type query = {
     value_tr: string,
     value_vs: string,
     vehicle_id: string
-}
+}>;
 
 export type resolve =
     'item'

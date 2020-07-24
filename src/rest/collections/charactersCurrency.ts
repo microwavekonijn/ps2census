@@ -4,13 +4,13 @@ import characterCurrency from '../types/characterCurrency';
 
 export type typeData = characterCurrency;
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     currency_id: string,
     currency_name: string,
     prestige_currency: string,
     quantity: string
-}
+}>;
 
 export type resolve = never;
 

@@ -4,7 +4,7 @@ import marketingBundle from '../types/marketingBundle';
 
 export type typeData = marketingBundle
 
-export type query = {
+export type query = Partial<{
     cert_price: string,
     description: string,
     'description.de': string,
@@ -24,7 +24,7 @@ export type query = {
     'name.tr': string,
     release_time: string,
     station_cash_price: string
-}
+}>;
 
 export type resolve = never;
 

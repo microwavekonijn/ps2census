@@ -4,10 +4,10 @@ import resourceType from '../types/resourceType';
 
 export type typeData = resourceType;
 
-export type query = {
+export type query = Partial<{
     description: string,
     resource_type_id: string
-}
+}>;
 
 export type resolve = never;
 

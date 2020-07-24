@@ -4,15 +4,10 @@ import abilityType from '../types/abilityType';
 
 export type typeData = abilityType;
 
-export type query = {
+export type query = Partial<{
     ability_type_id: string,
     description: string,
     param1: string,
-    param10: string,
-    param11: string,
-    param12: string,
-    param13: string,
-    param14: string,
     param2: string,
     param3: string,
     param4: string,
@@ -21,11 +16,16 @@ export type query = {
     param7: string,
     param8: string,
     param9: string,
+    param10: string,
+    param11: string,
+    param12: string,
+    param13: string,
+    param14: string,
     string1: string,
     string2: string,
     string3: string,
     string4: string
-}
+}>;
 
 export type resolve = never;
 

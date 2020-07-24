@@ -4,7 +4,7 @@ import item from '../types/item';
 
 export type typeData = item;
 
-export type query = {
+export type query = Partial<{
     activatable_ability_id: string,
     description: string,
     'description.de': string,
@@ -33,7 +33,7 @@ export type query = {
     passive_ability_id: string,
     release_time: string,
     skill_set_id: string
-}
+}>;
 
 export type resolve = never;
 

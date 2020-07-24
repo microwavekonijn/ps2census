@@ -4,7 +4,7 @@ import experienceRank from '../types/experienceRank';
 
 export type typeData = experienceRank;
 
-export type query = {
+export type query = Partial<{
     nc: string,
     'nc.image_id': string,
     'nc.image_set_id': string,
@@ -40,7 +40,7 @@ export type query = {
     'vs.title.tr': string,
     vs_image_path: string,
     xp_max: string
-}
+}>;
 
 export type resolve = never;
 

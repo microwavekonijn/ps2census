@@ -4,7 +4,7 @@ import weaponDatasheet from '../types/weaponDatasheet';
 
 export type typeData = weaponDatasheet;
 
-export type query = {
+export type query = Partial<{
     capacity: string,
     clip_size: string,
     damage: string,
@@ -32,7 +32,7 @@ export type query = {
     show_clip_size: string,
     show_fire_modes: string,
     show_range: string
-}
+}>;
 
 export type resolve = never;
 

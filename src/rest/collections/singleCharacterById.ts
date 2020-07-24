@@ -50,9 +50,7 @@ export type typeData =
     faction: faction, // faction
 };
 
-export type query = {
-    character_id: string
-}
+export type query = { character_id: string };
 
 export type resolve =
     'online_status' //

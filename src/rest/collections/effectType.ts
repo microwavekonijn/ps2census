@@ -4,7 +4,7 @@ import effectType from '../types/effectType';
 
 export type typeData = effectType;
 
-export type query = {
+export type query = Partial<{
     description: string,
     effect_type_id: string,
     param1: string,
@@ -20,7 +20,7 @@ export type query = {
     param11: string,
     param12: string,
     param13: string,
-}
+}>;
 
 export type resolve = never;
 

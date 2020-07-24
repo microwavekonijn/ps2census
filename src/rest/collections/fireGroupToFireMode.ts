@@ -4,11 +4,11 @@ import fireGroupToFireMode from '../types/fireGroupToFireMode';
 
 export type typeData = fireGroupToFireMode;
 
-export type query = {
+export type query = Partial<{
     fire_group_id: string,
     fire_mode_id: string,
     fire_mode_index: string
-}
+}>;
 
 export type resolve = never;
 

@@ -4,9 +4,7 @@ import characterItem from '../types/characterItem';
 
 export type typeData = characterItem;
 
-export type query = {
-    character_id: string
-}
+export type query = { character_id: string };
 
 export type resolve = never;
 

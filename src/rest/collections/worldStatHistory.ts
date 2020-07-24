@@ -4,7 +4,7 @@ import worldStatHistory from '../types/worldStatHistory';
 
 export type typeData = worldStatHistory;
 
-export type query = {
+export type query = Partial<{
     all_time: string,
     day: string,
     'day.d01': string,
@@ -72,7 +72,7 @@ export type query = {
     'week.w12': string,
     'week.w13': string,
     world_id: string
-}
+}>;
 
 export type resolve = never;
 

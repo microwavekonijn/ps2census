@@ -4,7 +4,7 @@ import empireScore from '../types/empireScore';
 
 export type typeData = empireScore;
 
-export type query = {
+export type query = Partial<{
     description: string,
     'description.de': string,
     'description.en': string,
@@ -25,7 +25,7 @@ export type query = {
     start_time: string,
     tracker_description: string,
     tracker_name: string
-}
+}>;
 
 export type resolve = never;
 

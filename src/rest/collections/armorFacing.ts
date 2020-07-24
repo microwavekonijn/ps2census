@@ -4,10 +4,10 @@ import armorFacing from '../types/armorFacing';
 
 export type typeData = armorFacing;
 
-export type query = {
+export type query = Partial<{
     armor_facing_id: string,
     description: string
-}
+}>;
 
 export type resolve = never;
 

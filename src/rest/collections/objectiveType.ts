@@ -4,7 +4,7 @@ import objectiveType from '../types/objectiveType';
 
 export type typeData = objectiveType;
 
-export type query = {
+export type query = Partial<{
     description: string,
     objective_type_id: string,
     param1: string,
@@ -16,7 +16,7 @@ export type query = {
     param7: string,
     param8: string,
     param9: string
-}
+}>;
 
 export type resolve = never;
 

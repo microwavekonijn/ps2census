@@ -4,10 +4,10 @@ import rewardGroupToReward from '../types/rewardGroupToReward';
 
 export type typeData = rewardGroupToReward;
 
-export type query = {
+export type query = Partial<{
     reward_group_id: string,
     reward_id: string
-}
+}>;
 
 export type resolve = never;
 

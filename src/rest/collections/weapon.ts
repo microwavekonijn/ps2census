@@ -4,7 +4,7 @@ import weapon from '../types/weapon';
 
 export type typeData = weapon;
 
-export type query = {
+export type query = Partial<{
     equip_ms: string,
     from_iron_sights_ms: string,
     heat_bleed_off_rate: string,
@@ -19,7 +19,7 @@ export type query = {
     unequip_ms: string,
     weapon_group_id: string,
     weapon_id: string
-}
+}>;
 
 export type resolve = never;
 

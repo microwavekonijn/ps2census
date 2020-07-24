@@ -4,7 +4,7 @@ import vehicle from '../types/vehicle';
 
 export type typeData = vehicle;
 
-export type query = {
+export type query = Partial<{
     cost: string,
     cost_resource_id: string,
     description: string,
@@ -27,7 +27,7 @@ export type query = {
     type_id: string,
     type_name: string,
     vehicle_id: string
-}
+}>;
 
 export type resolve = never;
 

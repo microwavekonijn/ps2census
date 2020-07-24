@@ -4,7 +4,7 @@ import skillCategory from '../types/skillCategory';
 
 export type typeData = skillCategory;
 
-export type query = {
+export type query = Partial<{
     description: string,
     'description.de': string,
     'description.en': string,
@@ -26,7 +26,7 @@ export type query = {
     skill_points: string,
     skill_set_id: string,
     skill_set_index: string
-}
+}>;
 
 export type resolve = never;
 

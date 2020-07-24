@@ -4,7 +4,7 @@ import profile from '../types/profile';
 
 export type typeData = profile;
 
-export type query = {
+export type query = Partial<{
     backpedal_speed_modifier: string,
     description: string,
     'description.de': string,
@@ -30,7 +30,7 @@ export type query = {
     profile_type_id: string,
     sprint_speed_modifier: string,
     strafe_speed_modifier: string
-}
+}>;
 
 export type resolve = never;
 

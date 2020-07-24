@@ -4,9 +4,7 @@ import characterOnlineStatus from '../types/characterOnlineStatus';
 
 export type typeData = characterOnlineStatus;
 
-export type query = {
-    character_id: string
-}
+export type query = { character_id: string };
 
 export type resolve = never;
 

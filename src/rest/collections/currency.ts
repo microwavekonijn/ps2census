@@ -4,7 +4,7 @@ import currency from '../types/currency';
 
 export type typeData = currency;
 
-export type query = {
+export type query = Partial<{
     currency_id: string,
     icon_id: string,
     inventory_cap: string,
@@ -15,7 +15,7 @@ export type query = {
     'name.fr': string,
     'name.it': string,
     'name.tr': string
-}
+}>;
 
 export type resolve = never;
 

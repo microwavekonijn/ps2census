@@ -7,9 +7,7 @@ export type typeData = characterFriends & {
     friend_list: (character & { world_id: string })[], // character/character_name and world
 };
 
-export type query = {
-    character_id: string
-}
+export type query = { character_id: string };
 
 export type resolve =
     'character'

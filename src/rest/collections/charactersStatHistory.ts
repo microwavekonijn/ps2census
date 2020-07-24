@@ -4,7 +4,7 @@ import characterStatHistory from '../types/characterStatHistory';
 
 export type typeData = characterStatHistory
 
-export type query = {
+export type query = Partial<{
     all_time: string,
     character_id: string,
     day: string,
@@ -70,7 +70,7 @@ export type query = {
     'week.w11': string,
     'week.w12': string,
     'week.w13': string
-}
+}>;
 
 export type resolve = never;
 

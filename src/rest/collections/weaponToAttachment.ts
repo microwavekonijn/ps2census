@@ -4,11 +4,11 @@ import weaponToAttachment from '../types/weaponToAttachment';
 
 export type typeData = weaponToAttachment;
 
-export type query = {
+export type query = Partial<{
     attachment_id: string,
     item_id: string,
     weapon_group_id: string
-}
+}>;
 
 export type resolve = never;
 

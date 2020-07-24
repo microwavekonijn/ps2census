@@ -4,7 +4,7 @@ import faction from '../types/faction';
 
 export type typeData = faction;
 
-export type query = {
+export type query = Partial<{
     code_tag: string,
     faction_id: string,
     image_id: string,
@@ -18,7 +18,7 @@ export type query = {
     'name.it': string,
     'name.tr': string,
     user_selectable: string
-}
+}>;
 
 export type resolve = never;
 

@@ -4,7 +4,7 @@ import outfitMemberExtended from '../types/outfitMemberExtended';
 
 export type typeData = outfitMemberExtended;
 
-export type query = {
+export type query = Partial<{
     alias: string,
     alias_lower: string,
     character_id: string,
@@ -19,7 +19,7 @@ export type query = {
     outfit_id: string,
     time_created: string,
     time_created_date: string
-}
+}>;
 
 export type resolve = never;
 

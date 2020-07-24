@@ -4,7 +4,7 @@ import directive from '../types/directive';
 
 export type typeData = directive;
 
-export type query = {
+export type query = Partial<{
     description: string,
     'description.de': string,
     'description.en': string,
@@ -27,7 +27,7 @@ export type query = {
     'name.tr': string,
     objective_set_id: string,
     qualify_requirement_id: string
-}
+}>;
 
 export type resolve = never;
 

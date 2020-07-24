@@ -4,7 +4,7 @@ import characterStat from '../types/characterStat';
 
 export type typeData = characterStat;
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     last_save: string,
     last_save_date: string,
@@ -25,7 +25,7 @@ export type query = {
     value_weekly_nc: string,
     value_weekly_tr: string,
     value_weekly_vs: string
-}
+}>;
 
 export type resolve = never;
 

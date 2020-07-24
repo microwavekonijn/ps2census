@@ -4,10 +4,10 @@ import itemToWeapon from '../types/itemToWeapon';
 
 export type typeData = itemToWeapon;
 
-export type query = {
+export type query = Partial<{
     item_id: string,
     weapon_id: string
-}
+}>;
 
 export type resolve = never;
 

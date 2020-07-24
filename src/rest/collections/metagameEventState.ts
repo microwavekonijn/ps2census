@@ -4,10 +4,10 @@ import metagameEventState from '../types/metagameEventState';
 
 export type typeData = metagameEventState;
 
-export type query = {
+export type query = Partial<{
     metagame_event_state_id: string,
     name: string
-}
+}>;
 
 export type resolve = never;
 

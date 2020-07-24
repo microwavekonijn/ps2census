@@ -4,7 +4,7 @@ import title from '../types/title';
 
 export type typeData = title;
 
-export type query = {
+export type query = Partial<{
     name: string,
     'name.de': string,
     'name.en': string,
@@ -13,7 +13,7 @@ export type query = {
     'name.it': string,
     'name.tr': string,
     title_id: string
-}
+}>;
 
 export type resolve = never;
 

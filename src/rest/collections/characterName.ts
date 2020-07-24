@@ -4,12 +4,12 @@ import character from '../types/character';
 
 export type typeData = Pick<character, 'character_id' | 'name'>;
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     name: string,
     'name.first': string,
     'name.first_lower': string
-}
+}>;
 
 export type resolve = never;
 

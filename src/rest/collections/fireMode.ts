@@ -4,7 +4,7 @@ import fireMode from '../types/fireMode';
 
 export type typeData = fireMode
 
-export type query = {
+export type query = Partial<{
     cof_recoil: string,
     damage: string,
     damage_max: string,
@@ -41,7 +41,7 @@ export type query = {
     reload_time_ms: string,
     speed: string,
     type: string
-}
+}>;
 
 export type resolve = never;
 

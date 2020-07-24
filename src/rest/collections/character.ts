@@ -39,7 +39,7 @@ export type typeData =
     currency: characterCurrency, // currency
 };
 
-export type query = {
+export type query = Partial<{
     battle_rank: string,
     'battle_rank.percent_to_next': string,
     'battle_rank.value': string,
@@ -71,7 +71,7 @@ export type query = {
     'times.login_count': string,
     'times.minutes_played': string,
     title_id: string
-}
+}>;
 
 export type resolve =
     'item' //

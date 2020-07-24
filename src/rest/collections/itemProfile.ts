@@ -4,10 +4,10 @@ import itemProfile from '../types/itemProfile';
 
 export type typeData = itemProfile;
 
-export type query = {
+export type query = Partial<{
     item_id: string,
     profile_id: string
-}
+}>;
 
 export type resolve = never;
 

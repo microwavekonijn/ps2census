@@ -4,10 +4,10 @@ import itemAttachment from '../types/itemAttachment';
 
 export type typeData = itemAttachment;
 
-export type query = {
+export type query = Partial<{
     attachment_item_id: string,
     item_id: string
-}
+}>;
 
 export type resolve = never;
 

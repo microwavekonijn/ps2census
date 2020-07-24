@@ -4,7 +4,7 @@ import metagameEvent from '../types/metagameEvent';
 
 export type typeData = metagameEvent;
 
-export type query = {
+export type query = Partial<{
     description: string,
     'description.de': string,
     'description.en': string,
@@ -22,7 +22,7 @@ export type query = {
     'name.it': string,
     'name.tr': string,
     type: string
-}
+}>;
 
 export type resolve = never;
 

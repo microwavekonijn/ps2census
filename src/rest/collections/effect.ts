@@ -4,7 +4,7 @@ import effect from '../types/effect';
 
 export type typeData = effect;
 
-export type query = {
+export type query = Partial<{
     ability_id: string,
     duration_seconds: string,
     effect_id: string,
@@ -25,7 +25,7 @@ export type query = {
     param9: string,
     resist_type_id: string,
     target_type_id: string
-}
+}>;
 
 export type resolve = never;
 

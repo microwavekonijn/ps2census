@@ -18,14 +18,14 @@ export type typeData =
     outfit: outfit, // outfit
 };
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     member_since: string,
     member_since_date: string,
     outfit_id: string,
     rank: string,
     rank_ordinal: string
-}
+}>;
 
 export type resolve =
     'character' //

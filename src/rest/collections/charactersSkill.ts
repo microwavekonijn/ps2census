@@ -4,12 +4,12 @@ import characterSkill from '../types/characterSkill';
 
 export type typeData = characterSkill;
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     last_save: string,
     last_save_date: string,
     skill_id: string
-}
+}>;
 
 export type resolve = never;
 

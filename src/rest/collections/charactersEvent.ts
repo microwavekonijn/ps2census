@@ -12,13 +12,13 @@ export type typeData = characterEvent & {
     },
 };
 
-export type query = {
+export type query = Partial<{
     character_id: string,
     after: string,
     before: string,
     id: string,
     type: string,
-}
+}>;
 
 // TODO: Find associated attacker* types
 export type resolve =

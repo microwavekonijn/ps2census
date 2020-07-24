@@ -4,7 +4,7 @@ import projectile from '../types/projectile';
 
 export type typeData = projectile;
 
-export type query = {
+export type query = Partial<{
     acceleration: string,
     arm_distance: string,
     detonate_distance: string,
@@ -24,7 +24,7 @@ export type query = {
     sticky: string,
     tether_distance: string,
     turn_rate: string
-}
+}>;
 
 export type resolve = never;
 

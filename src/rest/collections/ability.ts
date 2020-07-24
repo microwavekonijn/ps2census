@@ -4,7 +4,7 @@ import ability from '../types/ability';
 
 export type typeData = ability;
 
-export type query = {
+export type query = Partial<{
     ability_id: string,
     ability_type_id: string,
     distance_max: string,
@@ -35,7 +35,7 @@ export type query = {
     string2: string,
     string3: string,
     string4: string
-}
+}>;
 
 export type resolve = never;
 

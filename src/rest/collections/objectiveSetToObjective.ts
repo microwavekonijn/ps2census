@@ -4,10 +4,10 @@ import objectiveSetToObjective from '../types/objectiveSetToObjective';
 
 export type typeData = objectiveSetToObjective;
 
-export type query = {
+export type query = Partial<{
     objective_group_id: string,
     objective_set_id: string
-}
+}>;
 
 export type resolve = never;
 

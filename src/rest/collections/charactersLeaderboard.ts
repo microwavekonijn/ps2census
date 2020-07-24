@@ -16,11 +16,11 @@ export type typeData =
     },
 };
 
-export type query = {
+export type query = Partial<{
     name: 'Deaths' | 'Kills' | 'Score' | 'Time',
     period: 'Forever' | 'Monthly' | 'Weekly' | 'Daily' | 'OneLife',
     character_id: string
-}
+}>;
 
 export type resolve =
     'character' //

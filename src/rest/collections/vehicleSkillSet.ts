@@ -4,12 +4,12 @@ import vehicleSkillSet from '../types/vehicleSkillSet';
 
 export type typeData = vehicleSkillSet;
 
-export type query = {
+export type query = Partial<{
     display_index: string,
     faction_id: string,
     skill_set_id: string,
     vehicle_id: string
-}
+}>;
 
 export type resolve = never;
 

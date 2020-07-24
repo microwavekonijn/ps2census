@@ -4,7 +4,7 @@ import mapRegion from '../types/mapRegion';
 
 export type typeData = mapRegion;
 
-export type query = {
+export type query = Partial<{
     facility_id: string,
     facility_name: string,
     facility_type: string,
@@ -16,7 +16,7 @@ export type query = {
     reward_amount: string,
     reward_currency_id: string,
     zone_id: string
-}
+}>;
 
 export type resolve = never;
 

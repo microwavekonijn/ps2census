@@ -4,7 +4,7 @@ import directiveTier from '../types/directiveTier';
 
 export type typeData = directiveTier;
 
-export type query = {
+export type query = Partial<{
     completion_count: string,
     directive_points: string,
     directive_tier_id: string,
@@ -20,7 +20,7 @@ export type query = {
     'name.it': string,
     'name.tr': string,
     reward_set_id: string
-}
+}>;
 
 export type resolve = never;
 
