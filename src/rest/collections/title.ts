@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import title from '../types/title';
 
-export type typeData = {
-    title_id: string,
-    name: lang,
-};
+export type typeData = title;
 
 export type query = {
     name: string,

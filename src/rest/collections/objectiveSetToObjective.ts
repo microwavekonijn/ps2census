@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import objectiveSetToObjective from '../types/objectiveSetToObjective';
 
-export type typeData = {
-    objective_set_id: string,
-    objective_group_id: string,
-};
+export type typeData = objectiveSetToObjective;
 
 export type query = {
     objective_group_id: string,

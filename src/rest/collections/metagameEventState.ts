@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import metagameEventState from '../types/metagameEventState';
 
-export type typeData = {
-    metagame_event_state_id: string,
-    name: string,
-};
+export type typeData = metagameEventState;
 
 export type query = {
     metagame_event_state_id: string,

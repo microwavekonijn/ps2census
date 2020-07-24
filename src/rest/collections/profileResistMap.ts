@@ -1,11 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import profileResistMap from '../types/profileResistMap';
 
-export type typeData = {
-    profile_id: string,
-    resist_info_id: string,
-    rank: string,
-};
+export type typeData = profileResistMap;
 
 export type query = {
     profile_id: string,

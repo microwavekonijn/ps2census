@@ -1,13 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import metagameEvent from '../types/metagameEvent';
 
-export type typeData = {
-    metagame_event_id: string,
-    name: lang,
-    description: lang,
-    type: string,
-    experience_bonus: string,
-};
+export type typeData = metagameEvent;
 
 export type query = {
     description: string,

@@ -1,13 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import reward from '../types/reward';
 
-export type typeData = {
-    reward_id: string,
-    reward_type_id: string,
-    count_min: string,
-    count_max: string,
-    param1: string,
-};
+export type typeData = reward;
 
 export type query = {
     count_max: string,

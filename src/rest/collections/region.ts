@@ -1,12 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import region from '../types/region';
 
-export type typeData = {
-    region_id: string,
-    zone_id: string,
-    initial_faction_id: string,
-    name: lang,
-};
+export type typeData = region;
 
 export type query = {
     initial_faction_id: string,

@@ -1,14 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import mapHex from '../types/mapHex';
 
-export type typeData = {
-    zone_id: string,
-    map_region_id: string,
-    x: string,
-    y: string,
-    hex_type: string,
-    type_name: string,
-};
+export type typeData = mapHex;
 
 export type query = {
     hex_type: string,

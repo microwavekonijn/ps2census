@@ -1,18 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import achievement from '../types/achievement';
 
-export type typeData = {
-    achievement_id: string,
-    item_id: string,
-    objective_group_id: string,
-    reward_id: string,
-    repeatable: string,
-    name: lang,
-    description: lang,
-    image_set_id: string,
-    image_id: string,
-    image_path: string,
-};
+export type typeData = achievement;
 
 export type query = {
     achievement_id: string,

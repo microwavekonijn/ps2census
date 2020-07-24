@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import fireGroup from '../types/fireGroup';
 
-export type typeData = {
-    fire_group_id: string,
-};
+export type typeData = fireGroup;
 
 export type query = {
     can_chamber_ironsights: string,

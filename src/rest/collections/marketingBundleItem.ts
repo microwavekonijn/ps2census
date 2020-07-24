@@ -1,12 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import marketingBundleItem from '../types/marketingBundleItem';
 
-export type typeData = {
-    marketing_bundle_id: string,
-    item_id: string,
-    quantity: string,
-    release_time: string,
-};
+export type typeData = marketingBundleItem
 
 export type query = {
     item_id: string,

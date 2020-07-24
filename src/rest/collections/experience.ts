@@ -1,11 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import experience from '../types/experience';
 
-export type typeData = {
-    experience_id: string,
-    description: string,
-    xp: string,
-};
+export type typeData = experience;
 
 export type query = {
     description: string,

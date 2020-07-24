@@ -1,12 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import outfitRank from '../types/outfitRank';
 
-export type typeData = {
-    outfit_id: string,
-    ordinal: string,
-    name: string,
-    description: string,
-};
+export type typeData = outfitRank;
 
 export type query = {
     description: string,

@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import projectileFlightType from '../types/projectileFlightType';
 
-export type typeData = {
-    projectile_flight_type_id: string,
-    description: string,
-};
+export type typeData = projectileFlightType;
 
 export type query = {
     description: string,

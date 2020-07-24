@@ -1,11 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import weaponToFireGroup from '../types/weaponToFireGroup';
 
-export type typeData = {
-    weapon_id: string,
-    fire_group_id: string,
-    fire_group_index: string,
-};
+export type typeData = weaponToFireGroup;
 
 export type query = {
     fire_group_id: string,

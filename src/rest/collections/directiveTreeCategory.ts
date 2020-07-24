@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import directiveTreeCategory from '../types/directiveTreeCategory';
 
-export type typeData = {
-    directive_tree_category_id: string,
-    name: lang,
-};
+export type typeData = directiveTreeCategory;
 
 export type query = {
     directive_tree_category_id: string,

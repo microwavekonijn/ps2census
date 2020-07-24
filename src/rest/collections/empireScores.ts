@@ -1,15 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import empireScore from '../types/empireScore';
 
-export type typeData = {
-    tracker_name: string,
-    tracker_description: string,
-    start_date: string,
-    start_time: string,
-    end_date: string,
-    end_time: string,
-    name: lang,
-};
+export type typeData = empireScore;
 
 export type query = {
     description: string,

@@ -1,12 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import vehicleSkillSet from '../types/vehicleSkillSet';
 
-export type typeData = {
-    vehicle_id: string,
-    skill_set_id: string,
-    faction_id: string,
-    display_index: string,
-};
+export type typeData = vehicleSkillSet;
 
 export type query = {
     display_index: string,

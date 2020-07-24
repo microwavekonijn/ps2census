@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import armorFacing from '../types/armorFacing';
 
-export type typeData = {
-    armor_facing_id: string,
-    description: string,
-};
+export type typeData = armorFacing;
 
 export type query = {
     armor_facing_id: string,

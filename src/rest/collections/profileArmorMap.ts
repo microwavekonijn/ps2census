@@ -1,11 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import profileArmorMap from '../types/profileArmorMap';
 
-export type typeData = {
-    profile_id: string,
-    armor_info_id: string,
-    rank: string,
-};
+export type typeData = profileArmorMap;
 
 export type query = {
     armor_info_id: string,

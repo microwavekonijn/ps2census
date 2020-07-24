@@ -1,20 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import effect from '../types/effect';
 
-export type typeData = {
-    effect_id: string,
-    effect_type_id: string,
-    ability_id: string,
-    target_type_id: string,
-    resist_type_id: string,
-    param1: string,
-    param2: string,
-    param5: string,
-    param6: string,
-    param7: string,
-    param8: string,
-    param9: string,
-};
+export type typeData = effect;
 
 export type query = {
     ability_id: string,

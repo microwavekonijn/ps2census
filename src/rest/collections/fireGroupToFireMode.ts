@@ -1,11 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import fireGroupToFireMode from '../types/fireGroupToFireMode';
 
-export type typeData = {
-    fire_group_id: string,
-    fire_mode_id: string,
-    fire_mode_index: string,
-};
+export type typeData = fireGroupToFireMode;
 
 export type query = {
     fire_group_id: string,

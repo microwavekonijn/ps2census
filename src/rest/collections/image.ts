@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import image from '../types/image';
 
-export type typeData = {
-    image_id: string,
-    path: string,
-};
+export type typeData = image;
 
 export type query = {
     description: string,

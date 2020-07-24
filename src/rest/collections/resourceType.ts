@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import resourceType from '../types/resourceType';
 
-export type typeData = {
-    resource_type_id: string,
-    description: string,
-};
+export type typeData = resourceType;
 
 export type query = {
     description: string,

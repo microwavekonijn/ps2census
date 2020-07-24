@@ -1,13 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import zone from '../types/zone';
 
-export type typeData = {
-    zone_id: string,
-    code: string,
-    hex_size: string,
-    name: lang,
-    description: lang,
-};
+export type typeData = zone;
 
 export type query = {
     code: string,

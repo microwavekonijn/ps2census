@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import fireModeToProjectile from '../types/fireModeToProjectile';
 
-export type typeData = {
-    fire_mode_id: string,
-    projectile_id: string,
-};
+export type typeData = fireModeToProjectile;
 
 export type query = {
     fire_mode_id: string,

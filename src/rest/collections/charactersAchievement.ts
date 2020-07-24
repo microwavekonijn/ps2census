@@ -1,16 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import characterAchievement from '../types/characterAchievement';
 
-export type typeData = {
-    character_id: string,
-    achievement_id: string,
-    start: string,
-    start_date: string,
-    finish: string,
-    finish_date: string,
-    last_save: string,
-    last_save_date: string,
-};
+export type typeData = characterAchievement;
 
 export type query = {
     achievement_id: string,

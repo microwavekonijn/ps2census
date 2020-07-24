@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import abilityType from '../types/abilityType';
 
-export type typeData = {
-    ability_type_id: string,
-};
+export type typeData = abilityType;
 
 export type query = {
     ability_type_id: string,

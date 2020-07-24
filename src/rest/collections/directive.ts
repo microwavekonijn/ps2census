@@ -1,17 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import directive from '../types/directive';
 
-export type typeData = {
-    directive_id: string,
-    directive_tree_id: string,
-    directive_tier_id: string,
-    objective_set_id: string,
-    name: lang,
-    description: lang,
-    image_set_id: string,
-    image_id: string,
-    image_path: string,
-};
+export type typeData = directive;
 
 export type query = {
     description: string,

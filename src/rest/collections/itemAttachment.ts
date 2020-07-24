@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import itemAttachment from '../types/itemAttachment';
 
-export type typeData = {
-    item_id: string,
-    attachment_item_id: string,
-};
+export type typeData = itemAttachment;
 
 export type query = {
     attachment_item_id: string,

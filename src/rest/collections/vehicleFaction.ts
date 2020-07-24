@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import vehicleFaction from '../types/vehicleFaction';
 
-export type typeData = {
-    vehicle_id: string,
-    faction_id: string,
-};
+export type typeData = vehicleFaction;
 
 export type query = {
     faction_id: string,

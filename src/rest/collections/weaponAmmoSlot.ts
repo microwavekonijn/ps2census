@@ -1,12 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import weaponAmmoSlot from '../types/weaponAmmoSlot';
 
-export type typeData = {
-    weapon_id: string,
-    weapon_slot_index: string,
-    clip_size: string,
-    capacity: string,
-};
+export type typeData = weaponAmmoSlot;
 
 export type query = {
     capacity: string,

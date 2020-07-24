@@ -1,28 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import experienceRank from '../types/experienceRank';
 
-export type typeData = {
-    rank: string,
-    xp_max: string,
-    vs: {
-        title: lang,
-        image_set_id: string,
-        image_id: string,
-    },
-    vs_image_path: string,
-    nc: {
-        title: lang,
-        image_set_id: string,
-        image_id: string,
-    },
-    nc_image_path: string,
-    tr: {
-        title: lang,
-        image_set_id: string,
-        image_id: string,
-    },
-    tr_image_path: string,
-};
+export type typeData = experienceRank;
 
 export type query = {
     nc: string,

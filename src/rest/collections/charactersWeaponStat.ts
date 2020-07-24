@@ -1,25 +1,12 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import characterWeaponStat from '../types/characterWeaponStat';
+import vehicle from '../types/vehicle';
+import item from '../types/item';
 
-export type typeData = {
-    character_id: string,
-    stat_name: string,
-    item_id: string,
-    vehicle_id: string,
-    value: string,
-    last_save: string,
-    last_save_date: string,
-    vehicle: {
-        name: lang,
-        description: lang,
-        type_id: string,
-        type_name: string,
-        cost: string,
-        cost_resource_id: string,
-        image_set_id: string,
-        image_id: string,
-        image_path: string,
-    },
+export type typeData = characterWeaponStat & {
+    vehicle: vehicle, // vehicle
+    item: item, // item
 };
 
 export type query = {

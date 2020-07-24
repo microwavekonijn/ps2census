@@ -1,13 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import characterCurrency from '../types/characterCurrency';
 
-export type typeData = {
-    character_id: string,
-    currency_id: string,
-    currency_name: string,
-    quantity: string,
-    prestige_currency: string,
-};
+export type typeData = characterCurrency;
 
 export type query = {
     character_id: string,

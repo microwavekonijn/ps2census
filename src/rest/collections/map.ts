@@ -1,18 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import map from '../types/map';
 
-export type typeData = {
-    ZoneId: string,
-    Regions: {
-        IsList: string,
-        Row: {
-            RowData: {
-                RegionId: string,
-                FactionId: string,
-            },
-        }[],
-    },
-};
+export type typeData = map;
 
 export type query = {
     world_id: string,

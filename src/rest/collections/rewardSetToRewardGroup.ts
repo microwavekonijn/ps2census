@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import rewardSetToRewardGroup from '../types/rewardSetToRewardGroup';
 
-export type typeData = {
-    reward_set_id: string,
-    reward_group_id: string,
-};
+export type typeData = rewardSetToRewardGroup;
 
 export type query = {
     reward_group_id: string,

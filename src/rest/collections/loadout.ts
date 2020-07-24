@@ -1,12 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import loadout from '../types/loadout';
 
-export type typeData = {
-    loadout_id: string,
-    profile_id: string,
-    faction_id: string,
-    code_name: string,
-};
+export type typeData = loadout;
 
 export type query = {
     code_name: string,

@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import itemToWeapon from '../types/itemToWeapon';
 
-export type typeData = {
-    item_id: string,
-    weapon_id: string,
-};
+export type typeData = itemToWeapon;
 
 export type query = {
     item_id: string,

@@ -1,11 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import playerStateGroup from '../types/playerStateGroup';
 
-export type typeData = {
-    player_state_group_id: string,
-    player_state: string,
-    min_cone_of_fire: string,
-};
+export type typeData = playerStateGroup;
 
 export type query = {
     min_cone_of_fire: string,

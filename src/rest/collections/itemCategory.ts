@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import itemCategory from '../types/itemCategory';
 
-export type typeData = {
-    item_category_id: string,
-    name: lang,
-};
+export type typeData = itemCategory;
 
 export type query = {
     item_category_id: string,

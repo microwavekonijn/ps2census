@@ -1,12 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import faction from '../types/faction';
 
-export type typeData = {
-    faction_id: string,
-    name: lang,
-    code_tag: string,
-    user_selectable: string,
-};
+export type typeData = faction;
 
 export type query = {
     code_tag: string,

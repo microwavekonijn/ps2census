@@ -1,16 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import zoneEffectType from '../types/zoneEffectType';
 
-export type typeData = {
-    zone_effect_type_id: string,
-    description: string,
-    param1: string,
-    param2: string,
-    param3: string,
-    param4: string,
-    param5: string,
-    param6: string,
-};
+export type typeData = zoneEffectType;
 
 export type query = {
     description: string,

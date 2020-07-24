@@ -1,13 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import vehicleAttachment from '../types/vehicleAttachment';
 
-export type typeData = {
-    item_id: string,
-    vehicle_id: string,
-    faction_id: string,
-    description: string,
-    slot_id: string,
-};
+export type typeData = vehicleAttachment;
 
 export type query = {
     description: string,

@@ -1,13 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import characterDirective from '../types/characterDirective';
 
-export type typeData = {
-    character_id: string,
-    directive_tree_id: string,
-    directive_id: string,
-    completion_time: string,
-    completion_time_date: string,
-};
+export type typeData = characterDirective;
 
 export type query = {
     character_id: string,

@@ -1,14 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import objectiveType from '../types/objectiveType';
 
-export type typeData = {
-    objective_type_id: string,
-    description: string,
-    param1: string,
-    param2: string,
-    param3: string,
-    param4: string,
-};
+export type typeData = objectiveType;
 
 export type query = {
     description: string,

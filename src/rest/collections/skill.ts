@@ -1,18 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import skill from '../types/skill';
 
-export type typeData = {
-    skill_id: string,
-    skill_line_id: string,
-    skill_line_index: string,
-    skill_points: string,
-    grant_item_id: string,
-    name: lang,
-    description: lang,
-    image_set_id: string,
-    image_id: string,
-    image_path: string,
-};
+export type typeData = skill;
 
 export type query = {
     description: string,

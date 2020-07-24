@@ -1,13 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import characterDirectiveTier from '../types/characterDirectiveTier';
 
-export type typeData = {
-    character_id: string,
-    directive_tree_id: string,
-    directive_tier_id: string,
-    completion_time: string,
-    completion_time_date: string,
-};
+export type typeData = characterDirectiveTier;
 
 export type query = {
     character_id: string,

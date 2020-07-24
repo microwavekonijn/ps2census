@@ -1,14 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import marketingBundle from '../types/marketingBundle';
 
-export type typeData = {
-    marketing_bundle_id: string,
-    name: lang,
-    description: lang,
-    image_id: string,
-    station_cash_price: string,
-    release_time: string,
-};
+export type typeData = marketingBundle
 
 export type query = {
     cert_price: string,

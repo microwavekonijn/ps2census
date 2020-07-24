@@ -1,21 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
+import { commands, operations } from '../utils/Types';
+import profile from '../types/profile';
 
-export type typeData = {
-    profile_id: string,
-    profile_type_id: string,
-    profile_type_description: string,
-    faction_id: string,
-    name: lang,
-    description: lang,
-    image_set_id: string,
-    image_id: string,
-    image_path: string,
-    movement_speed: string,
-    backpedal_speed_modifier: string,
-    sprint_speed_modifier: string,
-    strafe_speed_modifier: string,
-};
+export type typeData = profile;
 
 export type query = {
     backpedal_speed_modifier: string,

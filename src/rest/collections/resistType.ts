@@ -1,10 +1,8 @@
 import { requestFactory } from '../utils/Helpers';
 import { commands, operations } from '../utils/Types';
+import resistType from '../types/resistType';
 
-export type typeData = {
-    resist_type_id: string,
-    description: string,
-};
+export type typeData = resistType;
 
 export type query = {
     description: string,
