@@ -18,10 +18,10 @@ export function countFactory(environment: PS2Environment, serviceId?: string) {
             if (data.error)
                 throw new CensusRestException(data.error);
 
-            return data;
+            return data.count;
         },
     });
 
     return <Q, T, C extends commands, R>({type, extract, params}: baseRequest<'count', Q, T, C, R>, query: Q): Promise<T> =>
-        census.get(type, {params: {...params, ...query}}).then(({count}: any) => count);
+        census.get(type, {params: {...params, ...query}}).then(({data}: any) => data);
 }

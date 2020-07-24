@@ -10,6 +10,6 @@ export default function <O extends operations, T, Q, C extends commands, R>(requ
     // @ts-ignore
     return setExtract(
         setParam(request, 'c:timing', timing),
-        (data) => [data[`${request.type}_list`], data.timing],
+        ({data}) => [data[`${request.type}_list`], data.timing],
     );
 }
