@@ -6,22 +6,8 @@ export type typeData = world;
 
 export type query = Partial<{
     // this API man...
-    // description_t4id: string,
-    // name_t4id: string,
-    description: string,
-    'description.de': string,
-    'description.en': string,
-    'description.es': string,
-    'description.fr': string,
-    'description.it': string,
-    'description.tr': string,
-    name: string,
-    'name.de': string,
-    'name.en': string,
-    'name.es': string,
-    'name.fr': string,
-    'name.it': string,
-    'name.tr': string,
+    description_t4id: string,
+    name_t4id: string,
     state: string,
     world_id: string,
 }>;

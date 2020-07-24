@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+import { commands as baseCommands } from '../utils/Types';
 import character from '../types/character';
 import characterStatHistory from '../types/characterStatHistory';
 import event from '../types/event';
@@ -12,11 +12,13 @@ export type typeData = event & {
     },
 };
 
-export type query = Partial<{
+export type query = {
+    type?: string
+} & ({
     after: string,
+} | {
     before: string,
-    type: string
-}>;
+});
 
 // TODO: Find associated attacker* types
 export type resolve =
@@ -27,4 +29,6 @@ export type resolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('event');
+export type commands = Extract<baseCommands, 'limit' | 'join' | 'tree'>;
+
+export default requestFactory<'get', query, typeData[], commands, resolve>('event');

@@ -10,17 +10,16 @@ export type typeData =
     & character // character/character_name
     & characterWorld // world
     & {
-    world_id: string,
     stats: {
         stat_history: characterStatHistory[], // characters_stat_history
     },
 };
 
-export type query = Partial<{
+export type query = {
     name: 'Deaths' | 'Kills' | 'Score' | 'Time',
     period: 'Forever' | 'Monthly' | 'Weekly' | 'Daily' | 'OneLife',
     character_id: string
-}>;
+};
 
 export type resolve =
     'character' //

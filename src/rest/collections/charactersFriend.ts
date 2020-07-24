@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+import { commands as baseCommands } from '../utils/Types';
 import characterFriends from '../types/characterFriends';
 import character from '../types/character';
 
@@ -14,4 +14,6 @@ export type resolve =
     | 'character_name'
     | 'world';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('characters_friend');
+export type commands = Extract<baseCommands, 'join' | 'tree'>;
+
+export default requestFactory<'get', query, typeData[], commands, resolve>('characters_friend');

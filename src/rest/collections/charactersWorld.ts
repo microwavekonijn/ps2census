@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+import { commands as baseCommands } from '../utils/Types';
 import characterWorld from '../types/characterWorld';
 
 export type typeData = characterWorld;
@@ -11,4 +11,7 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('characters_world');
+export type commands = Extract<baseCommands, 'join' | 'tree'>;
+
+
+export default requestFactory<'get', query, typeData[], commands, resolve>('characters_world');

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+import { commands as baseCommands } from '../utils/Types';
 import character from '../types/character';
 import characterStatHistory from '../types/characterStatHistory';
 import characterEvent from '../types/characterEvent';
@@ -12,8 +12,7 @@ export type typeData = characterEvent & {
     },
 };
 
-export type query = Partial<{
-    character_id: string,
+export type query = { character_id: string } & Partial<{
     after: string,
     before: string,
     id: string,
@@ -29,4 +28,6 @@ export type resolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('characters_event');
+export type commands = Extract<baseCommands, 'limit' | 'join' | 'tree'>;
+
+export default requestFactory<'get', query, typeData[], commands, resolve>('characters_event');

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
+import { commands as baseCommands } from '../utils/Types';
 import character from '../types/character';
 import characterStatHistory from '../types/characterStatHistory';
 import characterEventGrouped from '../types/characterEventGrouped';
@@ -12,14 +12,16 @@ export type typeData = characterEventGrouped & {
     },
 };
 
-export type query = Partial<{
+export type query = {
     character_id: string,
-    type: string,
-}>;
+    type?: string,
+};
 
 export type resolve =
     'character'
     | 'character_name'
     | 'characters_stat_history';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('characters_event_grouped');
+export type commands = Extract<baseCommands, 'limit' | 'join' | 'tree' | 'start'>;
+
+export default requestFactory<'get', query, typeData[], commands, resolve>('characters_event_grouped');

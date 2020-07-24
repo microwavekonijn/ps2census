@@ -15,11 +15,11 @@ export type typeData =
     },
 };
 
-export type query = Partial<{
+export type query = {
     name: 'Deaths' | 'Kills' | 'Score' | 'Time',
     period: 'Forever' | 'Monthly' | 'Weekly' | 'Daily' | 'OneLife',
     world: string
-}>;
+};
 
 export type resolve =
     'character' //
