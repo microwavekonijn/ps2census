@@ -4,8 +4,10 @@ const client = new Client({
     serviceId: process.argv[2],
     streamManagerConfig: {
         subscriptions: [{
+            characters: ['all'],
             worlds: ['all'],
             eventNames: ['Death'],
+            logicalAndCharactersWithWorlds: true,
         }],
     },
 });
@@ -15,13 +17,10 @@ client.on('reconnecting', () => console.log('Reconnecting'));
 client.on('disconnected', () => console.log('Disconnected'));
 client.on('warn', (e) => console.log(e));
 client.on('subscribed', (s) => console.log(JSON.stringify(s)));
+client.on('debug', console.log);
 
-client.on(Events.PS2_DEATH, (e) => {
-    if (e.world_id !== '10') {
-        console.log('Nope');
-    }
-});
-// client.on(Events.PS2_DUPLICATE, (e) => console.log(e));
+client.on(Events.PS2_DEATH, (e) => console.log('Death', e));
+client.on(Events.PS2_DUPLICATE, (e) => console.log('Duplicate', JSON.stringify(e)));
 
 
 let aborting = false;
