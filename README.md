@@ -103,5 +103,5 @@ problems.
 
 ## Disclaimer
 
-The PS2 Census Client comes with no warranties. This software is as is and usage is at the developer/users own
+The PS2 Census Library comes with no warranties. This software is as is and usage is at the developer/users own
 discretion.
