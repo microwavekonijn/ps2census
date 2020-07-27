@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import directiveTree from '../types/directiveTree';
 
 export type typeData = directiveTree;
@@ -28,4 +27,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('directive_tree');
+export default requestFactory<'directive_tree'>('directive_tree');

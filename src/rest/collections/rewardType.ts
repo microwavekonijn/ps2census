@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import rewardType from '../types/rewardType';
 
 export type typeData = rewardType;
@@ -18,4 +17,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('reward_type');
+export default requestFactory<'reward_type'>('reward_type');

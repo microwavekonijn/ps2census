@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import characterCurrency from '../types/characterCurrency';
 
 export type typeData = characterCurrency;
@@ -14,4 +13,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('characters_currency');
+export default requestFactory<'characters_currency'>('characters_currency');

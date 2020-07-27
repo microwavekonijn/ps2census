@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import armorFacing from '../types/armorFacing';
 
 export type typeData = armorFacing;
@@ -11,4 +10,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('armor_facing');
+export default requestFactory<'armor_facing'>('armor_facing');

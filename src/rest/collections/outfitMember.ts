@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import outfitMember from '../types/outfitMember';
 import outfit from '../types/outfit';
 import character from '../types/character';
@@ -34,4 +33,4 @@ export type resolve =
     | 'online_status' //
     | 'outfit'; //
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('outfit_member');
+export default requestFactory<'outfit_member'>('outfit_member');

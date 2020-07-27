@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import fireMode2 from '../types/fireMode2';
 
 export type typeData = fireMode2;
@@ -103,4 +102,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('fire_mode_2');
+export default requestFactory<'fire_mode_2'>('fire_mode_2');

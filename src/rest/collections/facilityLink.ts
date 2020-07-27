@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import facilityLink from '../types/facilityLink';
 
 export type typeData = facilityLink;
@@ -13,4 +12,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('facility_link');
+export default requestFactory<'facility_link'>('facility_link');

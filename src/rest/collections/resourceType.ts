@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import resourceType from '../types/resourceType';
 
 export type typeData = resourceType;
@@ -11,4 +10,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('resource_type');
+export default requestFactory<'resource_type'>('resource_type');

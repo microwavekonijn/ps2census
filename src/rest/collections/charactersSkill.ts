@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import characterSkill from '../types/characterSkill';
 
 export type typeData = characterSkill;
@@ -13,4 +12,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('characters_skill');
+export default requestFactory<'characters_skill'>('characters_skill');

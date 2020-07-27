@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import fireModeToProjectile from '../types/fireModeToProjectile';
 
 export type typeData = fireModeToProjectile;
@@ -11,4 +10,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('fire_mode_to_projectile');
+export default requestFactory<'fire_mode_to_projectile'>('fire_mode_to_projectile');

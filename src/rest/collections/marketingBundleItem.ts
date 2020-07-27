@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import marketingBundleItem from '../types/marketingBundleItem';
 
 export type typeData = marketingBundleItem
@@ -13,4 +12,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('marketing_bundle_item');
+export default requestFactory<'marketing_bundle_item'>('marketing_bundle_item');

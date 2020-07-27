@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import vehicleSkillSet from '../types/vehicleSkillSet';
 
 export type typeData = vehicleSkillSet;
@@ -13,4 +12,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('vehicle_skill_set');
+export default requestFactory<'vehicle_skill_set'>('vehicle_skill_set');

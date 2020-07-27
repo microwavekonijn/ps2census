@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import experienceRank from '../types/experienceRank';
 
 export type typeData = experienceRank;
@@ -44,4 +43,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('experience_rank');
+export default requestFactory<'experience_rank'>('experience_rank');

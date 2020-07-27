@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import objectiveSetToObjective from '../types/objectiveSetToObjective';
 
 export type typeData = objectiveSetToObjective;
@@ -11,4 +10,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('objective_set_to_objective');
+export default requestFactory<'objective_set_to_objective'>('objective_set_to_objective');

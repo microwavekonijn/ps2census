@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import playerStateGroup from '../types/playerStateGroup';
 
 export type typeData = playerStateGroup;
@@ -12,4 +11,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('player_state_group');
+export default requestFactory<'player_state_group'>('player_state_group');

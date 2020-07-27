@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import metagameEventState from '../types/metagameEventState';
 
 export type typeData = metagameEventState;
@@ -11,4 +10,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('metagame_event_state');
+export default requestFactory<'metagame_event_state'>('metagame_event_state');

@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import facilityType from '../types/facilityType';
 
 export type typeData = facilityType;
@@ -11,4 +10,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('facility_type');
+export default requestFactory<'facility_type'>('facility_type');

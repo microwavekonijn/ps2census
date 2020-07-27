@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import empireScore from '../types/empireScore';
 
 export type typeData = empireScore;
@@ -29,4 +28,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('empire_scores');
+export default requestFactory<'empire_scores'>('empire_scores');

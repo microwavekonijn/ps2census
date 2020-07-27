@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import directiveTier from '../types/directiveTier';
 
 export type typeData = directiveTier;
@@ -24,4 +23,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('directive_tier');
+export default requestFactory<'directive_tier'>('directive_tier');

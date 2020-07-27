@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import character from '../types/character';
 
 export type typeData = Pick<character, 'character_id' | 'name'>;
@@ -13,4 +12,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('character_name');
+export default requestFactory<'character_name'>('character_name');

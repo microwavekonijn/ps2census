@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import region from '../types/region';
 
 export type typeData = region;
@@ -19,4 +18,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('region');
+export default requestFactory<'region'>('region');

@@ -10,22 +10,22 @@ export { default as CensusRestException } from './exceptions/CensusRestException
 export { default as CensusServerError } from './exceptions/CensusServerError';
 
 /** Commands */
-export { default as caseSensitive } from './commands/caseSensitive';
-export { default as distinct } from './commands/distinct';
-export { default as exactMatchFirst } from './commands/exactMatchFirst';
-export { default as has } from './commands/has';
-export { default as hide } from './commands/hide';
-export { default as includeNull } from './commands/includeNull';
-export { default as join } from './commands/join';
-export { default as lang } from './commands/lang';
-export { default as limit } from './commands/limit';
-export { default as resolve } from './commands/resolve';
-export { default as retry } from './commands/retry';
-export { default as show } from './commands/show';
-export { default as sort } from './commands/sort';
-export { default as start } from './commands/start';
-export { default as timing } from './commands/timing';
-export { default as tree } from './commands/tree';
+export * as caseSensitive from './commands/caseSensitive';
+export * as distinct from './commands/distinct';
+export * as exactMatchFirst from './commands/exactMatchFirst';
+export * as has from './commands/has';
+export * as hide from './commands/hide';
+export * as includeNull from './commands/includeNull';
+export * as join from './commands/join';
+export * as lang from './commands/lang';
+export * as limit from './commands/limit';
+export * as resolve from './commands/resolve';
+export * as retry from './commands/retry';
+export * as show from './commands/show';
+export * as sort from './commands/sort';
+export * as start from './commands/start';
+export * as timing from './commands/timing';
+export * as tree from './commands/tree';
 
 /** Collection types */
 export * as collectionTypes from './types';

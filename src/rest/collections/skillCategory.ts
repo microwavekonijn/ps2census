@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import skillCategory from '../types/skillCategory';
 
 export type typeData = skillCategory;
@@ -30,4 +29,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('skill_category');
+export default requestFactory<'skill_category'>('skill_category');

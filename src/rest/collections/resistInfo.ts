@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import resistInfo from '../types/resistInfo';
 
 export type typeData = resistInfo;
@@ -15,4 +14,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('resist_info');
+export default requestFactory<'resist_info'>('resist_info');

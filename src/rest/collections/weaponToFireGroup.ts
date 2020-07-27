@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import weaponToFireGroup from '../types/weaponToFireGroup';
 
 export type typeData = weaponToFireGroup;
@@ -12,4 +11,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('weapon_to_fire_group');
+export default requestFactory<'weapon_to_fire_group'>('weapon_to_fire_group');

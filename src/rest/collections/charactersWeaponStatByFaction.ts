@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import item from '../types/item';
 import vehicle from '../types/vehicle';
 import characterWeaponStatByFaction from '../types/characterWeaponStatByFaction';
@@ -25,4 +24,4 @@ export type resolve =
     'item'
     | 'vehicle';
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('characters_weapon_stat_by_faction');
+export default requestFactory<'characters_weapon_stat_by_faction'>('characters_weapon_stat_by_faction');

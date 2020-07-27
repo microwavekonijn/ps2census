@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import imageSetDefault from '../types/imageSetDefault';
 
 export type typeData = imageSetDefault;
@@ -15,4 +14,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('image_set_default');
+export default requestFactory<'image_set_default'>('image_set_default');

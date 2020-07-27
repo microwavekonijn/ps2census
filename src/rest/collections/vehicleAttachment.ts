@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import vehicleAttachment from '../types/vehicleAttachment';
 
 export type typeData = vehicleAttachment;
@@ -14,4 +13,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('vehicle_attachment');
+export default requestFactory<'vehicle_attachment'>('vehicle_attachment');

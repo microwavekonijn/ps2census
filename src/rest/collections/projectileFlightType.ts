@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import projectileFlightType from '../types/projectileFlightType';
 
 export type typeData = projectileFlightType;
@@ -11,4 +10,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('projectile_flight_type');
+export default requestFactory<'projectile_flight_type'>('projectile_flight_type');

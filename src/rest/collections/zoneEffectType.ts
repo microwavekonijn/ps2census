@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import zoneEffectType from '../types/zoneEffectType';
 
 export type typeData = zoneEffectType;
@@ -29,4 +28,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('zone_effect_type');
+export default requestFactory<'zone_effect_type'>('zone_effect_type');

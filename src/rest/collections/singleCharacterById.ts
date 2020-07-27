@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, lang, operations } from '../utils/Types';
 import character from '../types/character';
 import characterStatHistory from '../types/characterStatHistory';
 import characterStat from '../types/characterStat';
@@ -61,4 +60,4 @@ export type resolve =
     | 'profile' //
     | 'faction'; //
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('single_character_by_id');
+export default requestFactory<'single_character_by_id'>('single_character_by_id');

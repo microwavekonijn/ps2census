@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import outfitMemberExtended from '../types/outfitMemberExtended';
 
 export type typeData = outfitMemberExtended;
@@ -23,4 +22,4 @@ export type query = Partial<{
 
 export type resolve = never;
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('outfit_member_extended');
+export default requestFactory<'outfit_member_extended'>('outfit_member_extended');
