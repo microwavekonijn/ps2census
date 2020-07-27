@@ -1,4 +1,4 @@
-import { baseRequest, getIndex } from '../utils/Types';
+import { baseRequest, Get } from '../utils/Types';
 import { setParam } from '../utils/Helpers';
 
 import { resolve as singleCharacterById } from '../collections/singleCharacterById';
@@ -29,7 +29,7 @@ export type resolveIndex = {
     event: event,
 };
 
-export type resolveType<C> = getIndex<resolveIndex, C> | [getIndex<resolveIndex, C>, string[]];
+export type resolveType<C> = Get<resolveIndex, C> | [Get<resolveIndex, C>, string[]];
 
 export function resolveToString(resolve: (string | [string, string[]])[]): string {
     return resolve.map(r => Array.isArray(r) ? `${r[0]}(${r[1].join(',')})` : r).join(',');

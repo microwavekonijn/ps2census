@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands as baseCommands } from '../utils/Types';
 import character from '../types/character';
 import characterStatHistory from '../types/characterStatHistory';
 import characterLeaderboard from '../types/characterLeaderboard';
@@ -27,6 +26,4 @@ export type resolve =
     | 'characters_stat_history' //
     | 'world'; //
 
-export type commands = Extract<baseCommands, 'start' | 'limit' | 'join' | 'tree'>;
-
-export default requestFactory<'get', query, typeData[], commands, resolve>('characters_leaderboard');
+export default requestFactory<'characters_leaderboard'>('characters_leaderboard');

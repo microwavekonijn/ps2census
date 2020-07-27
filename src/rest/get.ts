@@ -2,7 +2,9 @@ import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { PS2Environment } from '../utils/Types';
-import { baseRequest, commands } from './utils/Types';
+import { baseRequest, Get } from './utils/Types';
+import queryIndex from './queryIndex';
+import typeIndex from './typeIndex';
 
 export function getFactory(environment: PS2Environment, serviceId?: string) {
     const census = axios.create({
@@ -22,6 +24,7 @@ export function getFactory(environment: PS2Environment, serviceId?: string) {
         },
     });
 
-    return <Q, T, C extends commands, R>({type, extract, params}: baseRequest<'get', Q, T, C, R>, query: Q): Promise<T> =>
-        census.get(type, {params: {...params, ...query}}).then(extract);
+    return <C extends keyof typeIndex>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<typeIndex[C]> =>
+        census.get(collection, {params: {...params, ...query}}).then(({data}) => data[`${collection}_list`]);
 }
+

@@ -2,8 +2,10 @@ import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { PS2Environment } from '../utils/Types';
-import { baseRequest, commands } from './utils/Types';
+import { baseRequest, Get } from './utils/Types';
+import queryIndex from './queryIndex';
 
+// TODO: Type guard for collections that do not support count
 export function countFactory(environment: PS2Environment, serviceId?: string) {
     const census = axios.create({
         baseURL: serviceId
@@ -22,6 +24,6 @@ export function countFactory(environment: PS2Environment, serviceId?: string) {
         },
     });
 
-    return <Q, T, C extends commands, R>({type, extract, params}: baseRequest<'count', Q, T, C, R>, query: Q): Promise<T> =>
-        census.get(type, {params: {...params, ...query}}).then(({data}: any) => data);
+    return <C extends string>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<number> =>
+        census.get(collection, {params: {...params, ...query}}).then(({data}: any) => data);
 }

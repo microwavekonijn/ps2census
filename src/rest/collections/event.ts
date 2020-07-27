@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands as baseCommands } from '../utils/Types';
 import character from '../types/character';
 import characterStatHistory from '../types/characterStatHistory';
 import event from '../types/event';
@@ -29,6 +28,4 @@ export type resolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export type commands = Extract<baseCommands, 'limit' | 'join' | 'tree'>;
-
-export default requestFactory<'get', query, typeData[], commands, resolve>('event');
+export default requestFactory<'event'>('event');
