@@ -17,7 +17,7 @@ client.on('reconnecting', () => console.log('Reconnecting'));
 client.on('disconnected', () => console.log('Disconnected'));
 client.on('warn', (e) => console.log(e));
 client.on('subscribed', (s) => console.log(JSON.stringify(s)));
-client.on('debug', console.log);
+client.on('debug', (info, label) => console.log(`${label}: ${info}`));
 
 client.on(Events.PS2_DEATH, (e) => console.log('Death', e));
 client.on(Events.PS2_DUPLICATE, (e) => console.log('Duplicate', JSON.stringify(e)));

@@ -4,6 +4,8 @@ import EventStream from './EventStream';
 import { Events } from './utils/Constants';
 
 export class SubscriptionManager {
+    private static readonly label = 'SubscriptionManager';
+
     /**
      * @type {Set<EventStreamSubscription>} All the current subscriptions
      */
@@ -29,7 +31,7 @@ export class SubscriptionManager {
      */
     private registerClientEvents(): void {
         this.stream.on(Events.STREAM_READY, () => {
-            this.client.emit(Events.DEBUG, `Subscribing to events`);
+            this.client.emit(Events.DEBUG, `Subscribing to events`, SubscriptionManager.label);
 
             this.subscriptions.forEach(this.stream.subscribe);
         });
