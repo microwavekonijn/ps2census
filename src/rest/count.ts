@@ -3,8 +3,8 @@ import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { PS2Environment } from '../utils/Types';
 import { baseRequest, Get } from './utils/Types';
-import queryIndex from './queryIndex';
-import typeIndex from './typeIndex';
+import queryIndex from './indexes/queryIndex';
+import typeIndex from './indexes/typeIndex';
 
 type countableCollections = Exclude<keyof typeIndex,
     'charactersEvent'
