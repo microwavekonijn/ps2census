@@ -1,55 +1,51 @@
-import { ApplyOperation, baseRequest, commands, operations } from '../utils/Types';
+import { baseRequest } from '../utils/Types';
 import { setParam } from '../utils/Helpers';
 
-type baseExtendedJoin = {
+type joinExpression = {
     type: string,
     on?: string,
     to?: string,
-    list?: 0 | 1,
+    list?: boolean,
     inject_at?: string,
     terms?: Record<string, string>,
-    outer?: 0 | 1
-} & ({ 'show': string[] } | { 'hide': string[] })
+    outer?: boolean,
+    show?: string[],
+    hide?: string[],
+};
 
-export type joinType = string | baseExtendedJoin | [string | baseExtendedJoin, joinType[]]
+export type joinType = string | joinExpression | [string | joinExpression, joinType[]]
 
-function extendedJoinToString(join: baseExtendedJoin): string {
-    let r = `type: ${join['type']}`;
+function joinsToString(joins: joinType[]): string {
+    return joins.map(join => {
+        let nested: joinType[] = [];
 
-    [
-        'on',
-        'to',
-        'list',
-        'inject_at',
-        'outer',
-    ].forEach(k => {
-        // @ts-ignore
-        if (join[k]) r += `^${k}:${join[k]}`;
-    });
+        if (Array.isArray(join)) {
+            nested = join[1];
+            join = join[0];
+        }
 
-    // @ts-ignore
-    if (join.terms) r += `terms:${Object.keys(join.terms).map(k => `${k}=${join.terms[k]}`).join('\'')}`;
+        if (typeof join !== 'string') {
+            let s = join.type;
 
-    return r;
+            if (join.on) s += `^on:${join.on}`;
+            if (join.to) s += `^to:${join.to}`;
+            if (join.list) s += `^list:${join.list ? 1 : 0}`;
+            if (join.inject_at) s += `^inject_at:${join.inject_at}`;
+            if (join.terms) s += `^terms:${join.terms}`;
+            if (join.outer) s += `^outer:${join.outer ? 1 : 0}`;
+            if (join.show) s += `^show:${join.show.join('\'')}`;
+            else if (join.hide) s += `^hide:${join.hide.join('\'')}`;
+
+            join = s;
+        }
+
+        if (nested.length)
+            join += `(${joinsToString(nested)})`
+
+        return join;
+    }).join(',');
 }
 
-function joinToString(join: joinType): string {
-    let nested = '';
-
-    if (Array.isArray(join)) {
-        nested = `(${join[1].map(joinToString).join(',')})`;
-        join = join[0];
-    }
-
-    return (typeof join === 'string' ? join : extendedJoinToString(join)) + nested;
-}
-
-// TODO: Fix return type
-export default function <O extends operations, T, Q, C extends commands, R>(request: baseRequest<O, Q, T, C, R>, joins: joinType[]): ApplyOperation<'join', O, Q, any, C, R> {
-    // @ts-ignore
-    return setParam(
-        request,
-        'c:join',
-        joins.map(joinToString).join(','),
-    );
+export default function <C>(request: baseRequest<C>, joins: joinType[]): baseRequest<C> {
+    return setParam(request, 'c:join', joinsToString(joins));
 }

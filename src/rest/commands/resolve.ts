@@ -1,13 +1,14 @@
-import { ApplyOperation, baseRequest, commands, operations } from '../utils/Types';
+import { baseRequest, getIndex } from '../utils/Types';
 import { setParam } from '../utils/Helpers';
 
-export type resolveType<R> = R | [R, string[]];
+export type resolveIndex = {};
 
-export default function <O extends operations, T, Q, C extends commands, R>(request: baseRequest<O, Q, T, C, R>, resolve: resolveType<R>[]): ApplyOperation<'resolve', O, Q, T, C, R> {
-    // @ts-ignore
-    return setParam(
-        request,
-        'c:resolve',
-        resolve.map(r => Array.isArray(r) ? `${r[0]}(${r[1].join(',')})` : r).join(','),
-    );
+export type resolveType<C> = getIndex<resolveIndex, C> | [getIndex<resolveIndex, C>, string[]];
+
+export function resolveToString(resolve: (string | [string, string[]])[]): string {
+    return resolve.map(r => Array.isArray(r) ? `${r[0]}(${r[1].join(',')})` : r).join(',');
+}
+
+export default function <C>(request: baseRequest<C>, resolve: resolveType<C>[]): baseRequest<C> {
+    return setParam(request, 'c:resolve', resolveToString(resolve));
 }

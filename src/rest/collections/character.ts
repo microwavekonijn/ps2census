@@ -1,5 +1,4 @@
 import { requestFactory } from '../utils/Helpers';
-import { commands, operations } from '../utils/Types';
 import item from '../types/item';
 import characterStat from '../types/characterStat';
 import profile from '../types/profile';
@@ -91,4 +90,4 @@ export type resolve =
     | 'outfit_member_extended' //
     | 'currency'; //
 
-export default requestFactory<operations, query, typeData[], commands, resolve>('character');
+export default requestFactory<'character'>('character');

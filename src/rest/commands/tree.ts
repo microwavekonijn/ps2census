@@ -1,4 +1,4 @@
-import { ApplyOperation, baseRequest, commands, operations } from '../utils/Types';
+import { baseRequest } from '../utils/Types';
 import { setParam } from '../utils/Helpers';
 
 export type treeType = {
@@ -8,22 +8,12 @@ export type treeType = {
     start?: string
 }
 
-function treeToString(tree: treeType): string {
-    let r = tree.field;
-
-    [
-        'list',
-        'prefix',
-        'start',
-    ].forEach(k => {
-        // @ts-ignore
-        if (tree[k]) r += `^${k}:${tree[k]}`;
-    });
-
-    return r;
+export function treeToString(tree: treeType): string {
+    return Object.keys(tree) // @ts-ignore
+        .filter(k => k !== 'field' && tree[k] !== undefined) // @ts-ignore
+        .reduce((a, k) => `${a}^${k}:${tree[k]}`, tree.field);
 }
 
-export default function <O extends operations, T, Q, C extends commands, R>(request: baseRequest<O, Q, T, C, R>, tree: treeType): ApplyOperation<'tree', O, Q, any, C, R> {
-    // @ts-ignore
+export default function <C>(request: baseRequest<C>, tree: treeType): baseRequest<C> {
     return setParam(request, 'c:tree', treeToString(tree));
 }
