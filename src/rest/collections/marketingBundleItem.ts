@@ -10,6 +10,4 @@ export type query = Partial<{
     release_time: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'marketing_bundle_item'>('marketing_bundle_item');

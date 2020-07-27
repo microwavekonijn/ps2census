@@ -12,6 +12,4 @@ export type query = Partial<{
     station_cash_price: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'marketing_bundle_with_1_item'>('marketing_bundle_with_1_item');

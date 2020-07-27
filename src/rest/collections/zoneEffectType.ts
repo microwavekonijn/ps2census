@@ -26,6 +26,4 @@ export type query = Partial<{
     zone_effect_type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'zone_effect_type'>('zone_effect_type');

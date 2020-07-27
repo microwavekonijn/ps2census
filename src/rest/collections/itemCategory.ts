@@ -14,6 +14,4 @@ export type query = Partial<{
     'name.tr': string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'item_category'>('item_category');

@@ -31,6 +31,4 @@ export type query = Partial<{
     strafe_speed_modifier: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'profile'>('profile');

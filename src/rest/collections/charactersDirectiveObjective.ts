@@ -12,6 +12,4 @@ export type query = Partial<{
     status: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_directive_objective'>('characters_directive_objective');

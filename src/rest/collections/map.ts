@@ -8,6 +8,4 @@ export type query = {
     zone_ids: string
 };
 
-export type resolve = never;
-
 export default requestFactory<'map'>('map');

@@ -9,6 +9,4 @@ export type query = Partial<{
     path: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'image'>('image');

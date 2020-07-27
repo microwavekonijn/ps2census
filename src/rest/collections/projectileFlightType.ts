@@ -8,6 +8,4 @@ export type query = Partial<{
     projectile_flight_type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'projectile_flight_type'>('projectile_flight_type');

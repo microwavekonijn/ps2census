@@ -23,6 +23,4 @@ export type query = Partial<{
     type: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'metagame_event'>('metagame_event');

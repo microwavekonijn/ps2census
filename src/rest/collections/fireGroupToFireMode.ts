@@ -9,6 +9,4 @@ export type query = Partial<{
     fire_mode_index: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'fire_group_to_fire_mode'>('fire_group_to_fire_mode');

@@ -10,6 +10,4 @@ export type query = Partial<{
     zone_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'facility_link'>('facility_link');

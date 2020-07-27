@@ -26,6 +26,4 @@ export type query = Partial<{
     skill_set_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'skill_set'>('skill_set');

@@ -15,6 +15,4 @@ export type query = Partial<{
     reward_type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'reward_type'>('reward_type');

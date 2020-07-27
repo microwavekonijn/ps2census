@@ -28,6 +28,4 @@ export type query = Partial<{
     qualify_requirement_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'directive'>('directive');

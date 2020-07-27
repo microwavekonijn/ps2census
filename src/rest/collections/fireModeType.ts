@@ -8,6 +8,4 @@ export type query = Partial<{
     fire_mode_type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'fire_mode_type'>('fire_mode_type');

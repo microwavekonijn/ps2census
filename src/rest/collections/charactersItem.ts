@@ -5,6 +5,4 @@ export type typeData = characterItem;
 
 export type query = { character_id: string };
 
-export type resolve = never;
-
 export default requestFactory<'characters_item'>('characters_item');

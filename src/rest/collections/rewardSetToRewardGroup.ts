@@ -8,6 +8,4 @@ export type query = Partial<{
     reward_set_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'reward_set_to_reward_group'>('reward_set_to_reward_group');

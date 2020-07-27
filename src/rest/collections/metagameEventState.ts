@@ -8,6 +8,4 @@ export type query = Partial<{
     name: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'metagame_event_state'>('metagame_event_state');

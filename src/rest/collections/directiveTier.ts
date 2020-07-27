@@ -21,6 +21,4 @@ export type query = Partial<{
     reward_set_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'directive_tier'>('directive_tier');

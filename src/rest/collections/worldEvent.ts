@@ -10,6 +10,4 @@ export type query = { world_id: string } & Partial<{
     type: string,
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'world_event'>('world_event');

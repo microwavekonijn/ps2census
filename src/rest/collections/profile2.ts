@@ -8,6 +8,4 @@ export type query = Partial<{
     profile_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'profile_2'>('profile_2');

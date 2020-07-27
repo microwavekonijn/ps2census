@@ -10,6 +10,4 @@ export type query = Partial<{
     skill_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_skill'>('characters_skill');

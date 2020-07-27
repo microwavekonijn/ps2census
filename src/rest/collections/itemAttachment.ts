@@ -8,6 +8,4 @@ export type query = Partial<{
     item_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'item_attachment'>('item_attachment');

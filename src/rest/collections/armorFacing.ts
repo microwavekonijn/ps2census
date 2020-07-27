@@ -8,6 +8,4 @@ export type query = Partial<{
     description: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'armor_facing'>('armor_facing');

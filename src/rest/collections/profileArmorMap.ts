@@ -9,6 +9,4 @@ export type query = Partial<{
     rank: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'profile_armor_map'>('profile_armor_map');

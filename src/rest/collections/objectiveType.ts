@@ -17,6 +17,4 @@ export type query = Partial<{
     param9: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'objective_type'>('objective_type');

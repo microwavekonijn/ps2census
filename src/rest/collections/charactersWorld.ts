@@ -8,6 +8,4 @@ export type query = Partial<{
     world_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_world'>('characters_world');

@@ -8,6 +8,4 @@ export type query = Partial<{
     objective_set_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'objective_set_to_objective'>('objective_set_to_objective');

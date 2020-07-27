@@ -10,6 +10,4 @@ export type query = Partial<{
     outfit_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'outfit_rank'>('outfit_rank');

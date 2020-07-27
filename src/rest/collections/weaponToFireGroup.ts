@@ -9,6 +9,4 @@ export type query = Partial<{
     weapon_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'weapon_to_fire_group'>('weapon_to_fire_group');

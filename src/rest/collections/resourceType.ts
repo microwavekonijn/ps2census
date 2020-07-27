@@ -8,6 +8,4 @@ export type query = Partial<{
     resource_type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'resource_type'>('resource_type');

@@ -20,6 +20,4 @@ export type query = Partial<{
     time_created_date: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'outfit_member_extended'>('outfit_member_extended');

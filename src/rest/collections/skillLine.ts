@@ -27,6 +27,4 @@ export type query = Partial<{
     skill_points: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'skill_line'>('skill_line');

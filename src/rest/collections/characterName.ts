@@ -10,6 +10,4 @@ export type query = Partial<{
     'name.first_lower': string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'character_name'>('character_name');

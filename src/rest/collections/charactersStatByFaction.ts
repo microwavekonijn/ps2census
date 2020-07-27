@@ -26,6 +26,4 @@ export type query = Partial<{
     value_weekly_vs: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_stat_by_faction'>('characters_stat_by_faction');

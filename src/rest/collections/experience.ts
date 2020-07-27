@@ -9,6 +9,4 @@ export type query = Partial<{
     xp: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'experience'>('experience');

@@ -71,6 +71,4 @@ export type query = Partial<{
     'week.w13': string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_stat_history'>('characters_stat_history');

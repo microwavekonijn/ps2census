@@ -26,6 +26,4 @@ export type query = Partial<{
     target_type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'effect'>('effect');

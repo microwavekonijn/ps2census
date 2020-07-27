@@ -14,6 +14,4 @@ export type query = Partial<{
     'name.tr': string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'directive_tree_category'>('directive_tree_category');

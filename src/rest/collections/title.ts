@@ -14,6 +14,4 @@ export type query = Partial<{
     title_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'title'>('title');

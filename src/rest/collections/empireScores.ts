@@ -26,6 +26,4 @@ export type query = Partial<{
     tracker_name: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'empire_scores'>('empire_scores');

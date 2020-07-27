@@ -19,6 +19,4 @@ export type query = Partial<{
     user_selectable: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'faction'>('faction');

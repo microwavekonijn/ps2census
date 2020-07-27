@@ -41,6 +41,4 @@ export type query = Partial<{
     xp_max: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'experience_rank'>('experience_rank');

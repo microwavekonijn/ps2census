@@ -12,6 +12,4 @@ export type query = Partial<{
     weapon_slot_index: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'weapon_ammo_slot'>('weapon_ammo_slot');

@@ -10,6 +10,4 @@ export type query = Partial<{
     profile_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'loadout'>('loadout');

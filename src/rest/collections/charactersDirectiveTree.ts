@@ -12,6 +12,4 @@ export type query = Partial<{
     directive_tree_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_directive_tree'>('characters_directive_tree');

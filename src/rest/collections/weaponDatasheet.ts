@@ -33,6 +33,4 @@ export type query = Partial<{
     show_range: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'weapon_datasheet'>('weapon_datasheet');

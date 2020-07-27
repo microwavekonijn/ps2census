@@ -9,6 +9,4 @@ export type query = Partial<{
     weapon_group_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'weapon_to_attachment'>('weapon_to_attachment');

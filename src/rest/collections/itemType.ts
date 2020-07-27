@@ -9,6 +9,4 @@ export type query = Partial<{
     name: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'item_type'>('item_type');

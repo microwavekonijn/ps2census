@@ -42,6 +42,4 @@ export type query = Partial<{
     type: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'fire_mode'>('fire_mode');

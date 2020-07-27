@@ -26,6 +26,4 @@ export type query = Partial<{
     string4: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'ability_type'>('ability_type');

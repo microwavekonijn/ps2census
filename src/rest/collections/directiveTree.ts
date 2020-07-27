@@ -25,6 +25,4 @@ export type query = Partial<{
     'name.tr': string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'directive_tree'>('directive_tree');

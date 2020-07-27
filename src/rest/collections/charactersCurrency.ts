@@ -11,6 +11,4 @@ export type query = Partial<{
     quantity: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_currency'>('characters_currency');

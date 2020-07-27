@@ -28,6 +28,4 @@ export type query = Partial<{
     reward_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'achievement'>('achievement');

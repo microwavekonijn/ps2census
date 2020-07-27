@@ -100,6 +100,4 @@ export type query = Partial<{
     zoom_default: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'fire_mode_2'>('fire_mode_2');

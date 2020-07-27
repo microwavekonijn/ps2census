@@ -28,6 +28,4 @@ export type query = Partial<{
     vehicle_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'vehicle'>('vehicle');

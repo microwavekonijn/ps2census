@@ -15,6 +15,4 @@ export type query = Partial<{
     start_date: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'characters_achievement'>('characters_achievement');

@@ -12,6 +12,4 @@ export type query = Partial<{
     type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'image_set_default'>('image_set_default');

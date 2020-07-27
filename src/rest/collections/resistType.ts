@@ -8,6 +8,4 @@ export type query = Partial<{
     resist_type_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'resist_type'>('resist_type');

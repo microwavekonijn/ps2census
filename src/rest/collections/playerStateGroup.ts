@@ -9,6 +9,4 @@ export type query = Partial<{
     player_state_group_id: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'player_state_group'>('player_state_group');

@@ -12,6 +12,4 @@ export type query = Partial<{
     transition_duration_ms: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'fire_group'>('fire_group');

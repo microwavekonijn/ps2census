@@ -25,6 +25,4 @@ export type query = Partial<{
     turn_rate: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'projectile'>('projectile');

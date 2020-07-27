@@ -27,6 +27,4 @@ export type query = Partial<{
     skill_set_index: string
 }>;
 
-export type resolve = never;
-
 export default requestFactory<'skill_category'>('skill_category');
