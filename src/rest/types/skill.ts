@@ -1,4 +1,4 @@
-import { lang } from '../utils/Types;
+import { lang } from '../utils/Types';
 
 export default skill;
 
@@ -12,5 +12,5 @@ type skill = {
     description: lang,
     image_set_id: string,
     image_id: string,
-    image_path': string
+    image_path: string
 };
