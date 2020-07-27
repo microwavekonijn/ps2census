@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import WebSocket, { Data } from 'ws';
 import Timeout = NodeJS.Timeout;
-import { EventStreamConfig} from './utils/Types';
+import { EventStreamConfig, EventStreamSubscription } from './utils/Types';
 import { Events, State } from './utils/Constants';
 import EventStreamHandler from './concerns/EventStreamHandler';
 import { PS2Environment } from '../utils/Types';
@@ -389,9 +389,46 @@ class EventStream extends EventEmitter {
     }
 
     /**
+     * Make a subscription to the stream
+     *
+     * @param {EventStreamSubscription} subscription
+     */
+    public subscribe(subscription: EventStreamSubscription): void {
+        this.send(JSON.stringify({
+            service: 'event',
+            action: 'subscribe',
+            ...subscription,
+        }));
+    }
+
+    /**
+     * Remove a subscription from the stream
+     *
+     * @param {EventStreamSubscription} subscription
+     */
+    public unsubscribe(subscription: EventStreamSubscription): void {
+        this.send(JSON.stringify({
+            service: 'event',
+            action: 'clearSubscribe',
+            ...subscription,
+        }));
+    }
+
+    /**
+     * Purge all subscriptions
+     */
+    public unsubscribeAll(): void {
+        this.send(JSON.stringify({
+            service: 'event',
+            action: 'clearSubscribe',
+            all: 'true',
+        }));
+    }
+
+    /**
      * @param data
      */
-    public send(data: any) {
+    public send(data: any): void {
         if (!this.connection) throw new Error(`Connection not available`);
 
         this.connection.send(data, e => {

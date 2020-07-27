@@ -6,12 +6,13 @@ import { Events } from './utils/Constants';
 import Timeout = NodeJS.Timeout;
 import EventStreamHandler from './EventStreamHandler';
 import DuplicateFilter from './utils/DuplicateFilter';
+import { SubscriptionManager } from './SubscriptionManager';
 
 class EventStreamManager extends EventEmitter {
     /**
      * The event stream
      */
-    private stream: EventStream;
+    private readonly stream: EventStream;
 
     /**
      * @type {boolean} wheter the connection has been destroyed
@@ -31,7 +32,7 @@ class EventStreamManager extends EventEmitter {
     /**
      * @type {EventStreamSubscription[]} Array of subscriptions
      */
-    private subscriptions: EventStreamSubscription[];
+    public readonly subscriptionManager: SubscriptionManager;
 
     /**
      * @type {EventStreamHandler} handles events, and subscriptions
@@ -54,13 +55,13 @@ class EventStreamManager extends EventEmitter {
         if (!this.client.serviceId)
             throw new Error('A service ID is required to connect to the Event Stream');
 
-        this.subscriptions = subscriptions;
         this.handler = new EventStreamHandler(this.client, new DuplicateFilter());
         this.stream = new EventStream(this.client.serviceId, this.handler, {
             emitter: this,
             environment: this.client.environment,
             ...streamConfig,
         });
+        this.subscriptionManager = new SubscriptionManager(this.client, this.stream, subscriptions);
 
         this.prepareEventStream();
     }
@@ -69,19 +70,6 @@ class EventStreamManager extends EventEmitter {
      *
      */
     private prepareEventStream(): void {
-        /**
-         * Stream ready
-         */
-        this.stream.on(Events.STREAM_READY, () => {
-            this.client.emit(Events.DEBUG, `Subscribing.`);
-
-            this.subscriptions.forEach((sub) => this.stream.send(JSON.stringify({
-                service: 'event',
-                action: 'subscribe',
-                ...sub,
-            })));
-        });
-
         /**
          * Stream closed
          */
@@ -93,7 +81,7 @@ class EventStreamManager extends EventEmitter {
 
             this.client.emit(Events.STREAM_RECONNECTING);
 
-            this.reconnect();
+            void this.reconnect();
         });
 
         /**
@@ -102,7 +90,7 @@ class EventStreamManager extends EventEmitter {
         this.stream.on(Events.STREAM_DESTROYED, () => {
             this.client.emit(Events.STREAM_RECONNECTING);
 
-            this.reconnect();
+            void this.reconnect();
         });
     }
 

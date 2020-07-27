@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { ClientConfig, EventStreamSubscribed} from './utils/Types';
+import { ClientConfig, EventStreamSubscribed, EventStreamSubscription } from './utils/Types';
 import EventStreamManager from './EventStreamManager';
 import PS2Event from './events/PS2Event';
 import { PS2Environment } from '../utils/Types';
@@ -122,6 +122,65 @@ class Client extends EventEmitter {
      */
     public destroy(): void {
         this.streamManager?.disconnect();
+    }
+
+    /**
+     * Make a subscription to the stream
+     *
+     * @param {EventStreamSubscription} subscription
+     */
+    public subscribe(subscription: EventStreamSubscription): EventStreamSubscription {
+        if (!this.streamManager)
+            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
+
+        return this.streamManager.subscriptionManager.subscribe(subscription);
+    }
+
+    /**
+     * Remove a subscription from the stream
+     *
+     * @param {EventStreamSubscription} subscription
+     */
+    public unsubscribe(subscription: EventStreamSubscription): boolean {
+        if (!this.streamManager)
+            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
+
+        return this.streamManager.subscriptionManager.unsubscribe(subscription);
+    }
+
+    /**
+     * Purge all subscriptions
+     */
+    public unsubscribeAll(): void {
+        if (!this.streamManager)
+            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
+
+        this.streamManager.subscriptionManager.unsubscribeAll();
+    }
+
+    /**
+     * Rerun all subscriptions
+     *
+     * @param {boolean} reset When true unsubscribes to all events first
+     * @return {boolean} whether it has been run(depends on stream being ready)
+     */
+    public resubscribe(reset = false): boolean {
+        if (!this.streamManager)
+            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
+
+        return this.streamManager.subscriptionManager.resubscribe(reset);
+    }
+
+    /**
+     * Get current subscriptions
+     *
+     * @return {Array<EventStreamSubscription>}
+     */
+    public get currentSubscriptions(): Array<EventStreamSubscription> {
+        if (!this.streamManager)
+            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
+
+        return this.streamManager.subscriptionManager.currentSubscriptions;
     }
 }
 
