@@ -33,7 +33,7 @@ export class SubscriptionManager {
         this.stream.on(Events.STREAM_READY, () => {
             this.client.emit(Events.DEBUG, `Subscribing to events`, SubscriptionManager.label);
 
-            this.subscriptions.forEach(this.stream.subscribe);
+            this.subscriptions.forEach(sub => this.stream.subscribe(sub));
         });
     }
 
@@ -91,7 +91,7 @@ export class SubscriptionManager {
             if (reset)
                 this.unsubscribeAll(); // TODO: Should probably wait until we hear back from the stream
 
-            this.subscriptions.forEach(this.stream.subscribe);
+            this.subscriptions.forEach(sub => this.stream.subscribe(sub));
 
             return true;
         }

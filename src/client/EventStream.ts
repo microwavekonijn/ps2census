@@ -433,7 +433,7 @@ class EventStream extends EventEmitter {
     public send(data: any): void {
         if (!this.connection) throw new Error(`Connection not available`);
 
-        this.connection.send(data, e => {
+        this.connection.send(data, (e) => {
             if (e) this.emitter.emit(Events.ERROR, e);
         });
     }
