@@ -9,6 +9,8 @@ import DuplicateFilter from './utils/DuplicateFilter';
 import { SubscriptionManager } from './SubscriptionManager';
 
 class EventStreamManager extends EventEmitter {
+    private static readonly label = 'EventStreamManager';
+
     /**
      * The event stream
      */
@@ -130,7 +132,7 @@ class EventStreamManager extends EventEmitter {
         if (this.destroyed) return;
         this.destroyed = true;
 
-        this.client.emit(Events.DEBUG, `Manager disconnected.`);
+        this.client.emit(Events.DEBUG, `Manager disconnected.`, EventStreamManager.label);
 
         if (this.reconnectTimeout) {
             clearTimeout(this.reconnectTimeout);
@@ -155,7 +157,7 @@ class EventStreamManager extends EventEmitter {
                 return;
             }
 
-            this.client.emit(Events.DEBUG, `Reconnect failed, trying again in ${this.reconnectDelay}ms.`);
+            this.client.emit(Events.DEBUG, `Reconnect failed, trying again in ${this.reconnectDelay}ms.`, EventStreamManager.label);
 
             if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);
             this.reconnectTimeout = setTimeout(() => this.reconnect(), this.reconnectDelay);

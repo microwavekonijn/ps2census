@@ -24,7 +24,7 @@ declare interface Client {
     on(event: 'reconnecting', listener: () => void): this;
     on(event: 'error', listener: (e: Error) => void): this;
     on(event: 'warn', listener: (e: Error) => void): this;
-    on(event: 'debug', listener: (info: string) => void): this;
+    on(event: 'debug', listener: (info: string, label: string) => void): this;
     on(event: 'duplicate', listener: (event: PS2Event) => void): this;
     on(event: 'subscribed', listener: (subscription: EventStreamSubscribed) => void): this;
 
@@ -50,7 +50,7 @@ declare interface Client {
     once(event: 'reconnecting', listener: () => void): this;
     once(event: 'error', listener: (e: Error) => void): this;
     once(event: 'warn', listener: (e: Error) => void): this;
-    once(event: 'debug', listener: (info: string) => void): this;
+    once(event: 'debug', listener: (info: string, label: string) => void): this;
     once(event: 'duplicate', listener: (event: PS2Event) => void): this;
     once(event: 'subscribed', listener: (subscription: EventStreamSubscribed) => void): this;
 

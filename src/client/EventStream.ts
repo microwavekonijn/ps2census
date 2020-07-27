@@ -12,17 +12,19 @@ declare interface EventStream {
     on(event: 'close', listener: (code: number, reason: string) => void): this;
     on(event: 'error', listener: (e: Error) => void): this;
     on(event: 'warn', listener: (e: Error) => void): this;
-    on(event: 'debug', listener: (info: string) => void): this;
+    on(event: 'debug', listener: (info: string, label: string) => void): this;
 
     once(event: 'ready', listener: () => void): this;
     once(event: 'destroyed', listener: () => void): this;
     once(event: 'close', listener: (code: number, reason: string) => void): this;
     once(event: 'error', listener: (e: Error) => void): this;
     once(event: 'warn', listener: (e: Error) => void): this;
-    once(event: 'debug', listener: (info: string) => void): this;
+    once(event: 'debug', listener: (info: string, label: string) => void): this;
 }
 
 class EventStream extends EventEmitter {
+    private static readonly label = 'EventStream';
+
     private static readonly baseUri = 'wss://push.planetside2.com/streaming';
 
     /**
@@ -142,7 +144,7 @@ class EventStream extends EventEmitter {
             this.once(Events.STREAM_CLOSE, decline);
 
             if (this.connection && this.connection.readyState === WebSocket.OPEN) {
-                this.emitter.emit(Events.DEBUG, `Open connection found, continuing operations.`);
+                this.emitter.emit(Events.DEBUG, `Open connection found, continuing operations.`, EventStream.label);
 
                 // Assume everything is fine
                 this.emit(Events.STREAM_READY);
@@ -152,11 +154,11 @@ class EventStream extends EventEmitter {
             }
 
             if (this.connection) {
-                this.emitter.emit(Events.DEBUG, `Connection found, destroying connection.`);
+                this.emitter.emit(Events.DEBUG, `Connection found, destroying connection.`, EventStream.label);
                 this.destroy({emit: false});
             }
 
-            this.emitter.emit(Events.DEBUG, `Connecting.`);
+            this.emitter.emit(Events.DEBUG, `Connecting.`, EventStream.label);
 
             this.state = this.state === State.DISCONNECTED ? State.RECONNECTING : State.CONNECTING;
             this.connectedAt = Date.now();
@@ -182,7 +184,7 @@ class EventStream extends EventEmitter {
      * client successfully connected
      */
     private onOpen(): void {
-        this.emitter.emit(Events.DEBUG, `Connected.`);
+        this.emitter.emit(Events.DEBUG, `Connected.`, EventStream.label);
         this.state = State.NEARLY;
     }
 
@@ -255,7 +257,7 @@ class EventStream extends EventEmitter {
      */
     private onClose(code: number, reason: string): void {
         // TODO: Add wasClean boolean
-        this.emitter.emit(Events.DEBUG, `Connection closed. ${JSON.stringify({code, reason})}`);
+        this.emitter.emit(Events.DEBUG, `Connection closed. ${JSON.stringify({code, reason})}`, EventStream.label);
 
         this.setHeartbeatTimer(-1);
         this.setConnectionTimeout(false);
@@ -323,16 +325,16 @@ class EventStream extends EventEmitter {
     private setConnectionTimeout(toggle: boolean): void {
         if (!toggle) {
             if (this.connectionTimeout) {
-                this.emit(Events.DEBUG, `Connection timeout cleared`);
+                this.emit(Events.DEBUG, `Connection timeout cleared`, EventStream.label);
                 clearTimeout(this.connectionTimeout);
                 delete this.connectionTimeout;
             }
             return;
         }
 
-        this.emit(Events.DEBUG, `Connection timeout set`);
+        this.emit(Events.DEBUG, `Connection timeout set`, EventStream.label);
         this.connectionTimeout = setTimeout(() => {
-            this.emit(Events.DEBUG, `Connection timed out.`);
+            this.emit(Events.DEBUG, `Connection timed out.`, EventStream.label);
             this.destroy({code: 1001});
         }, this.connectionTimeoutTime);
     }
@@ -345,7 +347,7 @@ class EventStream extends EventEmitter {
     private setHeartbeatTimer(interval: number): void {
         if (interval < 0) {
             if (this.heartbeatTimer) {
-                this.emitter.emit(Events.DEBUG, `Clearing heartbeat interval.`);
+                this.emitter.emit(Events.DEBUG, `Clearing heartbeat interval.`, EventStream.label);
 
                 clearInterval(this.heartbeatTimer);
                 delete this.heartbeatTimer;
@@ -353,7 +355,7 @@ class EventStream extends EventEmitter {
             return;
         }
 
-        this.emitter.emit(Events.DEBUG, `Setting heartbeat interval(${interval}ms).`);
+        this.emitter.emit(Events.DEBUG, `Setting heartbeat interval(${interval}ms).`, EventStream.label);
 
         if (this.heartbeatTimer) clearInterval(this.heartbeatTimer);
 
@@ -365,12 +367,12 @@ class EventStream extends EventEmitter {
      */
     private resetHeartbeat(): void {
         if (!this.heartbeatAcknowledged) {
-            this.emitter.emit(Events.DEBUG, `Heartbeat not been received, assume connection has gone bad.`);
+            this.emitter.emit(Events.DEBUG, `Heartbeat not been received, assume connection has gone bad.`, EventStream.label);
             this.destroy({code: 1001});
             return;
         }
 
-        this.emitter.emit(Events.DEBUG, `Reset heartbeat acknowledgement.`);
+        this.emitter.emit(Events.DEBUG, `Reset heartbeat acknowledgement.`, EventStream.label);
 
         this.heartbeatAcknowledged = false;
     }
@@ -381,7 +383,7 @@ class EventStream extends EventEmitter {
      * @param payload
      */
     private acknowledgeHeartbeat(payload: any): void {
-        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged. ${JSON.stringify(payload)}`);
+        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged. ${JSON.stringify(payload)}`, EventStream.label);
 
         this.heartbeatAcknowledged = true;
         this.lastHeartbeat = Date.now();
