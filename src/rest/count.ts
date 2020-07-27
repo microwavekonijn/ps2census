@@ -4,8 +4,21 @@ import CensusRestException from './exceptions/CensusRestException';
 import { PS2Environment } from '../utils/Types';
 import { baseRequest, Get } from './utils/Types';
 import queryIndex from './queryIndex';
+import typeIndex from './typeIndex';
 
-// TODO: Type guard for collections that do not support count
+type countableCollections = Exclude<keyof typeIndex,
+    'charactersEvent'
+    | 'charactersEventGrouped'
+    | 'charactersFriend'
+    | 'charactersItem'
+    | 'charactersLeaderboard'
+    | 'charactersOnlineStatus'
+    | 'charactersWorld'
+    | 'event'
+    | 'leaderboard'
+    | 'map'
+    | 'worldEvent'>;
+
 export function countFactory(environment: PS2Environment, serviceId?: string) {
     const census = axios.create({
         baseURL: serviceId
@@ -24,6 +37,6 @@ export function countFactory(environment: PS2Environment, serviceId?: string) {
         },
     });
 
-    return <C extends string>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<number> =>
+    return <C extends countableCollections>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<number> =>
         census.get(collection, {params: {...params, ...query}}).then(({data}: any) => data);
 }

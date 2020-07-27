@@ -110,9 +110,9 @@ import { query as charactersEvent } from './collections/charactersEvent';
 import { query as event } from './collections/event';
 import { query as worldEvent } from './collections/worldEvent';
 
-export default typeIndex;
+export default queryIndex;
 
-type typeIndex = {
+type queryIndex = {
     singleCharacterById: singleCharacterById,
     character: character,
     characterName: characterName,
