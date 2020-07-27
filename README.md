@@ -74,18 +74,18 @@ const { rest } from 'ps2census';
 
 const get = rest.getFactory('ps2ps4eu', 'serviceId');
 
-// Get character and resolve items
+// Get character with items
 get(
   rest.resolve(
     rest.exactMatchFirst(
       rest.character
-    )
-    ['item']  
+    ),
+    ['item'] , 
   ),
-  {
-    'name.first_lower': '^microwave'
-  }
-)
+  { 'name.first_lower': '^microwave' },
+).then((characters) => {
+  // Process the data
+})
 ```
 
 Note: First argument of any command function is the request object.
