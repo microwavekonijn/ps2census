@@ -324,16 +324,16 @@ class EventStream extends EventEmitter {
     private setConnectionTimeout(toggle: boolean): void {
         if (!toggle) {
             if (this.connectionTimeout) {
-                this.emit(Events.DEBUG, `Connection timeout cleared`, EventStream.label);
+                this.emitter.emit(Events.DEBUG, `Connection timeout cleared`, EventStream.label);
                 clearTimeout(this.connectionTimeout);
                 delete this.connectionTimeout;
             }
             return;
         }
 
-        this.emit(Events.DEBUG, `Connection timeout set`, EventStream.label);
+        this.emitter.emit(Events.DEBUG, `Connection timeout set`, EventStream.label);
         this.connectionTimeout = setTimeout(() => {
-            this.emit(Events.DEBUG, `Connection timed out.`, EventStream.label);
+            this.emitter.emit(Events.DEBUG, `Connection timed out.`, EventStream.label);
             this.destroy({code: 1001});
         }, this.connectionTimeoutTime);
     }

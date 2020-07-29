@@ -1,4 +1,3 @@
-import { EventEmitter } from 'events';
 import Client from './Client';
 import EventStream from './EventStream';
 import { EventStreamManagerConfig, EventStreamSubscription } from './utils/Types';
@@ -8,7 +7,7 @@ import EventStreamHandler from './EventStreamHandler';
 import DuplicateFilter from './utils/DuplicateFilter';
 import { SubscriptionManager } from './SubscriptionManager';
 
-class EventStreamManager extends EventEmitter {
+class EventStreamManager {
     private static readonly label = 'EventStreamManager';
 
     /**
@@ -52,14 +51,12 @@ class EventStreamManager extends EventEmitter {
             streamConfig,
         }: EventStreamManagerConfig = {},
     ) {
-        super();
-
         if (!this.client.serviceId)
             throw new Error('A service ID is required to connect to the Event Stream');
 
         this.handler = new EventStreamHandler(this.client, new DuplicateFilter());
         this.stream = new EventStream(this.client.serviceId, this.handler, {
-            emitter: this,
+            emitter: this.client,
             environment: this.client.environment,
             ...streamConfig,
         });
