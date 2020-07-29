@@ -235,7 +235,7 @@ class EventStream extends EventEmitter {
                     this.acknowledgeHeartbeat(data.online);
                     break;
                 case 'serviceStateChanged':
-                    // TODO: Together with the heartbeats, the statuses of servers can be monitored
+                    this.emitter.emit(Events.DEBUG, `Received serviceStateChanged for '${data.detail}': ${data.online}`, EventStream.label);
                     break;
                 case 'serviceMessage':
                     this.handler.handleEvent(data.payload);
@@ -256,7 +256,6 @@ class EventStream extends EventEmitter {
      * Connection closed by server
      */
     private onClose(code: number, reason: string): void {
-        // TODO: Add wasClean boolean
         this.emitter.emit(Events.DEBUG, `Connection closed. ${JSON.stringify({code, reason})}`, EventStream.label);
 
         this.setHeartbeatTimer(-1);
@@ -383,11 +382,11 @@ class EventStream extends EventEmitter {
      * @param payload
      */
     private acknowledgeHeartbeat(payload: any): void {
-        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged. ${JSON.stringify(payload)}`, EventStream.label);
+        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged. ${JSON.stringify(payload.online)}`, EventStream.label);
 
         this.heartbeatAcknowledged = true;
         this.lastHeartbeat = Date.now();
-        // TODO: Handle payload
+
     }
 
     /**

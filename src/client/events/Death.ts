@@ -1,6 +1,8 @@
 import { Events } from '../utils/Constants';
 import CharacterEvent from './CharacterEvent';
 import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
+import { DeathData } from '../..';
+import { toBoolean } from '../utils/Helpers';
 
 export enum Kill {
     Normal,
@@ -18,8 +20,6 @@ export default class Death extends CharacterEvent {
 
     public readonly emit = Events.PS2_DEATH;
 
-    protected readonly booleans = ['is_headshot'];
-
     public readonly attacker_character_id: string;
     public readonly attacker_fire_mode_id: string;
     public readonly attacker_loadout_id: string;
@@ -29,6 +29,16 @@ export default class Death extends CharacterEvent {
     public readonly event_name: 'Death';
     public readonly is_headshot: boolean;
     public readonly zone_id: string;
+
+    /**
+     * Cast is_headshot to boolean
+     * @param {DeathData} data
+     * @protected
+     */
+    protected cast(data: DeathData) {
+        // @ts-ignore
+        this['is_headshot'] = toBoolean(data.is_headshot);
+    }
 
     /**
      * Checks the cause of death(some real CSI sh*t going on here)
