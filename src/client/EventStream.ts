@@ -382,7 +382,7 @@ class EventStream extends EventEmitter {
      * @param payload
      */
     private acknowledgeHeartbeat(payload: any): void {
-        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged. ${JSON.stringify(payload.online)}`, EventStream.label);
+        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged. ${JSON.stringify(payload)}`, EventStream.label);
 
         this.heartbeatAcknowledged = true;
         this.lastHeartbeat = Date.now();
