@@ -65,5 +65,5 @@ export const loadoutTypeMap = new Map<string, Loadout>([
     ['30', Loadout.Medic],
     ['31', Loadout.Engineer],
     ['32', Loadout.HeavyAssault],
-    ['45', Loadout.Medic],
+    ['45', Loadout.MAX],
 ]);
