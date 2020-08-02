@@ -1,0 +1,11 @@
+name: 'ps2census'
+description: 'Library to connect to the PS2 Event Stream and use the Rest API.'
+author: 'microwavekonijn'
+inputs:
+  milliseconds:
+    required: true
+    description: 'input description here'
+    default: 1000
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
