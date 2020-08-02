@@ -6,7 +6,9 @@ import { baseRequest, Get } from './utils/Types';
 import queryIndex from './indexes/queryIndex';
 import typeIndex from './indexes/typeIndex';
 
-export function getFactory(environment: PS2Environment, serviceId?: string) {
+export type getMethod<T = never, C extends keyof typeIndex = keyof typeIndex> = (request: baseRequest<C>, query: Get<queryIndex, C>) => Promise<T extends never ? typeIndex[C][] : T>;
+
+export function getFactory(environment: PS2Environment, serviceId?: string): getMethod {
     const census = axios.create({
         baseURL: serviceId
             ? `https://census.daybreakgames.com/s:${serviceId}/get/${environment}:v2`
