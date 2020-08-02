@@ -1,5 +1,6 @@
 # PS2 Census Library
 
+![Test](https://github.com/microwavekonijn/ps2census/workflows/Test/badge.svg)
 [![npm version](https://badge.fury.io/js/ps2census.svg)](https://www.npmjs.com/package/ps2census)
 [![David DM Badge](https://david-dm.org/microwavekonijn/ps2census.svg)](https://david-dm.org/microwavekonijn/ps2census)
 
