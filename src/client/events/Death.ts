@@ -46,7 +46,7 @@ export default class Death extends CharacterEvent {
      *
      * @return {Promise<typeData>}
      */
-    public character(): Promise<character> {
+    public attacker(): Promise<character> {
         return this.client.characterManager.fetch(this.attacker_character_id);
     }
 
@@ -77,7 +77,7 @@ export default class Death extends CharacterEvent {
     public get attacker_faction(): Faction {
         const faction = Death.loadoutFactionMap.get(this.attacker_loadout_id);
 
-        if (!faction) throw new TypeError(`Unknown attacker_loadout_id when determining faction: ${this.attacker_loadout_id}`);
+        if (faction === undefined) throw new TypeError(`Unknown attacker_loadout_id when determining faction: ${this.attacker_loadout_id}`);
 
         return faction;
     }
@@ -90,7 +90,7 @@ export default class Death extends CharacterEvent {
     public get character_faction(): Faction {
         const faction = Death.loadoutFactionMap.get(this.character_loadout_id);
 
-        if (!faction) throw new TypeError(`Unknown character_loadout_id when determining faction: ${this.character_loadout_id}`);
+        if (faction === undefined) throw new TypeError(`Unknown character_loadout_id when determining faction: ${this.character_loadout_id}`);
 
         return faction;
     }
@@ -103,7 +103,7 @@ export default class Death extends CharacterEvent {
     public get attacker_loadout(): Loadout {
         const loadout = Death.loadoutTypeMap.get(this.attacker_loadout_id);
 
-        if (!loadout) throw new TypeError(`Unknown attacker_loadout_id when determining loadout: ${this.attacker_loadout_id}`);
+        if (loadout === undefined) throw new TypeError(`Unknown attacker_loadout_id when determining loadout: ${this.attacker_loadout_id}`);
 
         return loadout;
     }
@@ -116,7 +116,7 @@ export default class Death extends CharacterEvent {
     public get character_loadout(): Loadout {
         const loadout = Death.loadoutTypeMap.get(this.character_loadout_id);
 
-        if (!loadout) throw new TypeError(`Unkown character_loadout_id when determining loadout: ${this.character_loadout_id}`);
+        if (loadout === undefined) throw new TypeError(`Unkown character_loadout_id when determining loadout: ${this.character_loadout_id}`);
 
         return loadout;
     }

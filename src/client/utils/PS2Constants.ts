@@ -1,8 +1,8 @@
 export enum Faction {
-    NC,
-    TR,
-    VS,
-    NSO
+    NC = '2',
+    TR = '3',
+    VS = '1',
+    NSO = '4'
 }
 
 export enum Loadout {
@@ -13,6 +13,12 @@ export enum Loadout {
     HeavyAssault,
     MAX
 }
+
+export const factionMap = new Map<string, Faction>([
+    ['1', Faction.VS],
+    ['2', Faction.NC],
+    ['3', Faction.TR]
+]);
 
 export const loadoutFactionMap = new Map<string, Faction>([
     ['1', Faction.NC],
