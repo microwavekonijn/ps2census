@@ -4,6 +4,7 @@ import EventStreamFilter from './concerns/EventStreamFilter';
 import PS2Event from './events/PS2Event';
 import Client from './Client';
 import { Events } from './utils/Constants';
+import { endpointsToId } from './utils/PS2Constants';
 
 import AchievementEarned from './events/AchievementEarned';
 import BattleRankUp from './events/BattleRankUp';
@@ -20,8 +21,11 @@ import PlayerLogin from './events/PlayerLogin';
 import PlayerLogout from './events/PlayerLogout';
 import SkillAdded from './events/SkillAdded';
 import VehicleDestroy from './events/VehicleDestroy';
+import { stringToBoolean } from './utils/Helpers';
 
 export default class EventStreamHandler implements EventStreamHandlerContract {
+    public static endpointsToId = endpointsToId;
+
     /**
      * @param {Client} client
      * @param {EventStreamFilter} filter
@@ -41,10 +45,14 @@ export default class EventStreamHandler implements EventStreamHandlerContract {
         const wrapped = this.wrapEvent(event);
 
         if (!this.filter.filter(wrapped)) {
-            this.client.emit(Events.PS2_EVENT, wrapped);
-            this.client.emit(wrapped.emit, wrapped);
+            setImmediate(() => {
+                this.client.emit(Events.PS2_EVENT, wrapped);
+                this.client.emit(wrapped.emit, wrapped);
+            });
         } else {
-            this.client.emit(Events.PS2_DUPLICATE, wrapped);
+            setImmediate(() => {
+                this.client.emit(Events.PS2_DUPLICATE, wrapped);
+            });
         }
     }
 
@@ -54,7 +62,26 @@ export default class EventStreamHandler implements EventStreamHandlerContract {
      * @param subscription
      */
     public handleSubscription(subscription: any): void {
-        this.client.emit(Events.PS2_SUBSCRIBED, subscription);
+        setImmediate(() => {
+            this.client.emit(Events.PS2_SUBSCRIBED, subscription);
+        });
+    }
+
+    /**
+     * Handler whenever a service state changed notification comes in
+     *
+     * @param state
+     */
+    public handleServerStateChanged(state: any): void {
+        const id = EventStreamHandler.endpointsToId.get(state.detail);
+
+        if (id) {
+            const online = stringToBoolean(state.online);
+
+            setImmediate(() => {
+                this.client.emit(Events.PS2_SERVICE_STATE, id, online);
+            });
+        }
     }
 
     /**

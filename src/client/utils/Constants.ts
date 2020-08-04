@@ -19,6 +19,7 @@ export enum Events {
     PS2_EVENT = 'ps2Event',
     PS2_DUPLICATE = 'duplicate',
     PS2_SUBSCRIBED = 'subscribed',
+    PS2_SERVICE_STATE = 'serviceState',
     PS2_ACHIEVEMENT = 'achievementEarned',
     PS2_RANKUP = 'battleRankUp',
     PS2_DEATH = 'death',

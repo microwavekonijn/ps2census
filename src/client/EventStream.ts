@@ -235,7 +235,7 @@ class EventStream extends EventEmitter {
                     this.acknowledgeHeartbeat(data.online);
                     break;
                 case 'serviceStateChanged':
-                    this.emitter.emit(Events.DEBUG, `Received serviceStateChanged for '${data.detail}': ${data.online}`, EventStream.label);
+                    this.handler.handleServerStateChanged(data);
                     break;
                 case 'serviceMessage':
                     this.handler.handleEvent(data.payload);
@@ -341,7 +341,7 @@ class EventStream extends EventEmitter {
     /**
      * Manages the heartbeat timer
      *
-     * @param {number} interval Negative value will remove the timer
+     * @param {number} interval Negative value will forget the timer
      */
     private setHeartbeatTimer(interval: number): void {
         if (interval < 0) {
@@ -382,11 +382,10 @@ class EventStream extends EventEmitter {
      * @param payload
      */
     private acknowledgeHeartbeat(payload: any): void {
-        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged. ${JSON.stringify(payload)}`, EventStream.label);
+        this.emitter.emit(Events.DEBUG, `Heartbeat acknowledged.`, EventStream.label);
 
         this.heartbeatAcknowledged = true;
         this.lastHeartbeat = Date.now();
-
     }
 
     /**

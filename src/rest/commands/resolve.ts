@@ -1,6 +1,7 @@
-import { baseRequest, Get } from '../utils/Types';
+import { baseRequest} from '../utils/Types';
 import { setParam } from '../utils/Helpers';
 import { resolveIndex } from '../indexes/resolveIndex';
+import { Get } from '../../utils/Types';
 
 export type resolveType<C> = Get<resolveIndex, C> | [Get<resolveIndex, C>, string[]];
 

@@ -14,4 +14,11 @@ export default interface EventStreamHandler {
      * @param subscription
      */
     handleSubscription(subscription: any): void;
+
+    /**
+     * Handle a server state changed notification
+     *
+     * @param state
+     */
+    handleServerStateChanged(state: any): void;
 }

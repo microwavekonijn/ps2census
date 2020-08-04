@@ -17,6 +17,8 @@ import VehicleDestroy from './events/VehicleDestroy';
 import ContinentLock from './events/ContinentLock';
 import FacilityControl from './events/FacilityControl';
 import MetagameEvent from './events/MetagameEvent';
+import { getFactory } from '../rest';
+import { getMethod } from '../rest/get';
 
 declare interface Client {
     on(event: 'ready', listener: () => void): this;
@@ -27,6 +29,7 @@ declare interface Client {
     on(event: 'debug', listener: (info: string, label: string) => void): this;
     on(event: 'duplicate', listener: (event: PS2Event) => void): this;
     on(event: 'subscribed', listener: (subscription: EventStreamSubscribed) => void): this;
+    on(event: 'serviceState', listener: (id: string, online: boolean) => void): this;
 
     on(event: 'ps2Event', listener: (event: PS2Event) => void): this;
     on(event: 'achievementEarned', listener: (event: AchievementEarned) => void): this;
@@ -53,6 +56,7 @@ declare interface Client {
     once(event: 'debug', listener: (info: string, label: string) => void): this;
     once(event: 'duplicate', listener: (event: PS2Event) => void): this;
     once(event: 'subscribed', listener: (subscription: EventStreamSubscribed) => void): this;
+    once(event: 'serviceState', listener: (id: string, online: boolean) => void): this;
 
     once(event: 'ps2Event', listener: (event: PS2Event) => void): this;
     once(event: 'achievementEarned', listener: (event: AchievementEarned) => void): this;
@@ -74,12 +78,12 @@ declare interface Client {
 
 class Client extends EventEmitter {
     /**
-     * @type{string?} service Id for the Census API
+     * @type {string?} service Id for the Census API
      */
     public readonly serviceId?: string;
 
     /**
-     * @type{PS2Environment} the environment the client is configured for
+     * @type {PS2Environment} the environment the client is configured for
      */
     public readonly environment: PS2Environment;
 
@@ -87,6 +91,11 @@ class Client extends EventEmitter {
      * @type{EventStreamManager?} the event stream manager
      */
     private readonly streamManager?: EventStreamManager;
+
+    /**
+     * @type {getMethod} Get method to fetch data from the Rest API
+     */
+    public readonly get: getMethod;
 
     /**
      * @param {ClientConfig} config
@@ -100,6 +109,8 @@ class Client extends EventEmitter {
 
         this.serviceId = serviceId;
         this.environment = environment;
+
+        this.get = getFactory(environment, serviceId);
 
         if (this.serviceId)
             this.streamManager = new EventStreamManager(this, streamManagerConfig);

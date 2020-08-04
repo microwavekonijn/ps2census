@@ -1,8 +1,8 @@
 import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
-import { PS2Environment } from '../utils/Types';
-import { baseRequest, Get } from './utils/Types';
+import { Get, PS2Environment } from '../utils/Types';
+import { baseRequest} from './utils/Types';
 import queryIndex from './indexes/queryIndex';
 import typeIndex from './indexes/typeIndex';
 

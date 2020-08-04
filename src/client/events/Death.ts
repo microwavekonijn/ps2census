@@ -2,7 +2,7 @@ import { Events } from '../utils/Constants';
 import CharacterEvent from './CharacterEvent';
 import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
 import { DeathData } from '../..';
-import { toBoolean } from '../utils/Helpers';
+import { numberStringToBoolean } from '../utils/Helpers';
 
 export enum Kill {
     Normal,
@@ -37,7 +37,7 @@ export default class Death extends CharacterEvent {
      */
     protected cast(data: DeathData) {
         // @ts-ignore
-        this['is_headshot'] = toBoolean(data.is_headshot);
+        this['is_headshot'] = numberStringToBoolean(data.is_headshot);
     }
 
     /**

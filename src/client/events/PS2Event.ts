@@ -12,13 +12,13 @@ export default abstract class PS2Event<T extends PS2EventData = PS2EventData> {
 
     /**
      * @param {Client} client
-     * @param {PS2EventData} data
+     * @param {PS2EventData} raw
      */
     public constructor(
         protected readonly client: Client,
-        data: T,
+        public readonly raw: T,
     ) {
-        this.hydrateObject(data);
+        this.hydrateObject(raw);
     }
 
     /**

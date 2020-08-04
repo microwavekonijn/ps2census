@@ -16,5 +16,3 @@ export type langs = keyof lang;
 
 export type Tree<T> = Record<string, T[]>;
 
-export type Get<O, K, D = never> = K extends keyof O ? O[K] : D;
-

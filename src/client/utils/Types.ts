@@ -39,3 +39,4 @@ export type EventStreamSubscribed = {
     eventNames: string[],
     logicalAndCharactersWithWorlds: boolean
 }
+
