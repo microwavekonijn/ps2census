@@ -11,7 +11,9 @@ import { resolve as charactersEventGrouped } from '../collections/charactersEven
 import { resolve as charactersEvent } from '../collections/charactersEvent';
 import { resolve as event } from '../collections/event';
 
-export type resolveIndex = {
+export default resolveIndex;
+
+type resolveIndex = {
     singleCharacterById: singleCharacterById,
     character: character,
     charactersWeaponStat: charactersWeaponStat,
