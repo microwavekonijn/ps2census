@@ -5,8 +5,11 @@ import limit, { hasLimitPerDB } from '../../rest/commands/limit';
 import queryIndex from '../../rest/indexes/queryIndex';
 import Client from '../Client';
 import Cache from '../concerns/Cache';
+import { Events } from '../utils/Constants';
 
 export default class BaseManager<C extends keyof typeIndex> {
+    private static readonly label = 'BaseManager';
+
     protected readonly requestObject: baseRequest<C>;
 
     public constructor(
@@ -35,6 +38,8 @@ export default class BaseManager<C extends keyof typeIndex> {
     }
 
     private async makeRequest(id: string): Promise<Get<typeIndex, C>> {
+        this.client.emit(Events.DEBUG, `Fetching data for "${this.id}" => "${id}"(${this.constructor.name}).`, BaseManager.label);
+
         const data = await this.client.get(this.requestObject, {[this.id]: id});
 
         if (data.length <= 0)
