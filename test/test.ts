@@ -1,4 +1,6 @@
 import { Client, Events } from '../src';
+import character from '../src/rest/collections/character';
+import { Kill } from '../src/client/events/Death';
 
 const client = new Client({
     serviceId: process.argv[2],
@@ -19,7 +21,28 @@ client.on('warn', (e) => console.log(e));
 client.on('subscribed', (s) => console.log(JSON.stringify(s)));
 client.on('debug', (info, label) => console.log(`${label}: ${info}`));
 
-client.on(Events.PS2_DEATH, (e) => console.log('Death', e));
+client.on(Events.PS2_DEATH, async (e) => {
+    const [victim, attacker] = await Promise.all([
+        e.character(),
+        e.attacker(),
+    ]);
+
+    switch (e.kill_type) {
+        case Kill.Normal:
+            console.log(`${victim.name.first} was killed by ${attacker.name.first}`);
+            break;
+        case Kill.Suicide:
+            console.log(`${victim.name.first} suicided.`);
+            break;
+        case Kill.TeamKill:
+            console.log(`${victim.name.first} was teamkilled by ${attacker.name.first}`);
+            break;
+        case Kill.Undetermined:
+            console.log(`${victim.name.first} was NSOed by ${attacker.name.first}`);
+            break;
+    }
+});
+
 client.on(Events.PS2_DUPLICATE, (e) => console.log('Duplicate', JSON.stringify(e)));
 
 
