@@ -1,11 +1,17 @@
 import DuplicateFilter from './DuplicateFilter';
 import { EventEmitter } from 'events';
 import { PS2Environment } from '../../utils/Types';
+import { baseRequest } from '../../rest/utils/Types';
+import Cache from '../concerns/Cache';
 
 export type ClientConfig = {
     serviceId?: string,
     environment?: PS2Environment,
-    streamManagerConfig?: EventStreamManagerConfig
+    streamManagerConfig?: EventStreamManagerConfig,
+    characterManager?: {
+        request?: baseRequest<'character'>,
+        cache?: Cache,
+    }
 }
 
 export type EventStreamManagerConfig = {

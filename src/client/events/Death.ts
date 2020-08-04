@@ -3,6 +3,7 @@ import CharacterEvent from './CharacterEvent';
 import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
 import { DeathData } from '../..';
 import { numberStringToBoolean } from '../utils/Helpers';
+import { typeData as character } from '../../rest/collections/character';
 
 export enum Kill {
     Normal,
@@ -38,6 +39,15 @@ export default class Death extends CharacterEvent {
     protected cast(data: DeathData) {
         // @ts-ignore
         this['is_headshot'] = numberStringToBoolean(data.is_headshot);
+    }
+
+    /**
+     * Fetch the character data from the attacker
+     *
+     * @return {Promise<typeData>}
+     */
+    public character(): Promise<character> {
+        return this.client.characterManager.fetch(this.attacker_character_id);
     }
 
     /**

@@ -19,6 +19,10 @@ import FacilityControl from './events/FacilityControl';
 import MetagameEvent from './events/MetagameEvent';
 import { getFactory } from '../rest';
 import { getMethod } from '../rest/get';
+import CharacterManager from './managers/CharacterManager';
+import Cache from './utils/Cache';
+import character from '../rest/collections/character';
+import resolve from '../rest/commands/resolve';
 
 declare interface Client {
     on(event: 'ready', listener: () => void): this;
@@ -98,12 +102,18 @@ class Client extends EventEmitter {
     public readonly get: getMethod;
 
     /**
+     * @type {CharacterManager} The character manager for Census API requests
+     */
+    public readonly characterManager: CharacterManager;
+
+    /**
      * @param {ClientConfig} config
      */
     public constructor({
                            serviceId,
                            environment = 'ps2',
                            streamManagerConfig,
+                           characterManager = {},
                        }: ClientConfig = {}) {
         super();
 
@@ -114,6 +124,12 @@ class Client extends EventEmitter {
 
         if (this.serviceId)
             this.streamManager = new EventStreamManager(this, streamManagerConfig);
+
+        this.characterManager = new CharacterManager(
+            this,
+            characterManager?.cache ?? new Cache(),
+            characterManager?.request ?? resolve(character, ['outfit_member_extended']),
+        );
     }
 
     /**
@@ -193,6 +209,8 @@ class Client extends EventEmitter {
 
         return this.streamManager.subscriptionManager.currentSubscriptions;
     }
+
+
 }
 
 export default Client;
