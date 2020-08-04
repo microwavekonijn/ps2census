@@ -21,7 +21,7 @@ import PlayerLogin from './events/PlayerLogin';
 import PlayerLogout from './events/PlayerLogout';
 import SkillAdded from './events/SkillAdded';
 import VehicleDestroy from './events/VehicleDestroy';
-import { stringToBoolean } from './utils/Helpers';
+import { stringToBoolean } from '../utils/Helpers';
 
 export default class EventStreamHandler implements EventStreamHandlerContract {
     public static endpointsToId = endpointsToId;

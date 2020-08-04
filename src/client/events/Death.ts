@@ -2,7 +2,7 @@ import { Events } from '../utils/Constants';
 import CharacterEvent from './CharacterEvent';
 import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
 import { DeathData } from '../..';
-import { numberStringToBoolean } from '../utils/Helpers';
+import { numberStringToBoolean } from '../../utils/Helpers';
 import { typeData as character } from '../../rest/collections/character';
 
 export enum Kill {

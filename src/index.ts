@@ -2,11 +2,14 @@ export { default as Client } from './client/Client';
 export { default as EventStreamManager } from './client/EventStreamManager';
 export { default as EventStream } from './client/EventStream';
 export { default as EventStreamHandler } from './client/EventStreamHandler';
+export { default as SubscriptionManager } from './client/SubscriptionManager';
 
+export { default as CacheContract } from './client/concerns/Cache';
 export { default as EventStreamFilterContract } from './client/concerns/EventStreamFilter';
 export { default as EventStreamHandlerContract } from './client/concerns/EventStreamHandler';
 
 export { default as PS2Event } from './client/events/PS2Event';
+export { default as CharacterEvent } from './client/events/CharacterEvent';
 export { default as AchievementEarned } from './client/events/AchievementEarned';
 export { default as BattleRankUp } from './client/events/BattleRankUp';
 export { default as ContinentLock } from './client/events/ContinentLock';
@@ -23,8 +26,19 @@ export { default as PlayerLogout } from './client/events/PlayerLogout';
 export { default as SkillAdded } from './client/events/SkillAdded';
 export { default as VehicleDestroy } from './client/events/VehicleDestroy';
 
+export { default as BaseManager } from './client/managers/BaseManager';
+export { default as CharacterManager } from './client/managers/CharacterManager';
+
+export { default as Cache } from './client/utils/Cache';
 export { Events } from './client/utils/Constants';
 export { default as DuplicateFilter } from './client/utils/DuplicateFilter';
+export {
+    Faction,
+    Loadout,
+    factionMap,
+    loadoutFactionMap,
+    loadoutTypeMap,
+} from './client/utils/PS2Constants';
 export {
     PS2EventData,
     AchievementEarnedData,
@@ -50,6 +64,12 @@ export {
     EventStreamSubscription,
     EventStreamSubscribed,
 } from './client/utils/Types';
+
+export {
+    unixToDate,
+    numberStringToBoolean,
+    stringToBoolean,
+} from './utils/Helpers';
 export { PS2Environment } from './utils/Types';
 
 export * as rest from './rest';

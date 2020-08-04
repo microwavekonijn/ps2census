@@ -5,7 +5,7 @@ import { Events } from './utils/Constants';
 import Timeout = NodeJS.Timeout;
 import EventStreamHandler from './EventStreamHandler';
 import DuplicateFilter from './utils/DuplicateFilter';
-import { SubscriptionManager } from './SubscriptionManager';
+import SubscriptionManager from './SubscriptionManager';
 
 class EventStreamManager {
     private static readonly label = 'EventStreamManager';

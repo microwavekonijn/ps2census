@@ -3,7 +3,7 @@ import Client from './Client';
 import EventStream from './EventStream';
 import { Events } from './utils/Constants';
 
-export class SubscriptionManager {
+export default class SubscriptionManager {
     private static readonly label = 'SubscriptionManager';
 
     /**
