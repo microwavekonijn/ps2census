@@ -7,6 +7,8 @@ export enum Destroy {
     Normal,
     Friendly,
     SelfDestruct,
+    Neutral,
+    Game,
     Undetermined
 }
 
@@ -40,21 +42,36 @@ export default class VehicleDestroy extends CharacterEvent {
     }
 
     /**
+     * Vehicle was abandoned(friendly destroys are not counted)
+     *
+     * @return {boolean}
+     */
+    public unclaimed(): boolean {
+        if (this.faction_id === '0') return false;
+
+        return this.attacker_character_id === this.character_id && (
+            this.attacker_character_id === '0'
+            || this.attacker_faction !== this.character_faction
+        );
+    }
+
+    /**
      * Checks the cause of death(some real CSI sh*t going on here)
      *
      * @return {Destroy}
      */
     public get kill_type(): Destroy {
-        if (this.attacker_character_id == this.character_id) return Destroy.SelfDestruct;
-        if (this.faction_id === '0') return Destroy.Undetermined;
+        if (this.faction_id === '0') return Destroy.Neutral;
+        if (this.attacker_character_id === '0') return Destroy.Game;
 
         const attacker = this.attacker_faction;
-        const possibleVictim = this.character_faction;
+        const victim = this.character_faction;
 
-        if (attacker == Faction.NSO || possibleVictim == Faction.NSO)
-            return Destroy.Undetermined;
+        if (this.attacker_character_id === this.character_id && attacker !== victim) return Destroy.SelfDestruct;
 
-        return attacker === possibleVictim
+        if (attacker === Faction.NSO) return Destroy.Undetermined;
+
+        return attacker === victim
             ? Destroy.Friendly
             : Destroy.Normal;
     }

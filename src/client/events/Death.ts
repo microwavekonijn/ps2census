@@ -9,6 +9,7 @@ export enum Kill {
     Normal,
     TeamKill,
     Suicide,
+    RestrictedArea,
     Undetermined
 }
 
@@ -56,7 +57,8 @@ export default class Death extends CharacterEvent {
      * @return {Kill}
      */
     public get kill_type(): Kill {
-        if (this.attacker_character_id == this.character_id) return Kill.Suicide;
+        if (this.attacker_character_id === '0') return Kill.RestrictedArea;
+        if (this.attacker_character_id === this.character_id) return Kill.Suicide;
 
         const attacker = this.attacker_faction;
         const possibleVictim = this.character_faction;
