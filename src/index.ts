@@ -14,7 +14,7 @@ export { default as AchievementEarned } from './client/events/AchievementEarned'
 export { default as BattleRankUp } from './client/events/BattleRankUp';
 export { default as ContinentLock } from './client/events/ContinentLock';
 export { default as ContinentUnlock } from './client/events/ContinentUnlock';
-export { default as Death } from './client/events/Death';
+export { default as Death, Kill } from './client/events/Death';
 export { default as FacilityControl } from './client/events/FacilityControl';
 export { default as GainExperience } from './client/events/GainExperience';
 export { default as ItemAdded } from './client/events/ItemAdded';
@@ -24,7 +24,7 @@ export { default as PlayerFacilityDefend } from './client/events/PlayerFacilityD
 export { default as PlayerLogin } from './client/events/PlayerLogin';
 export { default as PlayerLogout } from './client/events/PlayerLogout';
 export { default as SkillAdded } from './client/events/SkillAdded';
-export { default as VehicleDestroy } from './client/events/VehicleDestroy';
+export { default as VehicleDestroy, Destroy } from './client/events/VehicleDestroy';
 
 export { default as BaseManager } from './client/managers/BaseManager';
 export { default as CharacterManager } from './client/managers/CharacterManager';
