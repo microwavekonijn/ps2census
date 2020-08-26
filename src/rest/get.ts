@@ -2,11 +2,11 @@ import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { Get, PS2Environment } from '../utils/Types';
-import { baseRequest} from './utils/Types';
+import { baseRequest, collections } from './utils/Types';
 import queryIndex from './indexes/queryIndex';
 import typeIndex from './indexes/typeIndex';
 
-export type getMethod<C extends keyof typeIndex = keyof typeIndex> = (request: baseRequest<C>, query: Get<queryIndex, C>) => Promise<typeIndex[C][]>;
+export type getMethod<C extends collections = collections> = (request: baseRequest<C>, query: Get<queryIndex, C>) => Promise<typeIndex[C][]>;
 
 export function getFactory(environment: PS2Environment, serviceId?: string): getMethod {
     const census = axios.create({
@@ -26,7 +26,7 @@ export function getFactory(environment: PS2Environment, serviceId?: string): get
         },
     });
 
-    return <T = never, C extends keyof typeIndex = keyof typeIndex>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<T extends never ? typeIndex[C][] : T> =>
+    return <T = never, C extends collections = collections>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<T extends never ? typeIndex[C][] : T> =>
         census.get(collection, {params: {...params, ...query}}).then(({data}) => data[`${collection}_list`]);
 }
 

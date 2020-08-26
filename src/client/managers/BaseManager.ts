@@ -1,4 +1,4 @@
-import { baseRequest } from '../../rest/utils/Types';
+import { baseRequest, collections } from '../../rest/utils/Types';
 import typeIndex from '../../rest/indexes/typeIndex';
 import { Get } from '../../utils/Types';
 import limit, { hasLimitPerDB } from '../../rest/commands/limit';
@@ -7,7 +7,7 @@ import Client from '../Client';
 import Cache from '../concerns/Cache';
 import { Events } from '../utils/Constants';
 
-export default class BaseManager<C extends keyof typeIndex> {
+export default class BaseManager<C extends collections> {
     private static readonly label = 'BaseManager';
 
     protected readonly requestObject: baseRequest<C>;
