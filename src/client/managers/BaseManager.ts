@@ -43,7 +43,7 @@ export default class BaseManager<C extends keyof typeIndex> {
         const data = await this.client.get(this.requestObject, {[this.id]: id});
 
         if (data.length <= 0)
-            throw new Error(`Unable to retrieve data, api returned no matches`);
+            throw new Error(`Unable to retrieve data, api returned no matches for "${id}"`);
 
         // @ts-ignore
         return data[0];
