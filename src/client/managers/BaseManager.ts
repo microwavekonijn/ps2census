@@ -1,11 +1,12 @@
 import { baseRequest, collections } from '../../rest/utils/Types';
 import typeIndex from '../../rest/indexes/typeIndex';
 import { Get } from '../../utils/Types';
-import limit, { hasLimitPerDB } from '../../rest/commands/limit';
+import limit from '../../rest/commands/limit';
 import queryIndex from '../../rest/indexes/queryIndex';
 import Client from '../Client';
 import Cache from '../concerns/Cache';
 import { Events } from '../utils/Constants';
+import { hasLimitPerDB } from '../../rest/utils/Helpers';
 
 export default class BaseManager<C extends collections> {
     private static readonly label = 'BaseManager';
