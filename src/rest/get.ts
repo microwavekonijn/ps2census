@@ -26,7 +26,7 @@ export function getFactory(environment: PS2Environment, serviceId?: string): get
         },
     });
 
-    return <T = never, C extends collections = collections>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<T extends never ? typeIndex[C][] : T> =>
+    return ({collection, params}: baseRequest<collections>, query: Get<queryIndex, collections>): Promise<typeIndex[collections][]> =>
         census.get(collection, {params: {...params, ...query}}).then(({data}) => data[`${collection}_list`]);
 }
 

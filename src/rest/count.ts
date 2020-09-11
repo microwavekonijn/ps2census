@@ -23,6 +23,6 @@ export function countFactory(environment: PS2Environment, serviceId?: string) {
         },
     });
 
-    return <C extends countableCollections>({collection, params}: baseRequest<C>, query: Get<queryIndex, C>): Promise<number> =>
+    return({collection, params}: baseRequest<countableCollections>, query: Get<queryIndex, countableCollections>): Promise<number> =>
         census.get(collection, {params: {...params, ...query}}).then(({data}: any) => data);
 }
