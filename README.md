@@ -109,7 +109,9 @@ await get(
         zone_ids: String(this.instance.zone),
         facility_type_id: 7,
     },
-).then((result)) => {}
+).then((result)) => {
+    ...
+})
 ```
 
 #### c:join
@@ -133,7 +135,9 @@ await get(
         world_id: String(this.instance.world),
         zone_ids: String(this.instance.zone),
     },
-).then((mapData: any) => {}
+).then((result) => {
+    ...
+})
 ```
 
 ## Documentation
