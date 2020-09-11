@@ -93,6 +93,49 @@ Note: First argument of any command function is the request object.
 There are also type guards that help with making sure in typescript that the chaining of commands are correct.
 If you encounter bugs or problems report them in the Census Rest API thread on GitHub.
 
+### Rest command examples
+
+Such commands allow you to perform operations which would normally be applied to the query string of the Census request. A common example is limit. [Here is a full list of commands](https://github.com/microwavekonijn/ps2census/tree/master/src/rest/commands). Below are a few of the common ones:
+
+#### c:limit
+
+```js
+await get(
+    rest.limit(
+        rest.mapRegion,
+        1000,
+    ),
+    { // Query for filter
+        zone_ids: String(this.instance.zone),
+        facility_type_id: 7,
+    },
+).then((result)) => {}
+```
+
+#### c:join
+
+Join can be quite complicated, thankfully this library makes it easy to apply joins, even multiples of them.
+
+```js
+await get(
+    rest.join(
+        rest.map, [
+        {
+            type: 'map_region',
+            inject_at: 'map_region',
+            on: 'Regions.Row.RowData.RegionId',
+            to: 'map_region_id',
+        },
+        ...
+        ],
+    ),
+    {
+        world_id: String(this.instance.world),
+        zone_ids: String(this.instance.zone),
+    },
+).then((mapData: any) => {}
+```
+
 ## Documentation
 
 Check the [docs](https://github.com/microwavekonijn/ps2census/tree/master/docs).
