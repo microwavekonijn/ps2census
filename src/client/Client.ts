@@ -82,11 +82,6 @@ declare interface Client {
 
 class Client extends EventEmitter {
     /**
-     * @type {string?} service Id for the Census API
-     */
-    public readonly serviceId?: string;
-
-    /**
      * @type {PS2Environment} the environment the client is configured for
      */
     public readonly environment: PS2Environment;
@@ -94,7 +89,7 @@ class Client extends EventEmitter {
     /**
      * @type{EventStreamManager?} the event stream manager
      */
-    private readonly streamManager?: EventStreamManager;
+    private readonly streamManager: EventStreamManager;
 
     /**
      * @type {getMethod} Get method to fetch data from the Rest API
@@ -107,14 +102,17 @@ class Client extends EventEmitter {
     public readonly characterManager: CharacterManager;
 
     /**
+     * @param {string} serviceId service Id for the Census API
      * @param {ClientConfig} config
      */
-    public constructor({
-                           serviceId,
-                           environment = 'ps2',
-                           streamManagerConfig,
-                           characterManager = {},
-                       }: ClientConfig = {}) {
+    public constructor(
+        public readonly serviceId: string,
+        {
+            environment = 'ps2',
+            streamManagerConfig,
+            characterManager = {},
+        }: ClientConfig = {},
+    ) {
         super();
 
         this.serviceId = serviceId;
@@ -122,8 +120,7 @@ class Client extends EventEmitter {
 
         this.get = getFactory(environment, serviceId);
 
-        if (this.serviceId)
-            this.streamManager = new EventStreamManager(this, streamManagerConfig);
+        this.streamManager = new EventStreamManager(this, streamManagerConfig);
 
         this.characterManager = new CharacterManager(
             this,
@@ -138,9 +135,6 @@ class Client extends EventEmitter {
      * @return {Promise<void>}
      */
     public async watch(): Promise<void> {
-        if (!this.streamManager)
-            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
-
         await this.streamManager.connect();
     }
 
@@ -157,9 +151,6 @@ class Client extends EventEmitter {
      * @param {EventStreamSubscription} subscription
      */
     public subscribe(subscription: EventStreamSubscription): EventStreamSubscription {
-        if (!this.streamManager)
-            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
-
         return this.streamManager.subscriptionManager.subscribe(subscription);
     }
 
@@ -169,9 +160,6 @@ class Client extends EventEmitter {
      * @param {EventStreamSubscription} subscription
      */
     public unsubscribe(subscription: EventStreamSubscription): boolean {
-        if (!this.streamManager)
-            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
-
         return this.streamManager.subscriptionManager.unsubscribe(subscription);
     }
 
@@ -179,9 +167,6 @@ class Client extends EventEmitter {
      * Purge all subscriptions
      */
     public unsubscribeAll(): void {
-        if (!this.streamManager)
-            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
-
         this.streamManager.subscriptionManager.unsubscribeAll();
     }
 
@@ -192,9 +177,6 @@ class Client extends EventEmitter {
      * @return {boolean} whether it has been run(depends on stream being ready)
      */
     public resubscribe(reset = false): boolean {
-        if (!this.streamManager)
-            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
-
         return this.streamManager.subscriptionManager.resubscribe(reset);
     }
 
@@ -204,9 +186,6 @@ class Client extends EventEmitter {
      * @return {Array<EventStreamSubscription>}
      */
     public get currentSubscriptions(): Array<EventStreamSubscription> {
-        if (!this.streamManager)
-            throw new Error('EventStreamManager is missing. Make sure you provide a service Id.');
-
         return this.streamManager.subscriptionManager.currentSubscriptions;
     }
 

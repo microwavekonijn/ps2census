@@ -5,7 +5,6 @@ import { baseRequest } from '../../rest/utils/Types';
 import Cache from '../concerns/Cache';
 
 export type ClientConfig = {
-    serviceId?: string,
     environment?: PS2Environment,
     streamManagerConfig?: EventStreamManagerConfig,
     characterManager?: {
