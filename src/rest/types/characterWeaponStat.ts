@@ -8,4 +8,5 @@ type characterWeaponStat = {
     value: string,
     last_save: string,
     last_save_date: string,
-}
+    [prop: string]: any,
+};

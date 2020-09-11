@@ -5,4 +5,5 @@ type loadout = {
     profile_id: string,
     faction_id: string,
     code_name: string,
+    [prop: string]: any,
 };

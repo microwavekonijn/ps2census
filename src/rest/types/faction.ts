@@ -10,4 +10,5 @@ type faction = {
     image_path: string,
     code_tag: string,
     user_selectable: string,
-}
+    [prop: string]: any,
+};

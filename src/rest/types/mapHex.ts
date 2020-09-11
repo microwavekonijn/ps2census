@@ -7,4 +7,5 @@ type mapHex = {
     y: string,
     hex_type: string,
     type_name: string,
+    [prop: string]: any,
 };

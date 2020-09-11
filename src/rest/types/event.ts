@@ -9,4 +9,5 @@ type event = {
     world_id: string,
     event_type: string,
     table_type: string,
+    [prop: string]: any,
 };

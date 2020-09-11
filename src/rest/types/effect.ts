@@ -21,4 +21,5 @@ type effect = {
     param11: string,
     param12: string,
     param13: string,
+    [prop: string]: any,
 };

@@ -7,4 +7,5 @@ type weaponAmmoSlot = {
     capacity: string,
     refill_ammo_delay_ms: string,
     refill_ammo_rate: string,
+    [prop: string]: any,
 };

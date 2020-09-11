@@ -5,4 +5,5 @@ type marketingBundleItem = {
     item_id: string,
     quantity: string,
     release_time: string,
+    [prop: string]: any,
 };

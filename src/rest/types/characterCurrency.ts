@@ -6,4 +6,5 @@ type characterCurrency = {
     currency_name: string,
     quantity: string,
     prestige_currency: string,
+    [prop: string]: any,
 };

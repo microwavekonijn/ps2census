@@ -1,4 +1,3 @@
-export { default as singleCharacterById } from './types/singleCharacterById';
 export { default as character } from './types/character';
 export { default as characterAchievement } from './types/characterAchievement';
 export { default as characterCurrency } from './types/characterCurrency';

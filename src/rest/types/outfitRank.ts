@@ -5,4 +5,5 @@ type outfitRank = {
     ordinal: string,
     name: string,
     description: string,
+    [prop: string]: any,
 };

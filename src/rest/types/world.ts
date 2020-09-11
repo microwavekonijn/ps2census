@@ -7,4 +7,5 @@ type world = {
     state: string,
     name: lang,
     description: lang,
+    [prop: string]: any,
 };

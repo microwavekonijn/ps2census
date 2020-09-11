@@ -7,4 +7,5 @@ type resistInfo = {
     resist_amount: string,
     multiplier_when_headshot: string,
     description: string,
+    [prop: string]: any,
 };

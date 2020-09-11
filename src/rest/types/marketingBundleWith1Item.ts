@@ -7,4 +7,5 @@ type marketingBundleWith1Item = {
     station_cash_price: string,
     cert_price: string,
     release_time: string,
+    [prop: string]: any,
 };

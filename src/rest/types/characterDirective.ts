@@ -6,4 +6,5 @@ type characterDirective = {
     directive_id: string,
     completion_time: string,
     completion_time_date: string,
+    [prop: string]: any,
 };

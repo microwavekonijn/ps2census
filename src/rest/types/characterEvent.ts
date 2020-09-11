@@ -13,4 +13,5 @@ type characterEvent = {
     item_id: string,
     item_count: string,
     context: string,
+    [prop: string]: any,
 };

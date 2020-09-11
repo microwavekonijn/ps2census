@@ -8,4 +8,5 @@ type zone = {
     hex_size: string,
     name: lang,
     description: lang,
+    [prop: string]: any,
 };

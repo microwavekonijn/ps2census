@@ -12,4 +12,5 @@ type playerStateGroup2 = {
     cof_shots_before_penalty: string,
     cof_recovery_delay_threshold: string,
     cof_turn_penalty: string,
+    [prop: string]: any,
 };

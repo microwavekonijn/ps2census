@@ -91,4 +91,5 @@ type fireMode2 = {
     min_damage_range: string,
     shield_bypass_pct: string,
     description: lang,
+    [prop: string]: any,
 };

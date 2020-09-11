@@ -5,4 +5,5 @@ type vehicleSkillSet = {
     skill_set_id: string,
     faction_id: string,
     display_index: string,
+    [prop: string]: any,
 };

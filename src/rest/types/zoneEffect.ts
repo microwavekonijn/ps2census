@@ -22,4 +22,5 @@ type zoneEffect = {
     string2: string,
     string3: string,
     string4: string,
+    [prop: string]: any,
 };

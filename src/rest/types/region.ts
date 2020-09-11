@@ -7,4 +7,5 @@ type region = {
     zone_id: string,
     initial_faction_id: string,
     name: lang,
+    [prop: string]: any,
 };

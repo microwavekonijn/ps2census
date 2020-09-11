@@ -33,4 +33,5 @@ type fireMode = {
     indirect_damage_min_range: string,
     indirect_damage_target_type: string,
     indirect_damage_resist_type: string
+    [prop: string]: any,
 };

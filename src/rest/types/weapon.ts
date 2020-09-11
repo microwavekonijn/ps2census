@@ -15,4 +15,5 @@ type weapon = {
     heat_overheat_penalty_ms: string,
     melee_detect_width: string,
     melee_detect_height: string
+    [prop: string]: any,
 };

@@ -12,4 +12,5 @@ type vehicle = {
     image_set_id: string,
     image_id: string,
     image_path: string,
-}
+    [prop: string]: any,
+};

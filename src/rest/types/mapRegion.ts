@@ -12,4 +12,5 @@ type mapRegion = {
     location_z: string,
     reward_amount: string,
     reward_currency_id: string,
+    [prop: string]: any,
 };

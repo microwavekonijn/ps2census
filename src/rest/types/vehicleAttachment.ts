@@ -6,4 +6,5 @@ type vehicleAttachment = {
     faction_id: string,
     description: string,
     slot_id: string,
+    [prop: string]: any,
 };

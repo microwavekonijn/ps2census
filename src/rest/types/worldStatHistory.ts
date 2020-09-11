@@ -39,6 +39,7 @@ type worldStatHistory = {
         d29: string,
         d30: string,
         d31: string,
+        [prop: string]: any,
     },
     month: {
         m01: string,
@@ -53,6 +54,7 @@ type worldStatHistory = {
         m10: string,
         m11: string,
         m12: string,
+        [prop: string]: any,
     },
     week: {
         w01: string,
@@ -68,7 +70,9 @@ type worldStatHistory = {
         w11: string,
         w12: string,
         w13: string,
+        [prop: string]: any,
     },
     last_save: string,
     last_save_date: string,
+    [prop: string]: any,
 };

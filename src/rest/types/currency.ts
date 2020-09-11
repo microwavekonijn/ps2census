@@ -7,4 +7,5 @@ type currency = {
     name: lang,
     icon_id: string,
     inventory_cap: string,
-}
+    [prop: string]: any,
+};

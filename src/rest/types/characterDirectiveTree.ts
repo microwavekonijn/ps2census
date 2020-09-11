@@ -7,4 +7,5 @@ type characterDirectiveTree = {
     current_level: string,
     completion_time: string,
     completion_time_date: string,
+    [prop: string]: any,
 };

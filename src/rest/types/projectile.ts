@@ -20,4 +20,5 @@ type projectile = {
     sticks_to_players: string,
     lockon_lose_angle: string,
     lockon_seek_in_flight: string
+    [prop: string]: any,
 };

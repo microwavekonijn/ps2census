@@ -18,4 +18,5 @@ type item = {
     image_path: string,
     skill_set_id: string,
     is_default_attachment: string,
+    [prop: string]: any,
 };

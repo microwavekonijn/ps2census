@@ -8,7 +8,11 @@ type map = {
             RowData: {
                 RegionId: string,
                 FactionId: string,
+                [prop: string]: any,
             },
+            [prop: string]: any,
         }[],
+        [prop: string]: any,
     },
+    [prop: string]: any,
 };

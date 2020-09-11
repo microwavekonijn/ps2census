@@ -5,4 +5,5 @@ type facilityLink = {
     description: string,
     facility_id_a: string,
     facility_id_b: string,
+    [prop: string]: any,
 };

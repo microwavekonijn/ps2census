@@ -8,4 +8,5 @@ type metagameEvent = {
     description: lang,
     type: string,
     experience_bonus: string,
+    [prop: string]: any,
 };

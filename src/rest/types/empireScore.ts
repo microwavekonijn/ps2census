@@ -10,4 +10,5 @@ type empireScore = {
     end_date: string,
     end_time: string,
     name: lang,
+    [prop: string]: any,
 };

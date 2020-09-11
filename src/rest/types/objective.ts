@@ -13,4 +13,5 @@ type objective = {
     param7: string,
     param8: string,
     param9: string,
+    [prop: string]: any,
 };

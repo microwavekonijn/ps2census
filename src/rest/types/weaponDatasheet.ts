@@ -24,4 +24,5 @@ type weaponDatasheet = {
     show_clip_size: string,
     show_fire_modes: string,
     show_range: string,
+    [prop: string]: any,
 };
