@@ -1,5 +1,5 @@
-import { baseRequest, collections } from '../../rest/utils/Types';
-import typeIndex from '../../rest/indexes/typeIndex';
+import { baseRequest, collections } from '../../rest/utils/requestTypes';
+import typeIndex from '../../rest/indexes/collectionIndex';
 import { Get } from '../../utils/Types';
 import limit from '../../rest/commands/limit';
 import queryIndex from '../../rest/indexes/queryIndex';

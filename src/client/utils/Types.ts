@@ -1,7 +1,7 @@
 import DuplicateFilter from './DuplicateFilter';
 import { EventEmitter } from 'events';
 import { PS2Environment } from '../../utils/Types';
-import { baseRequest } from '../../rest/utils/Types';
+import { baseRequest } from '../../rest/utils/requestTypes';
 import Cache from '../concerns/Cache';
 
 export type ClientConfig = {

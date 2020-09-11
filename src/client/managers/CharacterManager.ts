@@ -1,7 +1,7 @@
 import BaseManager from './BaseManager';
 import Client from '../Client';
 import Cache from '../concerns/Cache';
-import { baseRequest } from '../../rest/utils/Types';
+import { baseRequest } from '../../rest/utils/requestTypes';
 
 export default class CharacterManager extends BaseManager<'character'> {
     public constructor(

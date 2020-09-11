@@ -3,7 +3,7 @@ export { countFactory } from './count';
 
 /** Utility */
 export * as Helpers from './utils/Helpers';
-export * as Types from './utils/Types';
+export * as Types from './utils/requestTypes';
 
 /** Exceptions */
 export { default as CensusRestException } from './exceptions/CensusRestException';

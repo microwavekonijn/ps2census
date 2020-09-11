@@ -1,4 +1,4 @@
-import { baseRequest, collections } from '../utils/Types';
+import { baseRequest, collections } from '../utils/requestTypes';
 import { setParam } from '../utils/Helpers';
 
 export default function <C extends collections>(request: baseRequest<C>, sensitive = false): baseRequest<C> {

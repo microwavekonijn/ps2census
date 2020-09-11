@@ -2,9 +2,9 @@ import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { Get, PS2Environment } from '../utils/Types';
-import { baseRequest, collections } from './utils/Types';
+import { baseRequest, collections } from './utils/requestTypes';
 import queryIndex from './indexes/queryIndex';
-import typeIndex from './indexes/typeIndex';
+import typeIndex from './indexes/collectionIndex';
 
 export type getMethod<C extends collections = collections> = (request: baseRequest<C>, query: Get<queryIndex, C>) => Promise<typeIndex[C][]>;
 

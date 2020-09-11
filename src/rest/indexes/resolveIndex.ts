@@ -14,16 +14,16 @@ import { resolve as event } from '../collections/event';
 export default resolveIndex;
 
 type resolveIndex = {
-    singleCharacterById: singleCharacterById,
+    single_character_by_id: singleCharacterById,
     character: character,
-    charactersWeaponStat: charactersWeaponStat,
-    charactersWeaponStatByFaction: charactersWeaponStatByFaction,
+    characters_weapon_stat: charactersWeaponStat,
+    characters_weapon_stat_by_faction: charactersWeaponStatByFaction,
     outfit: outfit,
-    outfitMember: outfitMember,
-    charactersFriend: charactersFriend,
+    outfit_member: outfitMember,
+    characters_friend: charactersFriend,
     leaderboard: leaderboard,
-    charactersLeaderboard: charactersLeaderboard,
-    charactersEventGrouped: charactersEventGrouped,
-    charactersEvent: charactersEvent,
+    characters_leaderboard: charactersLeaderboard,
+    characters_event_grouped: charactersEventGrouped,
+    characters_event: charactersEvent,
     event: event,
 };

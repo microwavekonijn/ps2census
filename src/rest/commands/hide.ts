@@ -1,6 +1,6 @@
-import { baseRequest } from '../utils/Types';import { fieldsToString, setParam } from '../utils/Helpers';
+import { baseRequest, collections } from '../utils/requestTypes';
+import { fieldsToString, setParam } from '../utils/Helpers';
 
-export default function <C>(request: baseRequest<C>, fields: string[]): baseRequest<C> {
-    // @ts-ignore
+export default function <C extends collections>(request: baseRequest<C>, fields: string[]): baseRequest<C> {
     return setParam(request, 'c:hide', fieldsToString(fields));
 }

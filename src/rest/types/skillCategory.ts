@@ -1,4 +1,4 @@
-import { lang } from '../utils/Types';
+import { lang } from '../utils/responseTypes';
 
 export default skillCategory;
 
