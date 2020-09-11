@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import mapHex from '../types/mapHex';
 
 export type typeData = mapHex;

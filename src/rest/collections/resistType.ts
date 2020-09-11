@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import resistType from '../types/resistType';
 
 export type typeData = resistType;

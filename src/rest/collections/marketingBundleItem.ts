@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import marketingBundleItem from '../types/marketingBundleItem';
 
 export type typeData = marketingBundleItem

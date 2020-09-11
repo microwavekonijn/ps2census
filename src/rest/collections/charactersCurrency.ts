@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import characterCurrency from '../types/characterCurrency';
 
 export type typeData = characterCurrency;

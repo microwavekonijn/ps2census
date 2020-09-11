@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import playerStateGroup2 from '../types/playerStateGroup2';
 
 export type typeData = playerStateGroup2;

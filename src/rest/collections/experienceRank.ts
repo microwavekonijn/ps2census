@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import experienceRank from '../types/experienceRank';
 
 export type typeData = experienceRank;

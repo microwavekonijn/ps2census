@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import itemProfile from '../types/itemProfile';
 
 export type typeData = itemProfile;

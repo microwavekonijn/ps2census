@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import imageSetDefault from '../types/imageSetDefault';
 
 export type typeData = imageSetDefault;

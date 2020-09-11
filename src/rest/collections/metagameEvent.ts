@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import metagameEvent from '../types/metagameEvent';
 
 export type typeData = metagameEvent;

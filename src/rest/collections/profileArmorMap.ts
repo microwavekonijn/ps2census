@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import profileArmorMap from '../types/profileArmorMap';
 
 export type typeData = profileArmorMap;

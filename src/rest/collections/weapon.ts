@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import weapon from '../types/weapon';
 
 export type typeData = weapon;

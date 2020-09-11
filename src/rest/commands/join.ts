@@ -1,6 +1,7 @@
 import { baseRequest, collections} from '../utils/requestTypes';
-import { joinsToString, setParam } from '../utils/Helpers';
+import { setParam } from '../utils/requestHelpers';
 import { joinType } from '../utils/commandTypes';
+import { joinsToString } from '../utils/commandHelpers';
 
 export default function <C extends collections>(request: baseRequest<C>, joins: joinType[]): baseRequest<C> {
     return setParam(request, 'c:join', joinsToString(joins));

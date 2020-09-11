@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import directiveTree from '../types/directiveTree';
 
 export type typeData = directiveTree;

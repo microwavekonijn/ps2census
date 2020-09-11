@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import itemAttachment from '../types/itemAttachment';
 
 export type typeData = itemAttachment;

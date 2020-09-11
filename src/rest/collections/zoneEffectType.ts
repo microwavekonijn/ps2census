@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import zoneEffectType from '../types/zoneEffectType';
 
 export type typeData = zoneEffectType;

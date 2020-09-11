@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import characterStatHistory from '../types/characterStatHistory';
 
 export type typeData = characterStatHistory

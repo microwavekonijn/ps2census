@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import vehicleSkillSet from '../types/vehicleSkillSet';
 
 export type typeData = vehicleSkillSet;

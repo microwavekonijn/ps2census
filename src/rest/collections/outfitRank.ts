@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import outfitRank from '../types/outfitRank';
 
 export type typeData = outfitRank;

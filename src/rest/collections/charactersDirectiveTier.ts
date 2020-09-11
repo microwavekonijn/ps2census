@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import characterDirectiveTier from '../types/characterDirectiveTier';
 
 export type typeData = characterDirectiveTier;

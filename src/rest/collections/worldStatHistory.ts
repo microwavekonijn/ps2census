@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import worldStatHistory from '../types/worldStatHistory';
 
 export type typeData = worldStatHistory;

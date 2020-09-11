@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import characterOnlineStatus from '../types/characterOnlineStatus';
 
 export type typeData = characterOnlineStatus;

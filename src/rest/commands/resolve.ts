@@ -1,7 +1,8 @@
 import { baseRequest, collections } from '../utils/requestTypes';
-import { resolveToString, setParam } from '../utils/Helpers';
+import { setParam } from '../utils/requestHelpers';
 import resolveIndex from '../indexes/resolveIndex';
 import { Get } from '../../utils/Types';
+import { resolveToString } from '../utils/commandHelpers';
 
 type resolveType<C> = Get<resolveIndex, C> | [Get<resolveIndex, C>, string[]];
 

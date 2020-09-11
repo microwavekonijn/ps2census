@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import outfitMember from '../types/outfitMember';
 import outfit from '../types/outfit';
 import character from '../types/character';

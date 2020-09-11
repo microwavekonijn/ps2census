@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import profileResistMap from '../types/profileResistMap';
 
 export type typeData = profileResistMap;

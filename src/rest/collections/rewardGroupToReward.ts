@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import rewardGroupToReward from '../types/rewardGroupToReward';
 
 export type typeData = rewardGroupToReward;

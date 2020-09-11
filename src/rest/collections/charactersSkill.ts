@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import characterSkill from '../types/characterSkill';
 
 export type typeData = characterSkill;

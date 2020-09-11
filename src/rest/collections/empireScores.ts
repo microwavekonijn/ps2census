@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import empireScore from '../types/empireScore';
 
 export type typeData = empireScore;

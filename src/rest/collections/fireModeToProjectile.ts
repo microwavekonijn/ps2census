@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import fireModeToProjectile from '../types/fireModeToProjectile';
 
 export type typeData = fireModeToProjectile;

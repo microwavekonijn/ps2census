@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import character from '../types/character';
 
 export type typeData = Pick<character, 'character_id' | 'name'>;

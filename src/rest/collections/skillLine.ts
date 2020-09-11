@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import skillLine from '../types/skillLine';
 
 export type typeData = skillLine;

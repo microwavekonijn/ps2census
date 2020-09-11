@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import loadout from '../types/loadout';
 
 export type typeData = loadout;

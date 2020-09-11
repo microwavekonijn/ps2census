@@ -6,7 +6,7 @@ import queryIndex from '../../rest/indexes/queryIndex';
 import Client from '../Client';
 import Cache from '../concerns/Cache';
 import { Events } from '../utils/Constants';
-import { hasLimitPerDB } from '../../rest/utils/Helpers';
+import { hasLimitPerDB } from '../../rest/utils/commandHelpers';
 
 export default class BaseManager<C extends collections> {
     private static readonly label = 'BaseManager';

@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import characterFriends from '../types/characterFriends';
 import character from '../types/character';
 import characterWorld from '../types/characterWorld';

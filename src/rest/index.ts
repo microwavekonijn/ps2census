@@ -2,7 +2,7 @@ export { getFactory } from './get';
 export { countFactory } from './count';
 
 /** Utility */
-export * as Helpers from './utils/Helpers';
+export * as Helpers from './utils/requestHelpers';
 export * as Types from './utils/requestTypes';
 
 /** Exceptions */

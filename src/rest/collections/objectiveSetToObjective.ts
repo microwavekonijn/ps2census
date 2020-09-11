@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import objectiveSetToObjective from '../types/objectiveSetToObjective';
 
 export type typeData = objectiveSetToObjective;

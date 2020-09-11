@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import achievement from '../types/achievement';
 
 export type typeData = achievement;

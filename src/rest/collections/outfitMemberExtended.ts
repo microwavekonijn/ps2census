@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import outfitMemberExtended from '../types/outfitMemberExtended';
 
 export type typeData = outfitMemberExtended;

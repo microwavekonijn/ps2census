@@ -1,4 +1,4 @@
-import { requestFactory } from '../utils/Helpers';
+import { requestFactory } from '../utils/requestHelpers';
 import fireModeType from '../types/fireModeType';
 
 export type typeData = fireModeType;
