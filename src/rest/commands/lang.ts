@@ -1,7 +1,12 @@
-import { baseRequest, collections} from '../utils/requestTypes';
-import { setParam } from '../utils/requestHelpers';
+import { censusRequest, collections} from '../utils/requestTypes';
 import { langs } from '../utils/responseTypes';
 
-export default function <C extends collections>(request: baseRequest<C>, lang: langs): baseRequest<C> {
-    return setParam(request, 'c:lang', lang);
+export default function <C extends collections>({collection, params}: censusRequest<C>, lang: langs): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:lang': lang,
+        },
+    };
 }

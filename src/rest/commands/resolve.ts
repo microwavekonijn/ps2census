@@ -1,11 +1,15 @@
-import { baseRequest, collections } from '../utils/requestTypes';
-import { setParam } from '../utils/requestHelpers';
+import { censusRequest } from '../utils/requestTypes';
 import resolveIndex from '../indexes/resolveIndex';
-import { Get } from '../../utils/Types';
 import { resolveToString } from '../utils/commandHelpers';
 
-type resolveType<C> = Get<resolveIndex, C> | [Get<resolveIndex, C>, string[]];
+type resolveType<C extends keyof resolveIndex> = resolveIndex[C] | [resolveIndex[C], string[]];
 
-export default function <C extends collections>(request: baseRequest<C>, resolve: resolveType<C>[]): baseRequest<C> {
-    return setParam(request, 'c:resolve', resolveToString(resolve));
+export default function <C extends keyof resolveIndex>({collection, params}: censusRequest<C>, resolve: resolveType<C>[]): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:resolve': resolveToString(resolve),
+        },
+    };
 }

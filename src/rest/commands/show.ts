@@ -1,7 +1,12 @@
-import { baseRequest, collections } from '../utils/requestTypes';
-import { setParam } from '../utils/requestHelpers';
+import { censusRequest, collections } from '../utils/requestTypes';
 import { fieldsToString } from '../utils/commandHelpers';
 
-export default function <C extends collections>(request: baseRequest<C>, fields: string[]): baseRequest<C> {
-    return setParam(request, 'c:show', fieldsToString(fields));
+export default function <C extends collections>({collection, params}: censusRequest<C>, fields: string[]): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:show': fieldsToString(fields),
+        },
+    };
 }

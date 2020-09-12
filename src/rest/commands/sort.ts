@@ -1,8 +1,13 @@
-import { baseRequest, collections } from '../utils/requestTypes';
-import { setParam} from '../utils/requestHelpers';
+import { censusRequest, collections } from '../utils/requestTypes';
 import { sortType } from '../utils/commandTypes';
 import { sortToString } from '../utils/commandHelpers';
 
-export default function <C extends collections>(request: baseRequest<C>, fields: sortType[]): baseRequest<C> {
-    return setParam(request, 'c:sort', sortToString(fields));
+export default function <C extends collections>({collection, params}: censusRequest<C>, fields: sortType[]): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:sort': sortToString(fields),
+        },
+    };
 }

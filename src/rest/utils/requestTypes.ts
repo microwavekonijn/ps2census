@@ -1,10 +1,10 @@
 import typeIndex from '../indexes/collectionIndex';
-import { joinType } from './commandTypes';
+import { joinType, sortType, treeType } from './commandTypes';
 import { langs } from './responseTypes';
 
-export type baseRequest<C extends collections> = {
+export type censusRequest<C extends collections> = {
     collection: C,
-    commands: {
+    commands?: {
         caseSensitive?: boolean,
         distinct?: string,
         exactMatchFirst?: boolean,
@@ -17,11 +17,11 @@ export type baseRequest<C extends collections> = {
         limitPerDB?: number,
         resolve?: string[],
         retry?: boolean,
-        show?: string,
-        sort?: string,
-        start?: string,
-        timing?: string,
-        tree?: string,
+        show?: string[],
+        sort?: sortType[],
+        start?: number,
+        timing?: boolean,
+        tree?: treeType,
     },
     params: Record<string, any>,
 };
@@ -58,4 +58,3 @@ type commands =
     | 'start'
     | 'timing'
     | 'tree';
-

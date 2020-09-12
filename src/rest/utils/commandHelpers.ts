@@ -1,11 +1,11 @@
-import { baseRequest, collections } from './requestTypes';
+import { censusRequest, collections } from './requestTypes';
 import { joinType, sortType, treeType } from './commandTypes';
 
-export function hasLimitPerDB<C extends collections>(request: baseRequest<C>): boolean {
+export function hasLimitPerDB<C extends collections>(request: censusRequest<C>): boolean {
     return !!request.params.limitPerDB;
 }
 
-export function hasLimit<C extends collections>(request: baseRequest<C>): boolean {
+export function hasLimit<C extends collections>(request: censusRequest<C>): boolean {
     return !!request.params.limit;
 }
 

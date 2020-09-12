@@ -5,7 +5,7 @@ export default function <C extends collections>({collection, params}: censusRequ
         collection,
         params: {
             ...params,
-            'c:limit': limit,
+            'c:limitPerDB': limit,
         },
     };
 }

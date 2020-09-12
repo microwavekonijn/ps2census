@@ -1,6 +1,10 @@
-import { baseRequest, collections } from '../utils/requestTypes';
-import { setParam } from '../utils/requestHelpers';
-
-export default function <C extends collections>(request: baseRequest<C>, exactMatchFirst = true): baseRequest<C> {
-    return setParam(request, 'c:exactMatchFirst', exactMatchFirst);
+import { censusRequest, collections } from '../utils/requestTypes';
+export default function <C extends collections>({collection, params}: censusRequest<C>, exactMatchFirst = true): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:exactMatchFirst': exactMatchFirst,
+        },
+    };
 }

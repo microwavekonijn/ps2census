@@ -1,6 +1,10 @@
-import { baseRequest, collections } from '../utils/requestTypes';
-import { setParam } from '../utils/requestHelpers';
-
-export default function <C extends collections>(request: baseRequest<C>, retry = false): baseRequest<C> {
-    return setParam(request, 'c:retry', retry);
+import { censusRequest, collections } from '../utils/requestTypes';
+export default function <C extends collections>({collection, params}: censusRequest<C>, retry = false): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:retry': retry,
+        },
+    };
 }

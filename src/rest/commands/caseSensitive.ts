@@ -1,6 +1,11 @@
-import { baseRequest, collections } from '../utils/requestTypes';
-import { setParam } from '../utils/requestHelpers';
+import { censusRequest, collections } from '../utils/requestTypes';
 
-export default function <C extends collections>(request: baseRequest<C>, sensitive = false): baseRequest<C> {
-    return setParam(request, 'c:case', sensitive);
+export default function <C extends collections>({collection, params}: censusRequest<C>, sensitive = false): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:case': sensitive,
+        },
+    };
 }

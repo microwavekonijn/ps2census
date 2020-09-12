@@ -1,14 +1,14 @@
 import DuplicateFilter from './DuplicateFilter';
 import { EventEmitter } from 'events';
 import { PS2Environment } from '../../utils/Types';
-import { baseRequest } from '../../rest/utils/requestTypes';
+import { censusRequest } from '../../rest/utils/requestTypes';
 import Cache from '../concerns/Cache';
 
 export type ClientConfig = {
     environment?: PS2Environment,
     streamManagerConfig?: EventStreamManagerConfig,
     characterManager?: {
-        request?: baseRequest<'character'>,
+        request?: censusRequest<'character'>,
         cache?: Cache,
     }
 }

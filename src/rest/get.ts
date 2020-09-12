@@ -1,12 +1,12 @@
 import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
-import { Get, PS2Environment } from '../utils/Types';
-import { baseRequest, collections } from './utils/requestTypes';
+import { PS2Environment } from '../utils/Types';
+import { censusRequest, collections } from './utils/requestTypes';
 import queryIndex from './indexes/queryIndex';
-import typeIndex from './indexes/collectionIndex';
+import collectionIndex from './indexes/collectionIndex';
 
-export type getMethod<C extends collections = collections> = (request: baseRequest<C>, query: Get<queryIndex, C>) => Promise<typeIndex[C][]>;
+export type getMethod = <C extends collections>(request: censusRequest<C>, query: queryIndex[C]) => Promise<collectionIndex[C][]>;
 
 export function getFactory(environment: PS2Environment, serviceId?: string): getMethod {
     const census = axios.create({
@@ -26,7 +26,7 @@ export function getFactory(environment: PS2Environment, serviceId?: string): get
         },
     });
 
-    return ({collection, params}: baseRequest<collections>, query: Get<queryIndex, collections>): Promise<typeIndex[collections][]> =>
+    return ({collection, params}, query) =>
         census.get(collection, {params: {...params, ...query}}).then(({data}) => data[`${collection}_list`]);
 }
 

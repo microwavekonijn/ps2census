@@ -1,8 +1,13 @@
-import { baseRequest, collections} from '../utils/requestTypes';
-import { setParam } from '../utils/requestHelpers';
+import { censusRequest, collections} from '../utils/requestTypes';
 import { joinType } from '../utils/commandTypes';
 import { joinsToString } from '../utils/commandHelpers';
 
-export default function <C extends collections>(request: baseRequest<C>, joins: joinType[]): baseRequest<C> {
-    return setParam(request, 'c:join', joinsToString(joins));
+export default function <C extends collections>({collection, params}: censusRequest<C>, joins: joinType[]): censusRequest<C> {
+    return {
+        collection,
+        params: {
+            ...params,
+            'c:join': joinsToString(joins),
+        },
+    };
 }
