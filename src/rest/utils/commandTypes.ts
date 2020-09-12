@@ -1,5 +1,7 @@
+import { collections } from './requestTypes';
+
 export type joinExpression = {
-    type: string,
+    type: collections,
     on?: string,
     to?: string,
     list?: boolean,
