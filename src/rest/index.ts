@@ -19,6 +19,7 @@ export { default as includeNull } from './commands/includeNull';
 export { default as join } from './commands/join';
 export { default as lang } from './commands/lang';
 export { default as limit } from './commands/limit';
+export { default as limitPerDB } from './commands/limitPerDB';
 export { default as resolve } from './commands/resolve';
 export { default as retry } from './commands/retry';
 export { default as show } from './commands/show';
