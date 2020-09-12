@@ -18,7 +18,7 @@ import ContinentLock from './events/ContinentLock';
 import FacilityControl from './events/FacilityControl';
 import MetagameEvent from './events/MetagameEvent';
 import { getFactory } from '../rest';
-import { getMethod } from '../rest/get';
+import { getMethod } from '../rest/utils/requestTypes';
 import CharacterManager from './managers/CharacterManager';
 import Cache from './utils/Cache';
 import character from '../rest/collections/character';

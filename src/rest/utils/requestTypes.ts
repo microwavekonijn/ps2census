@@ -1,6 +1,13 @@
 import typeIndex from '../indexes/collectionIndex';
+import queryIndex from '../indexes/queryIndex';
+import collectionIndex from '../indexes/collectionIndex';
 // import { joinType, sortType, treeType } from './commandTypes';
 // import { langs } from './responseTypes';
+
+export type getMethod = <C extends collections>(request: censusRequest<C>, query: queryIndex[C]) => Promise<collectionIndex[C][]>;
+
+export type countRequest = <C extends countableCollections>({collection, params}: censusRequest<C>, query: queryIndex[C]) => Promise<number>
+
 
 export type censusRequest<C extends collections> = {
     collection: C,

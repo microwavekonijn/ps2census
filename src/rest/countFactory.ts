@@ -2,12 +2,9 @@ import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { PS2Environment } from '../utils/Types';
-import { censusRequest, countableCollections } from './utils/requestTypes';
-import queryIndex from './indexes/queryIndex';
+import { countRequest } from './utils/requestTypes';
 
-export type countRequest = <C extends countableCollections>({collection, params}: censusRequest<C>, query: queryIndex[C]) => Promise<number>
-
-export function countFactory(environment: PS2Environment, serviceId?: string): countRequest {
+export default function(environment: PS2Environment, serviceId?: string): countRequest {
     const census = axios.create({
         baseURL: serviceId
             ? `https://census.daybreakgames.com/s:${serviceId}/count/${environment}:v2`

@@ -1,9 +1,12 @@
-export { getFactory } from './get';
-export { countFactory } from './count';
+export { default as getFactory } from './getFactory';
+export { default as countFactory } from './countFactory';
 
 /** Utility */
-export * as Helpers from './utils/requestHelpers';
-export * as Types from './utils/requestTypes';
+export * as commandHelpers from './utils/commandHelpers';
+export * as commandTypes from './utils/commandTypes';
+export * as requestHelpers from './utils/requestHelpers';
+export * as requestTypes from './utils/requestTypes';
+export * as responseTypes from './utils/responseTypes';
 
 /** Exceptions */
 export { default as CensusRestException } from './exceptions/CensusRestException';

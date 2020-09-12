@@ -2,13 +2,9 @@ import axios from 'axios';
 import CensusServerError from './exceptions/CensusServerError';
 import CensusRestException from './exceptions/CensusRestException';
 import { PS2Environment } from '../utils/Types';
-import { censusRequest, collections } from './utils/requestTypes';
-import queryIndex from './indexes/queryIndex';
-import collectionIndex from './indexes/collectionIndex';
+import { getMethod } from './utils/requestTypes';
 
-export type getMethod = <C extends collections>(request: censusRequest<C>, query: queryIndex[C]) => Promise<collectionIndex[C][]>;
-
-export function getFactory(environment: PS2Environment, serviceId?: string): getMethod {
+export default function(environment: PS2Environment, serviceId?: string): getMethod {
     const census = axios.create({
         baseURL: serviceId
             ? `https://census.daybreakgames.com/s:${serviceId}/get/${environment}:v2`
