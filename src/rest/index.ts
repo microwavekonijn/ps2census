@@ -124,7 +124,9 @@ export {
     query as charactersItemQuery,
 } from './collections/charactersItem';
 export {
-    default as ability, typeData as abilityTypeData, query as abilityQuery,
+    default as ability,
+    typeData as abilityTypeData,
+    query as abilityQuery,
 } from './collections/ability';
 export {
     default as abilityType,
