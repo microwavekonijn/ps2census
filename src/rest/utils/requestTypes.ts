@@ -1,28 +1,28 @@
 import typeIndex from '../indexes/collectionIndex';
-import { joinType, sortType, treeType } from './commandTypes';
-import { langs } from './responseTypes';
+// import { joinType, sortType, treeType } from './commandTypes';
+// import { langs } from './responseTypes';
 
 export type censusRequest<C extends collections> = {
     collection: C,
-    commands?: {
-        caseSensitive?: boolean,
-        distinct?: string,
-        exactMatchFirst?: boolean,
-        has?: string,
-        hide?: string[],
-        includeNull?: string,
-        join?: joinType[],
-        lang?: langs,
-        limit?: number,
-        limitPerDB?: number,
-        resolve?: string[],
-        retry?: boolean,
-        show?: string[],
-        sort?: sortType[],
-        start?: number,
-        timing?: boolean,
-        tree?: treeType,
-    },
+    // commands?: {
+    //     caseSensitive?: boolean,
+    //     distinct?: string,
+    //     exactMatchFirst?: boolean,
+    //     has?: string,
+    //     hide?: string[],
+    //     includeNull?: string,
+    //     join?: joinType[],
+    //     lang?: langs,
+    //     limit?: number,
+    //     limitPerDB?: number,
+    //     resolve?: string[],
+    //     retry?: boolean,
+    //     show?: string[],
+    //     sort?: sortType[],
+    //     start?: number,
+    //     timing?: boolean,
+    //     tree?: treeType,
+    // },
     params: Record<string, any>,
 };
 
