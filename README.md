@@ -95,7 +95,8 @@ If you encounter bugs or problems report them in the Census Rest API thread on G
 
 ## Documentation
 
-Check the [docs](https://github.com/microwavekonijn/ps2census/tree/master/docs).
+- [Rest API](https://github.com/microwavekonijn/ps2census/tree/master/docs/Rest.md);
+- [Testing Stream](https://github.com/microwavekonijn/ps2census/tree/master/docs/Testing.md).
 
 ## Contribution
 
