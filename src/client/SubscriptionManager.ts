@@ -2,26 +2,33 @@ import { EventStreamSubscription } from './utils/Types';
 import Client from './Client';
 import EventStream from './EventStream';
 import { Events } from './utils/Constants';
+import { PS2EventNames } from './utils/PS2Events';
 
 export default class SubscriptionManager {
     private static readonly label = 'SubscriptionManager';
 
-    /**
-     * @type {Set<EventStreamSubscription>} All the current subscriptions
-     */
-    private readonly subscriptions: Set<EventStreamSubscription>;
+    private readonly characters: Set<string>;
+
+    private readonly worlds: Set<string>;
+
+    private readonly eventNames: Set<'all' | PS2EventNames>;
+
+    private logicalAndCharactersWithWorlds: boolean;
 
     /**
      * @param {Client} client the client used to emit debug events
      * @param {EventStream} stream the stream to comment, like, and subscribe to
-     * @param {Array<EventStreamSubscription>} subscriptions the initial subscriptions
+     * @param {EventStreamSubscription} subscription the initial subscription
      */
     public constructor(
         private readonly client: Client,
         private readonly stream: EventStream,
-        subscriptions: Array<EventStreamSubscription> = [],
+        subscription: EventStreamSubscription = {},
     ) {
-        this.subscriptions = new Set(subscriptions);
+        this.characters = new Set(subscription.characters);
+        this.worlds = new Set(subscription.worlds);
+        this.eventNames = new Set(subscription.eventNames);
+        this.logicalAndCharactersWithWorlds = subscription.logicalAndCharactersWithWorlds ?? false;
 
         this.registerClientEvents();
     }
@@ -33,7 +40,7 @@ export default class SubscriptionManager {
         this.stream.on(Events.STREAM_READY, () => {
             this.client.emit(Events.DEBUG, `Subscribing to events`, SubscriptionManager.label);
 
-            this.subscriptions.forEach(sub => this.stream.subscribe(sub));
+            this.stream.subscribe(this.subscription);
         });
     }
 
@@ -44,14 +51,14 @@ export default class SubscriptionManager {
      * @return {EventStreamSubscription}
      */
     public subscribe(subscription: EventStreamSubscription): EventStreamSubscription {
-        subscription = Object.freeze({...subscription});
-        this.subscriptions.add(subscription);
+        subscription.characters?.forEach(this.characters.add);
+        subscription.worlds?.forEach(this.worlds.add);
+        subscription.eventNames?.forEach(this.eventNames.add);
 
-        if (this.stream.isReady) {
+        if (this.stream.isReady)
             this.subscribe(subscription);
-        }
 
-        return subscription;
+        return this.subscription;
     }
 
     /**
@@ -60,21 +67,26 @@ export default class SubscriptionManager {
      * @param {EventStreamSubscription} subscription
      * @return {boolean}
      */
-    public unsubscribe(subscription: EventStreamSubscription): boolean {
-        if (!this.subscriptions.delete(subscription))
-            return false;
+    public unsubscribe(subscription: EventStreamSubscription): void {
+        subscription.characters?.forEach(this.characters.delete);
+        subscription.worlds?.forEach(this.worlds.delete);
+        subscription.eventNames?.forEach(this.eventNames.delete);
+
+        if (subscription.logicalAndCharactersWithWorlds)
+            this.logicalAndCharactersWithWorlds = subscription.logicalAndCharactersWithWorlds;
 
         if (this.stream.isReady)
             this.stream.unsubscribe(subscription);
-
-        return true;
     }
 
     /**
      * Purge all subscriptions
      */
     public unsubscribeAll(): void {
-        this.subscriptions.clear();
+        this.characters.clear();
+        this.worlds.clear();
+        this.eventNames.clear();
+        this.logicalAndCharactersWithWorlds = false;
 
         if (this.stream.isReady)
             this.stream.unsubscribeAll();
@@ -89,9 +101,9 @@ export default class SubscriptionManager {
     public resubscribe(reset = false): boolean {
         if (this.stream.isReady) {
             if (reset)
-                this.unsubscribeAll(); // TODO: Should probably wait until we hear back from the stream
+                this.unsubscribeAll();
 
-            this.subscriptions.forEach(sub => this.stream.subscribe(sub));
+            this.stream.subscribe(this.subscription);
 
             return true;
         }
@@ -100,11 +112,16 @@ export default class SubscriptionManager {
     }
 
     /**
-     * Get current subscriptions
+     * Get current subscription
      *
-     * @return {Array<EventStreamSubscription>}
+     * @return {EventStreamSubscription}
      */
-    public get currentSubscriptions(): Array<EventStreamSubscription> {
-        return Array.from(this.subscriptions);
+    public get subscription(): EventStreamSubscription {
+        return {
+            characters: Array.from(this.characters),
+            worlds: Array.from(this.worlds),
+            eventNames: Array.from(this.eventNames),
+            logicalAndCharactersWithWorlds: this.logicalAndCharactersWithWorlds,
+        };
     }
 }

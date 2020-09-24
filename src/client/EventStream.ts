@@ -393,11 +393,14 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    public subscribe(subscription: EventStreamSubscription): void {
+    public subscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): void {
         this.send(JSON.stringify({
             service: 'event',
             action: 'subscribe',
-            ...subscription,
+            characters,
+            worlds,
+            eventNames,
+            logicalAndCharactersWithWorlds,
         }));
     }
 
@@ -406,11 +409,14 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    public unsubscribe(subscription: EventStreamSubscription): void {
+    public unsubscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): void {
         this.send(JSON.stringify({
             service: 'event',
             action: 'clearSubscribe',
-            ...subscription,
+            characters,
+            worlds,
+            eventNames,
+            logicalAndCharactersWithWorlds,
         }));
     }
 
