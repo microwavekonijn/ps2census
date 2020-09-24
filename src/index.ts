@@ -26,7 +26,7 @@ export { default as PlayerLogout } from './client/events/PlayerLogout';
 export { default as SkillAdded } from './client/events/SkillAdded';
 export { default as VehicleDestroy, Destroy } from './client/events/VehicleDestroy';
 
-export { default as BaseManager } from './client/managers/BaseManager';
+export { default as RestManager } from './client/managers/RestManager';
 export { default as CharacterManager } from './client/managers/CharacterManager';
 
 export { default as Cache } from './client/utils/Cache';

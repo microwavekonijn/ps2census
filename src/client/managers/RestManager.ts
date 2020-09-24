@@ -1,5 +1,5 @@
 import { censusRequest, collections } from '../../rest/utils/requestTypes';
-import typeIndex from '../../rest/indexes/collectionIndex';
+import collectionIndex from '../../rest/indexes/collectionIndex';
 import limit from '../../rest/commands/limit';
 import queryIndex from '../../rest/indexes/queryIndex';
 import Client from '../Client';
@@ -7,44 +7,47 @@ import Cache from '../concerns/Cache';
 import { Events } from '../utils/Constants';
 import { hasLimitPerDB } from '../../rest/utils/commandHelpers';
 
-export default class BaseManager<C extends collections> {
-    private static readonly label = 'BaseManager';
+export default abstract class RestManager<C extends collections> {
+    private static readonly label = 'RestManager';
 
-    protected readonly requestObject: censusRequest<'character'>;
+    protected readonly request: censusRequest<C>;
 
-    public constructor(
+    protected constructor(
         protected readonly client: Client,
         public readonly cache: Cache,
-        requestObject: censusRequest<'character'>,
-        protected readonly id: keyof queryIndex[C] & keyof typeIndex[C],
+        request: censusRequest<C>,
     ) {
-        if ('c:tree' in requestObject.params || 'c:distinct' in requestObject.params)
+        if ('c:tree' in request.params || 'c:distinct' in request.params)
             throw new Error(`Request object request will return unsupported responses(i.e. tree, distinct)`);
 
-        if (hasLimitPerDB(requestObject))
+        if (hasLimitPerDB(request))
             throw new Error(`Request object cannot be limited per DB`);
 
-        this.requestObject = limit(requestObject, 1);
+        this.request = limit(request, 1);
     }
 
-    public async fetch(id: string): Promise<typeIndex[C]> {
+    public async fetch(id: string): Promise<collectionIndex[C]> {
         return this.cache.remember(id, () => this.makeRequest(id));
     }
 
-    public async fetchFresh(id: string): Promise<typeIndex[C]> {
+    public async fetchFresh(id: string): Promise<collectionIndex[C]> {
         await this.cache.forget(id);
 
         return this.fetch(id);
     }
 
     private async makeRequest(id: string) {
-        this.client.emit(Events.DEBUG, `Fetching data for "${this.id}" => "${id}"(${this.constructor.name}).`, BaseManager.label);
+        const query = this.query(id);
 
-        const data = await this.client.get(this.requestObject, {[this.id]: id});
+        this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(query)}(${this.constructor.name}).`, RestManager.label);
+
+        const data = await this.client.get(this.request, query);
 
         if (data.length <= 0)
             throw new Error(`Unable to retrieve data, api returned no matches for "${id}"`);
 
         return data[0];
     }
+
+    protected abstract query(id: string): queryIndex[C];
 }

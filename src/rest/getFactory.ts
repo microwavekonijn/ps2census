@@ -23,6 +23,9 @@ export default function(environment: PS2Environment, serviceId?: string): getMet
     });
 
     return ({collection, params}, query) =>
-        census.get(collection, {params: {...params, ...query}}).then(({data}) => data[`${collection}_list`]);
+        census.get(
+            collection,
+            {params: {...params, ...query}},
+        ).then(({data}) => data[`${collection}_list`]);
 }
 
