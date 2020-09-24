@@ -40,6 +40,7 @@ export {
     loadoutTypeMap,
 } from './client/utils/PS2Constants';
 export {
+    PS2EventNames,
     PS2EventData,
     AchievementEarnedData,
     BattleRankUpData,
