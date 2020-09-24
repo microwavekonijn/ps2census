@@ -47,7 +47,7 @@ class EventStreamManager {
     public constructor(
         public readonly client: Client,
         {
-            subscriptions = [],
+            subscription = {},
             streamConfig,
         }: EventStreamManagerConfig = {},
     ) {
@@ -57,7 +57,7 @@ class EventStreamManager {
             environment: this.client.environment,
             ...streamConfig,
         });
-        this.subscriptionManager = new SubscriptionManager(this.client, this.stream, subscriptions);
+        this.subscriptionManager = new SubscriptionManager(this.client, this.stream, subscription);
 
         this.prepareEventStream();
     }

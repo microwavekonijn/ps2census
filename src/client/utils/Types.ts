@@ -15,7 +15,7 @@ export type ClientConfig = {
 }
 
 export type EventStreamManagerConfig = {
-    subscriptions?: EventStreamSubscription[],
+    subscription?: EventStreamSubscription,
     streamConfig?: EventStreamConfig,
 }
 

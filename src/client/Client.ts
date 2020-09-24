@@ -149,8 +149,9 @@ class Client extends EventEmitter {
      * Make a subscription to the stream
      *
      * @param {EventStreamSubscription} subscription
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public subscribe(subscription: EventStreamSubscription): EventStreamSubscription {
+    public subscribe(subscription: EventStreamSubscription): Promise<boolean> {
         return this.streamManager.subscriptionManager.subscribe(subscription);
     }
 
@@ -158,35 +159,38 @@ class Client extends EventEmitter {
      * Remove a subscription from the stream
      *
      * @param {EventStreamSubscription} subscription
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public unsubscribe(subscription: EventStreamSubscription): boolean {
+    public unsubscribe(subscription: EventStreamSubscription): Promise<boolean> {
         return this.streamManager.subscriptionManager.unsubscribe(subscription);
     }
 
     /**
      * Purge all subscriptions
+     *
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public unsubscribeAll(): void {
-        this.streamManager.subscriptionManager.unsubscribeAll();
+    public unsubscribeAll(): Promise<boolean> {
+        return this.streamManager.subscriptionManager.unsubscribeAll();
     }
 
     /**
      * Rerun all subscriptions
      *
      * @param {boolean} reset When true unsubscribes to all events first
-     * @return {boolean} whether it has been run(depends on stream being ready)
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public resubscribe(reset = false): boolean {
+    public resubscribe(reset = false): Promise<boolean> {
         return this.streamManager.subscriptionManager.resubscribe(reset);
     }
 
     /**
-     * Get current subscriptions
+     * Get the current subscription
      *
-     * @return {Array<EventStreamSubscription>}
+     * @return {EventStreamSubscription}
      */
-    public get currentSubscriptions(): Array<EventStreamSubscription> {
-        return this.streamManager.subscriptionManager.currentSubscriptions;
+    public get subscription(): EventStreamSubscription {
+        return this.streamManager.subscriptionManager.subscription;
     }
 
 

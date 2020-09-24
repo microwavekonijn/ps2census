@@ -52,7 +52,7 @@ export default class SubscriptionManager {
         this.stream.on(Events.STREAM_READY, () => {
             this.client.emit(Events.DEBUG, `Subscribing to events`, SubscriptionManager.label);
 
-            this.stream.subscribe(this.subscription);
+            void this.stream.subscribe(this.subscription);
         });
     }
 
