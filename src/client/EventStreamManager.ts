@@ -51,9 +51,6 @@ class EventStreamManager {
             streamConfig,
         }: EventStreamManagerConfig = {},
     ) {
-        if (!this.client.serviceId)
-            throw new Error('A service ID is required to connect to the Event Stream');
-
         this.handler = new EventStreamHandler(this.client, new DuplicateFilter());
         this.stream = new EventStream(this.client.serviceId, this.handler, {
             emitter: this.client,

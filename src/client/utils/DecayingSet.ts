@@ -21,6 +21,8 @@ export default class DecayingSet<T> {
             this.set[this.index].clear();
 
         }, decay / partitions);
+
+        this.timeout.unref();
     }
 
     public add(value: T): this {
