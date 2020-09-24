@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 import WebSocket, { Data } from 'ws';
 import Timeout = NodeJS.Timeout;
-import { EventStreamConfig, EventStreamSubscription } from './utils/Types';
+import { EventStreamConfig, EventStreamSubscribed, EventStreamSubscription } from './utils/Types';
 import { Events, State } from './utils/Constants';
 import EventStreamHandler from './concerns/EventStreamHandler';
 import { PS2Environment } from '../utils/Types';
@@ -81,6 +81,11 @@ class EventStream extends EventEmitter {
      * The emitter used for events like debug, warn, and error
      */
     private readonly emitter: EventEmitter;
+
+    /**
+     * Queue that contains handlers for subscription response from the event stream
+     */
+    private readonly subscriptionResponseQueue = new Set<(subscription: EventStreamSubscribed) => void>();
 
     /**
      * @param serviceId
@@ -244,6 +249,7 @@ class EventStream extends EventEmitter {
                     throw new Error(`Received unknown event service: ${JSON.stringify(data)}`);
             }
         } else if (data.subscription) {
+            this.handleSubscription(data.subscription);
             this.handler.handleSubscription(data.subscription);
         } else if (data['send this for help']) {
             // Beep beep
@@ -393,15 +399,15 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    public subscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): void {
-        this.send(JSON.stringify({
+    public subscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
+        return this.updateSubscription({
             service: 'event',
             action: 'subscribe',
             characters,
             worlds,
             eventNames,
             logicalAndCharactersWithWorlds,
-        }));
+        });
     }
 
     /**
@@ -409,26 +415,73 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    public unsubscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): void {
-        this.send(JSON.stringify({
+    public unsubscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
+        return this.updateSubscription({
             service: 'event',
             action: 'clearSubscribe',
             characters,
             worlds,
             eventNames,
             logicalAndCharactersWithWorlds,
-        }));
+        });
     }
 
     /**
      * Purge all subscriptions
      */
-    public unsubscribeAll(): void {
-        this.send(JSON.stringify({
+    public unsubscribeAll(): Promise<EventStreamSubscribed> {
+        return this.updateSubscription({
             service: 'event',
             action: 'clearSubscribe',
             all: 'true',
-        }));
+        });
+    }
+
+    /**
+     * Handles incoming subscriptions so they can resolve a promise
+     * Note: The assumption is made that the messages are send in order
+     *
+     * @param {EventStreamSubscribed} subscription
+     * @private
+     */
+    private handleSubscription(subscription: EventStreamSubscribed): void {
+        const [resolver] = this.subscriptionResponseQueue;
+
+        if (resolver) {
+            this.subscriptionResponseQueue.delete(resolver);
+
+            resolver(subscription);
+        }
+    }
+
+    /**
+     * Update the event stream subscription
+     *
+     * @param {Record<string, string | number | string[]>} eventMessage
+     * @return {Promise<EventStreamSubscribed>}
+     * @private
+     */
+    private updateSubscription(eventMessage: Record<string, any>): Promise<EventStreamSubscribed> {
+        return new Promise((resolve, reject) => {
+            if (!this.isReady)
+                reject(new Error('Unable to update subscription to stream as it is closed'));
+
+            const closed = () => {
+                this.subscriptionResponseQueue.delete(success);
+                reject(new Error('Unable to update subscription to stream as it closed'));
+            }
+
+            const success = (subscription: EventStreamSubscribed) => {
+                this.off(Events.STREAM_CLOSE, closed);
+                resolve(subscription);
+            }
+
+            this.once(Events.STREAM_CLOSE, closed);
+
+            this.subscriptionResponseQueue.add(success);
+
+            this.send(JSON.stringify(eventMessage));
+        });
     }
 
     /**

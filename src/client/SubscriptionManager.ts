@@ -7,12 +7,24 @@ import { PS2EventNames } from './utils/PS2Events';
 export default class SubscriptionManager {
     private static readonly label = 'SubscriptionManager';
 
+    /**
+     * Characters subscribed to
+     */
     private readonly characters: Set<string>;
 
+    /**
+     * Worlds subscribed to
+     */
     private readonly worlds: Set<string>;
 
+    /**
+     * Events to listen to
+     */
     private readonly eventNames: Set<'all' | PS2EventNames>;
 
+    /**
+     * Whether both worlds and characters should match
+     */
     private logicalAndCharactersWithWorlds: boolean;
 
     /**
@@ -48,26 +60,29 @@ export default class SubscriptionManager {
      * Make a subscription to the stream
      *
      * @param {EventStreamSubscription} subscription
-     * @return {EventStreamSubscription}
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public subscribe(subscription: EventStreamSubscription): EventStreamSubscription {
+    public async subscribe(subscription: EventStreamSubscription): Promise<boolean> {
         subscription.characters?.forEach(this.characters.add);
         subscription.worlds?.forEach(this.worlds.add);
         subscription.eventNames?.forEach(this.eventNames.add);
 
-        if (this.stream.isReady)
-            this.subscribe(subscription);
+        if (this.stream.isReady) {
+            await this.stream.subscribe(subscription);
 
-        return this.subscription;
+            return true;
+        }
+
+        return false;
     }
 
     /**
      * Remove a subscription from the stream
      *
      * @param {EventStreamSubscription} subscription
-     * @return {boolean}
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public unsubscribe(subscription: EventStreamSubscription): void {
+    public async unsubscribe(subscription: EventStreamSubscription): Promise<boolean> {
         subscription.characters?.forEach(this.characters.delete);
         subscription.worlds?.forEach(this.worlds.delete);
         subscription.eventNames?.forEach(this.eventNames.delete);
@@ -75,35 +90,46 @@ export default class SubscriptionManager {
         if (subscription.logicalAndCharactersWithWorlds)
             this.logicalAndCharactersWithWorlds = subscription.logicalAndCharactersWithWorlds;
 
-        if (this.stream.isReady)
-            this.stream.unsubscribe(subscription);
+        if (this.stream.isReady) {
+            await this.stream.unsubscribe(subscription);
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
      * Purge all subscriptions
+     *
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public unsubscribeAll(): void {
+    public async unsubscribeAll(): Promise<boolean> {
         this.characters.clear();
         this.worlds.clear();
         this.eventNames.clear();
         this.logicalAndCharactersWithWorlds = false;
 
-        if (this.stream.isReady)
-            this.stream.unsubscribeAll();
+        if (this.stream.isReady) {
+            await this.stream.unsubscribeAll();
+
+            return true;
+        }
+
+        return false;
     }
 
     /**
      * Rerun all subscriptions
      *
      * @param {boolean} reset When true unsubscribes to all events first
-     * @return {boolean} whether it has been run(depends on stream being ready)
+     * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public resubscribe(reset = false): boolean {
+    public async resubscribe(reset = false): Promise<boolean> {
         if (this.stream.isReady) {
-            if (reset)
-                this.unsubscribeAll();
+            if (reset) await this.unsubscribeAll();
 
-            this.stream.subscribe(this.subscription);
+            await this.stream.subscribe(this.subscription);
 
             return true;
         }
