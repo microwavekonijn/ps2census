@@ -173,6 +173,23 @@ export type MetagameEventData = {
     instance_id: string
 }
 
+export type PS2EventNames =
+    'AchievementEarned'
+    | 'BattleRankUp'
+    | 'Death'
+    | 'GainExperience'
+    | 'ItemAdded'
+    | 'PlayerFacilityCapture'
+    | 'PlayerFacilityDefend'
+    | 'PlayerLogin'
+    | 'PlayerLogout'
+    | 'SkillAdded'
+    | 'VehicleDestroy'
+    | 'ContinentLock'
+    | 'ContinentUnlock'
+    | 'FacilityControl'
+    | 'MetagameEvent';
+
 export type PS2EventData =
     AchievementEarnedData
     | BattleRankUpData

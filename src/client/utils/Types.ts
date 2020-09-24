@@ -3,6 +3,7 @@ import { EventEmitter } from 'events';
 import { PS2Environment } from '../../utils/Types';
 import { censusRequest } from '../../rest/utils/requestTypes';
 import Cache from '../concerns/Cache';
+import { PS2EventNames } from './PS2Events';
 
 export type ClientConfig = {
     environment?: PS2Environment,
@@ -26,22 +27,22 @@ export type EventStreamConfig = {
     emitter?: EventEmitter,
 }
 
-export type EventStreamSubscription = {
+export type EventStreamSubscription = Partial<{
     characters: string[],
-    worlds?: string[],
-    eventNames: string[],
-    logicalAndCharactersWithWorlds?: boolean
-} | {
-    characters?: string[],
     worlds: string[],
-    eventNames: string[],
+    eventNames: ('all' | PS2EventNames)[],
     logicalAndCharactersWithWorlds?: boolean
-}
+}>
 
 export type EventStreamSubscribed = {
     characterCount: number,
     worlds: string[],
-    eventNames: string[],
+    eventNames: ('all' | PS2EventNames)[],
+    logicalAndCharactersWithWorlds: boolean
+} | {
+    characters: ['all'],
+    worlds: string[],
+    eventNames: ('all' | PS2EventNames)[],
     logicalAndCharactersWithWorlds: boolean
 }
 
