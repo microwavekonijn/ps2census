@@ -5,7 +5,7 @@ import queryIndex from '../../rest/indexes/queryIndex';
 import Client from '../Client';
 import Cache from '../concerns/Cache';
 import { Events } from '../utils/Constants';
-import { hasLimitPerDB } from '../../rest/utils/commandHelpers';
+import { hasLimit, hasLimitPerDB } from '../../rest/utils/commandHelpers';
 
 export default abstract class RestManager<C extends collections> {
     private static readonly label = 'RestManager';
@@ -20,10 +20,8 @@ export default abstract class RestManager<C extends collections> {
         if ('c:tree' in request.params || 'c:distinct' in request.params)
             throw new Error(`Request object request will return unsupported responses(i.e. tree, distinct)`);
 
-        if (hasLimitPerDB(request))
-            throw new Error(`Request object cannot be limited per DB`);
-
-        this.request = limit(request, 1);
+        if (hasLimitPerDB(request) || hasLimit(request))
+            throw new Error(`Request object cannot be limited`);
     }
 
     public async fetch(id: string): Promise<collectionIndex[C]> {
