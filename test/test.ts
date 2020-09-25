@@ -1,16 +1,14 @@
 import { Client, Events } from '../src';
-import character from '../src/rest/collections/character';
 import { Kill } from '../src/client/events/Death';
 
-const client = new Client({
-    serviceId: process.argv[2],
+const client = new Client(process.argv[2], {
     streamManagerConfig: {
-        subscriptions: [{
+        subscription: {
             characters: ['all'],
             worlds: ['all'],
             eventNames: ['Death'],
             logicalAndCharactersWithWorlds: true,
-        }],
+        },
     },
 });
 

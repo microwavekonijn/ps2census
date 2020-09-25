@@ -152,8 +152,8 @@ class EventStream extends EventEmitter {
                 this.emitter.emit(Events.DEBUG, `Open connection found, continuing operations.`, EventStream.label);
 
                 // Assume everything is fine
-                this.emit(Events.STREAM_READY);
                 this.state = State.READY;
+                this.emit(Events.STREAM_READY);
 
                 return;
             }
