@@ -1,4 +1,4 @@
-import { censusRequest, collections} from '../utils/requestTypes';
+import { censusRequest, collections } from '../utils/requestTypes';
 import { treeType } from '../utils/commandTypes';
 import { treeToString } from '../utils/commandHelpers';
 

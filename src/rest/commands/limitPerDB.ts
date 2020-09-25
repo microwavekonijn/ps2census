@@ -1,6 +1,7 @@
-import { censusRequest, collections } from '../utils/requestTypes';
+import { censusRequest } from '../utils/requestTypes';
+import { limitCollections } from '../utils/commandTypes';
 
-export default function <C extends collections>({collection, params}: censusRequest<C>, limit: number): censusRequest<C> {
+export default function <C extends limitCollections>({collection, params}: censusRequest<C>, limit: number): censusRequest<C> {
     return {
         collection,
         params: {

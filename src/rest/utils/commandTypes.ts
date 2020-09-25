@@ -22,3 +22,34 @@ export type treeType = {
     prefix?: string,
     start?: string
 }
+
+export type limitCollections = Exclude<collections,
+    'characters_friend'
+    | 'characters_item'
+    | 'characters_online_status'
+    | 'characters_world'
+    | 'map'>
+
+export type startCollections = Exclude<collections,
+    'characters_event'
+    | 'characterS_event_grouped'
+    | 'characters_friend'
+    | 'characters_item'
+    | 'characters_online_status'
+    | 'event'
+    | 'characters_world'
+    | 'map'
+    | 'world_event'>
+
+export type baseCollections = Exclude<collections,
+    'characters_event'
+    | 'characterS_event_grouped'
+    | 'characters_friend'
+    | 'characters_item'
+    | 'characters_leaderboard'
+    | 'characters_online_status'
+    | 'event'
+    | 'leaderboard'
+    | 'characters_world'
+    | 'map'
+    | 'world_event'>

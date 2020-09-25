@@ -1,4 +1,4 @@
-import { censusRequest, collections} from '../utils/requestTypes';
+import { censusRequest, collections } from '../utils/requestTypes';
 import { joinType } from '../utils/commandTypes';
 import { joinsToString } from '../utils/commandHelpers';
 
