@@ -223,8 +223,8 @@ class EventStream extends EventEmitter {
             switch (data.type) {
                 case 'connectionStateChanged':
                     if (data.connected) {
-                        this.emit(Events.STREAM_READY);
                         this.state = State.READY;
+                        this.emit(Events.STREAM_READY);
                         this.setConnectionTimeout(false);
                         this.setHeartbeatTimer(this.heartbeatInterval);
                     } else {
