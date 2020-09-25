@@ -6,7 +6,7 @@ export default function <C extends baseCollections>({collection, params}: census
         collection,
         params: {
             ...params,
-            'c:show': field,
+            'c:distinct': field,
         },
     };
 }

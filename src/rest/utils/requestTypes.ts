@@ -8,7 +8,6 @@ export type getMethod = <C extends collections>(request: censusRequest<C>, query
 
 export type countRequest = <C extends countableCollections>({collection, params}: censusRequest<C>, query: queryIndex[C]) => Promise<number>
 
-
 export type censusRequest<C extends collections> = {
     collection: C,
     // commands?: {

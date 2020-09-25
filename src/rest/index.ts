@@ -13,7 +13,7 @@ export { default as CensusRestException } from './exceptions/CensusRestException
 export { default as CensusServerError } from './exceptions/CensusServerError';
 
 /** Commands */
-export { default as caseSensitive } from './commands/caseSensitive';
+export { default as caseSensitive } from './commands/caseSensitive'; // Case is a reserved keyword
 export { default as distinct } from './commands/distinct';
 export { default as exactMatchFirst } from './commands/exactMatchFirst';
 export { default as has } from './commands/has';
