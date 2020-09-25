@@ -45,7 +45,7 @@ client.on(Events.PS2_DUPLICATE, (e) => console.log('Duplicate', JSON.stringify(e
 
 
 let aborting = false;
-const abort = (code = 0, e: Error) => {
+const abort = (code = 0, e?: Error) => {
     if (aborting) return;
     aborting = true;
 
@@ -63,3 +63,12 @@ process.on('unhandledRejection', abort.bind(null, 1))
     .on('exit', abort);
 
 client.watch();
+
+if (process.argv[3]) {
+    const t = Number.parseInt(process.argv[3], 10);
+
+    if (isFinite(t)) {
+        console.log(`Timeout to abort is set: ${t}s`);
+        setTimeout(() => abort(0), t * 1000);
+    }
+}

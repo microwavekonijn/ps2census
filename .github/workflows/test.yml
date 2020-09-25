@@ -7,13 +7,23 @@ on:
   pull_request:
 
 jobs:
-  test:
+  compile-test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependecies
-      run: npm ci
-    - name: Compile
-      run: npm run build
-    - name: Test
-      run: npm test
+      - uses: actions/checkout@v2
+      - name: Install dependecies
+        run: npm ci
+      - name: Compile
+        run: npm run build
+      - name: Test
+        run: npm test
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependecies
+        run: npm ci
+      - name: Run
+        run: ts-node ./test/test.ts
+        with:
+          arguments: ${{ secrets.ServiceID }} 5
