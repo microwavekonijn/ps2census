@@ -60,6 +60,7 @@ export {
 } from './client/utils/PS2Events';
 export {
     ClientConfig,
+    ClientEvents,
     EventStreamManagerConfig,
     EventStreamConfig,
     EventStreamSubscription,

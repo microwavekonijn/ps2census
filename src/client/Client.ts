@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { ClientConfig, EventStreamSubscribed, EventStreamSubscription } from './utils/Types';
+import { ClientConfig, ClientEvents, EventStreamSubscribed, EventStreamSubscription } from './utils/Types';
 import EventStreamManager from './EventStreamManager';
 import PS2Event from './events/PS2Event';
 import { PS2Environment } from '../utils/Types';
@@ -25,59 +25,8 @@ import character from '../rest/collections/character';
 import resolve from '../rest/commands/resolve';
 
 declare interface Client {
-    on(event: 'ready', listener: () => void): this;
-    on(event: 'disconnected', listener: () => void): this;
-    on(event: 'reconnecting', listener: () => void): this;
-    on(event: 'error', listener: (e: Error) => void): this;
-    on(event: 'warn', listener: (e: Error) => void): this;
-    on(event: 'debug', listener: (info: string, label: string) => void): this;
-    on(event: 'duplicate', listener: (event: PS2Event) => void): this;
-    on(event: 'subscribed', listener: (subscription: EventStreamSubscribed) => void): this;
-    on(event: 'serviceState', listener: (id: string, online: boolean) => void): this;
-
-    on(event: 'ps2Event', listener: (event: PS2Event) => void): this;
-    on(event: 'achievementEarned', listener: (event: AchievementEarned) => void): this;
-    on(event: 'battleRankUp', listener: (event: BattleRankUp) => void): this;
-    on(event: 'death', listener: (event: Death) => void): this;
-    on(event: 'gainExperience', listener: (event: GainExperience) => void): this;
-    on(event: 'itemAdded', listener: (event: ItemAdded) => void): this;
-    on(event: 'playerFacilityCapture', listener: (event: PlayerFacilityCapture) => void): this;
-    on(event: 'playerFacilityDefend', listener: (event: PlayerFacilityDefend) => void): this;
-    on(event: 'playerLogin', listener: (event: PlayerLogin) => void): this;
-    on(event: 'playerLogout', listener: (event: PlayerLogout) => void): this;
-    on(event: 'skillAdded', listener: (event: SkillAdded) => void): this;
-    on(event: 'vehicleDestroy', listener: (event: VehicleDestroy) => void): this;
-    on(event: 'continentLock', listener: (event: ContinentLock) => void): this;
-    on(event: 'continentUnlock', listener: (event: ContinentLock) => void): this;
-    on(event: 'facilityControl', listener: (event: FacilityControl) => void): this;
-    on(event: 'metagameEvent', listener: (event: MetagameEvent) => void): this;
-
-    once(event: 'ready', listener: () => void): this;
-    once(event: 'disconnected', listener: () => void): this;
-    once(event: 'reconnecting', listener: () => void): this;
-    once(event: 'error', listener: (e: Error) => void): this;
-    once(event: 'warn', listener: (e: Error) => void): this;
-    once(event: 'debug', listener: (info: string, label: string) => void): this;
-    once(event: 'duplicate', listener: (event: PS2Event) => void): this;
-    once(event: 'subscribed', listener: (subscription: EventStreamSubscribed) => void): this;
-    once(event: 'serviceState', listener: (id: string, online: boolean) => void): this;
-
-    once(event: 'ps2Event', listener: (event: PS2Event) => void): this;
-    once(event: 'achievementEarned', listener: (event: AchievementEarned) => void): this;
-    once(event: 'battleRankUp', listener: (event: BattleRankUp) => void): this;
-    once(event: 'death', listener: (event: Death) => void): this;
-    once(event: 'gainExperience', listener: (event: GainExperience) => void): this;
-    once(event: 'itemAdded', listener: (event: ItemAdded) => void): this;
-    once(event: 'playerFacilityCapture', listener: (event: PlayerFacilityCapture) => void): this;
-    once(event: 'playerFacilityDefend', listener: (event: PlayerFacilityDefend) => void): this;
-    once(event: 'playerLogin', listener: (event: PlayerLogin) => void): this;
-    once(event: 'playerLogout', listener: (event: PlayerLogout) => void): this;
-    once(event: 'skillAdded', listener: (event: SkillAdded) => void): this;
-    once(event: 'vehicleDestroy', listener: (event: VehicleDestroy) => void): this;
-    once(event: 'continentLock', listener: (event: ContinentLock) => void): this;
-    once(event: 'continentUnlock', listener: (event: ContinentLock) => void): this;
-    once(event: 'facilityControl', listener: (event: FacilityControl) => void): this;
-    once(event: 'metagameEvent', listener: (event: MetagameEvent) => void): this;
+    on<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
+    once<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
 }
 
 class Client extends EventEmitter {
