@@ -20,6 +20,8 @@ client.on('subscribed', (s) => console.log(JSON.stringify(s)));
 client.on('debug', (info, label) => console.log(`${label}: ${info}`));
 
 client.on(Events.PS2_DEATH, async (e) => {
+    if (e.attacker_character_id === '0' || e.character_id === '0') return;
+
     const [victim, attacker] = await Promise.all([
         e.character(),
         e.attacker(),
