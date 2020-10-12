@@ -1,6 +1,5 @@
 import { Cache as CacheContract } from '../concerns/Cache';
 
-// TODO: Make cached entries readonly/freeze them?
 export class Cache implements CacheContract {
     private readonly cache = new Map<string, any>();
     private readonly retrieving = new Map<string, Promise<any>>();
@@ -17,6 +16,7 @@ export class Cache implements CacheContract {
 
             if (!retrieve) {
                 retrieve = cb();
+                retrieve.finally(() => this.retrieving.delete(key));
                 this.retrieving.set(key, retrieve);
             }
 
