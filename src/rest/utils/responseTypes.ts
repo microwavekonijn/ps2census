@@ -1,5 +1,5 @@
-import { censusRequest, collections } from './requestTypes';
-import collectionIndex from '../indexes/collectionIndex';
+// import { censusRequest, collections } from './requestTypes';
+// import { collectionIndex } from '../indexes/collectionIndex';
 
 export type lang = {
     en: string,

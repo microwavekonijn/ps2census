@@ -1,4 +1,4 @@
-import { default as CacheContract } from '../concerns/Cache';
+import { Cache as CacheContract } from '../concerns/Cache';
 
 // TODO: Make cached entries readonly/freeze them?
 export class Cache implements CacheContract {

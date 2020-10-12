@@ -1,4 +1,4 @@
-import { Timeout } = NodeJS.Timeout;
+import Timeout = NodeJS.Timeout;
 
 export class DecayingSet<T> {
     private index: number = 0;

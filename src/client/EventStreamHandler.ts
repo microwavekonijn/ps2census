@@ -1,4 +1,4 @@
-import { EventStreamHandlerContract } from './concerns/EventStreamHandler';
+import { EventStreamHandler as EventStreamHandlerContract } from './concerns/EventStreamHandler';
 import { PS2EventData } from './utils/PS2Events';
 import { EventStreamFilter } from './concerns/EventStreamFilter';
 import { PS2Event } from './events/PS2Event';

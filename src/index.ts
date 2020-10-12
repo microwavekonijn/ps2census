@@ -1,12 +1,12 @@
 export * from './client/Client';
 export * from './client/EventStreamManager';
 export * from './client/EventStream';
-export *from './client/EventStreamHandler';
+export * from './client/EventStreamHandler';
 export * from './client/SubscriptionManager';
 
-export * from './client/concerns/Cache';
-export * from './client/concerns/EventStreamFilter';
-export * from './client/concerns/EventStreamHandler';
+export { Cache as CacheContract } from './client/concerns/Cache';
+export { EventStreamFilter as EventStreamFilterContract } from './client/concerns/EventStreamFilter';
+export { EventStreamHandler as EventStreamHanlderContract } from './client/concerns/EventStreamHandler';
 
 export * from './client/events/PS2Event';
 export * from './client/events/CharacterEvent';

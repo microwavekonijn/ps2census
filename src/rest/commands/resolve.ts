@@ -1,5 +1,5 @@
 import { censusRequest } from '../utils/requestTypes';
-import resolveIndex from '../indexes/resolveIndex';
+import { resolveIndex } from '../indexes/resolveIndex';
 import { resolveToString } from '../utils/commandHelpers';
 
 type resolveType<C extends keyof resolveIndex> = resolveIndex[C] | [resolveIndex[C], string[]];

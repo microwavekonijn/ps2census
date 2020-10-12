@@ -28,7 +28,7 @@ export type censusRequest<C extends collections> = {
     //     timing?: boolean,
     //     tree?: treeType,
     // },
-    params: Record<string, string>,
+    params: Record<string, string | number | boolean>,
 };
 
 export type collections = keyof collectionIndex;
