@@ -1,10 +1,11 @@
 import { censusRequest, collections } from '../types/request';
 
-export function timing <C extends collections>({collection, params}: censusRequest<C>, timing = true): censusRequest<C> {
+export function timing<C extends collections, R extends censusRequest<C>>(req: R, timing = true): R {
     return {
-        collection,
+        ...req,
+        timing,
         params: {
-            ...params,
+            ...req.params,
             'c:timing': timing,
         },
     };

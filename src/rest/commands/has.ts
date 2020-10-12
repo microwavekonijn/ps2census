@@ -1,11 +1,12 @@
 import { censusRequest } from '../types/request';
 import { baseCollections } from '../types/command';
 
-export function has <C extends baseCollections>({collection, params}: censusRequest<C>, field: string): censusRequest<C> {
+export function has<C extends baseCollections, R extends censusRequest<C>>(req: R, field: string): R {
     return {
-        collection,
+        ...req,
+        has: field,
         params: {
-            ...params,
+            ...req.params,
             'c:has': field,
         },
     };

@@ -1,12 +1,13 @@
 import { censusRequest } from '../types/request';
 import { baseCollections } from '../types/command';
 
-export function caseSensitive <C extends baseCollections>({collection, params}: censusRequest<C>, sensitive = false): censusRequest<C> {
+export function caseSensitive<C extends baseCollections, R extends censusRequest<C>>(req: R, caseSensitive = false): R {
     return {
-        collection,
+        ...req,
+        caseSensitive,
         params: {
-            ...params,
-            'c:case': sensitive,
+            ...req.params,
+            'c:case': caseSensitive,
         },
     };
 }

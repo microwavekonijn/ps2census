@@ -1,11 +1,12 @@
 import { censusRequest } from '../types/request';
 import { limitCollections } from '../types/command';
 
-export function limit <C extends limitCollections>({collection, params}: censusRequest<C>, limit: number): censusRequest<C> {
+export function limit<C extends limitCollections, R extends censusRequest<C>>(req: R, limit: number): R {
     return {
-        collection,
+        ...req,
+        limit,
         params: {
-            ...params,
+            ...req.params,
             'c:limit': limit,
         },
     };

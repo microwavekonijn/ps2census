@@ -2,11 +2,12 @@ import { censusRequest } from '../types/request';
 import { langs } from '../types/response';
 import { baseCollections } from '../types/command';
 
-export function lang <C extends baseCollections>({collection, params}: censusRequest<C>, lang: langs): censusRequest<C> {
+export function lang<C extends baseCollections, R extends censusRequest<C>>(req: R, lang: langs): R {
     return {
-        collection,
+        ...req,
+        lang,
         params: {
-            ...params,
+            ...req.params,
             'c:lang': lang,
         },
     };

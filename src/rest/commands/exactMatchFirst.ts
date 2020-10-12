@@ -1,11 +1,12 @@
 import { censusRequest } from '../types/request';
 import { baseCollections } from '../types/command';
 
-export default function exactMatchFirst <C extends baseCollections>({collection, params}: censusRequest<C>, exactMatchFirst = true): censusRequest<C> {
+export default function exactMatchFirst<C extends baseCollections, R extends censusRequest<C>>(req: R, exactMatchFirst = true): R {
     return {
-        collection,
+        ...req,
+        exactMatchFirst,
         params: {
-            ...params,
+            ...req.params,
             'c:exactMatchFirst': exactMatchFirst,
         },
     };

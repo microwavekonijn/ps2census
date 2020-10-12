@@ -1,4 +1,5 @@
 import { collections } from './request';
+import { resolveIndex } from '../indexes/resolveIndex';
 
 export type joinExpression = {
     type: collections,
@@ -28,7 +29,7 @@ export type limitCollections = Exclude<collections,
     | 'characters_item'
     | 'characters_online_status'
     | 'characters_world'
-    | 'map'>
+    | 'map'>;
 
 export type startCollections = Exclude<collections,
     'characters_event'
@@ -39,7 +40,7 @@ export type startCollections = Exclude<collections,
     | 'event'
     | 'characters_world'
     | 'map'
-    | 'world_event'>
+    | 'world_event'>;
 
 export type baseCollections = Exclude<collections,
     'characters_event'
@@ -52,4 +53,6 @@ export type baseCollections = Exclude<collections,
     | 'leaderboard'
     | 'characters_world'
     | 'map'
-    | 'world_event'>
+    | 'world_event'>;
+
+export type resolveCollections = keyof resolveIndex;

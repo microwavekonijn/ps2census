@@ -1,11 +1,12 @@
 import { censusRequest } from '../types/request';
 import { baseCollections } from '../types/command';
 
-export function includeNull <C extends baseCollections>({collection, params}: censusRequest<C>, field: string): censusRequest<C> {
+export function includeNull<C extends baseCollections, R extends censusRequest<C>>(req: R, field: string): R {
     return {
-        collection,
+        ...req,
+        includeNull: field,
         params: {
-            ...params,
+            ...req.params,
             'c:includeNull': field,
         },
     };

@@ -1,10 +1,11 @@
 import { censusRequest, collections } from '../types/request';
 
-export function retry <C extends collections>({collection, params}: censusRequest<C>, retry = false): censusRequest<C> {
+export function retry<C extends collections, R extends censusRequest<C>>(req: R, retry = false): R {
     return {
-        collection,
+        ...req,
+        retry,
         params: {
-            ...params,
+            ...req.params,
             'c:retry': retry,
         },
     };

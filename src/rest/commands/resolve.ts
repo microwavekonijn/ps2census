@@ -1,14 +1,16 @@
 import { censusRequest } from '../types/request';
 import { resolveIndex } from '../indexes/resolveIndex';
 import { resolveToString } from '../utils/commandHelpers';
+import { resolveCollections } from '../types/command';
 
 type resolveType<C extends keyof resolveIndex> = resolveIndex[C] | [resolveIndex[C], string[]];
 
-export function resolve <C extends keyof resolveIndex>({collection, params}: censusRequest<C>, resolve: resolveType<C>[]): censusRequest<C> {
+export function resolve<C extends resolveCollections, R extends censusRequest<C>>(req: R, resolve: resolveType<C>[]): R {
     return {
-        collection,
+        ...req,
+        resolve,
         params: {
-            ...params,
+            ...req.params,
             'c:resolve': resolveToString(resolve),
         },
     };

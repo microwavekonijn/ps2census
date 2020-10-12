@@ -23,9 +23,7 @@ export function getFactory(environment: PS2Environment, serviceId?: string): get
     });
 
     return ({collection, params}, query) =>
-        census.get(
-            collection,
-            {params: {...params, ...query}},
-        ).then(({data}) => data[`${collection}_list`]);
+        census.get(collection, {params: {...params, ...query}})
+            .then(({data}) => data[`${collection}_list`]);
 }
 

@@ -2,11 +2,12 @@ import { censusRequest } from '../types/request';
 import { baseCollections, sortType } from '../types/command';
 import { sortToString } from '../utils/commandHelpers';
 
-export function sort<C extends baseCollections>({collection, params}: censusRequest<C>, fields: sortType[]): censusRequest<C> {
+export function sort<C extends baseCollections, R extends censusRequest<C>>(req: R, fields: sortType[]): R {
     return {
-        collection,
+        ...req,
+        sort: fields,
         params: {
-            ...params,
+            ...req.params,
             'c:sort': sortToString(fields),
         },
     };

@@ -1,11 +1,12 @@
 import { censusRequest } from '../types/request';
 import { startCollections } from '../types/command';
 
-export function start<C extends startCollections>({collection, params}: censusRequest<C>, start: number): censusRequest<C> {
+export function start<C extends startCollections, R extends censusRequest<C>>(req: R, start: number): R {
     return {
-        collection,
+        ...req,
+        start,
         params: {
-            ...params,
+            ...req.params,
             'c:start': start,
         },
     };

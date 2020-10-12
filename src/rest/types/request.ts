@@ -1,35 +1,42 @@
 import { collectionIndex } from '../indexes/collectionIndex';
 import { queryIndex } from '../indexes/queryIndex';
-// import { joinType, sortType, treeType } from './commandTypes';
-// import { langs } from './responseTypes';
+import { censusResponse, langs } from './response';
+import { joinType, sortType, treeType } from './command';
 
-export type getMethod = <C extends collections>(request: censusRequest<C>, query: queryIndex[C]) => Promise<collectionIndex[C][]>;
+export type getMethod = <C extends collections, R extends censusRequest<C>>(request: R, query?: queryIndex[C]) => Promise<censusResponse<C, R>>;
 
-export type countRequest = <C extends countableCollections>({collection, params}: censusRequest<C>, query: queryIndex[C]) => Promise<number>
+export type countRequest = <C extends countableCollections>({collection, params}: censusRequest<C>, query?: queryIndex[C]) => Promise<number>
 
-export type censusRequest<C extends collections> = {
-    collection: C,
-    // commands?: {
-    //     caseSensitive?: boolean,
-    //     distinct?: string,
-    //     exactMatchFirst?: boolean,
-    //     has?: string,
-    //     hide?: string[],
-    //     includeNull?: string,
-    //     join?: joinType[],
-    //     lang?: langs,
-    //     limit?: number,
-    //     limitPerDB?: number,
-    //     resolve?: string[],
-    //     retry?: boolean,
-    //     show?: string[],
-    //     sort?: sortType[],
-    //     start?: number,
-    //     timing?: boolean,
-    //     tree?: treeType,
-    // },
-    params: Record<string, string | number | boolean>,
-};
+export interface censusRequest<C extends collections> {
+    collection: C;
+    params: Record<string, string | number | boolean>;
+
+    caseSensitive?: boolean;
+    distinct?: string;
+    exactMatchFirst?: boolean;
+    has?: string;
+    hide?: string[];
+    includeNull?: string;
+    join?: joinType[];
+    lang?: langs;
+    limit?: number;
+    limitPerDB?: number;
+    resolve?: string[];
+    retry?: boolean;
+    show?: string[];
+    sort?: sortType[];
+    start?: number;
+    timing?: boolean;
+    tree?: treeType;
+}
+
+export interface censusDistinctRequest<C extends collections> extends censusRequest<C> {
+    distinct: string;
+}
+
+export interface censusTreeRequest<C extends collections> extends censusRequest<C> {
+    tree: treeType;
+}
 
 export type collections = keyof collectionIndex;
 
