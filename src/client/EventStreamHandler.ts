@@ -1,10 +1,10 @@
 import { EventStreamHandler as EventStreamHandlerContract } from './concerns/EventStreamHandler';
-import { PS2EventData } from './utils/PS2Events';
+import { PS2EventData } from './types/PS2Events';
 import { EventStreamFilter } from './concerns/EventStreamFilter';
 import { PS2Event } from './events/PS2Event';
 import { Client } from './Client';
-import { Events } from './utils/Constants';
-import { endpointsToId } from './utils/PS2Constants';
+import { Events } from './constants/Client';
+import { endpointsToId } from './constants/PS2';
 
 import { AchievementEarned } from './events/AchievementEarned';
 import { BattleRankUp } from './events/BattleRankUp';
@@ -21,7 +21,7 @@ import { PlayerLogin } from './events/PlayerLogin';
 import { PlayerLogout } from './events/PlayerLogout';
 import { SkillAdded } from './events/SkillAdded';
 import { VehicleDestroy } from './events/VehicleDestroy';
-import { stringToBoolean } from '../utils/Helpers';
+import { stringToBoolean } from '../utils/Formatters';
 
 export class EventStreamHandler implements EventStreamHandlerContract {
     public static endpointsToId = endpointsToId;

@@ -1,4 +1,4 @@
-import { lang } from '../utils/responseTypes';
+import { lang } from '../types/response';
 
 export type region = {
     region_id: string,

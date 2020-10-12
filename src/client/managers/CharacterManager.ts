@@ -1,7 +1,7 @@
 import { RestManager } from './RestManager';
 import { Client } from '../Client';
 import { Cache } from '../concerns/Cache';
-import { censusRequest } from '../../rest/utils/requestTypes';
+import { censusRequest } from '../../rest/types/request';
 import { queryIndex } from '../../rest/indexes/queryIndex';
 
 export class CharacterManager extends RestManager<'character'> {

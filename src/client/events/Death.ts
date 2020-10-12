@@ -1,8 +1,8 @@
-import { Events } from '../utils/Constants';
+import { Events } from '../constants/Client';
 import { CharacterEvent } from './CharacterEvent';
-import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
+import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../constants/PS2';
 import { DeathData } from '../..';
-import { numberStringToBoolean } from '../../utils/Helpers';
+import { numberStringToBoolean } from '../../utils/Formatters';
 import { characterFormat } from '../../rest/collections/character';
 
 export enum Kill {

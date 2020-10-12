@@ -1,4 +1,4 @@
-import { lang } from '../utils/responseTypes';
+import { lang } from '../types/response';
 
 export type fireMode2 = {
     fire_mode_id: string,

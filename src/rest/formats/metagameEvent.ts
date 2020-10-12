@@ -1,4 +1,4 @@
-import { lang } from '../utils/responseTypes';
+import { lang } from '../types/response';
 
 export type metagameEvent = {
     metagame_event_id: string,

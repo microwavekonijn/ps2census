@@ -1,6 +1,6 @@
-import { censusRequest } from '../utils/requestTypes';
-import { langs } from '../utils/responseTypes';
-import { baseCollections } from '../utils/commandTypes';
+import { censusRequest } from '../types/request';
+import { langs } from '../types/response';
+import { baseCollections } from '../types/command';
 
 export function lang <C extends baseCollections>({collection, params}: censusRequest<C>, lang: langs): censusRequest<C> {
     return {

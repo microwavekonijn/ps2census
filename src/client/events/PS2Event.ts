@@ -1,7 +1,7 @@
 import { Client } from '../Client';
-import { PS2EventData } from '../utils/PS2Events';
-import { Events } from '../utils/Constants';
-import { unixToDate } from '../../utils/Helpers';
+import { PS2EventData } from '../types/PS2Events';
+import { Events } from '../constants/Client';
+import { unixToDate } from '../../utils/Formatters';
 
 export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
     public readonly emit: Events;

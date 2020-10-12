@@ -1,4 +1,4 @@
-import { lang } from '../utils/responseTypes';
+import { lang } from '../types/response';
 
 export type world = {
     world_id: string,

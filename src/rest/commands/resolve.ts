@@ -1,4 +1,4 @@
-import { censusRequest } from '../utils/requestTypes';
+import { censusRequest } from '../types/request';
 import { resolveIndex } from '../indexes/resolveIndex';
 import { resolveToString } from '../utils/commandHelpers';
 

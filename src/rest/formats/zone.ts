@@ -1,4 +1,4 @@
-import { lang } from '../utils/responseTypes';
+import { lang } from '../types/response';
 
 export type zone = {
     zone_id: string,

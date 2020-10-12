@@ -30,13 +30,13 @@ export * from './client/managers/RestManager';
 export * from './client/managers/CharacterManager';
 
 export * from './client/utils/Cache';
-export * from './client/utils/Constants';
+export * from './client/constants/Client';
 export * from './client/utils/DuplicateFilter';
-export * from './client/utils/PS2Constants';
-export * from './client/utils/PS2Events';
-export * from './client/utils/Types';
+export * from './client/constants/PS2';
+export * from './client/types/PS2Events';
+export * from './client/types/Client';
 
-export * from './utils/Helpers';
-export * from './utils/Types';
+export * from './utils/Formatters';
+export * from './types/PS2';
 
 export * as rest from './rest';

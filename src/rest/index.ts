@@ -3,10 +3,10 @@ export * from './countFactory';
 
 /** Utility */
 export * as commandHelpers from './utils/commandHelpers';
-export * as commandTypes from './utils/commandTypes';
+export * as commandTypes from './types/command';
 export * as requestHelpers from './utils/requestHelpers';
-export * as requestTypes from './utils/requestTypes';
-export * as responseTypes from './utils/responseTypes';
+export * as requestTypes from './types/request';
+export * as responseTypes from './types/response';
 
 /** Exceptions */
 export * from './exceptions/CensusRestException';

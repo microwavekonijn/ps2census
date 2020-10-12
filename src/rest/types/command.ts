@@ -1,4 +1,4 @@
-import { collections } from './requestTypes';
+import { collections } from './request';
 
 export type joinExpression = {
     type: collections,

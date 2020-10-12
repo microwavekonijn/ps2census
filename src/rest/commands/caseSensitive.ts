@@ -1,5 +1,5 @@
-import { censusRequest } from '../utils/requestTypes';
-import { baseCollections } from '../utils/commandTypes';
+import { censusRequest } from '../types/request';
+import { baseCollections } from '../types/command';
 
 export function caseSensitive <C extends baseCollections>({collection, params}: censusRequest<C>, sensitive = false): censusRequest<C> {
     return {

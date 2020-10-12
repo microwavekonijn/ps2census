@@ -1,7 +1,7 @@
-import { Events } from '../utils/Constants';
+import { Events } from '../constants/Client';
 import { CharacterEvent } from './CharacterEvent';
 import { characterFormat } from '../../rest/collections/character';
-import { Faction, factionMap, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
+import { Faction, factionMap, Loadout, loadoutFactionMap, loadoutTypeMap } from '../constants/PS2';
 
 export enum Destroy {
     Normal,

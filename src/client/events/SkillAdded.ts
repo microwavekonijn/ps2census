@@ -1,4 +1,4 @@
-import { Events } from '../utils/Constants';
+import { Events } from '../constants/Client';
 import { CharacterEvent } from './CharacterEvent';
 
 export class SkillAdded extends CharacterEvent {

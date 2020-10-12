@@ -1,7 +1,7 @@
-import { DuplicateFilter } from './DuplicateFilter';
+import { DuplicateFilter } from '../utils/DuplicateFilter';
 import { EventEmitter } from 'events';
-import { PS2Environment } from '../../utils/Types';
-import { censusRequest } from '../../rest/utils/requestTypes';
+import { PS2Environment } from '../../types/PS2';
+import { censusRequest } from '../../rest/types/request';
 import { Cache } from '../concerns/Cache';
 import { PS2EventNames } from './PS2Events';
 import { PS2Event } from '../events/PS2Event';

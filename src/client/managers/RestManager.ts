@@ -1,9 +1,9 @@
-import { censusRequest, collections } from '../../rest/utils/requestTypes';
+import { censusRequest, collections } from '../../rest/types/request';
 import { collectionIndex } from '../../rest/indexes/collectionIndex';
 import { queryIndex } from '../../rest/indexes/queryIndex';
 import { Client } from '../Client';
 import { Cache } from '../concerns/Cache';
-import { Events } from '../utils/Constants';
+import { Events } from '../constants/Client';
 import { hasLimit, hasLimitPerDB } from '../../rest/utils/commandHelpers';
 
 export abstract class RestManager<C extends collections> {

@@ -1,5 +1,5 @@
 import { PS2Event } from './PS2Event';
-import { Events } from '../utils/Constants';
+import { Events } from '../constants/Client';
 
 export class ContinentLock extends PS2Event {
     public readonly emit = Events.PS2_LOCK;

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { CensusServerError } from './exceptions/CensusServerError';
 import { CensusRestException } from './exceptions/CensusRestException';
-import { PS2Environment } from '../utils/Types';
-import { getMethod } from './utils/requestTypes';
+import { PS2Environment } from '../types/PS2';
+import { getMethod } from './types/request';
 
 export function getFactory(environment: PS2Environment, serviceId?: string): getMethod {
     const census = axios.create({
