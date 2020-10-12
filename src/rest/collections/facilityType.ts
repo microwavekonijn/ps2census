@@ -7,4 +7,4 @@ export type facilityTypeQuery = Partial<{
     facility_type_id: string
 }>;
 
-export const facilityType = requestFactory<'facility_type'>('facility_type');
+export const facilityType = requestFactory('facility_type');

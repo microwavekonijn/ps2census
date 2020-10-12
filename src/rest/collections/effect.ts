@@ -25,4 +25,4 @@ export type effectQuery = Partial<{
     target_type_id: string
 }>;
 
-export const effect = requestFactory<'effect'>('effect');
+export const effect = requestFactory('effect');

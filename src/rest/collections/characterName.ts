@@ -10,4 +10,4 @@ export type characterNameQuery = Partial<{
     'name.first_lower': string
 }>;
 
-export const characterName = requestFactory<'character_name'>('character_name');
+export const characterName = requestFactory('character_name');

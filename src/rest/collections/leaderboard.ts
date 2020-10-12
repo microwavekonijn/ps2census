@@ -26,4 +26,4 @@ export type leaderboardResolve =
     | 'character_name' //
     | 'characters_stat_history'; //
 
-export const leaderboard = requestFactory<'leaderboard'>('leaderboard');
+export const leaderboard = requestFactory('leaderboard');

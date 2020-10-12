@@ -90,4 +90,4 @@ export type characterResolve =
     | 'outfit_member_extended' //
     | 'currency'; //
 
-export const character = requestFactory<'character'>('character');
+export const character = requestFactory('character');

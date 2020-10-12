@@ -8,4 +8,4 @@ export type profileResistMapQuery = Partial<{
     resist_info_id: string
 }>;
 
-export const profileResistMap = requestFactory<'profile_resist_map'>('profile_resist_map');
+export const profileResistMap = requestFactory('profile_resist_map');

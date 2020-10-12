@@ -24,4 +24,4 @@ export type projectileQuery = Partial<{
     turn_rate: string
 }>;
 
-export const projectile = requestFactory<'projectile'>('projectile');
+export const projectile = requestFactory('projectile');

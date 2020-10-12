@@ -10,4 +10,4 @@ export type charactersCurrencyQuery = Partial<{
     quantity: string
 }>;
 
-export const charactersCurrency = requestFactory<'characters_currency'>('characters_currency');
+export const charactersCurrency = requestFactory('characters_currency');

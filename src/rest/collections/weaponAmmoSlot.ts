@@ -11,4 +11,4 @@ export type weaponAmmoSlotQuery = Partial<{
     weapon_slot_index: string
 }>;
 
-export const weaponAmmoSlot = requestFactory<'weapon_ammo_slot'>('weapon_ammo_slot');
+export const weaponAmmoSlot = requestFactory('weapon_ammo_slot');

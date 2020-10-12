@@ -11,4 +11,4 @@ export type mapHexQuery = Partial<{
     zone_id: string
 }>;
 
-export const mapHex = requestFactory<'map_hex'>('map_hex');
+export const mapHex = requestFactory('map_hex');

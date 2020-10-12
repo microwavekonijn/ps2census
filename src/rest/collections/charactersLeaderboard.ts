@@ -26,4 +26,4 @@ export type charactersLeaderboardResolve =
     | 'characters_stat_history' //
     | 'world'; //
 
-export const charactersLeaderboard = requestFactory<'characters_leaderboard'>('characters_leaderboard');
+export const charactersLeaderboard = requestFactory('characters_leaderboard');

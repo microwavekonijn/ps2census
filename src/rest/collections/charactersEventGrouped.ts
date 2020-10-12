@@ -21,4 +21,4 @@ export type charactersEventGroupedResolve =
     | 'character_name'
     | 'characters_stat_history';
 
-export const charactersEventGrouped = requestFactory<'characters_event_grouped'>('characters_event_grouped');
+export const charactersEventGrouped = requestFactory('characters_event_grouped');

@@ -35,4 +35,4 @@ export type abilityQuery = Partial<{
     string4: string
 }>;
 
-export const ability = requestFactory<'ability'>('ability');
+export const ability = requestFactory('ability');

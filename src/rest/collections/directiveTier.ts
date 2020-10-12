@@ -20,4 +20,4 @@ export type directiveTierQuery = Partial<{
     reward_set_id: string
 }>;
 
-export const directiveTier = requestFactory<'directive_tier'>('directive_tier');
+export const directiveTier = requestFactory('directive_tier');

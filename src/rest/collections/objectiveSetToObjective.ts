@@ -7,4 +7,4 @@ export type objectiveSetToObjectiveQuery = Partial<{
     objective_set_id: string
 }>;
 
-export const objectiveSetToObjective = requestFactory<'objective_set_to_objective'>('objective_set_to_objective');
+export const objectiveSetToObjective = requestFactory('objective_set_to_objective');

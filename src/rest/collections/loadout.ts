@@ -9,4 +9,4 @@ export type loadoutQuery = Partial<{
     profile_id: string
 }>;
 
-export const loadout = requestFactory<'loadout'>('loadout');
+export const loadout = requestFactory('loadout');

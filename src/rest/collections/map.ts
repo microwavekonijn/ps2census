@@ -7,4 +7,4 @@ export type mapQuery = {
     zone_ids: string
 };
 
-export const map = requestFactory<'map'>('map');
+export const map = requestFactory('map');

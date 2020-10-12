@@ -14,4 +14,4 @@ export type rewardTypeQuery = Partial<{
     reward_type_id: string
 }>;
 
-export const rewardType = requestFactory<'reward_type'>('reward_type');
+export const rewardType = requestFactory('reward_type');

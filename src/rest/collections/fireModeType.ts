@@ -7,4 +7,4 @@ export type fireModeTypeQuery = Partial<{
     fire_mode_type_id: string
 }>;
 
-export const fireModeType = requestFactory<'fire_mode_type'>('fire_mode_type');
+export const fireModeType = requestFactory('fire_mode_type');

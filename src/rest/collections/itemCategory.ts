@@ -13,4 +13,4 @@ export type itemCategoryQuery = Partial<{
     'name.tr': string
 }>;
 
-export const itemCategory = requestFactory<'item_category'>('item_category');
+export const itemCategory = requestFactory('item_category');

@@ -8,4 +8,4 @@ export type weaponToAttachmentQuery = Partial<{
     weapon_group_id: string
 }>;
 
-export const weaponToAttachment = requestFactory<'weapon_to_attachment'>('weapon_to_attachment');
+export const weaponToAttachment = requestFactory('weapon_to_attachment');

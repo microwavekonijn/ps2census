@@ -27,4 +27,4 @@ export type directiveQuery = Partial<{
     qualify_requirement_id: string
 }>;
 
-export const directive = requestFactory<'directive'>('directive');
+export const directive = requestFactory('directive');

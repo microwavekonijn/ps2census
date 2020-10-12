@@ -9,4 +9,4 @@ export type charactersSkillQuery = Partial<{
     skill_id: string
 }>;
 
-export const charactersSkill = requestFactory<'characters_skill'>('characters_skill');
+export const charactersSkill = requestFactory('characters_skill');

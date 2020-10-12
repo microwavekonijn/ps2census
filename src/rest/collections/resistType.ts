@@ -7,4 +7,4 @@ export type resistTypeQuery = Partial<{
     resist_type_id: string
 }>;
 
-export const resistType = requestFactory<'resist_type'>('resist_type');
+export const resistType = requestFactory('resist_type');

@@ -11,4 +11,4 @@ export type imageSetQuery = Partial<{
     type_id: string
 }>;
 
-export const imageSet = requestFactory<'image_set'>('image_set');
+export const imageSet = requestFactory('image_set');

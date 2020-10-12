@@ -13,4 +13,4 @@ export type titleQuery = Partial<{
     title_id: string
 }>;
 
-export const title = requestFactory<'title'>('title');
+export const title = requestFactory('title');

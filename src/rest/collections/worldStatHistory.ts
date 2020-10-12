@@ -72,4 +72,4 @@ export type worldStatHistoryQuery = Partial<{
     world_id: string
 }>;
 
-export const worldStatHistory = requestFactory<'world_stat_history'>('world_stat_history');
+export const worldStatHistory = requestFactory('world_stat_history');

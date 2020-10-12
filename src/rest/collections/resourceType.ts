@@ -7,4 +7,4 @@ export type resourceTypeQuery = Partial<{
     resource_type_id: string
 }>;
 
-export const resourceType = requestFactory<'resource_type'>('resource_type');
+export const resourceType = requestFactory('resource_type');

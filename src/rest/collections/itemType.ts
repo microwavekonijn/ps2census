@@ -8,4 +8,4 @@ export type itemTypeQuery = Partial<{
     name: string
 }>;
 
-export const itemType = requestFactory<'item_type'>('item_type');
+export const itemType = requestFactory('item_type');

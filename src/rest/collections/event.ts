@@ -28,4 +28,4 @@ export type eventResolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export const event = requestFactory<'event'>('event');
+export const event = requestFactory('event');

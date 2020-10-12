@@ -22,4 +22,4 @@ export type zoneQuery = Partial<{
     zone_id: string
 }>;
 
-export const zone = requestFactory<'zone'>('zone');
+export const zone = requestFactory('zone');

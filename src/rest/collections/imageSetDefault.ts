@@ -11,4 +11,4 @@ export type imageSetDefaultQuery = Partial<{
     type_id: string
 }>;
 
-export const imageSetDefault = requestFactory<'image_set_default'>('image_set_default');
+export const imageSetDefault = requestFactory('image_set_default');

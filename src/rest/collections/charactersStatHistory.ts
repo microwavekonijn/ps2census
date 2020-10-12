@@ -70,4 +70,4 @@ export type charactersStatHistoryQuery = Partial<{
     'week.w13': string
 }>;
 
-export const charactersStatHistory = requestFactory<'characters_stat_history'>('characters_stat_history');
+export const charactersStatHistory = requestFactory('characters_stat_history');

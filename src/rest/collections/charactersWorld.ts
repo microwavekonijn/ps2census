@@ -7,4 +7,4 @@ export type charactersWorldQuery = Partial<{
     world_id: string
 }>;
 
-export const charactersWorld = requestFactory<'characters_world'>('characters_world');
+export const charactersWorld = requestFactory('characters_world');

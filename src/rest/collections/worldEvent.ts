@@ -9,4 +9,4 @@ export type worldEventQuery = { world_id: string } & Partial<{
     type: string,
 }>;
 
-export const worldEvent = requestFactory<'world_event'>('world_event');
+export const worldEvent = requestFactory('world_event');

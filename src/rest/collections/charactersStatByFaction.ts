@@ -25,4 +25,4 @@ export type charactersStatByFactionQuery = Partial<{
     value_weekly_vs: string
 }>;
 
-export const charactersStatByFaction = requestFactory<'characters_stat_by_faction'>('characters_stat_by_faction');
+export const charactersStatByFaction = requestFactory('characters_stat_by_faction');

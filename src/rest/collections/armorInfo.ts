@@ -10,4 +10,4 @@ export type armorInfoQuery = Partial<{
     description: string
 }>;
 
-export const armorInfo = requestFactory<'armor_info'>('armor_info');
+export const armorInfo = requestFactory('armor_info');

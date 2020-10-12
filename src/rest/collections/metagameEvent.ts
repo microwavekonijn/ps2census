@@ -22,4 +22,4 @@ export type metagameEventQuery = Partial<{
     type: string
 }>;
 
-export const metagameEvent = requestFactory<'metagame_event'>('metagame_event');
+export const metagameEvent = requestFactory('metagame_event');

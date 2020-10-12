@@ -8,4 +8,4 @@ export type profileArmorMapQuery = Partial<{
     rank: string
 }>;
 
-export const profileArmorMap = requestFactory<'profile_armor_map'>('profile_armor_map');
+export const profileArmorMap = requestFactory('profile_armor_map');

@@ -8,4 +8,4 @@ export type imageQuery = Partial<{
     path: string
 }>;
 
-export const image = requestFactory<'image'>('image');
+export const image = requestFactory('image');

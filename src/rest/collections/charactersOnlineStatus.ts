@@ -4,4 +4,4 @@ export { characterOnlineStatus as charactersOnlineStatusFormat } from '../format
 
 export type charactersOnlineStatusQuery = { character_id: string };
 
-export const charactersOnlineStatus = requestFactory<'characters_online_status'>('characters_online_status');
+export const charactersOnlineStatus = requestFactory('characters_online_status');

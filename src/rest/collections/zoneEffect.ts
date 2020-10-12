@@ -26,4 +26,4 @@ export type zoneEffectQuery = Partial<{
     zone_effect_type_id: string
 }>;
 
-export const zoneEffect = requestFactory<'zone_effect'>('zone_effect');
+export const zoneEffect = requestFactory('zone_effect');

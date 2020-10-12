@@ -30,4 +30,4 @@ export type profileQuery = Partial<{
     strafe_speed_modifier: string
 }>;
 
-export const profile = requestFactory<'profile'>('profile');
+export const profile = requestFactory('profile');

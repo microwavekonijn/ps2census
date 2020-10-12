@@ -7,4 +7,4 @@ export type itemAttachmentQuery = Partial<{
     item_id: string
 }>;
 
-export const itemAttachment = requestFactory<'item_attachment'>('item_attachment');
+export const itemAttachment = requestFactory('item_attachment');

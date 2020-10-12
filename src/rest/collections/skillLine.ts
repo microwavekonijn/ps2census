@@ -26,4 +26,4 @@ export type skillLineQuery = Partial<{
     skill_points: string
 }>;
 
-export const skillLine = requestFactory<'skill_line'>('skill_line');
+export const skillLine = requestFactory('skill_line');

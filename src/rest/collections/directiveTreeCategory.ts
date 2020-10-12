@@ -13,4 +13,4 @@ export type directiveTreeCategoryQuery = Partial<{
     'name.tr': string
 }>;
 
-export const directiveTreeCategory = requestFactory<'directive_tree_category'>('directive_tree_category');
+export const directiveTreeCategory = requestFactory('directive_tree_category');

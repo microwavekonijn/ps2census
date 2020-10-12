@@ -11,4 +11,4 @@ export type marketingBundleWith1ItemQuery = Partial<{
     station_cash_price: string
 }>;
 
-export const marketingBundleWith1_item = requestFactory<'marketing_bundle_with_1_item'>('marketing_bundle_with_1_item');
+export const marketingBundleWith1_item = requestFactory('marketing_bundle_with_1_item');

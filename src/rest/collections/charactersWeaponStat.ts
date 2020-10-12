@@ -22,4 +22,4 @@ export type charactersWeaponStatResolve =
     'item'
     | 'vehicle';
 
-export const charactersWeaponStat = requestFactory<'characters_weapon_stat'>('characters_weapon_stat');
+export const charactersWeaponStat = requestFactory('characters_weapon_stat');

@@ -27,4 +27,4 @@ export type achievementQuery = Partial<{
     reward_id: string
 }>;
 
-export const achievement = requestFactory<'achievement'>('achievement');
+export const achievement = requestFactory('achievement');

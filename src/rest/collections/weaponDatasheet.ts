@@ -32,4 +32,4 @@ export type weaponDatasheetQuery = Partial<{
     show_range: string
 }>;
 
-export const weaponDatasheet = requestFactory<'weapon_datasheet'>('weapon_datasheet');
+export const weaponDatasheet = requestFactory('weapon_datasheet');

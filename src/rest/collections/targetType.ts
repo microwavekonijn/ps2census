@@ -7,4 +7,4 @@ export type targetTypeQuery = Partial<{
     target_type_id: string
 }>;
 
-export const targetType = requestFactory<'target_type'>('target_type');
+export const targetType = requestFactory('target_type');

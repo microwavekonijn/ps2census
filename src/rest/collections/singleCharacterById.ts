@@ -60,4 +60,4 @@ export type singleCharacterByIdResolve =
     | 'profile' //
     | 'faction'; //
 
-export const singleCharacterById = requestFactory<'single_character_by_id'>('single_character_by_id');
+export const singleCharacterById = requestFactory('single_character_by_id');

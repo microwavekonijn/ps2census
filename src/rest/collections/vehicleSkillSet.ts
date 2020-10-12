@@ -9,4 +9,4 @@ export type vehicleSkillSetQuery = Partial<{
     vehicle_id: string
 }>;
 
-export const vehicleSkillSet = requestFactory<'vehicle_skill_set'>('vehicle_skill_set');
+export const vehicleSkillSet = requestFactory('vehicle_skill_set');

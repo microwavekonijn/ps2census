@@ -19,4 +19,4 @@ export type outfitMemberExtendedQuery = Partial<{
     time_created_date: string
 }>;
 
-export const outfitMemberExtended = requestFactory<'outfit_member_extended'>('outfit_member_extended');
+export const outfitMemberExtended = requestFactory('outfit_member_extended');

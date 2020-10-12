@@ -11,4 +11,4 @@ export type resistInfoQuery = Partial<{
     resist_type_id: string
 }>;
 
-export const resistInfo = requestFactory<'resist_info'>('resist_info');
+export const resistInfo = requestFactory('resist_info');

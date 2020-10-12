@@ -8,4 +8,4 @@ export type experienceQuery = Partial<{
     xp: string
 }>;
 
-export const experience = requestFactory<'experience'>('experience');
+export const experience = requestFactory('experience');

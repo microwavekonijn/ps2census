@@ -27,4 +27,4 @@ export type charactersEventResolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export const charactersEvent = requestFactory<'characters_event'>('characters_event');
+export const charactersEvent = requestFactory('characters_event');

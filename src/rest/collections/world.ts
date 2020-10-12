@@ -10,4 +10,4 @@ export type worldQuery = Partial<{
     world_id: string,
 }>;
 
-export const world = requestFactory<'world'>('world');
+export const world = requestFactory('world');

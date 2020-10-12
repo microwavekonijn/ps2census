@@ -7,4 +7,4 @@ export type itemToWeaponQuery = Partial<{
     weapon_id: string
 }>;
 
-export const itemToWeapon = requestFactory<'item_to_weapon'>('item_to_weapon');
+export const itemToWeapon = requestFactory('item_to_weapon');

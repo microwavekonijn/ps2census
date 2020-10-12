@@ -18,4 +18,4 @@ export type factionQuery = Partial<{
     user_selectable: string
 }>;
 
-export const faction = requestFactory<'faction'>('faction');
+export const faction = requestFactory('faction');

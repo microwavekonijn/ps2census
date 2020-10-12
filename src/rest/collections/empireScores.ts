@@ -25,4 +25,4 @@ export type empireScoresQuery = Partial<{
     tracker_name: string
 }>;
 
-export const empireScores = requestFactory<'empire_scores'>('empire_scores');
+export const empireScores = requestFactory('empire_scores');

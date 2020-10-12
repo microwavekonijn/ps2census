@@ -10,4 +10,4 @@ export type charactersDirectiveQuery = Partial<{
     directive_tree_id: string
 }>;
 
-export const charactersDirective = requestFactory<'characters_directive'>('characters_directive');
+export const charactersDirective = requestFactory('characters_directive');

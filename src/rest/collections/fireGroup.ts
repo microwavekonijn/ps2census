@@ -11,4 +11,4 @@ export type fireGroupQuery = Partial<{
     transition_duration_ms: string
 }>;
 
-export const fireGroup = requestFactory<'fire_group'>('fire_group');
+export const fireGroup = requestFactory('fire_group');

@@ -15,4 +15,4 @@ export type regionQuery = Partial<{
     zone_id: string
 }>;
 
-export const region = requestFactory<'region'>('region');
+export const region = requestFactory('region');

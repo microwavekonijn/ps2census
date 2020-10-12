@@ -9,4 +9,4 @@ export type outfitRankQuery = Partial<{
     outfit_id: string
 }>;
 
-export const outfitRank = requestFactory<'outfit_rank'>('outfit_rank');
+export const outfitRank = requestFactory('outfit_rank');

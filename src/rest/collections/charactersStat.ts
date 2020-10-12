@@ -15,4 +15,4 @@ export type charactersStatQuery = Partial<{
     value_weekly: string
 }>;
 
-export const charactersStat = requestFactory<'characters_stat'>('characters_stat');
+export const charactersStat = requestFactory('characters_stat');

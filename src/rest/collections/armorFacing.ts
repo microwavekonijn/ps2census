@@ -7,4 +7,4 @@ export type armorFacingQuery = Partial<{
     description: string
 }>;
 
-export const armorFacing = requestFactory<'armor_facing'>('armor_facing');
+export const armorFacing = requestFactory('armor_facing');

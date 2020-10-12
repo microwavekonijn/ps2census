@@ -15,4 +15,4 @@ export type currencyQuery = Partial<{
     'name.tr': string
 }>;
 
-export const currency = requestFactory<'currency'>('currency');
+export const currency = requestFactory('currency');

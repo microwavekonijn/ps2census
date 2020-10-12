@@ -7,4 +7,4 @@ export type rewardSetToRewardGroupQuery = Partial<{
     reward_set_id: string
 }>;
 
-export const rewardSetToRewardGroup = requestFactory<'reward_set_to_reward_group'>('reward_set_to_reward_group');
+export const rewardSetToRewardGroup = requestFactory('reward_set_to_reward_group');

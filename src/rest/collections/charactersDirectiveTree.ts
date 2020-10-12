@@ -11,4 +11,4 @@ export type charactersDirectiveTreeQuery = Partial<{
     directive_tree_id: string
 }>;
 
-export const charactersDirectiveTree = requestFactory<'characters_directive_tree'>('characters_directive_tree');
+export const charactersDirectiveTree = requestFactory('characters_directive_tree');

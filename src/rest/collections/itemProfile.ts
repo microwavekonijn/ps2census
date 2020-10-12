@@ -7,4 +7,4 @@ export type itemProfileQuery = Partial<{
     profile_id: string
 }>;
 
-export const itemProfile = requestFactory<'item_profile'>('item_profile');
+export const itemProfile = requestFactory('item_profile');

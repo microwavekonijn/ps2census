@@ -8,4 +8,4 @@ export type playerStateGroupQuery = Partial<{
     player_state_group_id: string
 }>;
 
-export const playerStateGroup = requestFactory<'player_state_group'>('player_state_group');
+export const playerStateGroup = requestFactory('player_state_group');

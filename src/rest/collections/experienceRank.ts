@@ -40,4 +40,4 @@ export type experienceRankQuery = Partial<{
     xp_max: string
 }>;
 
-export const experienceRank = requestFactory<'experience_rank'>('experience_rank');
+export const experienceRank = requestFactory('experience_rank');

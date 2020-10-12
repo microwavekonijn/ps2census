@@ -33,4 +33,4 @@ export type outfitMemberResolve =
     | 'online_status' //
     | 'outfit'; //
 
-export const outfitMember = requestFactory<'outfit_member'>('outfit_member');
+export const outfitMember = requestFactory('outfit_member');

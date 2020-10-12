@@ -8,4 +8,4 @@ export type fireGroupToFireModeQuery = Partial<{
     fire_mode_index: string
 }>;
 
-export const fireGroupToFireMode = requestFactory<'fire_group_to_fire_mode'>('fire_group_to_fire_mode');
+export const fireGroupToFireMode = requestFactory('fire_group_to_fire_mode');

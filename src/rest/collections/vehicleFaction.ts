@@ -7,4 +7,4 @@ export type vehicleFactionQuery = Partial<{
     vehicle_id: string
 }>;
 
-export const vehicleFaction = requestFactory<'vehicle_faction'>('vehicle_faction');
+export const vehicleFaction = requestFactory('vehicle_faction');

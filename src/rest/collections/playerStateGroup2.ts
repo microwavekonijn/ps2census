@@ -16,4 +16,4 @@ export type playerStateGroup2Query = Partial<{
     player_state_id: string
 }>;
 
-export const playerStateGroup2 = requestFactory<'player_state_group_2'>('player_state_group_2');
+export const playerStateGroup2 = requestFactory('player_state_group_2');

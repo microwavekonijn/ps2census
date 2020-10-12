@@ -17,4 +17,4 @@ export type objectiveQuery = Partial<{
     param9: string
 }>;
 
-export const objective = requestFactory<'objective'>('objective');
+export const objective = requestFactory('objective');

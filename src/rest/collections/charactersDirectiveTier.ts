@@ -10,4 +10,4 @@ export type charactersDirectiveTierQuery = Partial<{
     directive_tree_id: string
 }>;
 
-export const charactersDirectiveTier = requestFactory<'characters_directive_tier'>('characters_directive_tier');
+export const charactersDirectiveTier = requestFactory('characters_directive_tier');

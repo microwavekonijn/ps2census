@@ -14,4 +14,4 @@ export type charactersAchievementQuery = Partial<{
     start_date: string
 }>;
 
-export const charactersAchievement = requestFactory<'characters_achievement'>('characters_achievement');
+export const charactersAchievement = requestFactory('characters_achievement');

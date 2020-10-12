@@ -7,4 +7,4 @@ export type fireModeToProjectileQuery = Partial<{
     projectile_id: string
 }>;
 
-export const fireModeToProjectile = requestFactory<'fire_mode_to_projectile'>('fire_mode_to_projectile');
+export const fireModeToProjectile = requestFactory('fire_mode_to_projectile');

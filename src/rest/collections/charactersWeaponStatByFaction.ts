@@ -24,4 +24,4 @@ export type charactersWeaponStatByFactionResolve =
     'item'
     | 'vehicle';
 
-export const charactersWeaponStatByFaction = requestFactory<'characters_weapon_stat_by_faction'>('characters_weapon_stat_by_faction');
+export const charactersWeaponStatByFaction = requestFactory('characters_weapon_stat_by_faction');

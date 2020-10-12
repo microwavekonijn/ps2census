@@ -16,4 +16,4 @@ export type mapRegionQuery = Partial<{
     zone_id: string
 }>;
 
-export const mapRegion = requestFactory<'map_region'>('map_region');
+export const mapRegion = requestFactory('map_region');

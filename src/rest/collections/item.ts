@@ -33,4 +33,4 @@ export type itemQuery = Partial<{
     skill_set_id: string
 }>;
 
-export const item = requestFactory<'item'>('item');
+export const item = requestFactory('item');

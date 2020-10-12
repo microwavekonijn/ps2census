@@ -7,4 +7,4 @@ export type metagameEventStateQuery = Partial<{
     name: string
 }>;
 
-export const metagameEventState = requestFactory<'metagame_event_state'>('metagame_event_state');
+export const metagameEventState = requestFactory('metagame_event_state');

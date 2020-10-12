@@ -7,4 +7,4 @@ export type rewardGroupToRewardQuery = Partial<{
     reward_id: string
 }>;
 
-export const rewardGroupToReward = requestFactory<'reward_group_to_reward'>('reward_group_to_reward');
+export const rewardGroupToReward = requestFactory('reward_group_to_reward');

@@ -9,4 +9,4 @@ export type marketingBundleItemQuery = Partial<{
     release_time: string
 }>;
 
-export const marketingBundleItem = requestFactory<'marketing_bundle_item'>('marketing_bundle_item');
+export const marketingBundleItem = requestFactory('marketing_bundle_item');

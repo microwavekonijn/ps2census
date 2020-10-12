@@ -99,4 +99,4 @@ export type fireMode2Query = Partial<{
     zoom_default: string
 }>;
 
-export const fireMode2 = requestFactory<'fire_mode_2'>('fire_mode_2');
+export const fireMode2 = requestFactory('fire_mode_2');

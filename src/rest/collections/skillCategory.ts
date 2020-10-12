@@ -26,4 +26,4 @@ export type skillCategoryQuery = Partial<{
     skill_set_index: string
 }>;
 
-export const skillCategory = requestFactory<'skill_category'>('skill_category');
+export const skillCategory = requestFactory('skill_category');

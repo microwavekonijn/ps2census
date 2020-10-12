@@ -13,4 +13,4 @@ export type charactersDirectiveObjectiveQuery = Partial<{
     status: string
 }>;
 
-export const charactersDirectiveObjective = requestFactory<'characters_directive_objective'>('characters_directive_objective');
+export const charactersDirectiveObjective = requestFactory('characters_directive_objective');

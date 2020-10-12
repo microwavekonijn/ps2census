@@ -25,4 +25,4 @@ export type abilityTypeQuery = Partial<{
     string4: string
 }>;
 
-export const abilityType = requestFactory<'ability_type'>('ability_type');
+export const abilityType = requestFactory('ability_type');

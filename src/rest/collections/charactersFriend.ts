@@ -14,4 +14,4 @@ export type charactersFriendResolve =
     | 'character_name'
     | 'world';
 
-export const charactersFriend = requestFactory<'characters_friend'>('characters_friend');
+export const charactersFriend = requestFactory('characters_friend');

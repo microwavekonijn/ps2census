@@ -7,4 +7,4 @@ export type playerStateQuery = Partial<{
     player_state_id: string
 }>;
 
-export const playerState = requestFactory<'player_state'>('player_state');
+export const playerState = requestFactory('player_state');

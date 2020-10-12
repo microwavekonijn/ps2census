@@ -43,4 +43,4 @@ export type outfitResolve =
     | 'member_characters_stat_history' //
     | 'member_online_status'; //
 
-export const outfit = requestFactory<'outfit'>('outfit');
+export const outfit = requestFactory('outfit');

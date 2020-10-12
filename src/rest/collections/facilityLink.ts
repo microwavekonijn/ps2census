@@ -9,4 +9,4 @@ export type facilityLinkQuery = Partial<{
     zone_id: string
 }>;
 
-export const facilityLink = requestFactory<'facility_link'>('facility_link');
+export const facilityLink = requestFactory('facility_link');

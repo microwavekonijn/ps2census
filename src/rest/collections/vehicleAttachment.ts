@@ -10,4 +10,4 @@ export type vehicleAttachmentQuery = Partial<{
     vehicle_id: string
 }>;
 
-export const vehicleAttachment = requestFactory<'vehicle_attachment'>('vehicle_attachment');
+export const vehicleAttachment = requestFactory('vehicle_attachment');

@@ -7,4 +7,4 @@ export type projectileFlightTypeQuery = Partial<{
     projectile_flight_type_id: string
 }>;
 
-export const projectileFlightType = requestFactory<'projectile_flight_type'>('projectile_flight_type');
+export const projectileFlightType = requestFactory('projectile_flight_type');
