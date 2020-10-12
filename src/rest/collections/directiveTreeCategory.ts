@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { directiveTreeCategory } from '../types/directiveTreeCategory';
 
-export type typeData = directiveTreeCategory;
+export { directiveTreeCategory as directiveTreeCategoryFormat } from '../formats/directiveTreeCategory';
 
-export type query = Partial<{
+export type directiveTreeCategoryQuery = Partial<{
     directive_tree_category_id: string,
     name: string,
     'name.de': string,

@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { vehicle } from '../types/vehicle';
 
-export type typeData = vehicle;
+export { vehicle as vehicleFormat } from '../formats/vehicle';
 
-export type query = Partial<{
+export type vehicleQuery = Partial<{
     cost: string,
     cost_resource_id: string,
     description: string,

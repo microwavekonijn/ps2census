@@ -1,9 +1,9 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { outfit } from '../types/outfit';
-import { character } from '../types/character';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { outfitMember } from '../types/outfitMember';
-import { characterOnlineStatus } from '../types/characterOnlineStatus';
+import { outfit } from '../formats/outfit';
+import { character } from '../formats/character';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { outfitMember } from '../formats/outfitMember';
+import { characterOnlineStatus } from '../formats/characterOnlineStatus';
 
 export type typeData = outfit & {
     leader: character & { // leader/leader_name

@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { effect } from '../types/effect';
 
-export type typeData = effect;
+export { effect as effectFormat } from '../formats/effect';
 
-export type query = Partial<{
+export type effectQuery = Partial<{
     ability_id: string,
     duration_seconds: string,
     effect_id: string,

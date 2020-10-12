@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { mapHex } from '../types/mapHex';
 
-export type typeData = mapHex;
+export { mapHex as mapHexFormat } from '../formats/mapHex';
 
-export type query = Partial<{
+export type mapHexQuery = Partial<{
     hex_type: string,
     map_region_id: string,
     type_name: string,

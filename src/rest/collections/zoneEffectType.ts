@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { zoneEffectType } from '../types/zoneEffectType';
 
-export type typeData = zoneEffectType;
+export { zoneEffectType as zoneEffectTypeFormat } from '../formats/zoneEffectType';
 
-export type query = Partial<{
+export type zoneEffectTypeQuery = Partial<{
     description: string,
     param1: string,
     param10: string,

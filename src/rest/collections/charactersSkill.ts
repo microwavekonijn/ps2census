@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { characterSkill } from '../types/characterSkill';
 
-export type typeData = characterSkill;
+export { characterSkill as characterSkillFormat } from '../formats/characterSkill';
 
-export type query = Partial<{
+export type charactersSkillQuery = Partial<{
     character_id: string,
     last_save: string,
     last_save_date: string,

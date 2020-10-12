@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { armorInfo } from '../types/armorInfo';
 
-export type typeData = armorInfo;
+export { armorInfo as armorInfoFormat } from '../formats/armorInfo';
 
-export type query = Partial<{
+export type armorInfoQuery = Partial<{
     armor_amount: string,
     armor_facing_id: string,
     armor_info_id: string,

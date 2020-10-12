@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { projectileFlightType } from '../types/projectileFlightType';
 
-export type typeData = projectileFlightType;
+export { projectileFlightType as projectileFlightTypeFormat } from '../formats/projectileFlightType';
 
-export type query = Partial<{
+export type projectileFlightTypeQuery = Partial<{
     description: string,
     projectile_flight_type_id: string
 }>;

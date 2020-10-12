@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { profileResistMap } from '../types/profileResistMap';
 
-export type typeData = profileResistMap;
+export { profileResistMap as profileResistMapFormat } from '../formats/profileResistMap';
 
-export type query = Partial<{
+export type profileResistMapQuery = Partial<{
     profile_id: string,
     rank: string,
     resist_info_id: string

@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { directiveTier } from '../types/directiveTier';
 
-export type typeData = directiveTier;
+export { directiveTier as directiveTierFormat } from '../formats/directiveTier';
 
-export type query = Partial<{
+export type directiveTierQuery = Partial<{
     completion_count: string,
     directive_points: string,
     directive_tier_id: string,

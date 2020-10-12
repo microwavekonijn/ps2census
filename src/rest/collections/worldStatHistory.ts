@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { worldStatHistory } from '../types/worldStatHistory';
 
-export type typeData = worldStatHistory;
+export { worldStatHistory as worldStatHistoryFormat } from '../formats/worldStatHistory';
 
-export type query = Partial<{
+export type worldStatHistoryQuery = Partial<{
     all_time: string,
     day: string,
     'day.d01': string,

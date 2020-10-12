@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { worldEvent } from '../types/worldEvent';
 
-export type typeData = worldEvent;
+export { worldEvent as worldEventFormat } from '../formats/worldEvent';
 
-export type query = { world_id: string } & Partial<{
+export type worldEventQuery = { world_id: string } & Partial<{
     after: string,
     before: string,
     id: string,

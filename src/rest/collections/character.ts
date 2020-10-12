@@ -1,24 +1,24 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { item } from '../types/item';
-import { characterStat } from '../types/characterStat';
-import { profile } from '../types/profile';
-import { character } from '../types/character';
-import { faction } from '../types/faction';
-import { characterStatByFaction } from '../types/characterStatByFaction';
-import { characterWeaponStat } from '../types/characterWeaponStat';
-import { characterWeaponStatByFaction } from '../types/characterWeaponStatByFaction';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { characterFriends } from '../types/characterFriends';
-import { outfit } from '../types/outfit';
-import { outfitMember } from '../types/outfitMember';
-import { outfitMemberExtended } from '../types/outfitMemberExtended';
-import { characterCurrency } from '../types/characterCurrency';
-import { characterOnlineStatus } from '../types/characterOnlineStatus';
-import { characterWorld } from '../types/characterWorld';
+import { item } from '../formats/item';
+import { characterStat } from '../formats/characterStat';
+import { profile } from '../formats/profile';
+import { character as characterBaseFormat } from '../formats/character';
+import { faction } from '../formats/faction';
+import { characterStatByFaction } from '../formats/characterStatByFaction';
+import { characterWeaponStat } from '../formats/characterWeaponStat';
+import { characterWeaponStatByFaction } from '../formats/characterWeaponStatByFaction';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { characterFriends } from '../formats/characterFriends';
+import { outfit } from '../formats/outfit';
+import { outfitMember } from '../formats/outfitMember';
+import { outfitMemberExtended } from '../formats/outfitMemberExtended';
+import { characterCurrency } from '../formats/characterCurrency';
+import { characterOnlineStatus } from '../formats/characterOnlineStatus';
+import { characterWorld } from '../formats/characterWorld';
 
 // TODO: Verify outfit_*
-export type typeData =
-    character
+export type characterFormat =
+    characterBaseFormat
     & characterFriends // friends
     & characterOnlineStatus // online_status
     & characterWorld // world
@@ -38,7 +38,7 @@ export type typeData =
     currency: characterCurrency, // currency
 };
 
-export type query = Partial<{
+export type characterQuery = Partial<{
     battle_rank: string,
     'battle_rank.percent_to_next': string,
     'battle_rank.value': string,
@@ -72,7 +72,7 @@ export type query = Partial<{
     title_id: string
 }>;
 
-export type resolve =
+export type characterResolve =
     'item' //
     | 'item_full' //
     | 'profile' //

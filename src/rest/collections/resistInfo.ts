@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { resistInfo } from '../types/resistInfo';
 
-export type typeData = resistInfo;
+export { resistInfo as resistInfoFormat } from '../formats/resistInfo';
 
-export type query = Partial<{
+export type resistInfoQuery = Partial<{
     description: string,
     multiplier_when_headshot: string,
     resist_amount: string,

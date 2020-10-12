@@ -1,9 +1,9 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { character } from '../types/character';
+import { character } from '../formats/character';
 
-export type typeData = Pick<character, 'character_id' | 'name'>;
+export type characterNameFormat = Pick<character, 'character_id' | 'name'>;
 
-export type query = Partial<{
+export type characterNameQuery = Partial<{
     character_id: string,
     name: string,
     'name.first': string,

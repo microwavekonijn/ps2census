@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { outfitRank } from '../types/outfitRank';
 
-export type typeData = outfitRank;
+export { outfitRank as outfitRankFormat } from '../formats/outfitRank';
 
-export type query = Partial<{
+export type outfitRankQuery = Partial<{
     description: string,
     name: string,
     ordinal: string,

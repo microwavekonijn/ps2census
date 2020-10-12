@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { faction } from '../types/faction';
 
-export type typeData = faction;
+export { faction as factionFormat } from '../formats/faction';
 
-export type query = Partial<{
+export type factionQuery = Partial<{
     code_tag: string,
     faction_id: string,
     image_id: string,

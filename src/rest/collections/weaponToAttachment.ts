@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { weaponToAttachment } from '../types/weaponToAttachment';
 
-export type typeData = weaponToAttachment;
+export { weaponToAttachment as weaponToAttachmentFormat } from '../formats/weaponToAttachment';
 
-export type query = Partial<{
+export type weaponToAttachmentQuery = Partial<{
     attachment_id: string,
     item_id: string,
     weapon_group_id: string

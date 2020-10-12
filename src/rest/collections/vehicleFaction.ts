@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { vehicleFaction } from '../types/vehicleFaction';
 
-export type typeData = vehicleFaction;
+export { vehicleFaction as vehicleFactionFormat } from '../formats/vehicleFaction';
 
-export type query = Partial<{
+export type vehicleFactionQuery = Partial<{
     faction_id: string,
     vehicle_id: string
 }>;

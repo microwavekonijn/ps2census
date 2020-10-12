@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { metagameEventState } from '../types/metagameEventState';
 
-export type typeData = metagameEventState;
+export { metagameEventState as metagameEventStateFormat } from '../formats/metagameEventState';
 
-export type query = Partial<{
+export type metagameEventStateQuery = Partial<{
     metagame_event_state_id: string,
     name: string
 }>;

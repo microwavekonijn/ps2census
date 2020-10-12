@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { rewardGroupToReward } from '../types/rewardGroupToReward';
 
-export type typeData = rewardGroupToReward;
+export { rewardGroupToReward as rewardGroupToRewardFormat } from '../formats/rewardGroupToReward';
 
-export type query = Partial<{
+export type rewardGroupToRewardQuery = Partial<{
     reward_group_id: string,
     reward_id: string
 }>;

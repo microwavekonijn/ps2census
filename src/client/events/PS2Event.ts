@@ -32,7 +32,7 @@ export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
     }
 
     /**
-     * Cast additional to types
+     * Cast additional to formats
      *
      * @param data
      * @protected

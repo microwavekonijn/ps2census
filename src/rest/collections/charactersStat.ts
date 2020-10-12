@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { characterStat } from '../types/characterStat';
 
-export type typeData = characterStat;
+export { characterStat as characterStatFormat } from '../formats/characterStat';
 
-export type query = Partial<{
+export type charactersStatQuery = Partial<{
     character_id: string,
     last_save: string,
     last_save_date: string,

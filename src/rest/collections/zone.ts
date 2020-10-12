@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { zone } from '../types/zone';
 
-export type typeData = zone;
+export { zone as zoneFormat } from '../formats/zone';
 
-export type query = Partial<{
+export type zoneQuery = Partial<{
     code: string,
     description: string,
     'description.de': string,

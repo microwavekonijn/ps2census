@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { reward } from '../types/reward';
 
-export type typeData = reward;
+export { reward as rewardFormat } from '../formats/reward';
 
-export type query = Partial<{
+export type rewardQuery = Partial<{
     count_max: string,
     count_min: string,
     param1: string,

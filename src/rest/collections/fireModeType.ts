@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { fireModeType } from '../types/fireModeType';
 
-export type typeData = fireModeType;
+export { fireModeType as fireModeTypeFormat } from '../formats/fireModeType';
 
-export type query = Partial<{
+export type fireModeTypeQuery = Partial<{
     description: string,
     fire_mode_type_id: string
 }>;

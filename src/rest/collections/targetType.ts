@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { targetType } from '../types/targetType';
 
-export type typeData = targetType;
+export { targetType as targetTypeFormat } from '../formats/targetType';
 
-export type query = Partial<{
+export type targetTypeQuery = Partial<{
     description: string,
     target_type_id: string
 }>;

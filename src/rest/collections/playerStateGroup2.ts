@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { playerStateGroup2 } from '../types/playerStateGroup2';
 
-export type typeData = playerStateGroup2;
+export { playerStateGroup2 as playerStateGroup2Format } from '../formats/playerStateGroup2';
 
-export type query = Partial<{
+export type playerStateGroup2Query = Partial<{
     can_iron_sight: string,
     cof_grow_rate: string,
     cof_max: string,

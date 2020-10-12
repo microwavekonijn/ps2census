@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { characterCurrency } from '../types/characterCurrency';
 
-export type typeData = characterCurrency;
+export { characterCurrency as characterCurrencyFormat } from '../formats/characterCurrency';
 
-export type query = Partial<{
+export type charactersCurrencyQuery = Partial<{
     character_id: string,
     currency_id: string,
     currency_name: string,

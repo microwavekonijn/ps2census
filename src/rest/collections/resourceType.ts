@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { resourceType } from '../types/resourceType';
 
-export type typeData = resourceType;
+export { resourceType as resourceTypeFormat } from '../formats/resourceType';
 
-export type query = Partial<{
+export type resourceTypeQuery = Partial<{
     description: string,
     resource_type_id: string
 }>;

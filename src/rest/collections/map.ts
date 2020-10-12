@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { map } from '../types/map';
 
-export type typeData = map;
+export { map as mapFormat } from '../formats/map';
 
-export type query = {
+export type mapQuery = {
     world_id: string,
     zone_ids: string
 };

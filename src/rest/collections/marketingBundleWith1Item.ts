@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { marketingBundleWith1Item } from '../types/marketingBundleWith1Item';
 
-export type typeData = marketingBundleWith1Item;
+export { marketingBundleWith1Item as marketingBundleWith1ItemFormat } from '../formats/marketingBundleWith1Item';
 
-export type query = Partial<{
+export type marketingBundleWith1_itemQuery = Partial<{
     cert_price: string,
     item_id: string,
     item_quantity: string,
@@ -12,4 +11,4 @@ export type query = Partial<{
     station_cash_price: string
 }>;
 
-export const marketingBundleWith1Item = requestFactory<'marketing_bundle_with_1_item'>('marketing_bundle_with_1_item');
+export const marketingBundleWith1_item = requestFactory<'marketing_bundle_with_1_item'>('marketing_bundle_with_1_item');

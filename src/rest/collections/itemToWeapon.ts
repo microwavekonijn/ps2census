@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { itemToWeapon } from '../types/itemToWeapon';
 
-export type typeData = itemToWeapon;
+export { itemToWeapon as itemToWeaponFormat } from '../formats/itemToWeapon';
 
-export type query = Partial<{
+export type itemToWeaponQuery = Partial<{
     item_id: string,
     weapon_id: string
 }>;

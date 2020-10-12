@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { vehicleAttachment } from '../types/vehicleAttachment';
 
-export type typeData = vehicleAttachment;
+export { vehicleAttachment as vehicleAttachmentFormat } from '../formats/vehicleAttachment';
 
-export type query = Partial<{
+export type vehicleAttachmentQuery = Partial<{
     description: string,
     faction_id: string,
     item_id: string,

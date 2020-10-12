@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { weapon } from '../types/weapon';
 
-export type typeData = weapon;
+export { weapon as weaponFormat } from '../formats/weapon';
 
-export type query = Partial<{
+export type weaponQuery = Partial<{
     equip_ms: string,
     from_iron_sights_ms: string,
     heat_bleed_off_rate: string,

@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { region } from '../types/region';
 
-export type typeData = region;
+export { region as regionFormat } from '../formats/region';
 
-export type query = Partial<{
+export type regionQuery = Partial<{
     initial_faction_id: string,
     name: string,
     'name.de': string,

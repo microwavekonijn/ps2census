@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { profile2 } from '../types/profile2';
 
-export type typeData = profile2;
+export { profile2 as profile2Format } from '../formats/profile2';
 
-export type query = Partial<{
+export type profile2Query = Partial<{
     description: string,
     profile_id: string
 }>;

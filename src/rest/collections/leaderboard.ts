@@ -1,8 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { leaderboard } from '../types/leaderboard';
-import { character } from '../types/character';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { characterWorld } from '../types/characterWorld';
+import { leaderboard } from '../formats/leaderboard';
+import { character } from '../formats/character';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { characterWorld } from '../formats/characterWorld';
 
 export type typeData =
     leaderboard

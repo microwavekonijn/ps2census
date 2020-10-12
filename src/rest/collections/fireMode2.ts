@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { fireMode2 } from '../types/fireMode2';
 
-export type typeData = fireMode2;
+export { fireMode2 as fireMode2Format } from '../formats/fireMode2';
 
-export type query = Partial<{
+export type fireMode2Query = Partial<{
     ability_id: string,
     ammo_slot: string,
     armor_penetration: string,

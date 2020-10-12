@@ -31,8 +31,8 @@ export * from './commands/start';
 export * from './commands/timing';
 export * from './commands/tree';
 
-/** Collection types */
-export * as collectionTypes from './types';
+/** Collection formats */
+export * as baseFormats from './formats';
 
 /** Collections */
 export * from './collections/singleCharacterById';

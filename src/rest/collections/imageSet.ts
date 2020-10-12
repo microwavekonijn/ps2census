@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { imageSet } from '../types/imageSet';
 
-export type typeData = imageSet;
+export { imageSet as imageSetFormat } from '../formats/imageSet';
 
-export type query = Partial<{
+export type imageSetQuery = Partial<{
     description: string,
     image_id: string,
     image_path: string,

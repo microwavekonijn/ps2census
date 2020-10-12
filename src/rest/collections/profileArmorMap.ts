@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { profileArmorMap } from '../types/profileArmorMap';
 
-export type typeData = profileArmorMap;
+export { profileArmorMap as profileArmorMapFormat } from '../formats/profileArmorMap';
 
-export type query = Partial<{
+export type profileArmorMapQuery = Partial<{
     armor_info_id: string,
     profile_id: string,
     rank: string

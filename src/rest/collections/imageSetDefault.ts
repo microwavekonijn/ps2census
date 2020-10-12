@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { imageSetDefault } from '../types/imageSetDefault';
 
-export type typeData = imageSetDefault;
+export { imageSetDefault as imageSetDefaultFormat } from '../formats/imageSetDefault';
 
-export type query = Partial<{
+export type imageSetDefaultQuery = Partial<{
     description: string,
     image_id: string,
     image_path: string,

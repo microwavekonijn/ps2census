@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { projectile } from '../types/projectile';
 
-export type typeData = projectile;
+export { projectile as projectileFormat } from '../formats/projectile';
 
-export type query = Partial<{
+export type projectileQuery = Partial<{
     acceleration: string,
     arm_distance: string,
     detonate_distance: string,

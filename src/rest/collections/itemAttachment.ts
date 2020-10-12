@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { itemAttachment } from '../types/itemAttachment';
 
-export type typeData = itemAttachment;
+export { itemAttachment as itemAttachmentFormat } from '../formats/itemAttachment';
 
-export type query = Partial<{
+export type itemAttachmentQuery = Partial<{
     attachment_item_id: string,
     item_id: string
 }>;

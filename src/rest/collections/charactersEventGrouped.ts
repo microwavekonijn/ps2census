@@ -1,7 +1,7 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { character } from '../types/character';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { characterEventGrouped } from '../types/characterEventGrouped';
+import { character } from '../formats/character';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { characterEventGrouped } from '../formats/characterEventGrouped';
 
 export type typeData = characterEventGrouped & {
     character: character & { // character/character_name

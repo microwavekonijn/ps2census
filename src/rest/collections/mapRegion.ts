@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { mapRegion } from '../types/mapRegion';
 
-export type typeData = mapRegion;
+export { mapRegion as mapRegionFormat } from '../formats/mapRegion';
 
-export type query = Partial<{
+export type mapRegionQuery = Partial<{
     facility_id: string,
     facility_name: string,
     facility_type: string,

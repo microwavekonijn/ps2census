@@ -1,19 +1,19 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { character } from '../types/character';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { characterStat } from '../types/characterStat';
-import { characterStatByFaction } from '../types/characterStatByFaction';
-import { characterWeaponStat } from '../types/characterWeaponStat';
-import { characterWeaponStatByFaction } from '../types/characterWeaponStatByFaction';
-import { outfitMemberExtended } from '../types/outfitMemberExtended';
-import { item } from '../types/item';
-import { profile } from '../types/profile';
-import { faction } from '../types/faction';
-import { characterOnlineStatus } from '../types/characterOnlineStatus';
-import { characterCurrency } from '../types/characterCurrency';
-import { characterWorld } from '../types/characterWorld';
+import { character } from '../formats/character';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { characterStat } from '../formats/characterStat';
+import { characterStatByFaction } from '../formats/characterStatByFaction';
+import { characterWeaponStat } from '../formats/characterWeaponStat';
+import { characterWeaponStatByFaction } from '../formats/characterWeaponStatByFaction';
+import { outfitMemberExtended } from '../formats/outfitMemberExtended';
+import { item } from '../formats/item';
+import { profile } from '../formats/profile';
+import { faction } from '../formats/faction';
+import { characterOnlineStatus } from '../formats/characterOnlineStatus';
+import { characterCurrency } from '../formats/characterCurrency';
+import { characterWorld } from '../formats/characterWorld';
 
-export type typeData =
+export type singleCharacterByIdFormat =
     character
     & characterOnlineStatus // online_status
     & characterWorld // world
@@ -49,11 +49,11 @@ export type typeData =
     faction: faction, // faction
 };
 
-export type query = { character_id: string };
+export type singleCharacterByIdQuery = { character_id: string };
 
-export type resolve =
+export type singleCharacterByIdResolve =
     'online_status' //
-    | 'friends' // Doesn't resolve???
+    | 'friends' // TODO: Doesn't resolve???
     | 'world' //
     | 'outfit' //
     | 'item' //

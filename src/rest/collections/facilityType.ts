@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { facilityType } from '../types/facilityType';
 
-export type typeData = facilityType;
+export { facilityType as facilityTypeFormat } from '../formats/facilityType';
 
-export type query = Partial<{
+export type facilityTypeQuery = Partial<{
     description: string,
     facility_type_id: string
 }>;

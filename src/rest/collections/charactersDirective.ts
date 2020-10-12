@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { characterDirective } from '../types/characterDirective';
 
-export type typeData = characterDirective;
+export { characterDirective as characterDirectiveFormat } from '../formats/characterDirective';
 
-export type query = Partial<{
+export type charactersDirectiveQuery = Partial<{
     character_id: string,
     completion_time: string,
     completion_time_date: string,

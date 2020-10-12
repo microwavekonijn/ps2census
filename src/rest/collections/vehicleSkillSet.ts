@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { vehicleSkillSet } from '../types/vehicleSkillSet';
 
-export type typeData = vehicleSkillSet;
+export { vehicleSkillSet as vehicleSkillSetFormat } from '../formats/vehicleSkillSet';
 
-export type query = Partial<{
+export type vehicleSkillSetQuery = Partial<{
     display_index: string,
     faction_id: string,
     skill_set_id: string,

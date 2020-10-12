@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { title } from '../types/title';
 
-export type typeData = title;
+export { title as titleFormat } from '../formats/title';
 
-export type query = Partial<{
+export type titleQuery = Partial<{
     name: string,
     'name.de': string,
     'name.en': string,

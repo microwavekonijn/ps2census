@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { outfitMemberExtended } from '../types/outfitMemberExtended';
 
-export type typeData = outfitMemberExtended;
+export { outfitMemberExtended as outfitMemberExtendedFormat } from '../formats/outfitMemberExtended';
 
-export type query = Partial<{
+export type outfitMemberExtendedQuery = Partial<{
     alias: string,
     alias_lower: string,
     character_id: string,

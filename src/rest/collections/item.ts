@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { item } from '../types/item';
 
-export type typeData = item;
+export { item as itemFormat } from '../formats/item';
 
-export type query = Partial<{
+export type itemQuery = Partial<{
     activatable_ability_id: string,
     description: string,
     'description.de': string,

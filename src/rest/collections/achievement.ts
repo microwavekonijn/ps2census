@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { achievement } from '../types/achievement';
 
-export type typeData = achievement;
+export { achievement as achievementFormat } from '../formats/achievement';
 
-export type query = Partial<{
+export type achievementQuery = Partial<{
     achievement_id: string,
     description: string,
     'description.de': string,

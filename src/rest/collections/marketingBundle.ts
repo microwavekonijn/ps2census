@@ -1,9 +1,9 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { marketingBundle } from '../types/marketingBundle';
+import { marketingBundle } from '../formats/marketingBundle';
 
 export type typeData = marketingBundle
 
-export type query = Partial<{
+export type marketingBundleQuery = Partial<{
     cert_price: string,
     description: string,
     'description.de': string,

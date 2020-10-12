@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { fireGroup } from '../types/fireGroup';
 
-export type typeData = fireGroup;
+export { fireGroup as fireGroupFormat } from '../formats/fireGroup';
 
-export type query = Partial<{
+export type fireGroupQuery = Partial<{
     can_chamber_ironsights: string,
     chamber_duration_ms: string,
     fire_group_id: string,

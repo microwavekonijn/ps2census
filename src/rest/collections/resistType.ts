@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { resistType } from '../types/resistType';
 
-export type typeData = resistType;
+export { resistType as resistTypeFormat } from '../formats/resistType';
 
-export type query = Partial<{
+export type resistTypeQuery = Partial<{
     description: string,
     resist_type_id: string
 }>;

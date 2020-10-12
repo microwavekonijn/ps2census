@@ -1,7 +1,7 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { character } from '../types/character';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { characterEvent } from '../types/characterEvent';
+import { character } from '../formats/character';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { characterEvent } from '../formats/characterEvent';
 
 export type typeData = characterEvent & {
     character: character & { // character/character_name
@@ -18,7 +18,7 @@ export type query = { character_id: string } & Partial<{
     type: string,
 }>;
 
-// TODO: Find associated attacker* types
+// TODO: Find associated attacker* formats
 export type resolve =
     'character' //
     | 'character_name' //

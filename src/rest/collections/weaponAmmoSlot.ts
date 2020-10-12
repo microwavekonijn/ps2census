@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { weaponAmmoSlot } from '../types/weaponAmmoSlot';
 
-export type typeData = weaponAmmoSlot;
+export { weaponAmmoSlot as weaponAmmoSlotFormat } from '../formats/weaponAmmoSlot';
 
-export type query = Partial<{
+export type weaponAmmoSlotQuery = Partial<{
     capacity: string,
     clip_size: string,
     refill_ammo_delay_ms: string,

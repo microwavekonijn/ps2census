@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { currency } from '../types/currency';
 
-export type typeData = currency;
+export { currency as currencyFormat } from '../formats/currency';
 
-export type query = Partial<{
+export type currencyQuery = Partial<{
     currency_id: string,
     icon_id: string,
     inventory_cap: string,

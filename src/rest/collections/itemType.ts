@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { itemType } from '../types/itemType';
 
-export type typeData = itemType;
+export { itemType as itemTypeFormat } from '../formats/itemType';
 
-export type query = Partial<{
+export type itemTypeQuery = Partial<{
     code: string,
     item_type_id: string,
     name: string

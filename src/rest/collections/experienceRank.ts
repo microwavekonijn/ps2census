@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { experienceRank } from '../types/experienceRank';
 
-export type typeData = experienceRank;
+export { experienceRank as experienceRankFormat } from '../formats/experienceRank';
 
-export type query = Partial<{
+export type experienceRankQuery = Partial<{
     nc: string,
     'nc.image_id': string,
     'nc.image_set_id': string,

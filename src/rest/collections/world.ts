@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { world } from '../types/world';
 
-export type typeData = world;
+export { world as worldFormat } from '../formats/world';
 
-export type query = Partial<{
+export type worldQuery = Partial<{
     // this API man...
     description_t4id: number, // integer
     name_t4id: number, // integer

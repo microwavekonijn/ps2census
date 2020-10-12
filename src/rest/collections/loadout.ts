@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { loadout } from '../types/loadout';
 
-export type typeData = loadout;
+export { loadout as loadoutFormat } from '../formats/loadout';
 
-export type query = Partial<{
+export type loadoutQuery = Partial<{
     code_name: string,
     faction_id: string,
     loadout_id: string,

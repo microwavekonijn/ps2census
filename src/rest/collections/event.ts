@@ -1,9 +1,9 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { character } from '../types/character';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { event } from '../types/event';
+import { character } from '../formats/character';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { event as eventBaseFormat } from '../formats/event';
 
-export type typeData = event & {
+export type eventFormat = eventBaseFormat & {
     character: character & { // character/character_name
         stats: {
             stat_history: characterStatHistory[], // characters_stat_history
@@ -19,7 +19,7 @@ export type query = {
     before: string,
 });
 
-// TODO: Find associated attacker* types
+// TODO: Find associated attacker* formats
 export type resolve =
     'character' //
     | 'character_name' //

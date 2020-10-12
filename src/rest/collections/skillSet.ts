@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { skillSet } from '../types/skillSet';
 
-export type typeData = skillSet;
+export { skillSet as skillSetFormat } from '../formats/skillSet';
 
-export type query = Partial<{
+export type skillSetQuery = Partial<{
     description: string,
     'description.de': string,
     'description.en': string,

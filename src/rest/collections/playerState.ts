@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { playerState } from '../types/playerState';
 
-export type typeData = playerState;
+export { playerState as playerStateFormat } from '../formats/playerState';
 
-export type query = Partial<{
+export type playerStateQuery = Partial<{
     description: string,
     player_state_id: string
 }>;

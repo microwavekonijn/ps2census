@@ -1,8 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { character } from '../types/character';
-import { characterStatHistory } from '../types/characterStatHistory';
-import { characterLeaderboard } from '../types/characterLeaderboard';
-import { characterWorld } from '../types/characterWorld';
+import { character } from '../formats/character';
+import { characterStatHistory } from '../formats/characterStatHistory';
+import { characterLeaderboard } from '../formats/characterLeaderboard';
+import { characterWorld } from '../formats/characterWorld';
 
 export type typeData =
     characterLeaderboard

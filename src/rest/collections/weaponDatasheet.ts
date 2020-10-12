@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { weaponDatasheet } from '../types/weaponDatasheet';
 
-export type typeData = weaponDatasheet;
+export { weaponDatasheet as weaponDatasheetFormat } from '../formats/weaponDatasheet';
 
-export type query = Partial<{
+export type weaponDatasheetQuery = Partial<{
     capacity: string,
     clip_size: string,
     damage: string,

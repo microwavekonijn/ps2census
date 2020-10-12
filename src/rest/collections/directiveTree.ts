@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { directiveTree } from '../types/directiveTree';
 
-export type typeData = directiveTree;
+export { directiveTree as directiveTreeFormat } from '../formats/directiveTree';
 
-export type query = Partial<{
+export type directiveTreeQuery = Partial<{
     description: string,
     'description.de': string,
     'description.en': string,

@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { profile } from '../types/profile';
 
-export type typeData = profile;
+export { profile as profileFormat } from '../formats/profile';
 
-export type query = Partial<{
+export type profileQuery = Partial<{
     backpedal_speed_modifier: string,
     description: string,
     'description.de': string,

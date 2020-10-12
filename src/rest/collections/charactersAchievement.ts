@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { characterAchievement } from '../types/characterAchievement';
 
-export type typeData = characterAchievement;
+export { characterAchievement as characterAchievementFormat } from '../formats/characterAchievement';
 
-export type query = Partial<{
+export type charactersAchievementQuery = Partial<{
     achievement_id: string,
     character_id: string,
     earned_count: string,

@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { characterWorld } from '../types/characterWorld';
 
-export type typeData = characterWorld;
+export { characterWorld as characterWorldFormat } from '../formats/characterWorld';
 
-export type query = Partial<{
+export type charactersWorldQuery = Partial<{
     character_id: string,
     world_id: string
 }>;

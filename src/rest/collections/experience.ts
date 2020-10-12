@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { experience } from '../types/experience';
 
-export type typeData = experience;
+export { experience as experienceFormat } from '../formats/experience';
 
-export type query = Partial<{
+export type experienceQuery = Partial<{
     description: string,
     experience_id: string,
     xp: string

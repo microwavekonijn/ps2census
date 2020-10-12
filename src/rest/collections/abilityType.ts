@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { abilityType } from '../types/abilityType';
 
-export type typeData = abilityType;
+export { abilityType as abilityTypeFormat } from '../formats/abilityType';
 
-export type query = Partial<{
+export type abilityTypeQuery = Partial<{
     ability_type_id: string,
     description: string,
     param1: string,

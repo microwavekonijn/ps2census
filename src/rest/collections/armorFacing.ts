@@ -1,9 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { armorFacing } from '../types/armorFacing';
 
-export type typeData = armorFacing;
+export { armorFacing as armorFacingFormat } from '../formats/armorFacing';
 
-export type query = Partial<{
+export type armorFacingQuery = Partial<{
     armor_facing_id: string,
     description: string
 }>;
