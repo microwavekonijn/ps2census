@@ -64,14 +64,13 @@ export class VehicleDestroy extends CharacterEvent {
         if (this.faction_id === '0') return Destroy.Neutral;
         if (this.attacker_character_id === '0') return Destroy.Game;
 
-        const attacker = this.attacker_faction;
-        const victim = this.character_faction;
+        const attacker_faction = this.attacker_faction;
+        const victim_faction = this.character_faction;
 
-        if (this.attacker_character_id === this.character_id && attacker !== victim) return Destroy.SelfDestruct;
+        if (this.attacker_character_id === this.character_id && attacker_faction === victim_faction) return Destroy.SelfDestruct;
+        if (attacker_faction === Faction.NSO) return Destroy.Undetermined;
 
-        if (attacker === Faction.NSO) return Destroy.Undetermined;
-
-        return attacker === victim
+        return attacker_faction === victim_faction
             ? Destroy.Friendly
             : Destroy.Normal;
     }
