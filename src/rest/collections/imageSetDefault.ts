@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import imageSetDefault from '../types/imageSetDefault';
+import { imageSetDefault } from '../types/imageSetDefault';
 
 export type typeData = imageSetDefault;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     type_id: string
 }>;
 
-export default requestFactory<'image_set_default'>('image_set_default');
+export const imageSetDefault = requestFactory<'image_set_default'>('image_set_default');

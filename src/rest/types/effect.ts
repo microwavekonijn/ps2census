@@ -1,6 +1,4 @@
-export default effect;
-
-type effect = {
+export type effect = {
     effect_id: string,
     effect_type_id: string,
     ability_id: string,

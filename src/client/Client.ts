@@ -1,28 +1,28 @@
 import { EventEmitter } from 'events';
 import { ClientConfig, ClientEvents, EventStreamSubscribed, EventStreamSubscription } from './utils/Types';
-import EventStreamManager from './EventStreamManager';
-import PS2Event from './events/PS2Event';
+import { EventStreamManager } from './EventStreamManager';
+import { PS2Event } from './events/PS2Event';
 import { PS2Environment } from '../utils/Types';
-import AchievementEarned from './events/AchievementEarned';
-import BattleRankUp from './events/BattleRankUp';
-import Death from './events/Death';
-import GainExperience from './events/GainExperience';
-import ItemAdded from './events/ItemAdded';
-import PlayerFacilityCapture from './events/PlayerFacilityCapture';
-import PlayerFacilityDefend from './events/PlayerFacilityDefend';
-import PlayerLogin from './events/PlayerLogin';
-import PlayerLogout from './events/PlayerLogout';
-import SkillAdded from './events/SkillAdded';
-import VehicleDestroy from './events/VehicleDestroy';
-import ContinentLock from './events/ContinentLock';
-import FacilityControl from './events/FacilityControl';
-import MetagameEvent from './events/MetagameEvent';
+import { AchievementEarned } from './events/AchievementEarned';
+import { BattleRankUp } from './events/BattleRankUp';
+import { Death } from './events/Death';
+import { GainExperience } from './events/GainExperience';
+import { ItemAdded } from './events/ItemAdded';
+import { PlayerFacilityCapture } from './events/PlayerFacilityCapture';
+import { PlayerFacilityDefend } from './events/PlayerFacilityDefend';
+import { PlayerLogin } from './events/PlayerLogin';
+import { PlayerLogout } from './events/PlayerLogout';
+import { SkillAdded } from './events/SkillAdded';
+import { VehicleDestroy } from './events/VehicleDestroy';
+import { ContinentLock } from './events/ContinentLock';
+import { FacilityControl } from './events/FacilityControl';
+import { MetagameEvent } from './events/MetagameEvent';
 import { getFactory } from '../rest';
 import { getMethod } from '../rest/utils/requestTypes';
-import CharacterManager from './managers/CharacterManager';
-import Cache from './utils/Cache';
-import character from '../rest/collections/character';
-import resolve from '../rest/commands/resolve';
+import { CharacterManager } from './managers/CharacterManager';
+import { Cache } from './utils/Cache';
+import { character } from '../rest/collections/character';
+import { resolve } from '../rest/commands/resolve';
 
 declare interface Client {
     on<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
@@ -145,4 +145,4 @@ class Client extends EventEmitter {
 
 }
 
-export default Client;
+export { Client };

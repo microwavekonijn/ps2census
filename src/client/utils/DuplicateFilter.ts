@@ -1,8 +1,8 @@
-import EventStreamFilter from '../concerns/EventStreamFilter';
-import PS2Event from '../events/PS2Event';
-import DecayingSet from './DecayingSet';
+import { EventStreamFilter } from '../concerns/EventStreamFilter';
+import { PS2Event } from '../events/PS2Event';
+import { DecayingSet } from './DecayingSet';
 
-export default class DuplicateFilter implements EventStreamFilter {
+export class DuplicateFilter implements EventStreamFilter {
     private cache: DecayingSet<string>;
 
     /**

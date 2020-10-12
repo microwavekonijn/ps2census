@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default skillSet;
-
-type skillSet = {
+export type skillSet = {
     skill_set_id: string,
     skill_points: string,
     required_item_id: string,

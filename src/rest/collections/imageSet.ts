@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import imageSet from '../types/imageSet';
+import { imageSet } from '../types/imageSet';
 
 export type typeData = imageSet;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     type_id: string
 }>;
 
-export default requestFactory<'image_set'>('image_set');
+export const imageSet = requestFactory<'image_set'>('image_set');

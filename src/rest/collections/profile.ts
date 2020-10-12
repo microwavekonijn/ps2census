@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import profile from '../types/profile';
+import { profile } from '../types/profile';
 
 export type typeData = profile;
 
@@ -31,4 +31,4 @@ export type query = Partial<{
     strafe_speed_modifier: string
 }>;
 
-export default requestFactory<'profile'>('profile');
+export const profile = requestFactory<'profile'>('profile');

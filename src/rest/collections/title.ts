@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import title from '../types/title';
+import { title } from '../types/title';
 
 export type typeData = title;
 
@@ -14,4 +14,4 @@ export type query = Partial<{
     title_id: string
 }>;
 
-export default requestFactory<'title'>('title');
+export const title = requestFactory<'title'>('title');

@@ -1,6 +1,4 @@
-export default map;
-
-type map = {
+export type map = {
     ZoneId: string,
     Regions: {
         IsList: string,

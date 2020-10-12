@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import ability from '../types/ability';
+import { ability } from '../types/ability';
 
 export type typeData = ability;
 
@@ -36,4 +36,4 @@ export type query = Partial<{
     string4: string
 }>;
 
-export default requestFactory<'ability'>('ability');
+export const ability = requestFactory<'ability'>('ability');

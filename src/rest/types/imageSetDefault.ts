@@ -1,6 +1,4 @@
-export default imageSetDefault;
-
-type imageSetDefault = {
+export type imageSetDefault = {
     image_set_id: string,
     image_id: string,
     description: string,

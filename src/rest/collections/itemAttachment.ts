@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import itemAttachment from '../types/itemAttachment';
+import { itemAttachment } from '../types/itemAttachment';
 
 export type typeData = itemAttachment;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     item_id: string
 }>;
 
-export default requestFactory<'item_attachment'>('item_attachment');
+export const itemAttachment = requestFactory<'item_attachment'>('item_attachment');

@@ -1,6 +1,6 @@
 import { PS2EventData } from '../utils/PS2Events';
 
-export default interface EventStreamHandler {
+export interface EventStreamHandler {
     /**
      * Handle an incoming event
      *

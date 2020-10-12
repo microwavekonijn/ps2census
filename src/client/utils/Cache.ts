@@ -1,7 +1,7 @@
 import { default as CacheContract } from '../concerns/Cache';
 
 // TODO: Make cached entries readonly/freeze them?
-export default class Cache implements CacheContract {
+export class Cache implements CacheContract {
     private readonly cache = new Map<string, any>();
     private readonly retrieving = new Map<string, Promise<any>>();
 

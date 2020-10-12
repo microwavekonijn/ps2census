@@ -1,6 +1,4 @@
-export default characterWeaponStatByFaction;
-
-type characterWeaponStatByFaction = {
+export type characterWeaponStatByFaction = {
     character_id: string,
     stat_name: string,
     item_id: string,

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import itemProfile from '../types/itemProfile';
+import { itemProfile } from '../types/itemProfile';
 
 export type typeData = itemProfile;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     profile_id: string
 }>;
 
-export default requestFactory<'item_profile'>('item_profile');
+export const itemProfile = requestFactory<'item_profile'>('item_profile');

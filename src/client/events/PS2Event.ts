@@ -1,9 +1,9 @@
-import Client from '../Client';
+import { Client } from '../Client';
 import { PS2EventData } from '../utils/PS2Events';
 import { Events } from '../utils/Constants';
 import { unixToDate } from '../../utils/Helpers';
 
-export default abstract class PS2Event<T extends PS2EventData = PS2EventData> {
+export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
     public readonly emit: Events;
 
     public readonly event_name: string;

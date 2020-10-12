@@ -1,6 +1,4 @@
-export default character;
-
-type character = {
+export type character = {
     character_id: string,
     name: {
         first: string,

@@ -1,9 +1,9 @@
 import { requestFactory } from '../utils/requestHelpers';
-import outfitMember from '../types/outfitMember';
-import outfit from '../types/outfit';
-import character from '../types/character';
-import characterStatHistory from '../types/characterStatHistory';
-import characterOnlineStatus from '../types/characterOnlineStatus';
+import { outfitMember } from '../types/outfitMember';
+import { outfit } from '../types/outfit';
+import { character } from '../types/character';
+import { characterStatHistory } from '../types/characterStatHistory';
+import { characterOnlineStatus } from '../types/characterOnlineStatus';
 
 export type typeData =
     outfitMember
@@ -33,4 +33,4 @@ export type resolve =
     | 'online_status' //
     | 'outfit'; //
 
-export default requestFactory<'outfit_member'>('outfit_member');
+export const outfitMember = requestFactory<'outfit_member'>('outfit_member');

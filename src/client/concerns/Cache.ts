@@ -1,4 +1,4 @@
-export default interface Cache {
+export interface Cache {
     put(key: string, data: any): Promise<void>;
 
     remember(key: string, cb: () => Promise<any>): Promise<any>;

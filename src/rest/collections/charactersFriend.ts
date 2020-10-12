@@ -1,7 +1,7 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterFriends from '../types/characterFriends';
-import character from '../types/character';
-import characterWorld from '../types/characterWorld';
+import { characterFriends } from '../types/characterFriends';
+import { character } from '../types/character';
+import { characterWorld } from '../types/characterWorld';
 
 export type typeData = characterFriends & {
     friend_list: (character & characterWorld)[], // character/character_name and world
@@ -14,4 +14,4 @@ export type resolve =
     | 'character_name'
     | 'world';
 
-export default requestFactory<'characters_friend'>('characters_friend');
+export const charactersFriend = requestFactory<'characters_friend'>('characters_friend');

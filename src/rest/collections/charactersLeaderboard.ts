@@ -1,8 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import character from '../types/character';
-import characterStatHistory from '../types/characterStatHistory';
-import characterLeaderboard from '../types/characterLeaderboard';
-import characterWorld from '../types/characterWorld';
+import { character } from '../types/character';
+import { characterStatHistory } from '../types/characterStatHistory';
+import { characterLeaderboard } from '../types/characterLeaderboard';
+import { characterWorld } from '../types/characterWorld';
 
 export type typeData =
     characterLeaderboard
@@ -26,4 +26,4 @@ export type resolve =
     | 'characters_stat_history' //
     | 'world'; //
 
-export default requestFactory<'characters_leaderboard'>('characters_leaderboard');
+export const charactersLeaderboard = requestFactory<'characters_leaderboard'>('characters_leaderboard');

@@ -1,6 +1,4 @@
-export default weapon;
-
-type weapon = {
+export type weapon = {
     weapon_id: string,
     weapon_group_id: string,
     turn_modifier: string,

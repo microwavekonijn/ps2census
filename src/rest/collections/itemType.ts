@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import itemType from '../types/itemType';
+import { itemType } from '../types/itemType';
 
 export type typeData = itemType;
 
@@ -9,4 +9,4 @@ export type query = Partial<{
     name: string
 }>;
 
-export default requestFactory<'item_type'>('item_type');
+export const itemType = requestFactory<'item_type'>('item_type');

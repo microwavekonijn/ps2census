@@ -1,6 +1,4 @@
-export default vehicleFaction;
-
-type vehicleFaction = {
+export type vehicleFaction = {
     vehicle_id: string,
     faction_id: string,
     [prop: string]: any,

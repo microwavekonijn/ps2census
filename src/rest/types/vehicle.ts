@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default vehicle;
-
-type vehicle = {
+export type vehicle = {
     vehicle_id: string,
     name: lang,
     description: lang,

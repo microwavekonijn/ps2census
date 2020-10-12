@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import experienceRank from '../types/experienceRank';
+import { experienceRank } from '../types/experienceRank';
 
 export type typeData = experienceRank;
 
@@ -41,4 +41,4 @@ export type query = Partial<{
     xp_max: string
 }>;
 
-export default requestFactory<'experience_rank'>('experience_rank');
+export const experienceRank = requestFactory<'experience_rank'>('experience_rank');

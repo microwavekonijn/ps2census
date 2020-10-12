@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterAchievement from '../types/characterAchievement';
+import { characterAchievement } from '../types/characterAchievement';
 
 export type typeData = characterAchievement;
 
@@ -15,4 +15,4 @@ export type query = Partial<{
     start_date: string
 }>;
 
-export default requestFactory<'characters_achievement'>('characters_achievement');
+export const charactersAchievement = requestFactory<'characters_achievement'>('characters_achievement');

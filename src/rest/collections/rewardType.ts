@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import rewardType from '../types/rewardType';
+import { rewardType } from '../types/rewardType';
 
 export type typeData = rewardType;
 
@@ -15,4 +15,4 @@ export type query = Partial<{
     reward_type_id: string
 }>;
 
-export default requestFactory<'reward_type'>('reward_type');
+export const rewardType = requestFactory<'reward_type'>('reward_type');

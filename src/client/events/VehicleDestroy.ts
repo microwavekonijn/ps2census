@@ -1,5 +1,5 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 import { typeData as character } from '../../rest/collections/character';
 import { Faction, factionMap, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
 
@@ -12,7 +12,7 @@ export enum Destroy {
     Undetermined
 }
 
-export default class VehicleDestroy extends CharacterEvent {
+export class VehicleDestroy extends CharacterEvent {
     /**
      * Can be overwritten if necessary
      */

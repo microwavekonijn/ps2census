@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default skillLine;
-
-type skillLine = {
+export type skillLine = {
     skill_line_id: string,
     skill_points: string,
     skill_category_id: string,

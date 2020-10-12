@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import worldStatHistory from '../types/worldStatHistory';
+import { worldStatHistory } from '../types/worldStatHistory';
 
 export type typeData = worldStatHistory;
 
@@ -73,4 +73,4 @@ export type query = Partial<{
     world_id: string
 }>;
 
-export default requestFactory<'world_stat_history'>('world_stat_history');
+export const worldStatHistory = requestFactory<'world_stat_history'>('world_stat_history');

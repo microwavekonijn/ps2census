@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import weaponDatasheet from '../types/weaponDatasheet';
+import { weaponDatasheet } from '../types/weaponDatasheet';
 
 export type typeData = weaponDatasheet;
 
@@ -33,4 +33,4 @@ export type query = Partial<{
     show_range: string
 }>;
 
-export default requestFactory<'weapon_datasheet'>('weapon_datasheet');
+export const weaponDatasheet = requestFactory<'weapon_datasheet'>('weapon_datasheet');

@@ -1,6 +1,4 @@
-export default characterStat;
-
-type characterStat = {
+export type characterStat = {
     character_id: string,
     stat_name: string,
     profile_id: string,

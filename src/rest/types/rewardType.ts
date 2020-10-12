@@ -1,6 +1,4 @@
-export default rewardType;
-
-type rewardType = {
+export type rewardType = {
     reward_type_id: string,
     description: string,
     count_min: string,

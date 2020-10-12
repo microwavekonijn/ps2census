@@ -1,7 +1,7 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 
-export default class PlayerFacilityCapture extends CharacterEvent {
+export class PlayerFacilityCapture extends CharacterEvent {
     public readonly emit = Events.PS2_CAPTURE;
 
     public readonly event_name: 'PlayerFacilityCapture';

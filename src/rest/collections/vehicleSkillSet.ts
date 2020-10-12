@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import vehicleSkillSet from '../types/vehicleSkillSet';
+import { vehicleSkillSet } from '../types/vehicleSkillSet';
 
 export type typeData = vehicleSkillSet;
 
@@ -10,4 +10,4 @@ export type query = Partial<{
     vehicle_id: string
 }>;
 
-export default requestFactory<'vehicle_skill_set'>('vehicle_skill_set');
+export const vehicleSkillSet = requestFactory<'vehicle_skill_set'>('vehicle_skill_set');

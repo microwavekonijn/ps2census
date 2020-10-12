@@ -1,6 +1,4 @@
-export default facilityLink;
-
-type facilityLink = {
+export type facilityLink = {
     zone_id: string,
     description: string,
     facility_id_a: string,

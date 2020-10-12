@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default faction;
-
-type faction = {
+export type faction = {
     faction_id: string,
     name: lang,
     image_set_id: string,

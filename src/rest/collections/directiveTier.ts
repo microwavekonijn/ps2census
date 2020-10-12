@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import directiveTier from '../types/directiveTier';
+import { directiveTier } from '../types/directiveTier';
 
 export type typeData = directiveTier;
 
@@ -21,4 +21,4 @@ export type query = Partial<{
     reward_set_id: string
 }>;
 
-export default requestFactory<'directive_tier'>('directive_tier');
+export const directiveTier = requestFactory<'directive_tier'>('directive_tier');

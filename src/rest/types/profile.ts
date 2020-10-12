@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default profile;
-
-type profile = {
+export type profile = {
     profile_id: string,
     profile_type_id: string,
     profile_type_description: string,

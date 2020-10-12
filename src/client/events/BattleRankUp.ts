@@ -1,7 +1,7 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 
-export default class BattleRankUp extends CharacterEvent {
+export class BattleRankUp extends CharacterEvent {
     public readonly emit = Events.PS2_RANKUP;
 
     public readonly battle_rank: string;

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import armorFacing from '../types/armorFacing';
+import { armorFacing } from '../types/armorFacing';
 
 export type typeData = armorFacing;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     description: string
 }>;
 
-export default requestFactory<'armor_facing'>('armor_facing');
+export const armorFacing = requestFactory<'armor_facing'>('armor_facing');

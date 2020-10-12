@@ -1,7 +1,7 @@
 import { requestFactory } from '../utils/requestHelpers';
-import character from '../types/character';
-import characterStatHistory from '../types/characterStatHistory';
-import event from '../types/event';
+import { character } from '../types/character';
+import { characterStatHistory } from '../types/characterStatHistory';
+import { event } from '../types/event';
 
 export type typeData = event & {
     character: character & { // character/character_name
@@ -28,4 +28,4 @@ export type resolve =
     | 'attacker_name'
     | 'attackers_stat_history';
 
-export default requestFactory<'event'>('event');
+export const event = requestFactory<'event'>('event');

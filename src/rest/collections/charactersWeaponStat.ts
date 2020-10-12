@@ -1,7 +1,7 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterWeaponStat from '../types/characterWeaponStat';
-import vehicle from '../types/vehicle';
-import item from '../types/item';
+import { characterWeaponStat } from '../types/characterWeaponStat';
+import { vehicle } from '../types/vehicle';
+import { item } from '../types/item';
 
 export type typeData = characterWeaponStat & {
     vehicle: vehicle, // vehicle
@@ -22,4 +22,4 @@ export type resolve =
     'item'
     | 'vehicle';
 
-export default requestFactory<'characters_weapon_stat'>('characters_weapon_stat');
+export const charactersWeaponStat = requestFactory<'characters_weapon_stat'>('characters_weapon_stat');

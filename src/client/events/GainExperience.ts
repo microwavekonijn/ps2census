@@ -1,7 +1,7 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 
-export default class GainExperience extends CharacterEvent {
+export class GainExperience extends CharacterEvent {
     public readonly emit = Events.PS2_EXPERIENCE;
 
     public readonly amount: string;

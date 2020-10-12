@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default fireMode2;
-
-type fireMode2 = {
+export type fireMode2 = {
     fire_mode_id: string,
     fire_mode_type_id: string,
     ability_id: string,

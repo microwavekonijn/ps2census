@@ -1,6 +1,4 @@
-export default characterItem;
-
-type characterItem = {
+export type characterItem = {
     character_id: string,
     item_id: string,
     account_level?: string,

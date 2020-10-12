@@ -1,6 +1,4 @@
-export default characterWeaponStat;
-
-type characterWeaponStat = {
+export type characterWeaponStat = {
     character_id: string,
     stat_name: string,
     item_id: string,

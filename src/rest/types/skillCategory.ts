@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default skillCategory;
-
-type skillCategory = {
+export type skillCategory = {
     skill_category_id: string,
     skill_set_id: string,
     skill_set_index: string,

@@ -3,7 +3,7 @@ import WebSocket, { Data } from 'ws';
 import Timeout = NodeJS.Timeout;
 import { EventStreamConfig, EventStreamSubscribed, EventStreamSubscription } from './utils/Types';
 import { Events, State } from './utils/Constants';
-import EventStreamHandler from './concerns/EventStreamHandler';
+import { EventStreamHandler } from './concerns/EventStreamHandler';
 import { PS2Environment } from '../utils/Types';
 
 declare interface EventStream {
@@ -469,12 +469,12 @@ class EventStream extends EventEmitter {
             const closed = () => {
                 this.subscriptionResponseQueue.delete(success);
                 reject(new Error('Unable to update subscription to stream as it closed'));
-            }
+            };
 
             const success = (subscription: EventStreamSubscribed) => {
                 this.off(Events.STREAM_CLOSE, closed);
                 resolve(subscription);
-            }
+            };
 
             this.once(Events.STREAM_CLOSE, closed);
 
@@ -496,4 +496,4 @@ class EventStream extends EventEmitter {
     }
 }
 
-export default EventStream;
+export { EventStream };

@@ -1,6 +1,4 @@
-export default leaderboard;
-
-type leaderboard = {
+export type leaderboard = {
     character_id: string,
     value: string,
     rank: string,

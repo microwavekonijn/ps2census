@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterDirectiveTree from '../types/characterDirectiveTree';
+import { characterDirectiveTree } from '../types/characterDirectiveTree';
 
 export type typeData = characterDirectiveTree;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     directive_tree_id: string
 }>;
 
-export default requestFactory<'characters_directive_tree'>('characters_directive_tree');
+export const charactersDirectiveTree = requestFactory<'characters_directive_tree'>('characters_directive_tree');

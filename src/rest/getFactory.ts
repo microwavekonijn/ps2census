@@ -1,10 +1,10 @@
 import axios from 'axios';
-import CensusServerError from './exceptions/CensusServerError';
-import CensusRestException from './exceptions/CensusRestException';
+import { CensusServerError } from './exceptions/CensusServerError';
+import { CensusRestException } from './exceptions/CensusRestException';
 import { PS2Environment } from '../utils/Types';
 import { getMethod } from './utils/requestTypes';
 
-export default function(environment: PS2Environment, serviceId?: string): getMethod {
+export function getFactory(environment: PS2Environment, serviceId?: string): getMethod {
     const census = axios.create({
         baseURL: serviceId
             ? `https://census.daybreakgames.com/s:${serviceId}/get/${environment}:v2`

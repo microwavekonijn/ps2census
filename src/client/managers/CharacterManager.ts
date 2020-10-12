@@ -1,10 +1,10 @@
-import RestManager from './RestManager';
-import Client from '../Client';
-import Cache from '../concerns/Cache';
+import { RestManager } from './RestManager';
+import { Client } from '../Client';
+import { Cache } from '../concerns/Cache';
 import { censusRequest } from '../../rest/utils/requestTypes';
-import queryIndex from '../../rest/indexes/queryIndex';
+import { queryIndex } from '../../rest/indexes/queryIndex';
 
-export default class CharacterManager extends RestManager<'character'> {
+export class CharacterManager extends RestManager<'character'> {
     public constructor(
         client: Client,
         cache: Cache,

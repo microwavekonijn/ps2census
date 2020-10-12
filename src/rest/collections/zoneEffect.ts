@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import zoneEffect from '../types/zoneEffect';
+import { zoneEffect } from '../types/zoneEffect';
 
 export type typeData = zoneEffect;
 
@@ -27,4 +27,4 @@ export type query = Partial<{
     zone_effect_type_id: string
 }>;
 
-export default requestFactory<'zone_effect'>('zone_effect');
+export const zoneEffect = requestFactory<'zone_effect'>('zone_effect');

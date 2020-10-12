@@ -1,6 +1,4 @@
-export default outfit;
-
-type outfit = {
+export type outfit = {
     outfit_id: string,
     name: string,
     name_lower: string,

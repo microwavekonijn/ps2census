@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default currency;
-
-type currency = {
+export type currency = {
     currency_id: string,
     name: lang,
     icon_id: string,

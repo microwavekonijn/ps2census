@@ -1,6 +1,4 @@
-export default objective;
-
-type objective = {
+export type objective = {
     objective_id: string,
     objective_type_id: string,
     objective_group_id: string,

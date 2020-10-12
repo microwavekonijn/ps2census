@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default zone;
-
-type zone = {
+export type zone = {
     zone_id: string,
     code: string,
     hex_size: string,

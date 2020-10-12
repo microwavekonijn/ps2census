@@ -1,10 +1,10 @@
 import { EventStreamSubscription } from './utils/Types';
-import Client from './Client';
-import EventStream from './EventStream';
+import { Client } from './Client';
+import { EventStream } from './EventStream';
 import { Events } from './utils/Constants';
 import { PS2EventNames } from './utils/PS2Events';
 
-export default class SubscriptionManager {
+export class SubscriptionManager {
     private static readonly label = 'SubscriptionManager';
 
     /**

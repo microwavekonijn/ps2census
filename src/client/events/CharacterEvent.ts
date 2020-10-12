@@ -1,7 +1,7 @@
-import PS2Event from './PS2Event';
+import { PS2Event } from './PS2Event';
 import { typeData as character } from '../../rest/collections/character';
 
-export default abstract class CharacterEvent extends PS2Event {
+export abstract class CharacterEvent extends PS2Event {
     public readonly character_id: string;
 
     /**

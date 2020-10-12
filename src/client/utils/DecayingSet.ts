@@ -1,6 +1,6 @@
-import Timeout = NodeJS.Timeout;
+import { Timeout } = NodeJS.Timeout;
 
-export default class DecayingSet<T> {
+export class DecayingSet<T> {
     private index: number = 0;
 
     private readonly set: Array<Set<T>>;

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import faction from '../types/faction';
+import { faction } from '../types/faction';
 
 export type typeData = faction;
 
@@ -19,4 +19,4 @@ export type query = Partial<{
     user_selectable: string
 }>;
 
-export default requestFactory<'faction'>('faction');
+export const faction = requestFactory<'faction'>('faction');

@@ -1,5 +1,5 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../utils/PS2Constants';
 import { DeathData } from '../..';
 import { numberStringToBoolean } from '../../utils/Helpers';
@@ -13,7 +13,7 @@ export enum Kill {
     Undetermined
 }
 
-export default class Death extends CharacterEvent {
+export class Death extends CharacterEvent {
     /**
      * Can be overwritten if necessary
      */

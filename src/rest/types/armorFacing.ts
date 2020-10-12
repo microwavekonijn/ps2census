@@ -1,6 +1,4 @@
-export default armorFacing;
-
-type armorFacing = {
+export type armorFacing = {
     armor_facing_id: string,
     description: string,
     [prop: string]: any,

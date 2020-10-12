@@ -1,6 +1,4 @@
-export default worldStatHistory;
-
-type worldStatHistory = {
+export type worldStatHistory = {
     world_id: string,
     stat_name: string,
     type: string,

@@ -1,6 +1,4 @@
-export default characterSkill;
-
-type characterSkill = {
+export type characterSkill = {
     character_id: string,
     skill_id: string,
     last_save: string,

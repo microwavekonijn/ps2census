@@ -1,6 +1,4 @@
-export default armorInfo;
-
-type armorInfo = {
+export type armorInfo = {
     armor_info_id: string,
     armor_facing_id: string,
     armor_percent: string,

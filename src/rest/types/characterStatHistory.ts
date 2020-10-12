@@ -1,6 +1,4 @@
-export default characterStatHistory;
-
-type characterStatHistory = {
+export type characterStatHistory = {
     character_id: string,
     stat_name: string,
     all_time: string,

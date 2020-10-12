@@ -1,6 +1,4 @@
-export default resistInfo;
-
-type resistInfo = {
+export type resistInfo = {
     resist_info_id: string,
     resist_type_id: string,
     resist_percent: string,

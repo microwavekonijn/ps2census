@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import marketingBundleWith1Item from '../types/marketingBundleWith1Item';
+import { marketingBundleWith1Item } from '../types/marketingBundleWith1Item';
 
 export type typeData = marketingBundleWith1Item;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     station_cash_price: string
 }>;
 
-export default requestFactory<'marketing_bundle_with_1_item'>('marketing_bundle_with_1_item');
+export const marketingBundleWith1Item = requestFactory<'marketing_bundle_with_1_item'>('marketing_bundle_with_1_item');

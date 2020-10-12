@@ -1,12 +1,12 @@
 import { censusRequest, collections } from '../../rest/utils/requestTypes';
-import collectionIndex from '../../rest/indexes/collectionIndex';
-import queryIndex from '../../rest/indexes/queryIndex';
-import Client from '../Client';
-import Cache from '../concerns/Cache';
+import { collectionIndex } from '../../rest/indexes/collectionIndex';
+import { queryIndex } from '../../rest/indexes/queryIndex';
+import { Client } from '../Client';
+import { Cache } from '../concerns/Cache';
 import { Events } from '../utils/Constants';
 import { hasLimit, hasLimitPerDB } from '../../rest/utils/commandHelpers';
 
-export default abstract class RestManager<C extends collections> {
+export abstract class RestManager<C extends collections> {
     protected constructor(
         protected readonly client: Client,
         public readonly cache: Cache,

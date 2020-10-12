@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import fireGroup from '../types/fireGroup';
+import { fireGroup } from '../types/fireGroup';
 
 export type typeData = fireGroup;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     transition_duration_ms: string
 }>;
 
-export default requestFactory<'fire_group'>('fire_group');
+export const fireGroup = requestFactory<'fire_group'>('fire_group');

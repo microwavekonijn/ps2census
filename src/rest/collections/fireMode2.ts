@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import fireMode2 from '../types/fireMode2';
+import { fireMode2 } from '../types/fireMode2';
 
 export type typeData = fireMode2;
 
@@ -100,4 +100,4 @@ export type query = Partial<{
     zoom_default: string
 }>;
 
-export default requestFactory<'fire_mode_2'>('fire_mode_2');
+export const fireMode2 = requestFactory<'fire_mode_2'>('fire_mode_2');

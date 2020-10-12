@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import achievement from '../types/achievement';
+import { achievement } from '../types/achievement';
 
 export type typeData = achievement;
 
@@ -28,4 +28,4 @@ export type query = Partial<{
     reward_id: string
 }>;
 
-export default requestFactory<'achievement'>('achievement');
+export const achievement = requestFactory<'achievement'>('achievement');

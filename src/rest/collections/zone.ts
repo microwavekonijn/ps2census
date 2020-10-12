@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import zone from '../types/zone';
+import { zone } from '../types/zone';
 
 export type typeData = zone;
 
@@ -23,4 +23,4 @@ export type query = Partial<{
     zone_id: string
 }>;
 
-export default requestFactory<'zone'>('zone');
+export const zone = requestFactory<'zone'>('zone');

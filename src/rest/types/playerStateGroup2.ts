@@ -1,6 +1,4 @@
-export default playerStateGroup2;
-
-type playerStateGroup2 = {
+export type playerStateGroup2 = {
     player_state_group_id: string,
     player_state_id: string,
     can_iron_sight: string,

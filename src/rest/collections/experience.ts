@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import experience from '../types/experience';
+import { experience } from '../types/experience';
 
 export type typeData = experience;
 
@@ -9,4 +9,4 @@ export type query = Partial<{
     xp: string
 }>;
 
-export default requestFactory<'experience'>('experience');
+export const experience = requestFactory<'experience'>('experience');

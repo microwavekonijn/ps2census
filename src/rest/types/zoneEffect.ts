@@ -1,6 +1,4 @@
-export default zoneEffect;
-
-type zoneEffect = {
+export type zoneEffect = {
     zone_effect_id: string,
     zone_effect_type_id: string,
     ability_id: string,

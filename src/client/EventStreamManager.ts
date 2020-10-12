@@ -1,13 +1,13 @@
-import Client from './Client';
-import EventStream from './EventStream';
+import { Client } from './Client';
+import { EventStream } from './EventStream';
 import { EventStreamManagerConfig, EventStreamSubscription } from './utils/Types';
 import { Events } from './utils/Constants';
 import Timeout = NodeJS.Timeout;
-import EventStreamHandler from './EventStreamHandler';
-import DuplicateFilter from './utils/DuplicateFilter';
-import SubscriptionManager from './SubscriptionManager';
+import { EventStreamHandler } from './EventStreamHandler';
+import { DuplicateFilter } from './utils/DuplicateFilter';
+import { SubscriptionManager } from './SubscriptionManager';
 
-class EventStreamManager {
+export class EventStreamManager {
     private static readonly label = 'EventStreamManager';
 
     /**
@@ -158,5 +158,3 @@ class EventStreamManager {
         }
     }
 }
-
-export default EventStreamManager;

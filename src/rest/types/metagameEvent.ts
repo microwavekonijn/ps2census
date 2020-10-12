@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default metagameEvent;
-
-type metagameEvent = {
+export type metagameEvent = {
     metagame_event_id: string,
     name: lang,
     description: lang,

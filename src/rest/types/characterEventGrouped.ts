@@ -1,6 +1,4 @@
-export default characterEventGrouped;
-
-type characterEventGrouped = {
+export type characterEventGrouped = {
     table_type: string,
     count: string,
     character_id: string,

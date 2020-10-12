@@ -1,20 +1,20 @@
 import { requestFactory } from '../utils/requestHelpers';
-import item from '../types/item';
-import characterStat from '../types/characterStat';
-import profile from '../types/profile';
-import character from '../types/character';
-import faction from '../types/faction';
-import characterStatByFaction from '../types/characterStatByFaction';
-import characterWeaponStat from '../types/characterWeaponStat';
-import characterWeaponStatByFaction from '../types/characterWeaponStatByFaction';
-import characterStatHistory from '../types/characterStatHistory';
-import characterFriends from '../types/characterFriends';
-import outfit from '../types/outfit';
-import outfitMember from '../types/outfitMember';
-import outfitMemberExtended from '../types/outfitMemberExtended';
-import characterCurrency from '../types/characterCurrency';
-import characterOnlineStatus from '../types/characterOnlineStatus';
-import characterWorld from '../types/characterWorld';
+import { item } from '../types/item';
+import { characterStat } from '../types/characterStat';
+import { profile } from '../types/profile';
+import { character } from '../types/character';
+import { faction } from '../types/faction';
+import { characterStatByFaction } from '../types/characterStatByFaction';
+import { characterWeaponStat } from '../types/characterWeaponStat';
+import { characterWeaponStatByFaction } from '../types/characterWeaponStatByFaction';
+import { characterStatHistory } from '../types/characterStatHistory';
+import { characterFriends } from '../types/characterFriends';
+import { outfit } from '../types/outfit';
+import { outfitMember } from '../types/outfitMember';
+import { outfitMemberExtended } from '../types/outfitMemberExtended';
+import { characterCurrency } from '../types/characterCurrency';
+import { characterOnlineStatus } from '../types/characterOnlineStatus';
+import { characterWorld } from '../types/characterWorld';
 
 // TODO: Verify outfit_*
 export type typeData =
@@ -90,4 +90,4 @@ export type resolve =
     | 'outfit_member_extended' //
     | 'currency'; //
 
-export default requestFactory<'character'>('character');
+export const character = requestFactory<'character'>('character');

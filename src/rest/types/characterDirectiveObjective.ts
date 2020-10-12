@@ -1,6 +1,4 @@
-export default characterDirectiveObjective;
-
-type characterDirectiveObjective = {
+export type characterDirectiveObjective = {
     character_id: string,
     directive_id: string,
     objective_id: string,

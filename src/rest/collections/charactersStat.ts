@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterStat from '../types/characterStat';
+import { characterStat } from '../types/characterStat';
 
 export type typeData = characterStat;
 
@@ -16,4 +16,4 @@ export type query = Partial<{
     value_weekly: string
 }>;
 
-export default requestFactory<'characters_stat'>('characters_stat');
+export const charactersStat = requestFactory<'characters_stat'>('characters_stat');

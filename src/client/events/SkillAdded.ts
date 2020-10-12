@@ -1,7 +1,7 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 
-export default class SkillAdded extends CharacterEvent {
+export class SkillAdded extends CharacterEvent {
     public readonly emit = Events.PS2_SKILL;
 
     public readonly event_name: 'SkillAdded';

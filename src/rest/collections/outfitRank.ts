@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import outfitRank from '../types/outfitRank';
+import { outfitRank } from '../types/outfitRank';
 
 export type typeData = outfitRank;
 
@@ -10,4 +10,4 @@ export type query = Partial<{
     outfit_id: string
 }>;
 
-export default requestFactory<'outfit_rank'>('outfit_rank');
+export const outfitRank = requestFactory<'outfit_rank'>('outfit_rank');

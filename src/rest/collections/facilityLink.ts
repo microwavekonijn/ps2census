@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import facilityLink from '../types/facilityLink';
+import { facilityLink } from '../types/facilityLink';
 
 export type typeData = facilityLink;
 
@@ -10,4 +10,4 @@ export type query = Partial<{
     zone_id: string
 }>;
 
-export default requestFactory<'facility_link'>('facility_link');
+export const facilityLink = requestFactory<'facility_link'>('facility_link');

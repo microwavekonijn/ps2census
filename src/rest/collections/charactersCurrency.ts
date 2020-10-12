@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterCurrency from '../types/characterCurrency';
+import { characterCurrency } from '../types/characterCurrency';
 
 export type typeData = characterCurrency;
 
@@ -11,4 +11,4 @@ export type query = Partial<{
     quantity: string
 }>;
 
-export default requestFactory<'characters_currency'>('characters_currency');
+export const charactersCurrency = requestFactory<'characters_currency'>('characters_currency');

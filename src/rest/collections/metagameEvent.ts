@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import metagameEvent from '../types/metagameEvent';
+import { metagameEvent } from '../types/metagameEvent';
 
 export type typeData = metagameEvent;
 
@@ -23,4 +23,4 @@ export type query = Partial<{
     type: string
 }>;
 
-export default requestFactory<'metagame_event'>('metagame_event');
+export const metagameEvent = requestFactory<'metagame_event'>('metagame_event');

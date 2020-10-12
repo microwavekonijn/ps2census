@@ -1,4 +1,4 @@
-export default class CensusServerError extends Error {
+export class CensusServerError extends Error {
     public readonly code: string;
 
     public constructor(data: any) {

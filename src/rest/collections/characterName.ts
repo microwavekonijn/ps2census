@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import character from '../types/character';
+import { character } from '../types/character';
 
 export type typeData = Pick<character, 'character_id' | 'name'>;
 
@@ -10,4 +10,4 @@ export type query = Partial<{
     'name.first_lower': string
 }>;
 
-export default requestFactory<'character_name'>('character_name');
+export const characterName = requestFactory<'character_name'>('character_name');

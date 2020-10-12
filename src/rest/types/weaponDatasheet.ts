@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default weaponDatasheet;
-
-type weaponDatasheet = {
+export type weaponDatasheet = {
     item_id: string,
     damage: string,
     damage_min: string,

@@ -1,6 +1,4 @@
-export default ability;
-
-// TODO: Analyze all 4530 entries and improve this type
+export // TODO: Analyze all 4530 entries and improve this type
 type ability = {
     ability_id: string, // Guaranteed
     ability_type_id: string, // Guaranteed

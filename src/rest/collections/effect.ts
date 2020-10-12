@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import effect from '../types/effect';
+import { effect } from '../types/effect';
 
 export type typeData = effect;
 
@@ -26,4 +26,4 @@ export type query = Partial<{
     target_type_id: string
 }>;
 
-export default requestFactory<'effect'>('effect');
+export const effect = requestFactory<'effect'>('effect');

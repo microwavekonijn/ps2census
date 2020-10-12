@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default region;
-
-type region = {
+export type region = {
     region_id: string,
     zone_id: string,
     initial_faction_id: string,

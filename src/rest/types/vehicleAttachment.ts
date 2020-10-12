@@ -1,6 +1,4 @@
-export default vehicleAttachment;
-
-type vehicleAttachment = {
+export type vehicleAttachment = {
     item_id: string,
     vehicle_id: string,
     faction_id: string,

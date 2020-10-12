@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterDirectiveObjective from '../types/characterDirectiveObjective';
+import { characterDirectiveObjective } from '../types/characterDirectiveObjective';
 
 export type typeData = characterDirectiveObjective;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     status: string
 }>;
 
-export default requestFactory<'characters_directive_objective'>('characters_directive_objective');
+export const charactersDirectiveObjective = requestFactory<'characters_directive_objective'>('characters_directive_objective');

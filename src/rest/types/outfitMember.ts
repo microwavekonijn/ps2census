@@ -1,6 +1,4 @@
-export default outfitMember;
-
-type outfitMember = {
+export type outfitMember = {
     outfit_id: string,
     character_id: string,
     member_since: string,

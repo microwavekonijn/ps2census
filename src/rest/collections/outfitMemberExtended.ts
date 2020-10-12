@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import outfitMemberExtended from '../types/outfitMemberExtended';
+import { outfitMemberExtended } from '../types/outfitMemberExtended';
 
 export type typeData = outfitMemberExtended;
 
@@ -20,4 +20,4 @@ export type query = Partial<{
     time_created_date: string
 }>;
 
-export default requestFactory<'outfit_member_extended'>('outfit_member_extended');
+export const outfitMemberExtended = requestFactory<'outfit_member_extended'>('outfit_member_extended');

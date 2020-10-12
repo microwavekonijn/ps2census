@@ -1,6 +1,4 @@
-export default characterAchievement;
-
-type characterAchievement = {
+export type characterAchievement = {
     character_id: string,
     achievement_id: string,
     start: string,

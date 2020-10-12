@@ -1,6 +1,4 @@
-export default objectiveType;
-
-type objectiveType = {
+export type objectiveType = {
     objective_type_id: string,
     description: string,
     param1: string,

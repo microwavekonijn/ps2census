@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import weaponAmmoSlot from '../types/weaponAmmoSlot';
+import { weaponAmmoSlot } from '../types/weaponAmmoSlot';
 
 export type typeData = weaponAmmoSlot;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     weapon_slot_index: string
 }>;
 
-export default requestFactory<'weapon_ammo_slot'>('weapon_ammo_slot');
+export const weaponAmmoSlot = requestFactory<'weapon_ammo_slot'>('weapon_ammo_slot');

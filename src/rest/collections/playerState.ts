@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import playerState from '../types/playerState';
+import { playerState } from '../types/playerState';
 
 export type typeData = playerState;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     player_state_id: string
 }>;
 
-export default requestFactory<'player_state'>('player_state');
+export const playerState = requestFactory<'player_state'>('player_state');

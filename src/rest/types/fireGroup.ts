@@ -1,6 +1,4 @@
-export default fireGroup;
-
-type fireGroup = {
+export type fireGroup = {
     fire_group_id: string,
     chamber_duration_ms: string,
     transition_duration_ms: string,

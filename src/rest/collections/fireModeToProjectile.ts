@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import fireModeToProjectile from '../types/fireModeToProjectile';
+import { fireModeToProjectile } from '../types/fireModeToProjectile';
 
 export type typeData = fireModeToProjectile;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     projectile_id: string
 }>;
 
-export default requestFactory<'fire_mode_to_projectile'>('fire_mode_to_projectile');
+export const fireModeToProjectile = requestFactory<'fire_mode_to_projectile'>('fire_mode_to_projectile');

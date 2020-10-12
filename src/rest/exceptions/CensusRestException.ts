@@ -1,4 +1,4 @@
-export default class CensusRestException extends Error {
+export class CensusRestException extends Error {
     public constructor(message: string) {
         super(message);
 

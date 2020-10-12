@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import weaponToAttachment from '../types/weaponToAttachment';
+import { weaponToAttachment } from '../types/weaponToAttachment';
 
 export type typeData = weaponToAttachment;
 
@@ -9,4 +9,4 @@ export type query = Partial<{
     weapon_group_id: string
 }>;
 
-export default requestFactory<'weapon_to_attachment'>('weapon_to_attachment');
+export const weaponToAttachment = requestFactory<'weapon_to_attachment'>('weapon_to_attachment');

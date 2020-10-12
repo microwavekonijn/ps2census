@@ -1,6 +1,4 @@
-export default characterEvent;
-
-// TODO: Improve type
+export // TODO: Improve type
 type characterEvent = {
     character_id: string,
     achievement_id: string,

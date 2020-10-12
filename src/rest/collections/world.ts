@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import world from '../types/world';
+import { world } from '../types/world';
 
 export type typeData = world;
 
@@ -11,4 +11,4 @@ export type query = Partial<{
     world_id: string,
 }>;
 
-export default requestFactory<'world'>('world');
+export const world = requestFactory<'world'>('world');

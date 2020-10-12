@@ -1,6 +1,4 @@
-export default outfitRank;
-
-type outfitRank = {
+export type outfitRank = {
     outfit_id: string,
     ordinal: string,
     name: string,

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import empireScore from '../types/empireScore';
+import { empireScore } from '../types/empireScore';
 
 export type typeData = empireScore;
 
@@ -26,4 +26,4 @@ export type query = Partial<{
     tracker_name: string
 }>;
 
-export default requestFactory<'empire_scores'>('empire_scores');
+export const empireScores = requestFactory<'empire_scores'>('empire_scores');

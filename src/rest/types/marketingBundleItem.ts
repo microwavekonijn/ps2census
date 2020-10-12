@@ -1,6 +1,4 @@
-export default marketingBundleItem;
-
-type marketingBundleItem = {
+export type marketingBundleItem = {
     marketing_bundle_id: string,
     item_id: string,
     quantity: string,

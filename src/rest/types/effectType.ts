@@ -1,6 +1,4 @@
-export default effectType;
-
-type effectType = {
+export type effectType = {
     effect_type_id: string,
     description: string,
     param1: string,

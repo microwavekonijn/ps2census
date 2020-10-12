@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import rewardSetToRewardGroup from '../types/rewardSetToRewardGroup';
+import { rewardSetToRewardGroup } from '../types/rewardSetToRewardGroup';
 
 export type typeData = rewardSetToRewardGroup;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     reward_set_id: string
 }>;
 
-export default requestFactory<'reward_set_to_reward_group'>('reward_set_to_reward_group');
+export const rewardSetToRewardGroup = requestFactory<'reward_set_to_reward_group'>('reward_set_to_reward_group');

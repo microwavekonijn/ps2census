@@ -1,6 +1,4 @@
-export default loadout;
-
-type loadout = {
+export type loadout = {
     loadout_id: string,
     profile_id: string,
     faction_id: string,

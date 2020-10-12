@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterStat from '../types/characterStat';
+import { characterStat } from '../types/characterStat';
 
 export type typeData = characterStat;
 
@@ -26,4 +26,4 @@ export type query = Partial<{
     value_weekly_vs: string
 }>;
 
-export default requestFactory<'characters_stat_by_faction'>('characters_stat_by_faction');
+export const charactersStatByFaction = requestFactory<'characters_stat_by_faction'>('characters_stat_by_faction');

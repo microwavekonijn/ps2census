@@ -1,6 +1,4 @@
-export default characterStatByFaction;
-
-type characterStatByFaction = {
+export type characterStatByFaction = {
     character_id: string,
     stat_name: string,
     profile_id: string,

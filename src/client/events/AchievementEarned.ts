@@ -1,7 +1,7 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 
-export default class AchievementEarned extends CharacterEvent {
+export class AchievementEarned extends CharacterEvent {
     public readonly emit = Events.PS2_ACHIEVEMENT;
 
     public readonly achievement_id: string;

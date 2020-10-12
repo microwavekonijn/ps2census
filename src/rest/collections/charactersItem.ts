@@ -1,8 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterItem from '../types/characterItem';
+import { characterItem } from '../types/characterItem';
 
 export type typeData = characterItem;
 
 export type query = { character_id: string };
 
-export default requestFactory<'characters_item'>('characters_item');
+export const charactersItem = requestFactory<'characters_item'>('characters_item');

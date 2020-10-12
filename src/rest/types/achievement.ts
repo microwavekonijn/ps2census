@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default achievement;
-
-type achievement = {
+export type achievement = {
     achievement_id: string,
     item_id: string,
     objective_group_id: string,

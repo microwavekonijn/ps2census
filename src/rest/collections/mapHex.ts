@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import mapHex from '../types/mapHex';
+import { mapHex } from '../types/mapHex';
 
 export type typeData = mapHex;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     zone_id: string
 }>;
 
-export default requestFactory<'map_hex'>('map_hex');
+export const mapHex = requestFactory<'map_hex'>('map_hex');

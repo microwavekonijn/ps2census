@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default experienceRank;
-
-type experienceRank = {
+export type experienceRank = {
     rank: string,
     xp_max: string,
     vs: {

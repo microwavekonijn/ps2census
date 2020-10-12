@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import resourceType from '../types/resourceType';
+import { resourceType } from '../types/resourceType';
 
 export type typeData = resourceType;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     resource_type_id: string
 }>;
 
-export default requestFactory<'resource_type'>('resource_type');
+export const resourceType = requestFactory<'resource_type'>('resource_type');

@@ -1,5 +1,5 @@
-import PS2Event from '../events/PS2Event';
+import { PS2Event } from '../events/PS2Event';
 
-export default interface EventStreamFilter {
+export interface EventStreamFilter {
     filter(event: PS2Event): boolean;
 }

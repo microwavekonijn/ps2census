@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import projectile from '../types/projectile';
+import { projectile } from '../types/projectile';
 
 export type typeData = projectile;
 
@@ -25,4 +25,4 @@ export type query = Partial<{
     turn_rate: string
 }>;
 
-export default requestFactory<'projectile'>('projectile');
+export const projectile = requestFactory<'projectile'>('projectile');

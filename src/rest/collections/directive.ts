@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import directive from '../types/directive';
+import { directive } from '../types/directive';
 
 export type typeData = directive;
 
@@ -28,4 +28,4 @@ export type query = Partial<{
     qualify_requirement_id: string
 }>;
 
-export default requestFactory<'directive'>('directive');
+export const directive = requestFactory<'directive'>('directive');

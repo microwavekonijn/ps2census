@@ -1,6 +1,4 @@
-export default characterFriends;
-
-type characterFriends = {
+export type characterFriends = {
     character_id: string,
     name: string,
     friend_list: {

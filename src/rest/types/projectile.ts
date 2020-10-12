@@ -1,6 +1,4 @@
-export default projectile;
-
-type projectile = {
+export type projectile = {
     projectile_id: string,
     projectile_flight_type_id: string,
     speed: string,

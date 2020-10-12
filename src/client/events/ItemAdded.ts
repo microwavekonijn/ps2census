@@ -1,7 +1,7 @@
 import { Events } from '../utils/Constants';
-import CharacterEvent from './CharacterEvent';
+import { CharacterEvent } from './CharacterEvent';
 
-export default class ItemAdded extends CharacterEvent {
+export class ItemAdded extends CharacterEvent {
     public readonly emit = Events.PS2_ITEM;
 
     public readonly context: string;

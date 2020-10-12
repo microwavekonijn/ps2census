@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import itemToWeapon from '../types/itemToWeapon';
+import { itemToWeapon } from '../types/itemToWeapon';
 
 export type typeData = itemToWeapon;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     weapon_id: string
 }>;
 
-export default requestFactory<'item_to_weapon'>('item_to_weapon');
+export const itemToWeapon = requestFactory<'item_to_weapon'>('item_to_weapon');

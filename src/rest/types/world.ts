@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default world;
-
-type world = {
+export type world = {
     world_id: string,
     state: string,
     name: lang,

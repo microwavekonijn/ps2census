@@ -1,6 +1,4 @@
-export default characterDirectiveTree;
-
-type characterDirectiveTree = {
+export type characterDirectiveTree = {
     character_id: string,
     directive_tree_id: string,
     current_directive_tier_id: string,

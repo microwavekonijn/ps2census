@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import characterStatHistory from '../types/characterStatHistory';
+import { characterStatHistory } from '../types/characterStatHistory';
 
 export type typeData = characterStatHistory
 
@@ -71,4 +71,4 @@ export type query = Partial<{
     'week.w13': string
 }>;
 
-export default requestFactory<'characters_stat_history'>('characters_stat_history');
+export const charactersStatHistory = requestFactory<'characters_stat_history'>('characters_stat_history');

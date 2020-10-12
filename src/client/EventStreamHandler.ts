@@ -1,29 +1,29 @@
-import EventStreamHandlerContract from './concerns/EventStreamHandler';
+import { EventStreamHandlerContract } from './concerns/EventStreamHandler';
 import { PS2EventData } from './utils/PS2Events';
-import EventStreamFilter from './concerns/EventStreamFilter';
-import PS2Event from './events/PS2Event';
-import Client from './Client';
+import { EventStreamFilter } from './concerns/EventStreamFilter';
+import { PS2Event } from './events/PS2Event';
+import { Client } from './Client';
 import { Events } from './utils/Constants';
 import { endpointsToId } from './utils/PS2Constants';
 
-import AchievementEarned from './events/AchievementEarned';
-import BattleRankUp from './events/BattleRankUp';
-import ContinentLock from './events/ContinentLock';
-import ContinentUnlock from './events/ContinentUnlock';
-import Death from './events/Death';
-import FacilityControl from './events/FacilityControl';
-import GainExperience from './events/GainExperience';
-import ItemAdded from './events/ItemAdded';
-import MetagameEvent from './events/MetagameEvent';
-import PlayerFacilityCapture from './events/PlayerFacilityCapture';
-import PlayerFacilityDefend from './events/PlayerFacilityDefend';
-import PlayerLogin from './events/PlayerLogin';
-import PlayerLogout from './events/PlayerLogout';
-import SkillAdded from './events/SkillAdded';
-import VehicleDestroy from './events/VehicleDestroy';
+import { AchievementEarned } from './events/AchievementEarned';
+import { BattleRankUp } from './events/BattleRankUp';
+import { ContinentLock } from './events/ContinentLock';
+import { ContinentUnlock } from './events/ContinentUnlock';
+import { Death } from './events/Death';
+import { FacilityControl } from './events/FacilityControl';
+import { GainExperience } from './events/GainExperience';
+import { ItemAdded } from './events/ItemAdded';
+import { MetagameEvent } from './events/MetagameEvent';
+import { PlayerFacilityCapture } from './events/PlayerFacilityCapture';
+import { PlayerFacilityDefend } from './events/PlayerFacilityDefend';
+import { PlayerLogin } from './events/PlayerLogin';
+import { PlayerLogout } from './events/PlayerLogout';
+import { SkillAdded } from './events/SkillAdded';
+import { VehicleDestroy } from './events/VehicleDestroy';
 import { stringToBoolean } from '../utils/Helpers';
 
-export default class EventStreamHandler implements EventStreamHandlerContract {
+export class EventStreamHandler implements EventStreamHandlerContract {
     public static endpointsToId = endpointsToId;
 
     /**

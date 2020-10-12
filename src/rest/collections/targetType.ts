@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import targetType from '../types/targetType';
+import { targetType } from '../types/targetType';
 
 export type typeData = targetType;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     target_type_id: string
 }>;
 
-export default requestFactory<'target_type'>('target_type');
+export const targetType = requestFactory<'target_type'>('target_type');

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import directiveTree from '../types/directiveTree';
+import { directiveTree } from '../types/directiveTree';
 
 export type typeData = directiveTree;
 
@@ -25,4 +25,4 @@ export type query = Partial<{
     'name.tr': string
 }>;
 
-export default requestFactory<'directive_tree'>('directive_tree');
+export const directiveTree = requestFactory<'directive_tree'>('directive_tree');

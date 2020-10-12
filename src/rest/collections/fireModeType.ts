@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import fireModeType from '../types/fireModeType';
+import { fireModeType } from '../types/fireModeType';
 
 export type typeData = fireModeType;
 
@@ -8,4 +8,4 @@ export type query = Partial<{
     fire_mode_type_id: string
 }>;
 
-export default requestFactory<'fire_mode_type'>('fire_mode_type');
+export const fireModeType = requestFactory<'fire_mode_type'>('fire_mode_type');

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import currency from '../types/currency';
+import { currency } from '../types/currency';
 
 export type typeData = currency;
 
@@ -16,4 +16,4 @@ export type query = Partial<{
     'name.tr': string
 }>;
 
-export default requestFactory<'currency'>('currency');
+export const currency = requestFactory<'currency'>('currency');

@@ -1,17 +1,17 @@
 import { requestFactory } from '../utils/requestHelpers';
-import character from '../types/character';
-import characterStatHistory from '../types/characterStatHistory';
-import characterStat from '../types/characterStat';
-import characterStatByFaction from '../types/characterStatByFaction';
-import characterWeaponStat from '../types/characterWeaponStat';
-import characterWeaponStatByFaction from '../types/characterWeaponStatByFaction';
-import outfitMemberExtended from '../types/outfitMemberExtended';
-import item from '../types/item';
-import profile from '../types/profile';
-import faction from '../types/faction';
-import characterOnlineStatus from '../types/characterOnlineStatus';
-import characterCurrency from '../types/characterCurrency';
-import characterWorld from '../types/characterWorld';
+import { character } from '../types/character';
+import { characterStatHistory } from '../types/characterStatHistory';
+import { characterStat } from '../types/characterStat';
+import { characterStatByFaction } from '../types/characterStatByFaction';
+import { characterWeaponStat } from '../types/characterWeaponStat';
+import { characterWeaponStatByFaction } from '../types/characterWeaponStatByFaction';
+import { outfitMemberExtended } from '../types/outfitMemberExtended';
+import { item } from '../types/item';
+import { profile } from '../types/profile';
+import { faction } from '../types/faction';
+import { characterOnlineStatus } from '../types/characterOnlineStatus';
+import { characterCurrency } from '../types/characterCurrency';
+import { characterWorld } from '../types/characterWorld';
 
 export type typeData =
     character
@@ -60,4 +60,4 @@ export type resolve =
     | 'profile' //
     | 'faction'; //
 
-export default requestFactory<'single_character_by_id'>('single_character_by_id');
+export const singleCharacterById = requestFactory<'single_character_by_id'>('single_character_by_id');

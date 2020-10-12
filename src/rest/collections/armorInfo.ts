@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import armorInfo from '../types/armorInfo';
+import { armorInfo } from '../types/armorInfo';
 
 export type typeData = armorInfo;
 
@@ -11,4 +11,4 @@ export type query = Partial<{
     description: string
 }>;
 
-export default requestFactory<'armor_info'>('armor_info');
+export const armorInfo = requestFactory<'armor_info'>('armor_info');

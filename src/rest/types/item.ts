@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default item;
-
-type item = {
+export type item = {
     item_id: string,
     item_type_id: string,
     item_category_id: string,

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import mapRegion from '../types/mapRegion';
+import { mapRegion } from '../types/mapRegion';
 
 export type typeData = mapRegion;
 
@@ -17,4 +17,4 @@ export type query = Partial<{
     zone_id: string
 }>;
 
-export default requestFactory<'map_region'>('map_region');
+export const mapRegion = requestFactory<'map_region'>('map_region');

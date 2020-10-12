@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import objective from '../types/objective';
+import { objective } from '../types/objective';
 
 export type typeData = objective;
 
@@ -18,4 +18,4 @@ export type query = Partial<{
     param9: string
 }>;
 
-export default requestFactory<'objective'>('objective');
+export const objective = requestFactory<'objective'>('objective');

@@ -1,6 +1,4 @@
-export default characterCurrency;
-
-type characterCurrency = {
+export type characterCurrency = {
     character_id: string,
     currency_id: string,
     currency_name: string,

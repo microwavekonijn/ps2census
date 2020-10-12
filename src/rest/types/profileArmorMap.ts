@@ -1,6 +1,4 @@
-export default profileArmorMap;
-
-type profileArmorMap = {
+export type profileArmorMap = {
     profile_id: string,
     armor_info_id: string,
     rank: string,

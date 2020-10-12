@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import loadout from '../types/loadout';
+import { loadout } from '../types/loadout';
 
 export type typeData = loadout;
 
@@ -10,4 +10,4 @@ export type query = Partial<{
     profile_id: string
 }>;
 
-export default requestFactory<'loadout'>('loadout');
+export const loadout = requestFactory<'loadout'>('loadout');

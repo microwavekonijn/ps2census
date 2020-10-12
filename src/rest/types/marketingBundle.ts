@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default marketingBundle;
-
-type marketingBundle = {
+export type marketingBundle = {
     marketing_bundle_id: string,
     name: lang,
     description: lang,

@@ -1,6 +1,5 @@
-import typeIndex from '../indexes/collectionIndex';
-import queryIndex from '../indexes/queryIndex';
-import collectionIndex from '../indexes/collectionIndex';
+import { collectionIndex } from '../indexes/collectionIndex';
+import { queryIndex } from '../indexes/queryIndex';
 // import { joinType, sortType, treeType } from './commandTypes';
 // import { langs } from './responseTypes';
 
@@ -29,10 +28,10 @@ export type censusRequest<C extends collections> = {
     //     timing?: boolean,
     //     tree?: treeType,
     // },
-    params: Record<string, any>,
+    params: Record<string, string>,
 };
 
-export type collections = keyof typeIndex;
+export type collections = keyof collectionIndex;
 
 export type countableCollections = Exclude<collections,
     'charactersEvent'

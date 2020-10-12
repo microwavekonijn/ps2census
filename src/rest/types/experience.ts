@@ -1,6 +1,4 @@
-export default experience;
-
-type experience = {
+export type experience = {
     experience_id: string,
     description: string,
     xp: string,

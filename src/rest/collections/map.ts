@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import map from '../types/map';
+import { map } from '../types/map';
 
 export type typeData = map;
 
@@ -8,4 +8,4 @@ export type query = {
     zone_ids: string
 };
 
-export default requestFactory<'map'>('map');
+export const map = requestFactory<'map'>('map');

@@ -1,6 +1,4 @@
-export default weaponAmmoSlot;
-
-type weaponAmmoSlot = {
+export type weaponAmmoSlot = {
     weapon_id: string,
     weapon_slot_index: string,
     clip_size: string,

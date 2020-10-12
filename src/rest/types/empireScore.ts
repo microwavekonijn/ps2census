@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default empireScore;
-
-type empireScore = {
+export type empireScore = {
     tracker_name: string,
     tracker_description: string,
     start_date: string,

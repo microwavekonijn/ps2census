@@ -1,8 +1,6 @@
 import { lang } from '../utils/responseTypes';
 
-export default directiveTier;
-
-type directiveTier = {
+export type directiveTier = {
     directive_tree_id: string,
     directive_tier_id: string,
     directive_points: string,

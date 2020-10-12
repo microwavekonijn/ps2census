@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import skillSet from '../types/skillSet';
+import { skillSet } from '../types/skillSet';
 
 export type typeData = skillSet;
 
@@ -26,4 +26,4 @@ export type query = Partial<{
     skill_set_id: string
 }>;
 
-export default requestFactory<'skill_set'>('skill_set');
+export const skillSet = requestFactory<'skill_set'>('skill_set');

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import marketingBundleItem from '../types/marketingBundleItem';
+import { marketingBundleItem } from '../types/marketingBundleItem';
 
 export type typeData = marketingBundleItem
 
@@ -10,4 +10,4 @@ export type query = Partial<{
     release_time: string
 }>;
 
-export default requestFactory<'marketing_bundle_item'>('marketing_bundle_item');
+export const marketingBundleItem = requestFactory<'marketing_bundle_item'>('marketing_bundle_item');

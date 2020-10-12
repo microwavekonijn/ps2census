@@ -1,8 +1,8 @@
 import { requestFactory } from '../utils/requestHelpers';
-import leaderboard from '../types/leaderboard';
-import character from '../types/character';
-import characterStatHistory from '../types/characterStatHistory';
-import characterWorld from '../types/characterWorld';
+import { leaderboard } from '../types/leaderboard';
+import { character } from '../types/character';
+import { characterStatHistory } from '../types/characterStatHistory';
+import { characterWorld } from '../types/characterWorld';
 
 export type typeData =
     leaderboard
@@ -26,4 +26,4 @@ export type resolve =
     | 'character_name' //
     | 'characters_stat_history'; //
 
-export default requestFactory<'leaderboard'>('leaderboard');
+export const leaderboard = requestFactory<'leaderboard'>('leaderboard');

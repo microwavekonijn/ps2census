@@ -1,6 +1,4 @@
-export default event;
-
-// TODO: Same as characterEvent?????
+export // TODO: Same as characterEvent?????
 type event = {
     character_id: string,
     achievement_id: string,

@@ -1,5 +1,3 @@
-export default commandIndex;
-
-type commandIndex = {
+export type commandIndex = {
 
 };

@@ -1,5 +1,5 @@
 import { requestFactory } from '../utils/requestHelpers';
-import resistInfo from '../types/resistInfo';
+import { resistInfo } from '../types/resistInfo';
 
 export type typeData = resistInfo;
 
@@ -12,4 +12,4 @@ export type query = Partial<{
     resist_type_id: string
 }>;
 
-export default requestFactory<'resist_info'>('resist_info');
+export const resistInfo = requestFactory<'resist_info'>('resist_info');

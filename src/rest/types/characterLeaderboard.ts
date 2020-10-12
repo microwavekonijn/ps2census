@@ -1,6 +1,4 @@
-export default characterLeaderboard;
-
-type characterLeaderboard = {
+export type characterLeaderboard = {
     character_id: string,
     value: string,
     rank: string,

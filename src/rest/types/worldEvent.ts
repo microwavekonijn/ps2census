@@ -1,6 +1,4 @@
-export default worldEvent;
-
-type worldEvent = {
+export type worldEvent = {
     facility_id: string,
     faction_old: string,
     faction_new: string,

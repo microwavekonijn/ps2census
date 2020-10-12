@@ -110,9 +110,7 @@ import { typeData as charactersEvent } from '../collections/charactersEvent';
 import { typeData as event } from '../collections/event';
 import { typeData as worldEvent } from '../collections/worldEvent';
 
-export default collectionIndex;
-
-type collectionIndex = {
+export type collectionIndex = {
     single_character_by_id: singleCharacterById,
     character: character,
     character_name: characterName,

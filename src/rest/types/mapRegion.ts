@@ -1,6 +1,4 @@
-export default mapRegion;
-
-type mapRegion = {
+export type mapRegion = {
     map_region_id: string,
     zone_id: string,
     facility_id: string,
