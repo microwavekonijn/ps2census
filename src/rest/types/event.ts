@@ -1,5 +1,5 @@
-export // TODO: Same as characterEvent?????
-type event = {
+// TODO: Same as characterEvent?????
+export type event = {
     character_id: string,
     achievement_id: string,
     timestamp: string,

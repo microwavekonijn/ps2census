@@ -1,5 +1,5 @@
-export // TODO: Analyze all 4530 entries and improve this type
-type ability = {
+// TODO: Analyze all 4530 entries and improve this type
+export type ability = {
     ability_id: string, // Guaranteed
     ability_type_id: string, // Guaranteed
     resource_type_id: string,

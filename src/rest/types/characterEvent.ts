@@ -1,5 +1,5 @@
-export // TODO: Improve type
-type characterEvent = {
+// TODO: Improve type
+export type characterEvent = {
     character_id: string,
     achievement_id: string,
     timestamp: string,
