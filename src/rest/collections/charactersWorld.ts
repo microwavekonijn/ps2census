@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterWorld as characterWorldFormat } from '../formats/characterWorld';
+export { characterWorld as charactersWorldFormat } from '../formats/characterWorld';
 
 export type charactersWorldQuery = Partial<{
     character_id: string,

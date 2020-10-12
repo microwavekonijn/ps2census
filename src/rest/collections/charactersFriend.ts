@@ -3,13 +3,13 @@ import { characterFriends } from '../formats/characterFriends';
 import { character } from '../formats/character';
 import { characterWorld } from '../formats/characterWorld';
 
-export type typeData = characterFriends & {
+export type charactersFriendFormat = characterFriends & {
     friend_list: (character & characterWorld)[], // character/character_name and world
 };
 
-export type query = { character_id: string };
+export type charactersFriendQuery = { character_id: string };
 
-export type resolve =
+export type charactersFriendResolve =
     'character'
     | 'character_name'
     | 'world';

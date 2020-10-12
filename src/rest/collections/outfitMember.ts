@@ -1,12 +1,12 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { outfitMember } from '../formats/outfitMember';
+import { outfitMember as outfitMemberBaseFormat } from '../formats/outfitMember';
 import { outfit } from '../formats/outfit';
 import { character } from '../formats/character';
 import { characterStatHistory } from '../formats/characterStatHistory';
 import { characterOnlineStatus } from '../formats/characterOnlineStatus';
 
-export type typeData =
-    outfitMember
+export type outfitMemberFormat =
+    outfitMemberBaseFormat
     & characterOnlineStatus // online_status
     & {
     character: character & { // character/character_name
@@ -17,7 +17,7 @@ export type typeData =
     outfit: outfit, // outfit
 };
 
-export type query = Partial<{
+export type outfitMemberQuery = Partial<{
     character_id: string,
     member_since: string,
     member_since_date: string,
@@ -26,7 +26,7 @@ export type query = Partial<{
     rank_ordinal: string
 }>;
 
-export type resolve =
+export type outfitMemberResolve =
     'character' //
     | 'character_name' //
     | 'characters_stat_history' //

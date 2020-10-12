@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterCurrency as characterCurrencyFormat } from '../formats/characterCurrency';
+export { characterCurrency as charactersCurrencyFormat } from '../formats/characterCurrency';
 
 export type charactersCurrencyQuery = Partial<{
     character_id: string,

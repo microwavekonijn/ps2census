@@ -1,7 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { fireMode } from '../formats/fireMode';
 
-export type typeData = fireMode
+export { fireMode as fireModeFormat } from '../formats/fireMode';
 
 export type fireModeQuery = Partial<{
     cof_recoil: string,

@@ -4,7 +4,7 @@ import { characterStatHistory } from '../formats/characterStatHistory';
 import { characterLeaderboard } from '../formats/characterLeaderboard';
 import { characterWorld } from '../formats/characterWorld';
 
-export type typeData =
+export type charactersLeaderboardFormat =
     characterLeaderboard
     & character // character/character_name
     & characterWorld // world
@@ -14,13 +14,13 @@ export type typeData =
     },
 };
 
-export type query = {
+export type charactersLeaderboardQuery = {
     name: 'Deaths' | 'Kills' | 'Score' | 'Time',
     period: 'Forever' | 'Monthly' | 'Weekly' | 'Daily' | 'OneLife',
     character_id: string
 };
 
-export type resolve =
+export type charactersLeaderboardResolve =
     'character' //
     | 'character_name' //
     | 'characters_stat_history' //

@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterItem as characterItemFormat } from '../formats/characterItem';
+export { characterItem as charactersItemFormat } from '../formats/characterItem';
 
 export type charactersItemQuery = { character_id: string };
 

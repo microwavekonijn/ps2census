@@ -2,7 +2,7 @@ import { requestFactory } from '../utils/requestHelpers';
 
 export { marketingBundleWith1Item as marketingBundleWith1ItemFormat } from '../formats/marketingBundleWith1Item';
 
-export type marketingBundleWith1_itemQuery = Partial<{
+export type marketingBundleWith1ItemQuery = Partial<{
     cert_price: string,
     item_id: string,
     item_quantity: string,

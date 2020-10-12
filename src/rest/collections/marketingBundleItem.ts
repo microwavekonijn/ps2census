@@ -1,7 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { marketingBundleItem } from '../formats/marketingBundleItem';
 
-export type typeData = marketingBundleItem
+export { marketingBundleItem as marketingBundleItemFormat } from '../formats/marketingBundleItem';
 
 export type marketingBundleItemQuery = Partial<{
     item_id: string,

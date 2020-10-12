@@ -3,7 +3,7 @@ import { character } from '../formats/character';
 import { characterStatHistory } from '../formats/characterStatHistory';
 import { characterEventGrouped } from '../formats/characterEventGrouped';
 
-export type typeData = characterEventGrouped & {
+export type charactersEventGroupedFormat = characterEventGrouped & {
     character: character & { // character/character_name
         stats: {
             stat_history: characterStatHistory[], //characters_stat_history
@@ -11,12 +11,12 @@ export type typeData = characterEventGrouped & {
     },
 };
 
-export type query = {
+export type charactersEventGroupedQuery = {
     character_id: string,
     type?: string,
 };
 
-export type resolve =
+export type charactersEventGroupedResolve =
     'character'
     | 'character_name'
     | 'characters_stat_history';

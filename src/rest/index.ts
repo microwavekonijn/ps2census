@@ -31,10 +31,10 @@ export * from './commands/start';
 export * from './commands/timing';
 export * from './commands/tree';
 
-/** Collection formats */
+/** Collection base formats */
 export * as baseFormats from './formats';
 
-/** Collections */
+/** Collections, with resolve, query, and format */
 export * from './collections/singleCharacterById';
 export * from './collections/character';
 export * from './collections/characterName';

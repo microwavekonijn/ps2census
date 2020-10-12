@@ -1,7 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { characterStatHistory } from '../formats/characterStatHistory';
 
-export type typeData = characterStatHistory
+export { characterStatHistory as charactersStatHistoryFormat } from '../formats/characterStatHistory';
 
 export type charactersStatHistoryQuery = Partial<{
     all_time: string,

@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { empireScore as empireScoreFormat } from '../formats/empireScore';
+export { empireScore as empireScoresFormat } from '../formats/empireScore';
 
 export type empireScoresQuery = Partial<{
     description: string,

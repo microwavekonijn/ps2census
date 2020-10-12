@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterStat as characterStatFormat } from '../formats/characterStat';
+export { characterStat as charactersStatFormat } from '../formats/characterStat';
 
 export type charactersStatQuery = Partial<{
     character_id: string,

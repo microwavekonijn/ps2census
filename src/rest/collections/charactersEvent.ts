@@ -3,7 +3,7 @@ import { character } from '../formats/character';
 import { characterStatHistory } from '../formats/characterStatHistory';
 import { characterEvent } from '../formats/characterEvent';
 
-export type typeData = characterEvent & {
+export type charactersEventFormat = characterEvent & {
     character: character & { // character/character_name
         stats: {
             stat_history: characterStatHistory[], // characters_stat_history
@@ -11,7 +11,7 @@ export type typeData = characterEvent & {
     },
 };
 
-export type query = { character_id: string } & Partial<{
+export type charactersEventQuery = { character_id: string } & Partial<{
     after: string,
     before: string,
     id: string,
@@ -19,7 +19,7 @@ export type query = { character_id: string } & Partial<{
 }>;
 
 // TODO: Find associated attacker* formats
-export type resolve =
+export type charactersEventResolve =
     'character' //
     | 'character_name' //
     | 'characters_stat_history' //

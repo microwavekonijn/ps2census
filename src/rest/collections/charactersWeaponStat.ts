@@ -3,12 +3,12 @@ import { characterWeaponStat } from '../formats/characterWeaponStat';
 import { vehicle } from '../formats/vehicle';
 import { item } from '../formats/item';
 
-export type typeData = characterWeaponStat & {
+export type charactersWeaponStatFormat = characterWeaponStat & {
     vehicle: vehicle, // vehicle
     item: item, // item
 };
 
-export type query = Partial<{
+export type charactersWeaponStatQuery = Partial<{
     character_id: string,
     item_id: string,
     last_save: string,
@@ -18,7 +18,7 @@ export type query = Partial<{
     vehicle_id: string
 }>;
 
-export type resolve =
+export type charactersWeaponStatResolve =
     'item'
     | 'vehicle';
 

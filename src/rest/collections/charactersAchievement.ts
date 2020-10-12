@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterAchievement as characterAchievementFormat } from '../formats/characterAchievement';
+export { characterAchievement as charactersAchievementFormat } from '../formats/characterAchievement';
 
 export type charactersAchievementQuery = Partial<{
     achievement_id: string,

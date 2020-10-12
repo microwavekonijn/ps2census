@@ -1,11 +1,11 @@
 import { requestFactory } from '../utils/requestHelpers';
-import { outfit } from '../formats/outfit';
+import { outfit as outfitBaseFormat } from '../formats/outfit';
 import { character } from '../formats/character';
 import { characterStatHistory } from '../formats/characterStatHistory';
 import { outfitMember } from '../formats/outfitMember';
 import { characterOnlineStatus } from '../formats/characterOnlineStatus';
 
-export type typeData = outfit & {
+export type outfitFormat = outfitBaseFormat & {
     leader: character & { // leader/leader_name
         stats: {
             stat_history: characterStatHistory[], // leader_stat_history
@@ -20,7 +20,7 @@ export type typeData = outfit & {
     }[],
 };
 
-export type query = Partial<{
+export type outfitQuery = Partial<{
     alias: string,
     alias_lower: string,
     leader_character_id: string,
@@ -32,7 +32,7 @@ export type query = Partial<{
     time_created_date: string
 }>;
 
-export type resolve =
+export type outfitResolve =
     'leader' //
     | 'leader_name' //
     | 'leaders_stat_history' //

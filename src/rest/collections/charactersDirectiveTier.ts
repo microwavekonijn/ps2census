@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterDirectiveTier as characterDirectiveTierFormat } from '../formats/characterDirectiveTier';
+export { characterDirectiveTier as charactersDirectiveTierFormat } from '../formats/characterDirectiveTier';
 
 export type charactersDirectiveTierQuery = Partial<{
     character_id: string,

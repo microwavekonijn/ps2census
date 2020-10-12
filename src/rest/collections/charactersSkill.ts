@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterSkill as characterSkillFormat } from '../formats/characterSkill';
+export { characterSkill as charactersSkillFormat } from '../formats/characterSkill';
 
 export type charactersSkillQuery = Partial<{
     character_id: string,

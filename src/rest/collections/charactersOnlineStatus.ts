@@ -1,6 +1,6 @@
 import { requestFactory } from '../utils/requestHelpers';
 
-export { characterOnlineStatus as characterOnlineStatusFormat } from '../formats/characterOnlineStatus';
+export { characterOnlineStatus as charactersOnlineStatusFormat } from '../formats/characterOnlineStatus';
 
 export type charactersOnlineStatusQuery = { character_id: string };
 

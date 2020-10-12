@@ -11,7 +11,7 @@ export type eventFormat = eventBaseFormat & {
     },
 };
 
-export type query = {
+export type eventQuery = {
     type?: string
 } & ({
     after: string,
@@ -20,7 +20,7 @@ export type query = {
 });
 
 // TODO: Find associated attacker* formats
-export type resolve =
+export type eventResolve =
     'character' //
     | 'character_name' //
     | 'characters_stat_history' //
