@@ -6,7 +6,7 @@ export * from './client/SubscriptionManager';
 
 export { Cache as CacheContract } from './client/concerns/Cache';
 export { EventStreamFilter as EventStreamFilterContract } from './client/concerns/EventStreamFilter';
-export { EventStreamHandler as EventStreamHanlderContract } from './client/concerns/EventStreamHandler';
+export { EventStreamHandler as EventStreamHandlerContract } from './client/concerns/EventStreamHandler';
 
 export * from './client/events/PS2Event';
 export * from './client/events/CharacterEvent';
