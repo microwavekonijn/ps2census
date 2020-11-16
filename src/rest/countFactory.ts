@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { CensusServerError } from './exceptions/CensusServerError';
 import { CensusRestException } from './exceptions/CensusRestException';
-import { PS2Environment } from '../types/PS2';
+import { PS2Environment } from '../types/ps2.options';
 import { countRequest } from './types/request';
 
 export function countFactory(environment: PS2Environment, serviceId?: string): countRequest {

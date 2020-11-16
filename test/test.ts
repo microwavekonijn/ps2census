@@ -1,5 +1,5 @@
 import { Client, Events } from '../src';
-import { Kill } from '../src/client/events/Death';
+import { Kill } from 'death.event.ts';
 
 const client = new Client(process.argv[2], {
     streamManagerConfig: {
