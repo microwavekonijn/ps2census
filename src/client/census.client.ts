@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import { ClientOptions, ClientEvents, EventStreamSubscription } from './types/client.options';
 import { StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
-import { getFactory, GetMethod } from '../rest/getFactory';
+import { GetMethod } from '../rest/getFactory';
 import { CharacterManager } from './managers/character.manager';
 import { Cache } from './utils/cache';
 import { resolve } from '../rest/commands/resolve';
@@ -44,7 +44,8 @@ class Client extends EventEmitter {
         {
             environment = 'ps2',
             streamManagerConfig,
-            characterManager = {},
+            restManager,
+            characterManager,
         }: ClientOptions = {},
     ) {
         super();
@@ -52,15 +53,15 @@ class Client extends EventEmitter {
         this.serviceId = serviceId;
         this.environment = environment;
 
-        this.restManager = new RestManager(this);
-
-        this.streamManager = new StreamManager(this, streamManagerConfig);
+        this.restManager = new RestManager(this, restManager);
 
         this.characterManager = new CharacterManager(
             this,
             characterManager?.cache ?? new Cache(),
             characterManager?.request ?? resolve(query('character'), ['outfit_member_extended']),
         );
+
+        this.streamManager = new StreamManager(this, streamManagerConfig);
     }
 
     /**

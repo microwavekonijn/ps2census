@@ -4,6 +4,7 @@ import { Events } from '../constants';
 import { MaxRetryException } from '../exceptions/max-retry.exception';
 import { InferCollection, Query } from '../../rest/types/query';
 import { Conditions, Format } from '../../rest/types/collection';
+import { RestManagerOptions } from '../types';
 
 export class RestManager {
     readonly getMethod: GetMethod;
@@ -12,14 +13,15 @@ export class RestManager {
 
     constructor(
         private readonly client: Client,
-        options?: any,
+        options?: RestManagerOptions,
     ) {
         this.getMethod = getFactory(client.environment, client.serviceId);
 
         this.retries = options?.retries ?? 2;
     }
 
-    async get<Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>, {retries = this.retries}: any): Promise<Format<C>[]> {
+    async get<Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>, options: RestManagerOptions): Promise<Format<C>[]> {
+        const retries = options.retries ?? this.retries;
         let attempt = 0;
         const attempts: (CensusRestException | CensusServerError)[] = [];
 

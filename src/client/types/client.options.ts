@@ -21,26 +21,33 @@ import { MetagameEvent } from '../events/metagame.event';
 import { Query } from '../../rest/types/query';
 import { Character } from '../../rest/collections/character';
 
-export type ClientOptions = {
-    environment?: PS2Environment,
-    streamManagerConfig?: EventStreamManagerOptions,
-    characterManager?: {
-        request?: Query<Character['collection'], Character>,
-        cache?: CacheContract,
-    }
+export interface ClientOptions {
+    environment?: PS2Environment;
+    streamManagerConfig?: EventStreamManagerOptions;
+    restManager?: RestManagerOptions;
+    characterManager?: CharacterManagerOptions;
 }
 
-export type EventStreamManagerOptions = {
-    subscription?: EventStreamSubscription,
-    streamConfig?: EventStreamConfig,
+export interface RestManagerOptions {
+    retries?: number;
 }
 
-export type EventStreamConfig = {
-    environment?: PS2Environment,
-    connectionTimeout?: number,
-    heartbeatInterval?: number,
-    duplicateFilter?: DuplicateFilter | null,
-    emitter?: EventEmitter,
+export interface CharacterManagerOptions {
+    request?: Query<Character['collection'], Character>,
+    cache?: CacheContract,
+}
+
+export interface EventStreamManagerOptions {
+    subscription?: EventStreamSubscription;
+    streamConfig?: EventStreamConfig;
+}
+
+export interface EventStreamConfig {
+    environment?: PS2Environment;
+    connectionTimeout?: number;
+    heartbeatInterval?: number;
+    duplicateFilter?: DuplicateFilter | null;
+    emitter?: EventEmitter;
 }
 
 export type EventStreamSubscription = Partial<{
