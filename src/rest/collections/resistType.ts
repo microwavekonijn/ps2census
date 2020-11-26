@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { resistType } from '../formats/resistType';
 
-export { resistType as resistTypeFormat } from '../formats/resistType';
+export interface ResistType extends DefaultCollection {
+    collection: 'resist_type';
 
-export type resistTypeQuery = Partial<{
-    description: string,
-    resist_type_id: string
-}>;
+    format: resistType;
 
-export const resistType = requestFactory('resist_type');
+    conditions: Partial<{
+        description: string,
+        resist_type_id: string
+    }>;
+}

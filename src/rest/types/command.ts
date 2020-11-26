@@ -1,8 +1,7 @@
-import { collections } from './request';
-import { resolveIndex } from '../indexes/resolveIndex';
+import { Collections } from './collections';
 
 export type joinExpression = {
-    type: collections,
+    type: keyof Collections,
     on?: string,
     to?: string,
     list?: boolean,
@@ -24,35 +23,3 @@ export type treeType = {
     start?: string
 }
 
-export type limitCollections = Exclude<collections,
-    'characters_friend'
-    | 'characters_item'
-    | 'characters_online_status'
-    | 'characters_world'
-    | 'map'>;
-
-export type startCollections = Exclude<collections,
-    'characters_event'
-    | 'characterS_event_grouped'
-    | 'characters_friend'
-    | 'characters_item'
-    | 'characters_online_status'
-    | 'event'
-    | 'characters_world'
-    | 'map'
-    | 'world_event'>;
-
-export type baseCollections = Exclude<collections,
-    'characters_event'
-    | 'characterS_event_grouped'
-    | 'characters_friend'
-    | 'characters_item'
-    | 'characters_leaderboard'
-    | 'characters_online_status'
-    | 'event'
-    | 'leaderboard'
-    | 'characters_world'
-    | 'map'
-    | 'world_event'>;
-
-export type resolveCollections = keyof resolveIndex;

@@ -1,14 +1,14 @@
-import { RestManager } from './rest.manager';
+import { BaseManager } from './base.manager';
 import { Client } from '../census.client';
 import { CacheContract } from '../concerns/cache.contract';
-import { censusRequest } from '../../rest/types/request';
+import { CensusRequest } from '../../rest/types/request';
 import { queryIndex } from '../../rest/indexes/queryIndex';
 
-export class CharacterManager extends RestManager<'character'> {
-    public constructor(
+export class CharacterManager extends BaseManager<'character'> {
+    constructor(
         client: Client,
         cache: CacheContract,
-        request: censusRequest<'character'>,
+        request: CensusRequest<'character'>,
     ) {
         super(client, cache, request);
     }

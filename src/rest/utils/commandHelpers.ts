@@ -1,12 +1,12 @@
-import { censusRequest, collections } from '../types/request';
 import { joinType, sortType, treeType } from '../types/command';
+import { Query } from '../types/query';
 
-export function hasLimitPerDB<C extends collections>(request: censusRequest<C>): boolean {
-    return !!request.params.limitPerDB;
+export function hasLimitPerDB(query: Query<unknown, unknown>): boolean {
+    return !!query.params.limitPerDB;
 }
 
-export function hasLimit<C extends collections>(request: censusRequest<C>): boolean {
-    return !!request.params.limit;
+export function hasLimit(query: Query<unknown, unknown>): boolean {
+    return !!query.params.limit;
 }
 
 export function fieldsToString(fields: string[]): string {
@@ -44,7 +44,7 @@ export function joinsToString(joins: joinType[]): string {
     }).join(',');
 }
 
-export function resolveToString(resolve: (string | [string, string[]])[]): string {
+export function resolveToString<R>(resolve: (R | [R, string[]])[]): string {
     return resolve.map(r => Array.isArray(r) ? `${r[0]}(${r[1].join(',')})` : r).join(',');
 }
 

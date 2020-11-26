@@ -1,11 +1,14 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { profileResistMap } from '../formats/profileResistMap';
 
-export { profileResistMap as profileResistMapFormat } from '../formats/profileResistMap';
+export interface ProfileResistMap extends DefaultCollection {
+    collection: 'profile_resist_map';
 
-export type profileResistMapQuery = Partial<{
-    profile_id: string,
-    rank: string,
-    resist_info_id: string
-}>;
+    format: profileResistMap;
 
-export const profileResistMap = requestFactory('profile_resist_map');
+    conditions: Partial<{
+        profile_id: string,
+        rank: string,
+        resist_info_id: string
+    }>;
+}

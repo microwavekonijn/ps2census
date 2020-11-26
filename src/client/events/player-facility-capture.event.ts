@@ -2,14 +2,14 @@ import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 
 export class PlayerFacilityCapture extends CharacterEvent {
-    public readonly emit = Events.PS2_CAPTURE;
+    readonly emit = Events.PS2_CAPTURE;
 
-    public readonly event_name: 'PlayerFacilityCapture';
-    public readonly facility_id: string;
-    public readonly outfit_id: string;
-    public readonly zone_id: string;
+    readonly event_name: 'PlayerFacilityCapture';
+    readonly facility_id: string;
+    readonly outfit_id: string;
+    readonly zone_id: string;
 
-    public toHash(): string {
+    toHash(): string {
         return `PlayerFacilityCapture:${this.character_id}:${this.timestamp}`;
     }
 }

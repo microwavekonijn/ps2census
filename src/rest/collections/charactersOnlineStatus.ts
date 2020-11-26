@@ -1,7 +1,8 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { characterOnlineStatus } from '../formats/characterOnlineStatus';
 
-export { characterOnlineStatus as charactersOnlineStatusFormat } from '../formats/characterOnlineStatus';
+export interface CharactersOnlineStatus {
+    collection: 'characters_online_status';
 
-export type charactersOnlineStatusQuery = { character_id: string };
-
-export const charactersOnlineStatus = requestFactory('characters_online_status');
+    format: characterOnlineStatus;
+    conditions: { character_id: string };
+}

@@ -1,14 +1,17 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { imageSetDefault } from '../formats/imageSetDefault';
 
-export { imageSetDefault as imageSetDefaultFormat } from '../formats/imageSetDefault';
+export interface ImageSetDefault extends DefaultCollection {
+    collection: 'image_set_default';
 
-export type imageSetDefaultQuery = Partial<{
-    description: string,
-    image_id: string,
-    image_path: string,
-    image_set_id: string,
-    type_description: string,
-    type_id: string
-}>;
+    format: imageSetDefault;
 
-export const imageSetDefault = requestFactory('image_set_default');
+    conditions: Partial<{
+        description: string,
+        image_id: string,
+        image_path: string,
+        image_set_id: string,
+        type_description: string,
+        type_id: string
+    }>;
+}

@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { itemProfile } from '../formats/itemProfile';
 
-export { itemProfile as itemProfileFormat } from '../formats/itemProfile';
+export interface ItemProfile extends DefaultCollection {
+    collection: 'item_profile';
 
-export type itemProfileQuery = Partial<{
-    item_id: string,
-    profile_id: string
-}>;
+    format: itemProfile;
 
-export const itemProfile = requestFactory('item_profile');
+    conditions: Partial<{
+        item_id: string,
+        profile_id: string
+    }>;
+}

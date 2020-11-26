@@ -1,25 +1,28 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { zone } from '../formats/zone';
 
-export { zone as zoneFormat } from '../formats/zone';
+export interface Zone extends DefaultCollection {
+    collection: 'zone';
 
-export type zoneQuery = Partial<{
-    code: string,
-    description: string,
-    'description.de': string,
-    'description.en': string,
-    'description.es': string,
-    'description.fr': string,
-    'description.it': string,
-    'description.tr': string,
-    hex_size: string,
-    name: string,
-    'name.de': string,
-    'name.en': string,
-    'name.es': string,
-    'name.fr': string,
-    'name.it': string,
-    'name.tr': string,
-    zone_id: string
-}>;
+    format: zone;
 
-export const zone = requestFactory('zone');
+    conditions: Partial<{
+        code: string,
+        description: string,
+        'description.de': string,
+        'description.en': string,
+        'description.es': string,
+        'description.fr': string,
+        'description.it': string,
+        'description.tr': string,
+        hex_size: string,
+        name: string,
+        'name.de': string,
+        'name.en': string,
+        'name.es': string,
+        'name.fr': string,
+        'name.it': string,
+        'name.tr': string,
+        zone_id: string
+    }>;
+}

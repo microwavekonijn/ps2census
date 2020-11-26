@@ -16,7 +16,7 @@ export class DuplicateFilter implements StreamFilterContract {
      *
      * @param {object} config
      */
-    public constructor({
+    constructor({
                            decay = 2000,
                            partitions = 8,
                            ignore = ['GainExperience'],
@@ -32,7 +32,7 @@ export class DuplicateFilter implements StreamFilterContract {
      * @param {PS2Event} event
      * @return {boolean} whether it has been recorded before
      */
-    public filter(event: PS2Event): boolean {
+    filter(event: PS2Event): boolean {
         if (this.ignore.includes(event.event_name))
             return false;
 

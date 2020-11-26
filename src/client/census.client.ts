@@ -3,7 +3,7 @@ import { ClientOptions, ClientEvents, EventStreamSubscription } from './types/cl
 import { StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
 import { getFactory } from '../rest';
-import { getMethod } from '../rest/types/request';
+import { GetMethod } from '../rest/types/request';
 import { CharacterManager } from './managers/character.manager';
 import { Cache } from './utils/cache';
 import { character } from '../rest/collections/character';
@@ -18,7 +18,7 @@ class Client extends EventEmitter {
     /**
      * @type {PS2Environment} the environment the client is configured for
      */
-    public readonly environment: PS2Environment;
+    readonly environment: PS2Environment;
 
     /**
      * @type{StreamManager?} the event stream manager
@@ -26,21 +26,21 @@ class Client extends EventEmitter {
     private readonly streamManager: StreamManager;
 
     /**
-     * @type {getMethod} Get method to fetch data from the Rest API
+     * @type {GetMethod} Get method to fetch data from the Rest API
      */
-    public readonly get: getMethod;
+    readonly get: GetMethod;
 
     /**
      * @type {CharacterManager} The character manager for Census API requests
      */
-    public readonly characterManager: CharacterManager;
+    readonly characterManager: CharacterManager;
 
     /**
      * @param {string} serviceId service Id for the Census API
      * @param {ClientOptions} config
      */
-    public constructor(
-        public readonly serviceId: string,
+    constructor(
+        readonly serviceId: string,
         {
             environment = 'ps2',
             streamManagerConfig,
@@ -68,14 +68,14 @@ class Client extends EventEmitter {
      *
      * @return {Promise<void>}
      */
-    public async watch(): Promise<void> {
+    async watch(): Promise<void> {
         await this.streamManager.connect();
     }
 
     /**
      * Doom and destruction, WUHAHAHAHA!
      */
-    public destroy(): void {
+    destroy(): void {
         this.streamManager?.disconnect();
     }
 
@@ -85,7 +85,7 @@ class Client extends EventEmitter {
      * @param {EventStreamSubscription} subscription
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public subscribe(subscription: EventStreamSubscription): Promise<boolean> {
+    subscribe(subscription: EventStreamSubscription): Promise<boolean> {
         return this.streamManager.subscriptionManager.subscribe(subscription);
     }
 
@@ -95,7 +95,7 @@ class Client extends EventEmitter {
      * @param {EventStreamSubscription} subscription
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public unsubscribe(subscription: EventStreamSubscription): Promise<boolean> {
+    unsubscribe(subscription: EventStreamSubscription): Promise<boolean> {
         return this.streamManager.subscriptionManager.unsubscribe(subscription);
     }
 
@@ -104,7 +104,7 @@ class Client extends EventEmitter {
      *
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public unsubscribeAll(): Promise<boolean> {
+    unsubscribeAll(): Promise<boolean> {
         return this.streamManager.subscriptionManager.unsubscribeAll();
     }
 
@@ -114,7 +114,7 @@ class Client extends EventEmitter {
      * @param {boolean} reset When true unsubscribes to all events first
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public resubscribe(reset = false): Promise<boolean> {
+    resubscribe(reset = false): Promise<boolean> {
         return this.streamManager.subscriptionManager.resubscribe(reset);
     }
 
@@ -123,7 +123,7 @@ class Client extends EventEmitter {
      *
      * @return {EventStreamSubscription}
      */
-    public get subscription(): EventStreamSubscription {
+    get subscription(): EventStreamSubscription {
         return this.streamManager.subscriptionManager.subscription;
     }
 

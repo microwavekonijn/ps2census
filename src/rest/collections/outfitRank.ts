@@ -1,12 +1,15 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { outfitRank } from '../formats/outfitRank';
 
-export { outfitRank as outfitRankFormat } from '../formats/outfitRank';
+export interface OutfitRank extends DefaultCollection {
+    collection: 'outfit_rank';
 
-export type outfitRankQuery = Partial<{
-    description: string,
-    name: string,
-    ordinal: string,
-    outfit_id: string
-}>;
+    format: outfitRank;
 
-export const outfitRank = requestFactory('outfit_rank');
+    conditions: Partial<{
+        description: string,
+        name: string,
+        ordinal: string,
+        outfit_id: string
+    }>;
+}

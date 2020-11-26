@@ -1,6 +1,6 @@
-export type characterEventGrouped = {
-    table_type: string,
-    count: string,
-    character_id: string,
-    [prop: string]: any,
-};
+export interface characterEventGrouped  {
+    table_type: string;
+    count: string;
+    character_id: string;
+    [prop: string]: unkown;
+}

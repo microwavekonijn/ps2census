@@ -1,13 +1,13 @@
-import { censusRequest, censusTreeRequest, collections } from '../types/request';
 import { treeType } from '../types/command';
 import { treeToString } from '../utils/commandHelpers';
+import { Query } from '../types/query';
 
-export function tree<C extends collections>(req: censusRequest<C>, tree: treeType): censusTreeRequest<C> {
+export function tree<Q extends Query<any, unknown>>(query: Q, tree: treeType): Q {
     return {
-        ...req,
+        ...query,
         tree,
         params: {
-            ...req.params,
+            ...query.params,
             'c:tree': treeToString(tree),
         },
     };

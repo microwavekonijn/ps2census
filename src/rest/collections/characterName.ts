@@ -1,13 +1,15 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
 import { character } from '../formats/character';
 
-export type characterNameFormat = Pick<character, 'character_id' | 'name'>;
+export interface CharacterName extends DefaultCollection {
+    collection: 'character_name';
 
-export type characterNameQuery = Partial<{
-    character_id: string,
-    name: string,
-    'name.first': string,
-    'name.first_lower': string
-}>;
+    format: Pick<character, 'character_id' | 'name'>;
 
-export const characterName = requestFactory('character_name');
+    conditions: Partial<{
+        character_id: string,
+        name: string,
+        'name.first': string,
+        'name.first_lower': string
+    }>;
+}

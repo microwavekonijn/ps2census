@@ -1,14 +1,17 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { resistInfo } from '../formats/resistInfo';
 
-export { resistInfo as resistInfoFormat } from '../formats/resistInfo';
+export interface ResistInfo extends DefaultCollection {
+    collection: 'resist_info';
 
-export type resistInfoQuery = Partial<{
-    description: string,
-    multiplier_when_headshot: string,
-    resist_amount: string,
-    resist_info_id: string,
-    resist_percent: string,
-    resist_type_id: string
-}>;
+    format: resistInfo;
 
-export const resistInfo = requestFactory('resist_info');
+    conditions: Partial<{
+        description: string,
+        multiplier_when_headshot: string,
+        resist_amount: string,
+        resist_info_id: string,
+        resist_percent: string,
+        resist_type_id: string
+    }>;
+}

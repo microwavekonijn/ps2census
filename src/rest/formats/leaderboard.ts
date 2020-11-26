@@ -1,6 +1,6 @@
-export type leaderboard = {
-    character_id: string,
-    value: string,
-    rank: string,
-    [prop: string]: any,
-};
+export interface leaderboard  {
+    character_id: string;
+    value: string;
+    rank: string;
+    [prop: string]: unkown;
+}

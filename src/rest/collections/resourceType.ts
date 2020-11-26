@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { resourceType } from '../formats/resourceType';
 
-export { resourceType as resourceTypeFormat } from '../formats/resourceType';
+export interface ResourceType extends DefaultCollection {
+    collection: 'resource_type';
 
-export type resourceTypeQuery = Partial<{
-    description: string,
-    resource_type_id: string
-}>;
+    format: resourceType;
 
-export const resourceType = requestFactory('resource_type');
+    conditions: Partial<{
+        description: string,
+        resource_type_id: string
+    }>;
+}

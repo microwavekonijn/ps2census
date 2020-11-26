@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { fireModeToProjectile } from '../formats/fireModeToProjectile';
 
-export { fireModeToProjectile as fireModeToProjectileFormat } from '../formats/fireModeToProjectile';
+export interface FireModeToProjectile extends DefaultCollection {
+    collection: 'fire_mode_to_projectile';
 
-export type fireModeToProjectileQuery = Partial<{
-    fire_mode_id: string,
-    projectile_id: string
-}>;
+    format: fireModeToProjectile;
 
-export const fireModeToProjectile = requestFactory('fire_mode_to_projectile');
+    conditions: Partial<{
+        fire_mode_id: string,
+        projectile_id: string
+    }>;
+}

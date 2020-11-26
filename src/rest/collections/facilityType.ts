@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { facilityType } from '../formats/facilityType';
 
-export { facilityType as facilityTypeFormat } from '../formats/facilityType';
+export interface FacilityType extends DefaultCollection {
+    collection: 'facility_type';
 
-export type facilityTypeQuery = Partial<{
-    description: string,
-    facility_type_id: string
-}>;
+    format: facilityType;
 
-export const facilityType = requestFactory('facility_type');
+    conditions: Partial<{
+        description: string,
+        facility_type_id: string
+    }>;
+}

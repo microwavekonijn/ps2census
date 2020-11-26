@@ -1,12 +1,12 @@
-import { censusRequest } from '../types/request';
-import { baseCollections } from '../types/command';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export default function exactMatchFirst<C extends baseCollections, R extends censusRequest<C>>(req: R, exactMatchFirst = true): R {
+export default function exactMatchFirst<Q extends Query<any, DefaultCollection>>(query: Q, exactMatchFirst = true): Q {
     return {
-        ...req,
-        exactMatchFirst,
+        ...query,
+        // exactMatchFirst,
         params: {
-            ...req.params,
+            ...query.params,
             'c:exactMatchFirst': exactMatchFirst,
         },
     };

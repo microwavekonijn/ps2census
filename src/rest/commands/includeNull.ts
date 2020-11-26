@@ -1,12 +1,12 @@
-import { censusRequest } from '../types/request';
-import { baseCollections } from '../types/command';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export function includeNull<C extends baseCollections, R extends censusRequest<C>>(req: R, field: string): R {
+export function includeNull<Q extends Query<any, DefaultCollection>>(query: Q, field: string): Q {
     return {
-        ...req,
-        includeNull: field,
+        ...query,
+        // includeNull: field,
         params: {
-            ...req.params,
+            ...query.params,
             'c:includeNull': field,
         },
     };

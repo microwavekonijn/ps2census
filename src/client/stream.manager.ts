@@ -33,7 +33,7 @@ export class StreamManager {
     /**
      * @type {EventStreamSubscription[]} Array of subscriptions
      */
-    public readonly subscriptionManager: SubscriptionManager;
+    readonly subscriptionManager: SubscriptionManager;
 
     /**
      * @type {StreamHandler} handles events, and subscriptions
@@ -44,8 +44,8 @@ export class StreamManager {
      * @param {Client} client
      * @param {EventStreamManagerOptions} config
      */
-    public constructor(
-        public readonly client: Client,
+    constructor(
+        readonly client: Client,
         {
             subscription = {},
             streamConfig,
@@ -95,7 +95,7 @@ export class StreamManager {
      *
      * @return {Promise<void>}
      */
-    public async connect(): Promise<void> {
+    async connect(): Promise<void> {
         if (this.stream.isReady) return;
 
         const ready = () => {
@@ -122,7 +122,7 @@ export class StreamManager {
      *
      * @return {Promise<void>}
      */
-    public disconnect(): void {
+    disconnect(): void {
         if (this.destroyed) return;
         this.destroyed = true;
 

@@ -1,12 +1,12 @@
-import { censusRequest } from '../types/request';
-import { limitCollections } from '../types/command';
+import { Query } from '../types/query';
+import { Limitable } from '../types/collection';
 
-export function limit<C extends limitCollections, R extends censusRequest<C>>(req: R, limit: number): R {
+export function limit<Q extends Query<any, Limitable>>(query: Q, limit: number): Q {
     return {
-        ...req,
-        limit,
+        ...query,
+        // limit,
         params: {
-            ...req.params,
+            ...query.params,
             'c:limit': limit,
         },
     };

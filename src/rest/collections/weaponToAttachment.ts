@@ -1,11 +1,14 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { weaponToAttachment } from '../formats/weaponToAttachment';
 
-export { weaponToAttachment as weaponToAttachmentFormat } from '../formats/weaponToAttachment';
+export interface WeaponToAttachment extends DefaultCollection {
+    collection: 'weapon_to_attachment';
 
-export type weaponToAttachmentQuery = Partial<{
-    attachment_id: string,
-    item_id: string,
-    weapon_group_id: string
-}>;
+    format: weaponToAttachment;
 
-export const weaponToAttachment = requestFactory('weapon_to_attachment');
+    conditions: Partial<{
+        attachment_id: string,
+        item_id: string,
+        weapon_group_id: string
+    }>;
+}

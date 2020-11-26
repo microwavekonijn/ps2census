@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { rewardGroupToReward } from '../formats/rewardGroupToReward';
 
-export { rewardGroupToReward as rewardGroupToRewardFormat } from '../formats/rewardGroupToReward';
+export interface RewardGroupToReward extends DefaultCollection {
+    collection: 'reward_group_to_reward';
 
-export type rewardGroupToRewardQuery = Partial<{
-    reward_group_id: string,
-    reward_id: string
-}>;
+    format: rewardGroupToReward;
 
-export const rewardGroupToReward = requestFactory('reward_group_to_reward');
+    conditions: Partial<{
+        reward_group_id: string,
+        reward_id: string
+    }>;
+}

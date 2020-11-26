@@ -32,7 +32,7 @@ export class SubscriptionManager {
      * @param {EventStream} stream the stream to comment, like, and subscribe to
      * @param {EventStreamSubscription} subscription the initial subscription
      */
-    public constructor(
+    constructor(
         private readonly client: Client,
         private readonly stream: EventStream,
         subscription: EventStreamSubscription = {},
@@ -62,7 +62,7 @@ export class SubscriptionManager {
      * @param {EventStreamSubscription} subscription
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public async subscribe(subscription: EventStreamSubscription): Promise<boolean> {
+    async subscribe(subscription: EventStreamSubscription): Promise<boolean> {
         subscription.characters?.forEach(this.characters.add);
         subscription.worlds?.forEach(this.worlds.add);
         subscription.eventNames?.forEach(this.eventNames.add);
@@ -82,7 +82,7 @@ export class SubscriptionManager {
      * @param {EventStreamSubscription} subscription
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public async unsubscribe(subscription: EventStreamSubscription): Promise<boolean> {
+    async unsubscribe(subscription: EventStreamSubscription): Promise<boolean> {
         subscription.characters?.forEach(this.characters.delete);
         subscription.worlds?.forEach(this.worlds.delete);
         subscription.eventNames?.forEach(this.eventNames.delete);
@@ -104,7 +104,7 @@ export class SubscriptionManager {
      *
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public async unsubscribeAll(): Promise<boolean> {
+    async unsubscribeAll(): Promise<boolean> {
         this.characters.clear();
         this.worlds.clear();
         this.eventNames.clear();
@@ -125,7 +125,7 @@ export class SubscriptionManager {
      * @param {boolean} reset When true unsubscribes to all events first
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
-    public async resubscribe(reset = false): Promise<boolean> {
+    async resubscribe(reset = false): Promise<boolean> {
         if (this.stream.isReady) {
             if (reset) await this.unsubscribeAll();
 
@@ -142,7 +142,7 @@ export class SubscriptionManager {
      *
      * @return {EventStreamSubscription}
      */
-    public get subscription(): EventStreamSubscription {
+    get subscription(): EventStreamSubscription {
         return {
             characters: Array.from(this.characters),
             worlds: Array.from(this.worlds),

@@ -1,10 +1,12 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { map } from '../formats/map';
 
-export { map as mapFormat } from '../formats/map';
+export interface Map {
+    collection: 'map';
 
-export type mapQuery = {
-    world_id: string,
-    zone_ids: string
-};
+    format: map;
 
-export const map = requestFactory('map');
+    conditions: {
+        world_id: string,
+        zone_ids: string
+    };
+}

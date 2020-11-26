@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { profile2 } from '../formats/profile2';
 
-export { profile2 as profile2Format } from '../formats/profile2';
+export interface Profile2 extends DefaultCollection {
+    collection: 'profile_2';
 
-export type profile2Query = Partial<{
-    description: string,
-    profile_id: string
-}>;
+    format: profile2;
 
-export const profile2 = requestFactory('profile_2');
+    conditions: Partial<{
+        description: string,
+        profile_id: string
+    }>;
+}

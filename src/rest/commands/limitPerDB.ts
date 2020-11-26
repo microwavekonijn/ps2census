@@ -1,12 +1,13 @@
-import { censusRequest } from '../types/request';
-import { limitCollections } from '../types/command';
+import { Query } from '../types/query';
+import { Limitable } from '../types/collection';
 
-export function limitPerDB<C extends limitCollections, R extends censusRequest<C>>(req: R, limit: number): R {
+// TODO: Check if it is limited to character collection only
+export function limitPerDB<Q extends Query<any, Limitable>>(query: Q, limit: number): Q {
     return {
-        ...req,
-        limitPerDB: limit,
+        ...query,
+        // limitPerDB: limit,
         params: {
-            ...req.params,
+            ...query.params,
             'c:limitPerDB': limit,
         },
     };

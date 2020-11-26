@@ -1,16 +1,19 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { directiveTreeCategory } from '../formats/directiveTreeCategory';
 
-export { directiveTreeCategory as directiveTreeCategoryFormat } from '../formats/directiveTreeCategory';
+export interface DirectiveTreeCategory extends DefaultCollection {
+    collection: 'directive_tree_category';
 
-export type directiveTreeCategoryQuery = Partial<{
-    directive_tree_category_id: string,
-    name: string,
-    'name.de': string,
-    'name.en': string,
-    'name.es': string,
-    'name.fr': string,
-    'name.it': string,
-    'name.tr': string
-}>;
+    format: directiveTreeCategory;
 
-export const directiveTreeCategory = requestFactory('directive_tree_category');
+    conditions: Partial<{
+        directive_tree_category_id: string,
+        name: string,
+        'name.de': string,
+        'name.en': string,
+        'name.es': string,
+        'name.fr': string,
+        'name.it': string,
+        'name.tr': string
+    }>;
+}

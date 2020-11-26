@@ -2,9 +2,12 @@ import axios from 'axios';
 import { CensusServerError } from './exceptions/CensusServerError';
 import { CensusRestException } from './exceptions/CensusRestException';
 import { PS2Environment } from '../types/ps2.options';
-import { countRequest } from './types/request';
+import { InferCollection, Query } from './types/query';
+import { Conditions, Countable } from './types/collection';
 
-export function countFactory(environment: PS2Environment, serviceId?: string): countRequest {
+export type CountMethod = <Q extends Query<any, Countable>>(query: Q, conditions: Conditions<InferCollection<Q>>) => Promise<number>
+
+export function countFactory(environment: PS2Environment, serviceId?: string): CountMethod {
     const census = axios.create({
         baseURL: serviceId
             ? `https://census.daybreakgames.com/s:${serviceId}/count/${environment}:v2`
@@ -22,6 +25,6 @@ export function countFactory(environment: PS2Environment, serviceId?: string): c
         },
     });
 
-    return ({collection, params}, query) =>
-        census.get(collection, {params: {...params, ...query}}).then(({data}: any) => data);
+    return ({collection, params}, conditions) =>
+        census.get(collection, {params: {...params, ...conditions}}).then(({data}: any) => data);
 }

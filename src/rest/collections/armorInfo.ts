@@ -1,13 +1,16 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { armorInfo } from '../formats/armorInfo';
 
-export { armorInfo as armorInfoFormat } from '../formats/armorInfo';
+export interface ArmorInfo extends DefaultCollection {
+    collection: 'armor_info';
 
-export type armorInfoQuery = Partial<{
-    armor_amount: string,
-    armor_facing_id: string,
-    armor_info_id: string,
-    armor_percent: string,
-    description: string
-}>;
+    format: armorInfo;
 
-export const armorInfo = requestFactory('armor_info');
+    conditions: Partial<{
+        armor_amount: string,
+        armor_facing_id: string,
+        armor_info_id: string,
+        armor_percent: string,
+        description: string
+    }>;
+}

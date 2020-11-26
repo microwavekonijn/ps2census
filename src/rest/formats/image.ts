@@ -1,6 +1,6 @@
-export type image = {
-    image_id: string,
-    description: string,
-    path: string,
-    [prop: string]: any,
-};
+export interface image  {
+    image_id: string;
+    description: string;
+    path: string;
+    [prop: string]: unkown;
+}

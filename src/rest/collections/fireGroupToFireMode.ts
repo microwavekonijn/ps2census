@@ -1,11 +1,14 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { fireGroupToFireMode } from '../formats/fireGroupToFireMode';
 
-export { fireGroupToFireMode as fireGroupToFireModeFormat } from '../formats/fireGroupToFireMode';
+export interface FireGroupToFireMode extends DefaultCollection {
+    collection: 'fire_group_to_fire_mode';
 
-export type fireGroupToFireModeQuery = Partial<{
-    fire_group_id: string,
-    fire_mode_id: string,
-    fire_mode_index: string
-}>;
+    format: fireGroupToFireMode;
 
-export const fireGroupToFireMode = requestFactory('fire_group_to_fire_mode');
+    conditions: Partial<{
+        fire_group_id: string,
+        fire_mode_id: string,
+        fire_mode_index: string
+    }>;
+}

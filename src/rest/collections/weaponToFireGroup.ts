@@ -1,11 +1,14 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { weaponToFireGroup } from '../formats/weaponToFireGroup';
 
-export { weaponToFireGroup as weaponToFireGroupFormat } from '../formats/weaponToFireGroup';
+export interface WeaponToFireGroup extends DefaultCollection {
+    collection: 'weapon_to_fire_group';
 
-export type weaponToFireGroupQuery = Partial<{
-    fire_group_id: string,
-    fire_group_index: string,
-    weapon_id: string
-}>;
+    format: weaponToFireGroup;
 
-export const weaponToFireGroup = requestFactory('weapon_to_fire_group');
+    conditions: Partial<{
+        fire_group_id: string,
+        fire_group_index: string,
+        weapon_id: string
+    }>;
+}

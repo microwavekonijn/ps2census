@@ -1,12 +1,15 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { Limitable } from '../types/collection';
+import { worldEvent } from '../formats/worldEvent';
 
-export { worldEvent as worldEventFormat } from '../formats/worldEvent';
+export interface WorldEvent extends Limitable {
+    collection: 'world_event';
 
-export type worldEventQuery = { world_id: string } & Partial<{
-    after: string,
-    before: string,
-    id: string,
-    type: string,
-}>;
+    format: worldEvent;
 
-export const worldEvent = requestFactory('world_event');
+    conditions: { world_id: string } & Partial<{
+        after: string,
+        before: string,
+        id: string,
+        type: string,
+    }>;
+}

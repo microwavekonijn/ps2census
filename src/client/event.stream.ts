@@ -92,7 +92,7 @@ class EventStream extends EventEmitter {
      * @param {StreamHandlerContract} handler
      * @param {EventStreamConfig} config
      */
-    public constructor(
+    constructor(
         private readonly serviceId: string,
         private readonly handler: StreamHandlerContract,
         {
@@ -113,7 +113,7 @@ class EventStream extends EventEmitter {
     /**
      * Maybe, is ready, maybe is not, who knows
      */
-    public get isReady(): boolean {
+    get isReady(): boolean {
         return this.state === State.READY;
     }
 
@@ -122,7 +122,7 @@ class EventStream extends EventEmitter {
      *
      * @return {Promise<void>}
      */
-    public connect(): Promise<void> {
+    connect(): Promise<void> {
         if (this.connection && this.connection.readyState === WebSocket.OPEN && this.state === State.READY)
             return Promise.resolve();
 
@@ -294,7 +294,7 @@ class EventStream extends EventEmitter {
      * @param {number} code
      * @param {boolean} emit
      */
-    public destroy({code = 1000, emit = true} = {}): void {
+    destroy({code = 1000, emit = true} = {}): void {
         this.setHeartbeatTimer(-1);
         this.setConnectionTimeout(false);
 
@@ -399,7 +399,7 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    public subscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
+    subscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
         return this.updateSubscription({
             service: 'event',
             action: 'subscribe',
@@ -415,7 +415,7 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    public unsubscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
+    unsubscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
         return this.updateSubscription({
             service: 'event',
             action: 'clearSubscribe',
@@ -429,7 +429,7 @@ class EventStream extends EventEmitter {
     /**
      * Purge all subscriptions
      */
-    public unsubscribeAll(): Promise<EventStreamSubscribed> {
+    unsubscribeAll(): Promise<EventStreamSubscribed> {
         return this.updateSubscription({
             service: 'event',
             action: 'clearSubscribe',
@@ -487,7 +487,7 @@ class EventStream extends EventEmitter {
     /**
      * @param data
      */
-    public send(data: any): void {
+    send(data: any): void {
         if (!this.connection) throw new Error(`Connection not available`);
 
         this.connection.send(data, (e) => {

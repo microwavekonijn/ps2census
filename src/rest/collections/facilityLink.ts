@@ -1,12 +1,15 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { facilityLink } from '../formats/facilityLink';
 
-export { facilityLink as facilityLinkFormat } from '../formats/facilityLink';
+export interface FacilityLink extends DefaultCollection {
+    collection: 'facility_link';
 
-export type facilityLinkQuery = Partial<{
-    description: string,
-    facility_id_a: string,
-    facility_id_b: string,
-    zone_id: string
-}>;
+    format: facilityLink;
 
-export const facilityLink = requestFactory('facility_link');
+    conditions: Partial<{
+        description: string,
+        facility_id_a: string,
+        facility_id_b: string,
+        zone_id: string
+    }>;
+}

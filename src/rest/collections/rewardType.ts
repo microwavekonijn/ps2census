@@ -1,17 +1,20 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { rewardType } from '../formats/rewardType';
 
-export { rewardType as rewardTypeFormat } from '../formats/rewardType';
+export interface RewardType extends DefaultCollection {
+    collection: 'reward_type';
 
-export type rewardTypeQuery = Partial<{
-    count_max: string,
-    count_min: string,
-    description: string,
-    param1: string,
-    param2: string,
-    param3: string,
-    param4: string,
-    param5: string,
-    reward_type_id: string
-}>;
+    format: rewardType;
 
-export const rewardType = requestFactory('reward_type');
+    conditions: Partial<{
+        count_max: string,
+        count_min: string,
+        description: string,
+        param1: string,
+        param2: string,
+        param3: string,
+        param4: string,
+        param5: string,
+        reward_type_id: string
+    }>;
+}

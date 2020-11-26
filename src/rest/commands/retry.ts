@@ -1,11 +1,12 @@
-import { censusRequest, collections } from '../types/request';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export function retry<C extends collections, R extends censusRequest<C>>(req: R, retry = false): R {
+export function retry<Q extends Query<any, DefaultCollection>>(query: Q, retry = false): Q {
     return {
-        ...req,
-        retry,
+        ...query,
+        // retry,
         params: {
-            ...req.params,
+            ...query.params,
             'c:retry': retry,
         },
     };

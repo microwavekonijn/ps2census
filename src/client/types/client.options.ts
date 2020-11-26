@@ -1,7 +1,7 @@
 import { DuplicateFilter } from '../utils/duplicate-filter';
 import { EventEmitter } from 'events';
 import { PS2Environment } from '../../types/ps2.options';
-import { censusRequest } from '../../rest/types/request';
+import { CensusRequest } from '../../rest/types/request';
 import { CacheContract } from '../concerns/cache.contract';
 import { PS2EventNames } from './ps2.events';
 import { PS2Event } from '../events/ps2.event';
@@ -24,7 +24,7 @@ export type ClientOptions = {
     environment?: PS2Environment,
     streamManagerConfig?: EventStreamManagerOptions,
     characterManager?: {
-        request?: censusRequest<'character'>,
+        request?: CensusRequest<'character'>,
         cache?: CacheContract,
     }
 }

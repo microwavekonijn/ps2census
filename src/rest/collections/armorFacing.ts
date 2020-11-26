@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { armorFacing } from '../formats/armorFacing';
 
-export { armorFacing as armorFacingFormat } from '../formats/armorFacing';
+export interface ArmorFacing extends DefaultCollection {
+    collection: 'armor_facing';
 
-export type armorFacingQuery = Partial<{
-    armor_facing_id: string,
-    description: string
-}>;
+    format: armorFacing;
 
-export const armorFacing = requestFactory('armor_facing');
+    conditions: Partial<{
+        armor_facing_id: string,
+        description: string
+    }>;
+}

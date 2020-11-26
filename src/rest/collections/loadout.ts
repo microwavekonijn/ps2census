@@ -1,12 +1,15 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { loadout } from '../formats/loadout';
 
-export { loadout as loadoutFormat } from '../formats/loadout';
+export interface Loadout extends DefaultCollection {
+    collection: 'loadout';
 
-export type loadoutQuery = Partial<{
-    code_name: string,
-    faction_id: string,
-    loadout_id: string,
-    profile_id: string
-}>;
+    format: loadout;
 
-export const loadout = requestFactory('loadout');
+    conditions: Partial<{
+        code_name: string,
+        faction_id: string,
+        loadout_id: string,
+        profile_id: string
+    }>;
+}

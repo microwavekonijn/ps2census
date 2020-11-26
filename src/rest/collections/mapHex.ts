@@ -1,14 +1,17 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { mapHex } from '../formats/mapHex';
 
-export { mapHex as mapHexFormat } from '../formats/mapHex';
+export interface MapHex extends DefaultCollection {
+    collection: 'map_hex';
 
-export type mapHexQuery = Partial<{
-    hex_type: string,
-    map_region_id: string,
-    type_name: string,
-    x: string,
-    y: string,
-    zone_id: string
-}>;
+    format: mapHex;
 
-export const mapHex = requestFactory('map_hex');
+    conditions: Partial<{
+        hex_type: string,
+        map_region_id: string,
+        type_name: string,
+        x: string,
+        y: string,
+        zone_id: string
+    }>;
+}

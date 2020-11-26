@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { targetType } from '../formats/targetType';
 
-export { targetType as targetTypeFormat } from '../formats/targetType';
+export interface TargetType extends DefaultCollection {
+    collection: 'target_type';
 
-export type targetTypeQuery = Partial<{
-    description: string,
-    target_type_id: string
-}>;
+    format: targetType;
 
-export const targetType = requestFactory('target_type');
+    conditions: Partial<{
+        description: string,
+        target_type_id: string
+    }>;
+}

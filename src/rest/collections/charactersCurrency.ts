@@ -1,13 +1,16 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { characterCurrency } from '../formats/characterCurrency';
 
-export { characterCurrency as charactersCurrencyFormat } from '../formats/characterCurrency';
+export interface CharactersCurrency extends DefaultCollection {
+    collection: 'characters_currency';
 
-export type charactersCurrencyQuery = Partial<{
-    character_id: string,
-    currency_id: string,
-    currency_name: string,
-    prestige_currency: string,
-    quantity: string
-}>;
+    format: characterCurrency;
 
-export const charactersCurrency = requestFactory('characters_currency');
+    conditions: Partial<{
+        character_id: string,
+        currency_id: string,
+        currency_name: string,
+        prestige_currency: string,
+        quantity: string
+    }>;
+}

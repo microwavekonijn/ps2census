@@ -1,13 +1,13 @@
-import { censusRequest } from '../types/request';
 import { langs } from '../types/response';
-import { baseCollections } from '../types/command';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export function lang<C extends baseCollections, R extends censusRequest<C>>(req: R, lang: langs): R {
+export function lang<Q extends Query<any, DefaultCollection>>(query: Q, lang: langs): Q {
     return {
-        ...req,
-        lang,
+        ...query,
+        // lang,
         params: {
-            ...req.params,
+            ...query.params,
             'c:lang': lang,
         },
     };

@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { itemToWeapon } from '../formats/itemToWeapon';
 
-export { itemToWeapon as itemToWeaponFormat } from '../formats/itemToWeapon';
+export interface ItemToWeapon extends DefaultCollection {
+    collection: 'item_to_weapon';
 
-export type itemToWeaponQuery = Partial<{
-    item_id: string,
-    weapon_id: string
-}>;
+    format: itemToWeapon;
 
-export const itemToWeapon = requestFactory('item_to_weapon');
+    conditions: Partial<{
+        item_id: string,
+        weapon_id: string
+    }>;
+}

@@ -1,14 +1,17 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { marketingBundleWith1Item } from '../formats/marketingBundleWith1Item';
 
-export { marketingBundleWith1Item as marketingBundleWith1ItemFormat } from '../formats/marketingBundleWith1Item';
+export interface MarketingBundleWith1Item extends DefaultCollection {
+    collection: 'marketing_bundle_with_1_item';
 
-export type marketingBundleWith1ItemQuery = Partial<{
-    cert_price: string,
-    item_id: string,
-    item_quantity: string,
-    marketing_bundle_id: string,
-    release_time: string,
-    station_cash_price: string
-}>;
+    format: marketingBundleWith1Item;
 
-export const marketingBundleWith1_item = requestFactory('marketing_bundle_with_1_item');
+    conditions: Partial<{
+        cert_price: string,
+        item_id: string,
+        item_quantity: string,
+        marketing_bundle_id: string,
+        release_time: string,
+        station_cash_price: string
+    }>;
+}

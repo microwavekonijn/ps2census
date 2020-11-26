@@ -24,13 +24,13 @@ import { VehicleDestroy } from './events/vehicle-destroy.event';
 import { stringToBoolean } from '../utils/formatters';
 
 export class StreamHandler implements EventStreamHandlerContract {
-    public static endpointsToId = endpointsToId;
+    static endpointsToId = endpointsToId;
 
     /**
      * @param {Client} client
      * @param {StreamFilterContract} filter
      */
-    public constructor(
+    constructor(
         private readonly client: Client,
         private readonly filter: StreamFilterContract,
     ) {
@@ -41,7 +41,7 @@ export class StreamHandler implements EventStreamHandlerContract {
      *
      * @param {PS2EventData} event
      */
-    public handleEvent(event: PS2EventData): void {
+    handleEvent(event: PS2EventData): void {
         const wrapped = this.wrapEvent(event);
 
         if (!this.filter.filter(wrapped)) {
@@ -61,7 +61,7 @@ export class StreamHandler implements EventStreamHandlerContract {
      *
      * @param subscription
      */
-    public handleSubscription(subscription: any): void {
+    handleSubscription(subscription: any): void {
         setImmediate(() => {
             this.client.emit(Events.PS2_SUBSCRIBED, subscription);
         });
@@ -72,7 +72,7 @@ export class StreamHandler implements EventStreamHandlerContract {
      *
      * @param state
      */
-    public handleServerStateChanged(state: any): void {
+    handleServerStateChanged(state: any): void {
         const id = StreamHandler.endpointsToId.get(state.detail);
 
         if (id) {

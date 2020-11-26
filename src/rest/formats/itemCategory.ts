@@ -1,7 +1,7 @@
-import { lang } from '../types/response';
+import { Lang } from '../types/response';
 
-export type itemCategory = {
-    item_category_id: string,
-    name: lang,
-    [prop: string]: any,
-};
+export interface itemCategory  {
+    item_category_id: string;
+    name: Lang;
+    [prop: string]: unkown;
+}

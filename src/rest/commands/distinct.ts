@@ -1,12 +1,12 @@
-import { censusDistinctRequest, censusRequest } from '../types/request';
-import { baseCollections } from '../types/command';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export function distinct<C extends baseCollections>(req: censusRequest<C>, field: string): censusDistinctRequest<C> {
+export function distinct<Q extends Query<any, DefaultCollection>>(query: Q, field: string): Q {
     return {
-        ...req,
-        distinct: field,
+        ...query,
+        // distinct: field,
         params: {
-            ...req.params,
+            ...query.params,
             'c:distinct': field,
         },
     };

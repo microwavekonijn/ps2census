@@ -1,16 +1,16 @@
-export type map = {
-    ZoneId: string,
+export interface map  {
+    ZoneId: string;
     Regions: {
-        IsList: string,
+        IsList: string;
         Row: {
             RowData: {
-                RegionId: string,
-                FactionId: string,
-                [prop: string]: any,
-            },
-            [prop: string]: any,
-        }[],
-        [prop: string]: any,
-    },
-    [prop: string]: any,
-};
+                RegionId: string;
+                FactionId: string;
+                [prop: string]: unkown;
+            };
+            [prop: string]: unkown;
+        }[];
+        [prop: string]: unkown;
+    };
+    [prop: string]: unkown;
+}

@@ -2,15 +2,15 @@ import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 
 export class ItemAdded extends CharacterEvent {
-    public readonly emit = Events.PS2_ITEM;
+    readonly emit = Events.PS2_ITEM;
 
-    public readonly context: string;
-    public readonly event_name: 'ItemAdded';
-    public readonly item_count: string;
-    public readonly item_id: string;
-    public readonly zone_id: string;
+    readonly context: string;
+    readonly event_name: 'ItemAdded';
+    readonly item_count: string;
+    readonly item_id: string;
+    readonly zone_id: string;
 
-    public toHash(): string {
+    toHash(): string {
         return `ItemAdded:${this.character_id}:${this.timestamp}:${this.item_id}`;
     }
 }

@@ -1,5 +1,5 @@
-export type rewardSetToRewardGroup = {
-    reward_set_id: string,
-    reward_group_id: string,
-    [prop: string]: any,
-};
+export interface rewardSetToRewardGroup  {
+    reward_set_id: string;
+    reward_group_id: string;
+    [prop: string]: unkown;
+}

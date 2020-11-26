@@ -1,6 +1,6 @@
-export type experience = {
-    experience_id: string,
-    description: string,
-    xp: string,
-    [prop: string]: any,
-};
+export interface experience  {
+    experience_id: string;
+    description: string;
+    xp: string;
+    [prop: string]: unkown;
+}

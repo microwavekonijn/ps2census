@@ -1,13 +1,16 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { vehicleAttachment } from '../formats/vehicleAttachment';
 
-export { vehicleAttachment as vehicleAttachmentFormat } from '../formats/vehicleAttachment';
+export interface VehicleAttachment extends DefaultCollection {
+    collection: 'vehicle_attachment';
 
-export type vehicleAttachmentQuery = Partial<{
-    description: string,
-    faction_id: string,
-    item_id: string,
-    slot_id: string,
-    vehicle_id: string
-}>;
+    format: vehicleAttachment;
 
-export const vehicleAttachment = requestFactory('vehicle_attachment');
+    conditions: Partial<{
+        description: string,
+        faction_id: string,
+        item_id: string,
+        slot_id: string,
+        vehicle_id: string
+    }>;
+}

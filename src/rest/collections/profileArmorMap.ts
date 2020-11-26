@@ -1,11 +1,14 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { profileArmorMap } from '../formats/profileArmorMap';
 
-export { profileArmorMap as profileArmorMapFormat } from '../formats/profileArmorMap';
+export interface ProfileArmorMap extends DefaultCollection {
+    collection: 'profile_armor_map';
 
-export type profileArmorMapQuery = Partial<{
-    armor_info_id: string,
-    profile_id: string,
-    rank: string
-}>;
+    format: profileArmorMap;
 
-export const profileArmorMap = requestFactory('profile_armor_map');
+    conditions: Partial<{
+        armor_info_id: string,
+        profile_id: string,
+        rank: string
+    }>;
+}

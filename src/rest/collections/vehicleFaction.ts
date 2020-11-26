@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { vehicleFaction } from '../formats/vehicleFaction';
 
-export { vehicleFaction as vehicleFactionFormat } from '../formats/vehicleFaction';
+export interface VehicleFaction extends DefaultCollection {
+    collection: 'vehicle_faction';
 
-export type vehicleFactionQuery = Partial<{
-    faction_id: string,
-    vehicle_id: string
-}>;
+    format: vehicleFaction;
 
-export const vehicleFaction = requestFactory('vehicle_faction');
+    conditions: Partial<{
+        faction_id: string,
+        vehicle_id: string
+    }>;
+}

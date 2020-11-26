@@ -1,16 +1,17 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { characterDirectiveObjective } from '../formats/characterDirectiveObjective';
 
-export {
-    characterDirectiveObjective as charactersDirectiveObjectiveFormat,
-} from '../formats/characterDirectiveObjective';
+export interface CharactersDirectiveObjective extends DefaultCollection {
+    collection: 'characters_directive_objective';
 
-export type charactersDirectiveObjectiveQuery = Partial<{
-    character_id: string,
-    directive_id: string,
-    objective_group_id: string,
-    objective_id: string,
-    state_data: string,
-    status: string
-}>;
+    format: characterDirectiveObjective;
 
-export const charactersDirectiveObjective = requestFactory('characters_directive_objective');
+    conditions: Partial<{
+        character_id: string,
+        directive_id: string,
+        objective_group_id: string,
+        objective_id: string,
+        state_data: string,
+        status: string
+    }>;
+}

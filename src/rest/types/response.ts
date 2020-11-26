@@ -1,7 +1,4 @@
-import { censusDistinctRequest, censusRequest, censusTreeRequest, collections } from './request';
-import { collectionIndex } from '../indexes/collectionIndex';
-
-export type lang = {
+export type Lang = {
     en: string,
     de: string,
     es: string,
@@ -10,21 +7,21 @@ export type lang = {
     tr: string
 };
 
-export type langs = keyof lang;
+export type langs = keyof Lang;
 
-export type timingType = {
+export type TimingType = {
     'item-ms': number,
     'total-ms': number
 }
 
 // TODO: Maybe they should be the other way around or be combinable?
-export type censusResponse<C extends collections, R extends censusRequest<C>> =
-    R extends censusTreeRequest<C>
-        ? Tree<collectionIndex[C]>
-        : R extends censusDistinctRequest<C>
-        ? Distinct<string>
-        : collectionIndex[C][];
-
-export type Tree<T> = [Record<string, T[]>];
-
-export type Distinct<T> = [{ T: string[] }]
+// export type CensusResponse<C, Q extends Query<C>> =
+//     R extends CensusTreeRequest<C>
+//         ? Tree<Collections[C]>
+//         : R extends CensusDistinctRequest<C>
+//         ? Distinct<string>
+//         : Collections[C][];
+//
+// export type Tree<T> = [Record<string, T[]>];
+//
+// export type Distinct<T> = [{ T: string[] }]

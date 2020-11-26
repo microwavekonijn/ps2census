@@ -1,9 +1,9 @@
-import { lang } from '../types/response';
+import { Lang } from '../types/response';
 
-export type currency = {
-    currency_id: string,
-    name: lang,
-    icon_id: string,
-    inventory_cap: string,
-    [prop: string]: any,
-};
+export interface currency  {
+    currency_id: string;
+    name: Lang;
+    icon_id: string;
+    inventory_cap: string;
+    [prop: string]: unkown;
+}

@@ -4,19 +4,19 @@ import { Events } from '../constants/client.constants';
 import { unixToDate } from '../../utils/formatters';
 
 export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
-    public readonly emit: Events;
+    readonly emit: Events;
 
-    public readonly event_name: string;
-    public readonly timestamp: Date;
-    public readonly world_id: string;
+    readonly event_name: string;
+    readonly timestamp: Date;
+    readonly world_id: string;
 
     /**
      * @param {Client} client
      * @param {PS2EventData} raw
      */
-    public constructor(
+    constructor(
         protected readonly client: Client,
-        public readonly raw: T,
+        readonly raw: T,
     ) {
         this.hydrateObject(raw);
     }
@@ -43,5 +43,5 @@ export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
     /**
      * @return {string} hash of the event
      */
-    public abstract toHash(): string;
+    abstract toHash(): string;
 }

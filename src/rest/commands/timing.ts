@@ -1,11 +1,11 @@
-import { censusRequest, collections } from '../types/request';
+import { Query } from '../types/query';
 
-export function timing<C extends collections, R extends censusRequest<C>>(req: R, timing = true): R {
+export function timing<Q extends Query<any, unknown>>(query: Q, timing = true): Q {
     return {
-        ...req,
+        ...query,
         timing,
         params: {
-            ...req.params,
+            ...query.params,
             'c:timing': timing,
         },
     };

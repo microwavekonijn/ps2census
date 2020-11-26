@@ -1,14 +1,17 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { fireGroup } from '../formats/fireGroup';
 
-export { fireGroup as fireGroupFormat } from '../formats/fireGroup';
+export interface FireGroup extends DefaultCollection {
+    collection: 'fire_group';
 
-export type fireGroupQuery = Partial<{
-    can_chamber_ironsights: string,
-    chamber_duration_ms: string,
-    fire_group_id: string,
-    spool_up_initial_refire_ms: string,
-    spool_up_ms: string,
-    transition_duration_ms: string
-}>;
+    format: fireGroup;
 
-export const fireGroup = requestFactory('fire_group');
+    conditions: Partial<{
+        can_chamber_ironsights: string,
+        chamber_duration_ms: string,
+        fire_group_id: string,
+        spool_up_initial_refire_ms: string,
+        spool_up_ms: string,
+        transition_duration_ms: string
+    }>;
+}

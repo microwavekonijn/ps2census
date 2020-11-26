@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { projectileFlightType } from '../formats/projectileFlightType';
 
-export { projectileFlightType as projectileFlightTypeFormat } from '../formats/projectileFlightType';
+export interface ProjectileFlightType extends DefaultCollection {
+    collection: 'projectile_flight_type';
 
-export type projectileFlightTypeQuery = Partial<{
-    description: string,
-    projectile_flight_type_id: string
-}>;
+    format: projectileFlightType;
 
-export const projectileFlightType = requestFactory('projectile_flight_type');
+    conditions: Partial<{
+        description: string,
+        projectile_flight_type_id: string
+    }>;
+}

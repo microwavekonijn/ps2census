@@ -1,5 +1,5 @@
-export type characterWorld = {
-    character_id: string,
-    world_id: string,
-    [prop: string]: any,
-};
+export interface characterWorld  {
+    character_id: string;
+    world_id: string;
+    [prop: string]: unkown;
+}

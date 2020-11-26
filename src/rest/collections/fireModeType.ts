@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { fireModeType } from '../formats/fireModeType';
 
-export { fireModeType as fireModeTypeFormat } from '../formats/fireModeType';
+export interface FireModeType extends DefaultCollection {
+    collection: 'fire_mode_type';
 
-export type fireModeTypeQuery = Partial<{
-    description: string,
-    fire_mode_type_id: string
-}>;
+    format: fireModeType;
 
-export const fireModeType = requestFactory('fire_mode_type');
+    conditions: Partial<{
+        description: string,
+        fire_mode_type_id: string
+    }>;
+}

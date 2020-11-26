@@ -1,5 +1,5 @@
-export type profile2 = {
-    profile_id: string,
-    description: string,
-    [prop: string]: any,
-};
+export interface profile2  {
+    profile_id: string;
+    description: string;
+    [prop: string]: unkown;
+}

@@ -1,12 +1,12 @@
-import { censusRequest } from '../types/request';
-import { startCollections } from '../types/command';
+import { Query } from '../types/query';
+import { Startable } from '../types/collection';
 
-export function start<C extends startCollections, R extends censusRequest<C>>(req: R, start: number): R {
+export function start<Q extends Query<any, Startable>>(query: Q, start: number): Q {
     return {
-        ...req,
+        ...query,
         start,
         params: {
-            ...req.params,
+            ...query.params,
             'c:start': start,
         },
     };

@@ -1,16 +1,19 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { itemCategory } from '../formats/itemCategory';
 
-export { itemCategory as itemCategoryFormat } from '../formats/itemCategory';
+export interface ItemCategory extends DefaultCollection {
+    collection: 'item_category';
 
-export type itemCategoryQuery = Partial<{
-    item_category_id: string,
-    name: string,
-    'name.de': string,
-    'name.en': string,
-    'name.es': string,
-    'name.fr': string,
-    'name.it': string,
-    'name.tr': string
-}>;
+    format: itemCategory;
 
-export const itemCategory = requestFactory('item_category');
+    conditions: Partial<{
+        item_category_id: string,
+        name: string,
+        'name.de': string,
+        'name.en': string,
+        'name.es': string,
+        'name.fr': string,
+        'name.it': string,
+        'name.tr': string
+    }>;
+}

@@ -1,13 +1,16 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { world } from '../formats/world';
 
-export { world as worldFormat } from '../formats/world';
+export interface World extends DefaultCollection {
+    collection: 'world';
 
-export type worldQuery = Partial<{
-    // this API man...
-    description_t4id: number, // integer
-    name_t4id: number, // integer
-    state: string,
-    world_id: string,
-}>;
+    format: world;
 
-export const world = requestFactory('world');
+    conditions: Partial<{
+        // this API man...
+        description_t4id: number, // integer
+        name_t4id: number, // integer
+        state: string,
+        world_id: string,
+    }>;
+}

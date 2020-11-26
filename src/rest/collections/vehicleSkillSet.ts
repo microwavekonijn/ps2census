@@ -1,12 +1,15 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { vehicleSkillSet } from '../formats/vehicleSkillSet';
 
-export { vehicleSkillSet as vehicleSkillSetFormat } from '../formats/vehicleSkillSet';
+export interface VehicleSkillSet extends DefaultCollection {
+    collection: 'vehicle_skill_set';
 
-export type vehicleSkillSetQuery = Partial<{
-    display_index: string,
-    faction_id: string,
-    skill_set_id: string,
-    vehicle_id: string
-}>;
+    format: vehicleSkillSet;
 
-export const vehicleSkillSet = requestFactory('vehicle_skill_set');
+    conditions: Partial<{
+        display_index: string,
+        faction_id: string,
+        skill_set_id: string,
+        vehicle_id: string
+    }>;
+}

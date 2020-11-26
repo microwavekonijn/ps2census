@@ -1,25 +1,25 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
 import { characterWeaponStat } from '../formats/characterWeaponStat';
 import { vehicle } from '../formats/vehicle';
 import { item } from '../formats/item';
 
-export type charactersWeaponStatFormat = characterWeaponStat & {
-    vehicle: vehicle, // vehicle
-    item: item, // item
-};
+export interface CharactersWeaponStat extends DefaultCollection {
+    collection: 'characters_weapon_stat';
 
-export type charactersWeaponStatQuery = Partial<{
-    character_id: string,
-    item_id: string,
-    last_save: string,
-    last_save_date: string,
-    stat_name: string,
-    value: string,
-    vehicle_id: string
-}>;
+    format: characterWeaponStat & {
+        vehicle: vehicle, // vehicle
+        item: item, // item
+    };
 
-export type charactersWeaponStatResolve =
-    'item'
-    | 'vehicle';
+    conditions: Partial<{
+        character_id: string,
+        item_id: string,
+        last_save: string,
+        last_save_date: string,
+        stat_name: string,
+        value: string,
+        vehicle_id: string
+    }>;
 
-export const charactersWeaponStat = requestFactory('characters_weapon_stat');
+    resolve: 'item' | 'vehicle';
+}

@@ -1,16 +1,19 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { title } from '../formats/title';
 
-export { title as titleFormat } from '../formats/title';
+export interface Title extends DefaultCollection {
+    collection: 'title';
 
-export type titleQuery = Partial<{
-    name: string,
-    'name.de': string,
-    'name.en': string,
-    'name.es': string,
-    'name.fr': string,
-    'name.it': string,
-    'name.tr': string,
-    title_id: string
-}>;
+    format: title;
 
-export const title = requestFactory('title');
+    conditions: Partial<{
+        name: string,
+        'name.de': string,
+        'name.en': string,
+        'name.es': string,
+        'name.fr': string,
+        'name.it': string,
+        'name.tr': string,
+        title_id: string
+    }>;
+}

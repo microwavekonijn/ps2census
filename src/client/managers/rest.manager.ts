@@ -1,46 +1,41 @@
-import { censusRequest, collections } from '../../rest/types/request';
-import { collectionIndex } from '../../rest/indexes/collectionIndex';
-import { queryIndex } from '../../rest/indexes/queryIndex';
+import { CensusRequest, Collections, GetMethod } from '../../rest/types/request';
 import { Client } from '../census.client';
-import { CacheContract } from '../concerns/cache.contract';
-import { Events } from '../constants/client.constants';
-import { hasLimit, hasLimitPerDB } from '../../rest/utils/commandHelpers';
+import { CensusRestException, CensusServerError, getFactory } from '../../rest';
+import { queryIndex } from '../../rest/indexes/queryIndex';
+import { CensusResponse } from '../../rest/types/response';
+import { Events } from '../constants';
+import { MaxRetryException } from '../exceptions/max-retry.exception';
 
-export abstract class RestManager<C extends collections> {
-    protected constructor(
-        protected readonly client: Client,
-        public readonly cache: CacheContract,
-        protected readonly request: censusRequest<C>,
+export class RestManager {
+    readonly getMethod: GetMethod;
+
+    private readonly retries: number;
+
+    constructor(
+        private readonly client: Client,
+        options?: any,
     ) {
-        if ('c:tree' in request.params || 'c:distinct' in request.params)
-            throw new Error(`Request object request will return unsupported responses(i.e. tree, distinct)`);
+        this.getMethod = getFactory(client.environment, client.serviceId);
 
-        if (hasLimitPerDB(request) || hasLimit(request))
-            throw new Error(`Request object cannot be limited`);
+        this.retries = options?.retries ?? 2;
     }
 
-    public async fetch(id: string): Promise<collectionIndex[C]> {
-        return this.cache.remember(id, () => this.makeRequest(id));
+    async get<C extends Collections, R extends CensusRequest<C>>(request: R, query: queryIndex[C], {retries = this.retries}: any): Promise<CensusResponse<C, R>> {
+
+        let attempt = 0;
+        const attempts: (CensusRestException | CensusServerError)[] = [];
+
+        do {
+
+            this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(query)}, attempt ${attempt}.`, this.constructor.name);
+
+            try {
+                return await this.getMethod(request, query);
+            } catch (e) {
+                attempts.push(e);
+            }
+        } while (attempt++ <= retries);
+
+        throw new MaxRetryException(request, query, attempts);
     }
-
-    public async fetchFresh(id: string): Promise<collectionIndex[C]> {
-        await this.cache.forget(id);
-
-        return this.fetch(id);
-    }
-
-    private async makeRequest(id: string) {
-        const query = this.query(id);
-
-        this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(query)}.`, this.constructor.name);
-
-        const data = await this.client.get(this.request, query);
-
-        if (data.length <= 0)
-            throw new Error(`Unable to retrieve data, api returned no matches for "${id}"`);
-
-        return data[0];
-    }
-
-    protected abstract query(id: string): queryIndex[C];
 }

@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { playerState } from '../formats/playerState';
 
-export { playerState as playerStateFormat } from '../formats/playerState';
+export interface PlayerState extends DefaultCollection {
+    collection: 'player_state';
 
-export type playerStateQuery = Partial<{
-    description: string,
-    player_state_id: string
-}>;
+    format: playerState;
 
-export const playerState = requestFactory('player_state');
+    conditions: Partial<{
+        description: string,
+        player_state_id: string
+    }>;
+}

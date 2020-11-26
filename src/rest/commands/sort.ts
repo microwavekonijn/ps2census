@@ -1,13 +1,14 @@
-import { censusRequest } from '../types/request';
-import { baseCollections, sortType } from '../types/command';
+import { sortType } from '../types/command';
 import { sortToString } from '../utils/commandHelpers';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export function sort<C extends baseCollections, R extends censusRequest<C>>(req: R, fields: sortType[]): R {
+export function sort<Q extends Query<any, DefaultCollection>>(query: Q, fields: sortType[]): Q {
     return {
-        ...req,
+        ...query,
         sort: fields,
         params: {
-            ...req.params,
+            ...query.params,
             'c:sort': sortToString(fields),
         },
     };

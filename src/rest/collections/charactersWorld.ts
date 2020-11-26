@@ -1,10 +1,12 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { characterWorld } from '../formats/characterWorld';
 
-export { characterWorld as charactersWorldFormat } from '../formats/characterWorld';
+export interface CharactersWorld {
+    collection: 'characters_world';
 
-export type charactersWorldQuery = Partial<{
-    character_id: string,
-    world_id: string
-}>;
+    format: characterWorld;
 
-export const charactersWorld = requestFactory('characters_world');
+    conditions: Partial<{
+        character_id: string,
+        world_id: string
+    }>;
+}

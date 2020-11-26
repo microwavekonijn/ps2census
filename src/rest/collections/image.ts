@@ -1,11 +1,14 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { image } from '../formats/image';
 
-export { image as imageFormat } from '../formats/image';
+export interface Image extends DefaultCollection {
+    collection: 'image';
 
-export type imageQuery = Partial<{
-    description: string,
-    image_id: string,
-    path: string
-}>;
+    format: image;
 
-export const image = requestFactory('image');
+    conditions: Partial<{
+        description: string,
+        image_id: string,
+        path: string
+    }>;
+}

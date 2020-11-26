@@ -1,11 +1,14 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { itemType } from '../formats/itemType';
 
-export { itemType as itemTypeFormat } from '../formats/itemType';
+export interface ItemType extends DefaultCollection {
+    collection: 'item_type';
 
-export type itemTypeQuery = Partial<{
-    code: string,
-    item_type_id: string,
-    name: string
-}>;
+    format: itemType;
 
-export const itemType = requestFactory('item_type');
+    conditions: Partial<{
+        code: string,
+        item_type_id: string,
+        name: string
+    }>;
+}

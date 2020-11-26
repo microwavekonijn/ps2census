@@ -1,12 +1,12 @@
-import { censusRequest } from '../types/request';
-import { baseCollections } from '../types/command';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export function caseSensitive<C extends baseCollections, R extends censusRequest<C>>(req: R, caseSensitive = false): R {
+export function caseSensitive<Q extends Query<any, DefaultCollection>>(query: Q, caseSensitive = false): Q {
     return {
-        ...req,
-        caseSensitive,
+        ...query,
+        // caseSensitive,
         params: {
-            ...req.params,
+            ...query.params,
             'c:case': caseSensitive,
         },
     };

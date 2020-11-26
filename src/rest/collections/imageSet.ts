@@ -1,14 +1,17 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { imageSet } from '../formats/imageSet';
 
-export { imageSet as imageSetFormat } from '../formats/imageSet';
+export interface ImageSet extends DefaultCollection {
+    collection: 'image_set';
 
-export type imageSetQuery = Partial<{
-    description: string,
-    image_id: string,
-    image_path: string,
-    image_set_id: string,
-    type_description: string,
-    type_id: string
-}>;
+    format: imageSet;
 
-export const imageSet = requestFactory('image_set');
+    conditions: Partial<{
+        description: string,
+        image_id: string,
+        image_path: string,
+        image_set_id: string,
+        type_description: string,
+        type_id: string
+    }>;
+}

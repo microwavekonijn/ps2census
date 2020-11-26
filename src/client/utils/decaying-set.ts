@@ -7,7 +7,7 @@ export class DecayingSet<T> {
 
     private timeout: Timeout;
 
-    public constructor(private readonly partitions: number, decay: number) {
+    constructor(private readonly partitions: number, decay: number) {
         this.set = [];
 
         for (let i = 0; i < partitions; i++)
@@ -25,17 +25,17 @@ export class DecayingSet<T> {
         this.timeout.unref();
     }
 
-    public add(value: T): this {
+    add(value: T): this {
         this.set[this.index].add(value);
 
         return this;
     }
 
-    public clear(): void {
+    clear(): void {
         this.set.forEach(set => set.clear());
     }
 
-    public has(value: T): boolean {
+    has(value: T): boolean {
         return this.set.some(set => set.has(value));
     }
 }

@@ -16,28 +16,28 @@ export class VehicleDestroy extends CharacterEvent {
     /**
      * Can be overwritten if necessary
      */
-    public static factionMap = factionMap;
-    public static loadoutFactionMap = loadoutFactionMap;
-    public static loadoutTypeMap = loadoutTypeMap;
+    static factionMap = factionMap;
+    static loadoutFactionMap = loadoutFactionMap;
+    static loadoutTypeMap = loadoutTypeMap;
 
-    public readonly emit = Events.PS2_VEHICLE_DESTROYED;
+    readonly emit = Events.PS2_VEHICLE_DESTROYED;
 
-    public readonly attacker_character_id: string;
-    public readonly attacker_loadout_id: string;
-    public readonly attacker_vehicle_id: string;
-    public readonly attacker_weapon_id: string;
-    public readonly event_name: 'VehicleDestroy';
-    public readonly facility_id: string;
-    public readonly faction_id: string;
-    public readonly vehicle_id: string;
-    public readonly zone_id: string;
+    readonly attacker_character_id: string;
+    readonly attacker_loadout_id: string;
+    readonly attacker_vehicle_id: string;
+    readonly attacker_weapon_id: string;
+    readonly event_name: 'VehicleDestroy';
+    readonly facility_id: string;
+    readonly faction_id: string;
+    readonly vehicle_id: string;
+    readonly zone_id: string;
 
     /**
      * Fetch the character data from the attacker
      *
      * @return {Promise<characterFormat>}
      */
-    public attacker(): Promise<characterFormat> {
+    attacker(): Promise<characterFormat> {
         return this.client.characterManager.fetch(this.attacker_character_id);
     }
 
@@ -46,7 +46,7 @@ export class VehicleDestroy extends CharacterEvent {
      *
      * @return {boolean}
      */
-    public unclaimed(): boolean {
+    unclaimed(): boolean {
         if (this.faction_id === '0') return false;
 
         return this.attacker_character_id === this.character_id && (
@@ -60,7 +60,7 @@ export class VehicleDestroy extends CharacterEvent {
      *
      * @return {Destroy}
      */
-    public get kill_type(): Destroy {
+    get kill_type(): Destroy {
         if (this.faction_id === '0') return Destroy.Neutral;
         if (this.attacker_character_id === '0') return Destroy.Game;
 
@@ -80,7 +80,7 @@ export class VehicleDestroy extends CharacterEvent {
      *
      * @return {Faction}
      */
-    public get attacker_faction(): Faction {
+    get attacker_faction(): Faction {
         const faction = VehicleDestroy.loadoutFactionMap.get(this.attacker_loadout_id);
 
         if (faction === undefined) throw new TypeError(`Unknown attacker_loadout_id when determining faction: ${this.attacker_loadout_id}`);
@@ -93,7 +93,7 @@ export class VehicleDestroy extends CharacterEvent {
      *
      * @return {Faction}
      */
-    public get character_faction(): Faction {
+    get character_faction(): Faction {
         const faction = VehicleDestroy.factionMap.get(this.faction_id);
 
         if (faction === undefined) throw new TypeError(`Unknown faction_id when determining faction: ${this.faction_id}`);
@@ -106,7 +106,7 @@ export class VehicleDestroy extends CharacterEvent {
      *
      * @return {Loadout}
      */
-    public get attacker_loadout(): Loadout {
+    get attacker_loadout(): Loadout {
         const loadout = VehicleDestroy.loadoutTypeMap.get(this.attacker_loadout_id);
 
         if (loadout === undefined) throw new TypeError(`Unknown attacker_loadout_id when determining loadout: ${this.attacker_loadout_id}`);
@@ -114,7 +114,7 @@ export class VehicleDestroy extends CharacterEvent {
         return loadout;
     }
 
-    public toHash(): string {
+    toHash(): string {
         return `VehicleDestroy:${this.character_id}:${this.timestamp}:${this.attacker_character_id}`;
     }
 }

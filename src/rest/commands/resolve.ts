@@ -1,16 +1,15 @@
-import { censusRequest } from '../types/request';
-import { resolveIndex } from '../indexes/resolveIndex';
 import { resolveToString } from '../utils/commandHelpers';
-import { resolveCollections } from '../types/command';
+import { InferCollection, Query } from '../types/query';
+import { Resolvable, Resolve } from '../types/collection';
 
-type resolveType<C extends keyof resolveIndex> = resolveIndex[C] | [resolveIndex[C], string[]];
+type Resolvables<Q, R extends Resolve<InferCollection<Q>> = Resolve<InferCollection<Q>>> = R | [R, string[]];
 
-export function resolve<C extends resolveCollections, R extends censusRequest<C>>(req: R, resolve: resolveType<C>[]): R {
+export function resolve<Q extends Query<any, Resolvable<unknown>>>(query: Q, resolve: Resolvables<Q>[]): Q {
     return {
-        ...req,
-        resolve,
+        ...query,
+        // resolve,
         params: {
-            ...req.params,
+            ...query.params,
             'c:resolve': resolveToString(resolve),
         },
     };

@@ -17,20 +17,20 @@ export class Death extends CharacterEvent {
     /**
      * Can be overwritten if necessary
      */
-    public static loadoutFactionMap = loadoutFactionMap;
-    public static loadoutTypeMap = loadoutTypeMap;
+    static loadoutFactionMap = loadoutFactionMap;
+    static loadoutTypeMap = loadoutTypeMap;
 
-    public readonly emit = Events.PS2_DEATH;
+    readonly emit = Events.PS2_DEATH;
 
-    public readonly attacker_character_id: string;
-    public readonly attacker_fire_mode_id: string;
-    public readonly attacker_loadout_id: string;
-    public readonly attacker_vehicle_id: string;
-    public readonly attacker_weapon_id: string;
-    public readonly character_loadout_id: string;
-    public readonly event_name: 'Death';
-    public readonly is_headshot: boolean;
-    public readonly zone_id: string;
+    readonly attacker_character_id: string;
+    readonly attacker_fire_mode_id: string;
+    readonly attacker_loadout_id: string;
+    readonly attacker_vehicle_id: string;
+    readonly attacker_weapon_id: string;
+    readonly character_loadout_id: string;
+    readonly event_name: 'Death';
+    readonly is_headshot: boolean;
+    readonly zone_id: string;
 
     /**
      * Cast is_headshot to boolean
@@ -47,7 +47,7 @@ export class Death extends CharacterEvent {
      *
      * @return {Promise<characterFormat>}
      */
-    public attacker(): Promise<characterFormat> {
+    attacker(): Promise<characterFormat> {
         return this.client.characterManager.fetch(this.attacker_character_id);
     }
 
@@ -56,7 +56,7 @@ export class Death extends CharacterEvent {
      *
      * @return {Kill}
      */
-    public get kill_type(): Kill {
+    get kill_type(): Kill {
         if (this.attacker_character_id === '0') return Kill.RestrictedArea;
         if (this.attacker_character_id === this.character_id) return Kill.Suicide;
 
@@ -76,7 +76,7 @@ export class Death extends CharacterEvent {
      *
      * @return {Faction}
      */
-    public get attacker_faction(): Faction {
+    get attacker_faction(): Faction {
         const faction = Death.loadoutFactionMap.get(this.attacker_loadout_id);
 
         if (faction === undefined) throw new TypeError(`Unknown attacker_loadout_id when determining faction: ${this.attacker_loadout_id}`);
@@ -89,7 +89,7 @@ export class Death extends CharacterEvent {
      *
      * @return {Faction}
      */
-    public get character_faction(): Faction {
+    get character_faction(): Faction {
         const faction = Death.loadoutFactionMap.get(this.character_loadout_id);
 
         if (faction === undefined) throw new TypeError(`Unknown character_loadout_id when determining faction: ${this.character_loadout_id}`);
@@ -102,7 +102,7 @@ export class Death extends CharacterEvent {
      *
      * @return {Loadout}
      */
-    public get attacker_loadout(): Loadout {
+    get attacker_loadout(): Loadout {
         const loadout = Death.loadoutTypeMap.get(this.attacker_loadout_id);
 
         if (loadout === undefined) throw new TypeError(`Unknown attacker_loadout_id when determining loadout: ${this.attacker_loadout_id}`);
@@ -115,7 +115,7 @@ export class Death extends CharacterEvent {
      *
      * @return {Loadout}
      */
-    public get character_loadout(): Loadout {
+    get character_loadout(): Loadout {
         const loadout = Death.loadoutTypeMap.get(this.character_loadout_id);
 
         if (loadout === undefined) throw new TypeError(`Unkown character_loadout_id when determining loadout: ${this.character_loadout_id}`);
@@ -123,7 +123,7 @@ export class Death extends CharacterEvent {
         return loadout;
     }
 
-    public toHash(): string {
+    toHash(): string {
         return `Death:${this.character_id}:${this.timestamp}`;
     }
 }

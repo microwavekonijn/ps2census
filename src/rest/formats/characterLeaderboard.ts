@@ -1,6 +1,6 @@
-export type characterLeaderboard = {
-    character_id: string,
-    value: string,
-    rank: string,
-    [prop: string]: any,
-};
+export interface characterLeaderboard  {
+    character_id: string;
+    value: string;
+    rank: string;
+    [prop: string]: unkown;
+}

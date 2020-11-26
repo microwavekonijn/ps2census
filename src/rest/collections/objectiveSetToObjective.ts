@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { objectiveSetToObjective } from '../formats/objectiveSetToObjective';
 
-export { objectiveSetToObjective as objectiveSetToObjectiveFormat } from '../formats/objectiveSetToObjective';
+export interface ObjectiveSetToObjective extends DefaultCollection {
+    collection: 'objective_set_to_objective';
 
-export type objectiveSetToObjectiveQuery = Partial<{
-    objective_group_id: string,
-    objective_set_id: string
-}>;
+    format: objectiveSetToObjective;
 
-export const objectiveSetToObjective = requestFactory('objective_set_to_objective');
+    conditions: Partial<{
+        objective_group_id: string,
+        objective_set_id: string
+    }>;
+}

@@ -1,10 +1,13 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { itemAttachment } from '../formats/itemAttachment';
 
-export { itemAttachment as itemAttachmentFormat } from '../formats/itemAttachment';
+export interface ItemAttachment extends DefaultCollection {
+    collection: 'item_attachment';
 
-export type itemAttachmentQuery = Partial<{
-    attachment_item_id: string,
-    item_id: string
-}>;
+    format: itemAttachment;
 
-export const itemAttachment = requestFactory('item_attachment');
+    conditions: Partial<{
+        attachment_item_id: string,
+        item_id: string
+    }>;
+}

@@ -1,7 +1,7 @@
-import { lang } from '../types/response';
+import { Lang } from '../types/response';
 
-export type title = {
-    title_id: string,
-    name: lang,
-    [prop: string]: any,
-};
+export interface title  {
+    title_id: string;
+    name: Lang;
+    [prop: string]: unkown;
+}

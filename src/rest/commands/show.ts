@@ -1,13 +1,13 @@
-import { censusRequest } from '../types/request';
 import { fieldsToString } from '../utils/commandHelpers';
-import { baseCollections } from '../types/command';
+import { Query } from '../types/query';
+import { DefaultCollection } from '../types/collection';
 
-export function show<C extends baseCollections, R extends censusRequest<C>>(req: R, fields: string[]): R {
+export function show<Q extends Query<any, DefaultCollection>>(query: Q, fields: string[]): Q {
     return {
-        ...req,
+        ...query,
         show: fields,
         params: {
-            ...req.params,
+            ...query.params,
             'c:show': fieldsToString(fields),
         },
     };

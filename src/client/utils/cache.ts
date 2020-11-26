@@ -4,11 +4,11 @@ export class Cache implements CacheContract {
     private readonly cache = new Map<string, any>();
     private readonly retrieving = new Map<string, Promise<any>>();
 
-    public constructor(
+    constructor(
         private readonly maxEntries = 1000,
     ) {}
 
-    public async remember(key: string, cb: () => Promise<void>): Promise<void> {
+    async remember(key: string, cb: () => Promise<void>): Promise<void> {
         let data = this.cache.get(key);
 
         if (!data) {
@@ -27,18 +27,18 @@ export class Cache implements CacheContract {
         return data;
     }
 
-    public async put(key: string, data: any): Promise<void> {
+    async put(key: string, data: any): Promise<void> {
         if (!this.cache.has(key) && this.cache.size >= this.maxEntries)
             this.pruneOldest();
 
         this.cache.set(key, data);
     }
 
-    public async forget(key: string): Promise<boolean> {
+    async forget(key: string): Promise<boolean> {
         return this.cache.delete(key);
     }
 
-    public async forgetAll(): Promise<void> {
+    async forgetAll(): Promise<void> {
         return this.cache.clear();
     }
 

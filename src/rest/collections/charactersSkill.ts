@@ -1,12 +1,15 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { characterSkill } from '../formats/characterSkill';
 
-export { characterSkill as charactersSkillFormat } from '../formats/characterSkill';
+export interface CharactersSkill extends DefaultCollection {
+    collection: 'characters_skill';
 
-export type charactersSkillQuery = Partial<{
-    character_id: string,
-    last_save: string,
-    last_save_date: string,
-    skill_id: string
-}>;
+    format: characterSkill;
 
-export const charactersSkill = requestFactory('characters_skill');
+    conditions: Partial<{
+        character_id: string,
+        last_save: string,
+        last_save_date: string,
+        skill_id: string
+    }>;
+}

@@ -1,13 +1,16 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { characterDirectiveTier } from '../formats/characterDirectiveTier';
 
-export { characterDirectiveTier as charactersDirectiveTierFormat } from '../formats/characterDirectiveTier';
+export interface CharactersDirectiveTier extends DefaultCollection {
+    collection: 'characters_directive_tier';
 
-export type charactersDirectiveTierQuery = Partial<{
-    character_id: string,
-    completion_time: string,
-    completion_time_date: string,
-    directive_tier_id: string,
-    directive_tree_id: string
-}>;
+    format: characterDirectiveTier;
 
-export const charactersDirectiveTier = requestFactory('characters_directive_tier');
+    conditions: Partial<{
+        character_id: string,
+        completion_time: string,
+        completion_time_date: string,
+        directive_tier_id: string,
+        directive_tree_id: string
+    }>;
+}

@@ -1,17 +1,20 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { DefaultCollection } from '../types/collection';
+import { characterAchievement } from '../formats/characterAchievement';
 
-export { characterAchievement as charactersAchievementFormat } from '../formats/characterAchievement';
+export interface CharactersAchievement extends DefaultCollection {
+    collection: 'characters_achievement';
 
-export type charactersAchievementQuery = Partial<{
-    achievement_id: string,
-    character_id: string,
-    earned_count: string,
-    finish: string,
-    finish_date: string,
-    last_save: string,
-    last_save_date: string,
-    start: string,
-    start_date: string
-}>;
+    format: characterAchievement;
 
-export const charactersAchievement = requestFactory('characters_achievement');
+    conditions: Partial<{
+        achievement_id: string,
+        character_id: string,
+        earned_count: string,
+        finish: string,
+        finish_date: string,
+        last_save: string,
+        last_save_date: string,
+        start: string,
+        start_date: string
+    }>;
+}

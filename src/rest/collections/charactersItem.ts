@@ -1,7 +1,11 @@
-import { requestFactory } from '../utils/requestHelpers';
+import { characterItem } from '../formats/characterItem';
+import { Countable } from '../types/collection';
 
-export { characterItem as charactersItemFormat } from '../formats/characterItem';
+// TODO: InferCollection countable?
+export interface CharactersItem extends Countable {
+    collection: 'characters_item';
 
-export type charactersItemQuery = { character_id: string };
+    format: characterItem;
 
-export const charactersItem = requestFactory('characters_item');
+    conditions: { character_id: string };
+}

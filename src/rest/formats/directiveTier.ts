@@ -1,13 +1,13 @@
-import { lang } from '../types/response';
+import { Lang } from '../types/response';
 
-export type directiveTier = {
-    directive_tree_id: string,
-    directive_tier_id: string,
-    directive_points: string,
-    completion_count: string,
-    name: lang,
-    image_set_id: string,
-    image_id: string,
-    image_path: string,
-    [prop: string]: any,
-};
+export interface directiveTier  {
+    directive_tree_id: string;
+    directive_tier_id: string;
+    directive_points: string;
+    completion_count: string;
+    name: Lang;
+    image_set_id: string;
+    image_id: string;
+    image_path: string;
+    [prop: string]: unkown;
+}
