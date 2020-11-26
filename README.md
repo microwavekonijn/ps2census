@@ -79,7 +79,7 @@ const get = rest.getFactory('ps2ps4eu', 'serviceId');
 get(
   rest.resolve(
     rest.exactMatchFirst(
-      rest.character
+      rest.query('character')
     ),
     ['item'] , 
   ),
