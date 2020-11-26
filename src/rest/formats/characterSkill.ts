@@ -3,5 +3,5 @@ export interface characterSkill  {
     skill_id: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -7,5 +7,5 @@ export interface characterAchievement  {
     finish_date: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

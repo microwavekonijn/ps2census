@@ -27,5 +27,5 @@ export interface ability  {
     string2: string;
     string3: string;
     string4: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

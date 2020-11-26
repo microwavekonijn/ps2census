@@ -10,5 +10,5 @@ export interface worldEvent  {
     event_type: string;
     table_type: string;
     outfit_id: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

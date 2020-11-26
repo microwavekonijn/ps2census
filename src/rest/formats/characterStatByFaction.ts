@@ -19,5 +19,5 @@ export interface characterStatByFaction  {
     value_one_life_max_tr: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -6,5 +6,5 @@ export interface metagameEvent  {
     description: Lang;
     type: string;
     experience_bonus: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

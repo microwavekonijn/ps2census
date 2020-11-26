@@ -5,5 +5,5 @@ export interface fireGroup  {
     spool_up_ms: string;
     spool_up_initial_refire_ms: string;
     can_chamber_ironsights: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

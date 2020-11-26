@@ -1,6 +1,6 @@
 import { Collections } from './collections';
 
-export type joinExpression = {
+export type JoinExpression = {
     type: keyof Collections,
     on?: string,
     to?: string,
@@ -12,11 +12,11 @@ export type joinExpression = {
     hide?: string[],
 };
 
-export type joinType = string | joinExpression | [string | joinExpression, joinType[]];
+export type Join = string | JoinExpression | [string | JoinExpression, Join[]];
 
-export type sortType = string | [string, 1 | -1];
+export type Sort = string | [string, 1 | -1];
 
-export type treeType = {
+export type Tree = {
     field: string,
     list?: 0 | 1,
     prefix?: string,

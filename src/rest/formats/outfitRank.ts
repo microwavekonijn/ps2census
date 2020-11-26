@@ -3,5 +3,5 @@ export interface outfitRank  {
     ordinal: string;
     name: string;
     description: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -11,5 +11,5 @@ export interface achievement  {
     image_set_id: string;
     image_id: string;
     image_path: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

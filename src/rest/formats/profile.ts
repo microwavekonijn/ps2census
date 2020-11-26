@@ -14,5 +14,5 @@ export interface profile  {
     backpedal_speed_modifier: string;
     sprint_speed_modifier: string;
     strafe_speed_modifier: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

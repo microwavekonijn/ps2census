@@ -1,7 +1,8 @@
 import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
-import { characterFormat } from '../../rest/collections/character';
 import { Faction, factionMap, Loadout, loadoutFactionMap, loadoutTypeMap } from '../constants/ps2.constants';
+import { Format } from '../../rest/types/collection';
+import { Character } from '../../rest/collections/character';
 
 export enum Destroy {
     Normal,
@@ -35,9 +36,9 @@ export class VehicleDestroy extends CharacterEvent {
     /**
      * Fetch the character data from the attacker
      *
-     * @return {Promise<characterFormat>}
+     * @return {Promise<Format<Character>>}
      */
-    attacker(): Promise<characterFormat> {
+    attacker(): Promise<Format<Character>> {
         return this.client.characterManager.fetch(this.attacker_character_id);
     }
 

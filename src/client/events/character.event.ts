@@ -1,5 +1,6 @@
 import { PS2Event } from './ps2.event';
-import { characterFormat } from '../../rest/collections/character';
+import { Format } from '../../rest/types/collection';
+import { Character } from '../../rest/collections/character';
 
 export abstract class CharacterEvent extends PS2Event {
     readonly character_id: string;
@@ -7,9 +8,9 @@ export abstract class CharacterEvent extends PS2Event {
     /**
      * Fetch the character data
      *
-     * @return {Promise<characterFormat>}
+     * @return {Promise<Format<Character>>}
      */
-    character(): Promise<characterFormat> {
+    character(): Promise<Format<Character>> {
         return this.client.characterManager.fetch(this.character_id);
     }
 }

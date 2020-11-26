@@ -6,11 +6,11 @@ export interface map  {
             RowData: {
                 RegionId: string;
                 FactionId: string;
-                [prop: string]: unkown;
+                [prop: string]: unknown;
             };
-            [prop: string]: unkown;
+            [prop: string]: unknown;
         }[];
-        [prop: string]: unkown;
+        [prop: string]: unknown;
     };
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

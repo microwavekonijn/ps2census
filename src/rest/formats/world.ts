@@ -5,5 +5,5 @@ export interface world  {
     state: string;
     name: Lang;
     description: Lang;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

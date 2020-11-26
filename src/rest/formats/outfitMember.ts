@@ -5,5 +5,5 @@ export interface outfitMember  {
     member_since_date: string;
     rank: string;
     rank_ordinal: string
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

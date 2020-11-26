@@ -3,5 +3,5 @@ export interface loadout  {
     profile_id: string;
     faction_id: string;
     code_name: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

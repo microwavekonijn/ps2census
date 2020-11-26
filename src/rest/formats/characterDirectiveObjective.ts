@@ -5,5 +5,5 @@ export interface characterDirectiveObjective  {
     objective_group_id: string;
     status: string;
     state_data: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

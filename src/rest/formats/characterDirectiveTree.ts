@@ -5,5 +5,5 @@ export interface characterDirectiveTree  {
     current_level: string;
     completion_time: string;
     completion_time_date: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

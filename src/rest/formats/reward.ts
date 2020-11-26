@@ -8,5 +8,5 @@ export interface reward  {
     param3: string;
     param4: string;
     param5: string
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -4,5 +4,5 @@ export interface vehicleAttachment  {
     faction_id: string;
     description: string;
     slot_id: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

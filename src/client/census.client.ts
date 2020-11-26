@@ -2,12 +2,11 @@ import { EventEmitter } from 'events';
 import { ClientOptions, ClientEvents, EventStreamSubscription } from './types/client.options';
 import { StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
-import { getFactory } from '../rest';
-import { GetMethod } from '../rest/types/request';
+import { getFactory, GetMethod } from '../rest/getFactory';
 import { CharacterManager } from './managers/character.manager';
 import { Cache } from './utils/cache';
-import { character } from '../rest/collections/character';
 import { resolve } from '../rest/commands/resolve';
+import { query } from '../rest/query';
 
 declare interface Client {
     on<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
@@ -59,7 +58,7 @@ class Client extends EventEmitter {
         this.characterManager = new CharacterManager(
             this,
             characterManager?.cache ?? new Cache(),
-            characterManager?.request ?? resolve(character, ['outfit_member_extended']),
+            characterManager?.request ?? resolve(query('character'), ['outfit_member_extended']),
         );
     }
 

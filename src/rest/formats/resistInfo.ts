@@ -5,5 +5,5 @@ export interface resistInfo  {
     resist_amount: string;
     multiplier_when_headshot: string;
     description: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

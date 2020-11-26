@@ -1,7 +1,6 @@
 import { DuplicateFilter } from '../utils/duplicate-filter';
 import { EventEmitter } from 'events';
 import { PS2Environment } from '../../types/ps2.options';
-import { CensusRequest } from '../../rest/types/request';
 import { CacheContract } from '../concerns/cache.contract';
 import { PS2EventNames } from './ps2.events';
 import { PS2Event } from '../events/ps2.event';
@@ -19,12 +18,14 @@ import { VehicleDestroy } from '../events/vehicle-destroy.event';
 import { ContinentLock } from '../events/continent-lock.event';
 import { FacilityControl } from '../events/facility-control.event';
 import { MetagameEvent } from '../events/metagame.event';
+import { Query } from '../../rest/types/query';
+import { Character } from '../../rest/collections/character';
 
 export type ClientOptions = {
     environment?: PS2Environment,
     streamManagerConfig?: EventStreamManagerOptions,
     characterManager?: {
-        request?: CensusRequest<'character'>,
+        request?: Query<Character['collection'], Character>,
         cache?: CacheContract,
     }
 }

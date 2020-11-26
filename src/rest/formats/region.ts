@@ -5,5 +5,5 @@ export interface region  {
     zone_id: string;
     initial_faction_id: string;
     name: Lang;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

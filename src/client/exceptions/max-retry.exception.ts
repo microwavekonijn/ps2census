@@ -1,11 +1,9 @@
 import { CensusRestException, CensusServerError } from '../../rest';
-import { CensusRequest, Collections } from '../../rest/types/request';
-import { queryIndex } from '../../rest/indexes/queryIndex';
+import { Query } from '../../rest/types/query';
 
-export class MaxRetryException<C extends Collections> extends Error {
+export class MaxRetryException extends Error {
     constructor(
-        readonly request: CensusRequest<C>,
-        readonly query: queryIndex[C] | undefined,
+        readonly query: Query<any, any>,
         readonly attempts: (CensusRestException | CensusServerError)[],
     ) {
         super('Beep');

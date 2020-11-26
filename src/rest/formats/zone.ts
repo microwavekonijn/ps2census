@@ -6,5 +6,5 @@ export interface zone  {
     hex_size: string;
     name: Lang;
     description: Lang;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

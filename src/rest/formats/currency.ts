@@ -5,5 +5,5 @@ export interface currency  {
     name: Lang;
     icon_id: string;
     inventory_cap: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

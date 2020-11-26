@@ -22,5 +22,5 @@ export interface weaponDatasheet  {
     show_clip_size: string;
     show_fire_modes: string;
     show_range: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -4,5 +4,5 @@ export interface characterDirectiveTier  {
     directive_tier_id: string;
     completion_time: string;
     completion_time_date: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

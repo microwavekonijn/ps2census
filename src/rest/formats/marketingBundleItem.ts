@@ -3,5 +3,5 @@ export interface marketingBundleItem  {
     item_id: string;
     quantity: string;
     release_time: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

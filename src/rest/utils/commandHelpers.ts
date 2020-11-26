@@ -1,4 +1,4 @@
-import { joinType, sortType, treeType } from '../types/command';
+import { Join, Sort, Tree } from '../types/command';
 import { Query } from '../types/query';
 
 export function hasLimitPerDB(query: Query<unknown, unknown>): boolean {
@@ -13,9 +13,9 @@ export function fieldsToString(fields: string[]): string {
     return fields.join(',');
 }
 
-export function joinsToString(joins: joinType[]): string {
+export function joinsToString(joins: Join[]): string {
     return joins.map(join => {
-        let nested: joinType[] = [];
+        let nested: Join[] = [];
 
         if (Array.isArray(join)) {
             nested = join[1];
@@ -48,11 +48,11 @@ export function resolveToString<R>(resolve: (R | [R, string[]])[]): string {
     return resolve.map(r => Array.isArray(r) ? `${r[0]}(${r[1].join(',')})` : r).join(',');
 }
 
-export function sortToString(fields: sortType[]): string {
+export function sortToString(fields: Sort[]): string {
     return fields.map(f => Array.isArray(f) ? f.join(':') : f).join(',');
 }
 
-export function treeToString(tree: treeType): string {
+export function treeToString(tree: Tree): string {
     return Object.keys(tree) // @ts-ignore
         .filter(k => k !== 'field' && tree[k] !== undefined) // @ts-ignore
         .reduce((a, k) => `${a}^${k}:${tree[k]}`, tree.field);

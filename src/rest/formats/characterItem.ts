@@ -3,5 +3,5 @@ export interface characterItem  {
     item_id: string;
     account_level?: string;
     stack_count?: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

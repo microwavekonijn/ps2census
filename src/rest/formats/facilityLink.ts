@@ -3,5 +3,5 @@ export interface facilityLink  {
     description: string;
     facility_id_a: string;
     facility_id_b: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

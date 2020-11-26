@@ -5,5 +5,5 @@ export interface mapHex  {
     y: string;
     hex_type: string;
     type_name: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -3,7 +3,8 @@ import { CharacterEvent } from './character.event';
 import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../constants/ps2.constants';
 import { DeathData } from '../..';
 import { numberStringToBoolean } from '../../utils/formatters';
-import { characterFormat } from '../../rest/collections/character';
+import { Character } from '../../rest/collections/character';
+import { Format } from '../../rest/types/collection';
 
 export enum Kill {
     Normal,
@@ -45,9 +46,9 @@ export class Death extends CharacterEvent {
     /**
      * Fetch the character data from the attacker
      *
-     * @return {Promise<characterFormat>}
+     * @return {Promise<Format<Character>>}
      */
-    attacker(): Promise<characterFormat> {
+    attacker(): Promise<Format<Character>> {
         return this.client.characterManager.fetch(this.attacker_character_id);
     }
 

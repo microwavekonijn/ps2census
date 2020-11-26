@@ -8,5 +8,5 @@ export interface faction  {
     image_path: string;
     code_tag: string;
     user_selectable: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -1,10 +1,9 @@
-import { CensusRequest, Collections, GetMethod } from '../../rest/types/request';
 import { Client } from '../census.client';
-import { CensusRestException, CensusServerError, getFactory } from '../../rest';
-import { queryIndex } from '../../rest/indexes/queryIndex';
-import { CensusResponse } from '../../rest/types/response';
+import { CensusRestException, CensusServerError, getFactory, GetMethod } from '../../rest';
 import { Events } from '../constants';
 import { MaxRetryException } from '../exceptions/max-retry.exception';
+import { InferCollection, Query } from '../../rest/types/query';
+import { Conditions, Format } from '../../rest/types/collection';
 
 export class RestManager {
     readonly getMethod: GetMethod;
@@ -20,7 +19,7 @@ export class RestManager {
         this.retries = options?.retries ?? 2;
     }
 
-    async get<C extends Collections, R extends CensusRequest<C>>(request: R, query: queryIndex[C], {retries = this.retries}: any): Promise<CensusResponse<C, R>> {
+    async get<Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>, {retries = this.retries}: any): Promise<Format<C>[]> {
 
         let attempt = 0;
         const attempts: (CensusRestException | CensusServerError)[] = [];
@@ -30,12 +29,12 @@ export class RestManager {
             this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(query)}, attempt ${attempt}.`, this.constructor.name);
 
             try {
-                return await this.getMethod(request, query);
+                return await this.getMethod(query, conditions);
             } catch (e) {
                 attempts.push(e);
             }
         } while (attempt++ <= retries);
 
-        throw new MaxRetryException(request, query, attempts);
+        throw new MaxRetryException(query, attempts);
     }
 }

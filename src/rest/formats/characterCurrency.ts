@@ -4,5 +4,5 @@ export interface characterCurrency  {
     currency_name: string;
     quantity: string;
     prestige_currency: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

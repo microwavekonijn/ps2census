@@ -9,5 +9,5 @@ export interface characterStat  {
     value_one_life_max: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

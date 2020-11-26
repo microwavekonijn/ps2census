@@ -1,5 +1,5 @@
 export interface metagameEventState  {
     metagame_event_state_id: string;
     name: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

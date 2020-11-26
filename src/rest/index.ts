@@ -4,7 +4,6 @@ export * from './countFactory';
 /** Utility */
 export * as commandHelpers from './utils/commandHelpers';
 export * as commandTypes from './types/command';
-export * as requestTypes from './types/request';
 export * as responseTypes from './types/response';
 
 /** Exceptions */

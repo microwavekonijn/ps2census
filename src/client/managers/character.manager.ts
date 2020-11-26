@@ -1,19 +1,19 @@
 import { BaseManager } from './base.manager';
 import { Client } from '../census.client';
 import { CacheContract } from '../concerns/cache.contract';
-import { CensusRequest } from '../../rest/types/request';
-import { queryIndex } from '../../rest/indexes/queryIndex';
+import { Query } from '../../rest/types/query';
+import { Character } from '../../rest/collections/character';
 
-export class CharacterManager extends BaseManager<'character'> {
+export class CharacterManager extends BaseManager<Character['collection'], Character> {
     constructor(
         client: Client,
         cache: CacheContract,
-        request: CensusRequest<'character'>,
+        query: Query<Character['collection'], Character>,
     ) {
-        super(client, cache, request);
+        super(client, cache, query);
     }
 
-    protected query(id: string): queryIndex['character'] {
+    protected conditions(id: string): Character['conditions'] {
         return {
             'character_id': id,
         };

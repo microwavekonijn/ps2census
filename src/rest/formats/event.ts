@@ -7,5 +7,5 @@ export interface event  {
     world_id: string;
     event_type: string;
     table_type: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

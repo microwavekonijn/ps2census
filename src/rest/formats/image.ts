@@ -2,5 +2,5 @@ export interface image  {
     image_id: string;
     description: string;
     path: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

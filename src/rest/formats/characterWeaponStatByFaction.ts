@@ -8,5 +8,5 @@ export interface characterWeaponStatByFaction  {
     value_tr: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

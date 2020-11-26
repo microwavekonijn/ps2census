@@ -8,5 +8,5 @@ export interface outfit  {
     time_created_date: string;
     leader_character_id: string;
     member_count: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

@@ -19,5 +19,5 @@ export interface effect  {
     param11: string;
     param12: string;
     param13: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

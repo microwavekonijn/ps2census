@@ -8,5 +8,5 @@ export interface empireScore  {
     end_date: string;
     end_time: string;
     name: Lang;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

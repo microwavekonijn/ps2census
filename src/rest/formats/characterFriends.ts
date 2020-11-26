@@ -5,7 +5,7 @@ export interface characterFriends  {
         character_id: string;
         last_login_time: string;
         online: string;
-        [prop: string]: unkown;
+        [prop: string]: unknown;
     }[];
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }

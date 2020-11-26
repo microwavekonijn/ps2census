@@ -5,5 +5,5 @@ export interface imageSet  {
     type_id: string;
     type_description: string;
     image_path: string;
-    [prop: string]: unkown;
+    [prop: string]: unknown;
 }
