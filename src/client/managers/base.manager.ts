@@ -33,7 +33,7 @@ export abstract class BaseManager<N, C> {
 
         this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(conditions)}.`, this.constructor.name);
 
-        const data = await this.client.get(this.query, conditions);
+        const data = await this.client.restManager.get(this.query, conditions, {});
 
         if (data.length <= 0)
             throw new Error(`Unable to retrieve data, api returned no matches for "${id}"`);

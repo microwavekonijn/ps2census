@@ -7,6 +7,7 @@ import { CharacterManager } from './managers/character.manager';
 import { Cache } from './utils/cache';
 import { resolve } from '../rest/commands/resolve';
 import { query } from '../rest/query';
+import { RestManager } from './managers/rest.manager';
 
 declare interface Client {
     on<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
@@ -27,7 +28,7 @@ class Client extends EventEmitter {
     /**
      * @type {GetMethod} Get method to fetch data from the Rest API
      */
-    readonly get: GetMethod;
+    readonly restManager: RestManager;
 
     /**
      * @type {CharacterManager} The character manager for Census API requests
@@ -51,7 +52,7 @@ class Client extends EventEmitter {
         this.serviceId = serviceId;
         this.environment = environment;
 
-        this.get = getFactory(environment, serviceId);
+        this.restManager = new RestManager(this);
 
         this.streamManager = new StreamManager(this, streamManagerConfig);
 

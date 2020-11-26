@@ -20,12 +20,10 @@ export class RestManager {
     }
 
     async get<Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>, {retries = this.retries}: any): Promise<Format<C>[]> {
-
         let attempt = 0;
         const attempts: (CensusRestException | CensusServerError)[] = [];
 
         do {
-
             this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(query)}, attempt ${attempt}.`, this.constructor.name);
 
             try {
@@ -35,6 +33,6 @@ export class RestManager {
             }
         } while (attempt++ <= retries);
 
-        throw new MaxRetryException(query, attempts);
+        throw new MaxRetryException(query, conditions, attempts);
     }
 }
