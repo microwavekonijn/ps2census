@@ -10,6 +10,8 @@ export * as responseTypes from './types/response';
 export * from './exceptions/CensusRestException';
 export * from './exceptions/CensusServerError';
 
+export * from './query';
+
 /** Commands */
 export * from './commands/caseSensitive';
 export * from './commands/distinct';
