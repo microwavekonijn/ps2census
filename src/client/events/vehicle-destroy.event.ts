@@ -69,7 +69,7 @@ export class VehicleDestroy extends CharacterEvent {
         const victim_faction = this.character_faction;
 
         if (this.attacker_character_id === this.character_id && attacker_faction === victim_faction) return Destroy.SelfDestruct;
-        if (attacker_faction === Faction.NSO) return Destroy.Undetermined;
+        if (attacker_faction === Faction.NSO || victim_faction === Faction.NSO) return Destroy.Undetermined;
 
         return attacker_faction === victim_faction
             ? Destroy.Friendly
