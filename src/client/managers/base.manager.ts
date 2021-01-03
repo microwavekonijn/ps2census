@@ -28,12 +28,12 @@ export abstract class BaseManager<N, C> {
         return this.fetch(id);
     }
 
-    private async makeRequest(id: string) {
+    private async makeRequest(id: string): Promise<Format<C>> {
         const conditions = this.conditions(id);
 
         this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(conditions)}.`, this.constructor.name);
 
-        const data = await this.client.restManager.get(this.query, conditions, {});
+        const data = await this.client.restManager.get(this.query, conditions);
 
         if (data.length <= 0)
             throw new Error(`Unable to retrieve data, api returned no matches for "${id}"`);

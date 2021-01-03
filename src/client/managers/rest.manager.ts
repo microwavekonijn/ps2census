@@ -20,20 +20,19 @@ export class RestManager {
         this.retries = options?.retries ?? 2;
     }
 
-    async get<Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>, options: RestManagerOptions): Promise<Format<C>[]> {
-        const retries = options.retries ?? this.retries;
-        let attempt = 0;
+    async get<Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>, options?: RestManagerOptions): Promise<Format<C>[]> {
+        const retries = options && options.retries ? options.retries : this.retries;
         const attempts: (CensusRestException | CensusServerError)[] = [];
 
         do {
-            this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify(query)}, attempt ${attempt}.`, this.constructor.name);
+            this.client.emit(Events.DEBUG, `Fetching data using query ${JSON.stringify({query, conditions})}, attempt ${attempts.length}.`, this.constructor.name);
 
             try {
                 return await this.getMethod(query, conditions);
             } catch (e) {
                 attempts.push(e);
             }
-        } while (attempt++ <= retries);
+        } while (attempts.length <= retries);
 
         throw new MaxRetryException(query, conditions, attempts);
     }

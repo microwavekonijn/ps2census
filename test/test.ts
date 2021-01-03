@@ -1,7 +1,7 @@
 import { Client, Events, Kill } from '../src';
 
-function name(character: any) {
-    return character.name ? character.name.first : `Unkown(${character.id})`;
+function name({character_id, name}: any) {
+    return name && name.first ? name.first : `Unknown(${character_id})`;
 }
 
 const client = new Client(process.argv[2], {
