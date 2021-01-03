@@ -1,17 +1,17 @@
-export type Lang = {
-    en: string,
-    de: string,
-    es: string,
-    fr: string,
-    it: string,
-    tr: string
-};
+export interface Lang {
+    en: string;
+    de: string;
+    es: string;
+    fr: string;
+    it: string;
+    tr: string;
+}
 
 export type langs = keyof Lang;
 
-export type TimingType = {
-    'item-ms': number,
-    'total-ms': number
+export interface TimingType {
+    'item-ms': number;
+    'total-ms': number;
 }
 
 // TODO: Maybe they should be the other way around or be combinable?

@@ -4,14 +4,14 @@ import { CensusRestException } from './exceptions/CensusRestException';
 import { PS2Environment } from '../types/ps2.options';
 import { InferCollection, Query } from './types/query';
 import { Conditions, Format } from './types/collection';
+import { CensusResponse } from './censusResponse';
+import { createBaseUrl } from './utils/urlHelper';
 
-export type GetMethod = <Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>) => Promise<Format<C>[]>;
+export type GetMethod = <Q extends Query<any, any>, C = InferCollection<Q>>(query: Q, conditions: Conditions<C>) => Promise<CensusResponse<Format<C>>>;
 
-export function getFactory(environment: PS2Environment, serviceId?: string): GetMethod {
+export function getFactory(environment: PS2Environment, serviceId?: string | null, httpsOnly = true): GetMethod {
     const census = axios.create({
-        baseURL: serviceId
-            ? `https://census.daybreakgames.com/s:${serviceId}/get/${environment}:v2`
-            : `https://census.daybreakgames.com/get/${environment}:v2`,
+        baseURL: createBaseUrl('get', environment, httpsOnly, serviceId),
         transformResponse(data) {
             data = JSON.parse(data);
 
@@ -27,6 +27,5 @@ export function getFactory(environment: PS2Environment, serviceId?: string): Get
 
     return ({collection, params}, conditions) =>
         census.get(collection, {params: {...params, ...conditions}})
-            .then(({data}) => data[`${collection}_list`]);
+            .then(({data}) => new CensusResponse(collection, data));
 }
-

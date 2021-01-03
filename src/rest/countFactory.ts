@@ -4,14 +4,13 @@ import { CensusRestException } from './exceptions/CensusRestException';
 import { PS2Environment } from '../types/ps2.options';
 import { InferCollection, Query } from './types/query';
 import { Conditions, Countable } from './types/collection';
+import { createBaseUrl } from './utils/urlHelper';
 
 export type CountMethod = <Q extends Query<any, Countable>>(query: Q, conditions: Conditions<InferCollection<Q>>) => Promise<number>
 
-export function countFactory(environment: PS2Environment, serviceId?: string): CountMethod {
+export function countFactory(environment: PS2Environment, serviceId?: string | null, httpsOnly = true): CountMethod {
     const census = axios.create({
-        baseURL: serviceId
-            ? `https://census.daybreakgames.com/s:${serviceId}/count/${environment}:v2`
-            : `https://census.daybreakgames.com/count/${environment}:v2`,
+        baseURL: createBaseUrl('count', environment, httpsOnly, serviceId),
         transformResponse(data) {
             data = JSON.parse(data);
 
