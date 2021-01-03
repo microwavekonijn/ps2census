@@ -1,5 +1,9 @@
 import { Client, Events, Kill } from '../src';
 
+function name(character: any) {
+    return character.name ? character.name.first : `Unkown(${character.id})`;
+}
+
 const client = new Client(process.argv[2], {
     streamManagerConfig: {
         subscription: {
@@ -28,16 +32,16 @@ client.on(Events.PS2_DEATH, async (e) => {
 
     switch (e.kill_type) {
         case Kill.Normal:
-            console.log(`${victim.name.first} was killed by ${attacker.name.first}`);
+            console.log(`${name(victim)} was killed by ${name(attacker)}`);
             break;
         case Kill.Suicide:
-            console.log(`${victim.name.first} suicided.`);
+            console.log(`${name(victim)} suicided.`);
             break;
         case Kill.TeamKill:
-            console.log(`${victim.name.first} was teamkilled by ${attacker.name.first}`);
+            console.log(`${name(victim)} was teamkilled by ${name(attacker)}`);
             break;
         case Kill.Undetermined:
-            console.log(`${victim.name.first} was NSOed by ${attacker.name.first}`);
+            console.log(`${name(victim)} was NSOed by ${name(attacker)}`);
             break;
     }
 });
