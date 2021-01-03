@@ -1,8 +1,8 @@
-import { EventStreamSubscription } from './types/client.options';
 import { Client } from './census.client';
 import { EventStream } from './event.stream';
 import { Events } from './constants/client.constants';
 import { PS2EventNames } from './types/ps2.events';
+import { EventStreamSubscription } from './types/stream.options';
 
 export class SubscriptionManager {
     private static readonly label = 'SubscriptionManager';

@@ -1,10 +1,11 @@
 import { EventEmitter } from 'events';
 import WebSocket, { Data } from 'ws';
 import Timeout = NodeJS.Timeout;
-import { EventStreamConfig, EventStreamSubscribed, EventStreamSubscription } from './types/client.options';
 import { Events, State } from './constants/client.constants';
 import { StreamHandlerContract } from './concerns/stream-handler.contract';
 import { PS2Environment } from '../types/ps2.options';
+import { EventStreamConfig, EventStreamSubscription } from './types/stream.options';
+import { EventStreamSubscribed } from './types';
 
 declare interface EventStream {
     on(event: 'ready', listener: () => void): this;

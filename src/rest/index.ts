@@ -2,7 +2,6 @@ export * from './getFactory';
 export * from './countFactory';
 
 /** Utility */
-export * as commandHelpers from './utils/commandHelpers';
 export * as commandTypes from './types/command';
 export * as responseTypes from './types/response';
 
@@ -11,6 +10,7 @@ export * from './exceptions/CensusRestException';
 export * from './exceptions/CensusServerError';
 
 export * from './query';
+export * from './censusResponse';
 
 /** Commands */
 export * from './commands/caseSensitive';

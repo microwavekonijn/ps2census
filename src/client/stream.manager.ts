@@ -1,11 +1,11 @@
 import { Client } from './census.client';
 import { EventStream } from './event.stream';
-import { EventStreamManagerOptions, EventStreamSubscription } from './types/client.options';
 import { Events } from './constants/client.constants';
 import Timeout = NodeJS.Timeout;
 import { StreamHandler } from './stream.handler';
 import { DuplicateFilter } from './utils/duplicate-filter';
 import { SubscriptionManager } from './subscription.manager';
+import { EventStreamManagerOptions, EventStreamSubscription } from './types/stream.options';
 
 export class StreamManager {
     private static readonly label = 'EventStreamManager';

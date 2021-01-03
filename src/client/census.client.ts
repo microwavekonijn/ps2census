@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { ClientOptions, ClientEvents, EventStreamSubscription } from './types/client.options';
+import { ClientOptions} from './types/client.options';
 import { StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
 import { GetMethod } from '../rest/getFactory';
@@ -8,6 +8,8 @@ import { Cache } from './utils/cache';
 import { resolve } from '../rest/commands/resolve';
 import { query } from '../rest/query';
 import { RestManager } from './managers/rest.manager';
+import { EventStreamSubscription } from './types/stream.options';
+import { ClientEvents } from './types/client.events';
 
 declare interface Client {
     on<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
