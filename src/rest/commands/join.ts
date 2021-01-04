@@ -15,7 +15,7 @@ export type JoinOptions<C> = {
         outer?: boolean;
         show?: PartialPaths<Format<CollectionsMap[K]['format']>>[];
         hide?: PartialPaths<Format<CollectionsMap[K]['format']>>[];
-        sub?: Join<CollectionsMap[K]>[];
+        nested?: Join<CollectionsMap[K]>[];
     }
 }[Collections['collection']];
 

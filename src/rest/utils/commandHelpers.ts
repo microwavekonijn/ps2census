@@ -1,5 +1,7 @@
-import { Join, Sort, Tree } from '../types/command';
 import { Query } from '../types/query';
+import { Join } from '../commands/join';
+import { Sort } from '../commands/sort';
+import { Tree } from '../commands/tree';
 
 export function hasLimitPerDB(query: Query<unknown, unknown>): boolean {
     return !!query.params.limitPerDB;
@@ -13,34 +15,39 @@ export function fieldsToString(fields: string[]): string {
     return fields.join(',');
 }
 
-export function joinsToString(joins: Join[]): string {
+export function joinsToString<C>(joins: Join<C>[]): string {
     return joins.map(join => {
-        let nested: Join[] = [];
-
-        if (Array.isArray(join)) {
-            nested = join[1];
-            join = join[0];
-        }
+        let str = typeof join === 'string' ? join : join.type;
 
         if (typeof join !== 'string') {
-            let s = join.type;
+            if (join.on)
+                str += `^on:${join.on}`;
 
-            if (join.on) s += `^on:${join.on}`;
-            if (join.to) s += `^to:${join.to}`;
-            if (join.list) s += `^list:${join.list ? 1 : 0}`;
-            if (join.inject_at) s += `^inject_at:${join.inject_at}`;
-            if (join.terms) s += `^terms:${join.terms}`;
-            if (join.outer) s += `^outer:${join.outer ? 1 : 0}`;
-            if (join.show) s += `^show:${join.show.join('\'')}`;
-            else if (join.hide) s += `^hide:${join.hide.join('\'')}`;
+            if (join.to)
+                str += `^to:${join.to}`;
 
-            join = s;
+            if (join.list)
+                str += `^list:${join.list ? 1 : 0}`;
+
+            if (join.inject_at)
+                str += `^inject_at:${join.inject_at}`;
+
+            if (join.terms)
+                str += `^terms:${join.terms}`;
+
+            if (join.outer)
+                str += `^outer:${join.outer ? 1 : 0}`;
+
+            if (join.show)
+                str += `^show:${join.show.join('\'')}`;
+            else if (join.hide)
+                str += `^hide:${join.hide.join('\'')}`;
+
+            if (join.nested && join.nested.length > 0)
+                str += `(${joinsToString(join.nested)})`;
         }
 
-        if (nested.length)
-            join += `(${joinsToString(nested)})`;
-
-        return join;
+        return str;
     }).join(',');
 }
 
@@ -48,12 +55,21 @@ export function resolveToString<R>(resolve: (R | [R, string[]])[]): string {
     return resolve.map(r => Array.isArray(r) ? `${r[0]}(${r[1].join(',')})` : r).join(',');
 }
 
-export function sortToString(fields: Sort[]): string {
+export function sortToString<C>(fields: Sort<C>[]): string {
     return fields.map(f => Array.isArray(f) ? f.join(':') : f).join(',');
 }
 
-export function treeToString(tree: Tree): string {
-    return Object.keys(tree) // @ts-ignore
-        .filter(k => k !== 'field' && tree[k] !== undefined) // @ts-ignore
-        .reduce((a, k) => `${a}^${k}:${tree[k]}`, tree.field);
+export function treeToString<C>(tree: Tree<C>): string {
+    let str = tree.field;
+
+    if (tree.list)
+        str += `^list:${tree.list}`;
+
+    if (tree.prefix)
+        str += `^prefix:${tree.prefix}`;
+
+    if (tree.start)
+        str += `^start:${tree.start}`;
+
+    return str;
 }
