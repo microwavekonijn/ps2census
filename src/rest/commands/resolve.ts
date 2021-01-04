@@ -4,7 +4,7 @@ import { Resolvable, Resolve } from '../types/collection';
 
 type Resolvables<Q, R extends Resolve<InferCollection<Q>> = Resolve<InferCollection<Q>>> = R | [R, string[]];
 
-export function resolve<Q extends Query<any, Resolvable<unknown>>>(query: Q, resolve: Resolvables<Q>[]): Q {
+export function resolve<Q extends Query<any, Resolvable<any>>>(query: Q, resolve: Resolvables<Q>[]): Q {
     return {
         ...query,
         // resolve,

@@ -1,11 +1,11 @@
 import { fieldsToString } from '../utils/commandHelpers';
-import { Query } from '../types/query';
+import { InferPartialPaths, Query } from '../types/query';
 import { DefaultCollection } from '../types/collection';
 
-export function show<Q extends Query<any, DefaultCollection>>(query: Q, fields: string[]): Q {
+export function show<Q extends Query<any, DefaultCollection>>(query: Q, fields: InferPartialPaths<Q>[]): Q {
     return {
         ...query,
-        show: fields,
+        // show: fields,
         params: {
             ...query.params,
             'c:show': fieldsToString(fields),

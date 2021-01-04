@@ -1,6 +1,6 @@
 type Path<A extends string, B extends string> = `${A}.${B}`;
 
-export type Paths<T extends Record<string, any>> = {
+export type Paths<T> = {
     [K in keyof T]: K extends string
         ? T[K] extends Array<infer F>
             ? F extends Record<any, any>
@@ -12,7 +12,7 @@ export type Paths<T extends Record<string, any>> = {
         : never
 }[keyof T];
 
-export type PartialPaths<T extends Record<string, any>> = {
+export type PartialPaths<T> = {
     [K in keyof T]: K extends string
         ? T[K] extends Array<infer F>
             ? F extends Record<any, any>

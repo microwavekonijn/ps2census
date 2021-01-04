@@ -1,12 +1,16 @@
-import { Sort } from '../types/command';
 import { sortToString } from '../utils/commandHelpers';
-import { Query } from '../types/query';
-import { DefaultCollection } from '../types/collection';
+import { InferCollection, Query } from '../types/query';
+import { DefaultCollection, Format } from '../types/collection';
+import { Paths } from '../types/format';
 
-export function sort<Q extends Query<any, DefaultCollection>>(query: Q, fields: Sort[]): Q {
+export type Sort<C> = Paths<Format<C>> | [Paths<Format<C>>, 1 | -1];
+
+type InferSort<Q> = Sort<InferCollection<Q>>;
+
+export function sort<Q extends Query<any, DefaultCollection>>(query: Q, fields: InferSort<Q>[]): Q {
     return {
         ...query,
-        sort: fields,
+        // sort: fields,
         params: {
             ...query.params,
             'c:sort': sortToString(fields),

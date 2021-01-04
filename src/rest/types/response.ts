@@ -7,7 +7,7 @@ export interface Lang {
     tr: string;
 }
 
-export type langs = keyof Lang;
+export type Langs = keyof Lang;
 
 export interface TimingType {
     'item-ms': number;

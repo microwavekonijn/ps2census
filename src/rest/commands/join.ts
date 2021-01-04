@@ -1,8 +1,29 @@
-import { Join } from '../types/command';
 import { joinsToString } from '../utils/commandHelpers';
-import { Query } from '../types/query';
+import { InferCollection, Query } from '../types/query';
+import { Format } from '../types/collection';
+import { Collections, CollectionsMap } from '../types/collections';
+import { PartialPaths, Paths } from '../types/format';
 
-export function join<Q extends Query<any, unknown>>(query: Q, joins: Join[]): Q {
+export type JoinOptions<C> = {
+    [K in keyof CollectionsMap]: {
+        type: K;
+        on?: Paths<Format<C>>;
+        to?: Paths<Format<CollectionsMap[K]['format']>>;
+        list?: boolean;
+        inject_at?: string;
+        terms?: Record<string, string>;
+        outer?: boolean;
+        show?: PartialPaths<Format<CollectionsMap[K]['format']>>[];
+        hide?: PartialPaths<Format<CollectionsMap[K]['format']>>[];
+        sub?: Join<CollectionsMap[K]>[];
+    }
+}[Collections['collection']];
+
+export type Join<C> = keyof CollectionsMap | JoinOptions<C>;
+
+type InferJoin<Q> = Join<InferCollection<Q>>;
+
+export function join<Q extends Query<any, any>>(query: Q, ...joins: InferJoin<Q>[]): Q {
     return {
         ...query,
         // join: joins,

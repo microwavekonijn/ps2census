@@ -1,8 +1,8 @@
 import { fieldsToString } from '../utils/commandHelpers';
-import { Query } from '../types/query';
+import { InferPartialPaths, Query } from '../types/query';
 import { DefaultCollection } from '../types/collection';
 
-export function hide<Q extends Query<any, DefaultCollection>>(query: Q, fields: string[]): Q {
+export function hide<Q extends Query<any, DefaultCollection>>(query: Q, fields: InferPartialPaths<Q>[]): Q {
     return {
         ...query,
         // hide: fields,
