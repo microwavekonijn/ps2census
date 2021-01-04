@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface empireScore  {
+export interface empireScore {
     tracker_name: string;
     tracker_description: string;
     start_date: string;
@@ -8,5 +8,4 @@ export interface empireScore  {
     end_date: string;
     end_time: string;
     name: Lang;
-    [prop: string]: unknown;
 }

@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface skillLine  {
+export interface skillLine {
     skill_line_id: string;
     skill_points: string;
     skill_category_id: string;
@@ -10,5 +10,4 @@ export interface skillLine  {
     image_set_id: string;
     image_id: string;
     image_path: string;
-    [prop: string]: unknown;
 }

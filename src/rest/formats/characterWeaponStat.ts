@@ -1,4 +1,4 @@
-export interface characterWeaponStat  {
+export interface characterWeaponStat {
     character_id: string;
     stat_name: string;
     item_id: string;
@@ -6,5 +6,4 @@ export interface characterWeaponStat  {
     value: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unknown;
 }

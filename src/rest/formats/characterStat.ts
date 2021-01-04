@@ -1,4 +1,4 @@
-export interface characterStat  {
+export interface characterStat {
     character_id: string;
     stat_name: string;
     profile_id: string;
@@ -9,5 +9,4 @@ export interface characterStat  {
     value_one_life_max: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unknown;
 }

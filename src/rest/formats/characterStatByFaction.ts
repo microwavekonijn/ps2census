@@ -1,4 +1,4 @@
-export interface characterStatByFaction  {
+export interface characterStatByFaction {
     character_id: string;
     stat_name: string;
     profile_id: string;
@@ -19,5 +19,4 @@ export interface characterStatByFaction  {
     value_one_life_max_tr: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unknown;
 }

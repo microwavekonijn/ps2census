@@ -3,7 +3,6 @@ export interface character {
     name: {
         first: string;
         first_lower: string;
-        [prop: string]: unknown;
     };
     faction_id: string;
     head_id: string;
@@ -17,7 +16,6 @@ export interface character {
         last_login_date: string;
         login_count: string;
         minutes_played: string;
-        [prop: string]: unknown;
     };
     certs: {
         earned_points: string;
@@ -25,20 +23,16 @@ export interface character {
         spent_points: string;
         available_points: string;
         percent_to_next: string;
-        [prop: string]: unknown;
     };
     battle_rank: {
         percent_to_next: string;
         value: string;
-        [prop: string]: unknown;
     };
     profile_id: string;
     daily_ribbon: {
         count: string;
         time: string;
         date: string;
-        [prop: string]: unknown;
     };
     prestige_level: string;
-    [prop: string]: unknown;
 }

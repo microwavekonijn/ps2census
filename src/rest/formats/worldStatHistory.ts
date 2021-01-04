@@ -1,4 +1,4 @@
-export interface worldStatHistory  {
+export interface worldStatHistory {
     world_id: string;
     stat_name: string;
     type: string;
@@ -37,7 +37,6 @@ export interface worldStatHistory  {
         d29: string;
         d30: string;
         d31: string;
-        [prop: string]: unknown;
     };
     month: {
         m01: string;
@@ -52,7 +51,6 @@ export interface worldStatHistory  {
         m10: string;
         m11: string;
         m12: string;
-        [prop: string]: unknown;
     };
     week: {
         w01: string;
@@ -68,9 +66,7 @@ export interface worldStatHistory  {
         w11: string;
         w12: string;
         w13: string;
-        [prop: string]: unknown;
     };
     last_save: string;
     last_save_date: string;
-    [prop: string]: unknown;
 }

@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface achievement  {
+export interface achievement {
     achievement_id: string;
     item_id: string;
     objective_group_id: string;
@@ -11,5 +11,4 @@ export interface achievement  {
     image_set_id: string;
     image_id: string;
     image_path: string;
-    [prop: string]: unknown;
 }

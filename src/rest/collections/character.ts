@@ -19,10 +19,10 @@ import { characterWorld } from '../formats/characterWorld';
 export interface Character extends DefaultCollection {
     collection: 'character';
 
-// TODO: Verify outfit_*
+    // TODO: Verify outfit_*
     format:
         characterBaseFormat
-        & characterFriends // friends
+        & Omit<characterFriends, 'name'> // friends
         & characterOnlineStatus // online_status
         & characterWorld // world
         & {

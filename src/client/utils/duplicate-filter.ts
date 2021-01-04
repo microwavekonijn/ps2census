@@ -17,10 +17,10 @@ export class DuplicateFilter implements StreamFilterContract {
      * @param {object} config
      */
     constructor({
-                           decay = 2000,
-                           partitions = 8,
-                           ignore = ['GainExperience'],
-                       } = {}) {
+                    decay = 2000,
+                    partitions = 8,
+                    ignore = ['GainExperience'],
+                } = {}) {
 
         this.ignore = ignore;
         this.cache = new DecayingSet<string>(partitions, decay);

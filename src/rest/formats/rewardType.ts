@@ -1,4 +1,4 @@
-export interface rewardType  {
+export interface rewardType {
     reward_type_id: string;
     description: string;
     count_min: string;
@@ -8,5 +8,4 @@ export interface rewardType  {
     param3: string;
     param4: string;
     param5: string
-    [prop: string]: unknown;
 }

@@ -1,4 +1,4 @@
-export interface weapon  {
+export interface weapon {
     weapon_id: string;
     weapon_group_id: string;
     turn_modifier: string;
@@ -13,5 +13,4 @@ export interface weapon  {
     heat_overheat_penalty_ms: string;
     melee_detect_width: string;
     melee_detect_height: string
-    [prop: string]: unknown;
 }

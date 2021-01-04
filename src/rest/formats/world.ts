@@ -1,9 +1,8 @@
 import { Lang } from '../types/response';
 
-export interface world  {
+export interface world {
     world_id: string;
     state: string;
     name: Lang;
     description: Lang;
-    [prop: string]: unknown;
 }

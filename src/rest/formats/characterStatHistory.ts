@@ -1,4 +1,4 @@
-export interface characterStatHistory  {
+export interface characterStatHistory {
     character_id: string;
     stat_name: string;
     all_time: string;
@@ -35,7 +35,6 @@ export interface characterStatHistory  {
         d29: string;
         d30: string;
         d31: string;
-        [prop: string]: unknown;
     };
     month: {
         m01: string;
@@ -50,7 +49,6 @@ export interface characterStatHistory  {
         m10: string;
         m11: string;
         m12: string;
-        [prop: string]: unknown;
     };
     week: {
         w01: string;
@@ -66,9 +64,7 @@ export interface characterStatHistory  {
         w11: string;
         w12: string;
         w13: string;
-        [prop: string]: unknown;
     };
     last_save: string;
     last_save_date: string;
-    [prop: string]: unknown;
 }

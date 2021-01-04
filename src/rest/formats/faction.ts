@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface faction  {
+export interface faction {
     faction_id: string;
     name: Lang;
     image_set_id: string;
@@ -8,5 +8,4 @@ export interface faction  {
     image_path: string;
     code_tag: string;
     user_selectable: string;
-    [prop: string]: unknown;
 }

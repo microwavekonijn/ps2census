@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface item  {
+export interface item {
     item_id: string;
     item_type_id: string;
     item_category_id: string;
@@ -16,5 +16,4 @@ export interface item  {
     image_path: string;
     skill_set_id: string;
     is_default_attachment: string;
-    [prop: string]: unknown;
 }

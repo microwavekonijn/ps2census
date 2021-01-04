@@ -1,4 +1,4 @@
-export interface map  {
+export interface map {
     ZoneId: string;
     Regions: {
         IsList: string;
@@ -6,11 +6,7 @@ export interface map  {
             RowData: {
                 RegionId: string;
                 FactionId: string;
-                [prop: string]: unknown;
             };
-            [prop: string]: unknown;
         }[];
-        [prop: string]: unknown;
     };
-    [prop: string]: unknown;
 }

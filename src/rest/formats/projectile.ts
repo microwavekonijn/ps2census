@@ -1,4 +1,4 @@
-export interface projectile  {
+export interface projectile {
     projectile_id: string;
     projectile_flight_type_id: string;
     speed: string;
@@ -18,5 +18,4 @@ export interface projectile  {
     sticks_to_players: string;
     lockon_lose_angle: string;
     lockon_seek_in_flight: string
-    [prop: string]: unknown;
 }

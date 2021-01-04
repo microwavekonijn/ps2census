@@ -1,5 +1,4 @@
-export interface playerState  {
+export interface playerState {
     player_state_id: string;
     description: string;
-    [prop: string]: unknown;
 }

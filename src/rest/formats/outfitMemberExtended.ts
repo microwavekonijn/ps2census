@@ -1,4 +1,4 @@
-export interface outfitMemberExtended  {
+export interface outfitMemberExtended {
     character_id: string;
     member_since: string;
     member_since_date: string;
@@ -13,5 +13,4 @@ export interface outfitMemberExtended  {
     time_created_date: string;
     leader_character_id: string;
     member_count: string;
-    [prop: string]: unknown;
 }

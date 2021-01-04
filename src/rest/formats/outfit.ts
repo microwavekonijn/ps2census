@@ -1,4 +1,4 @@
-export interface outfit  {
+export interface outfit {
     outfit_id: string;
     name: string;
     name_lower: string;
@@ -8,5 +8,4 @@ export interface outfit  {
     time_created_date: string;
     leader_character_id: string;
     member_count: string;
-    [prop: string]: unknown;
 }

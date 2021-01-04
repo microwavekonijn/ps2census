@@ -1,4 +1,4 @@
-export interface effect  {
+export interface effect {
     effect_id: string;
     effect_type_id: string;
     ability_id: string;
@@ -19,5 +19,4 @@ export interface effect  {
     param11: string;
     param12: string;
     param13: string;
-    [prop: string]: unknown;
 }

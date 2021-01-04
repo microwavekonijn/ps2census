@@ -1,5 +1,5 @@
 // TODO: Analyze all 4530 entries and improve this type
-export interface ability  {
+export interface ability {
     ability_id: string; // Guaranteed
     ability_type_id: string; // Guaranteed
     resource_type_id: string;
@@ -27,5 +27,4 @@ export interface ability  {
     string2: string;
     string3: string;
     string4: string;
-    [prop: string]: unknown;
 }

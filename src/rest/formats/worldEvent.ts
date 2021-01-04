@@ -1,4 +1,4 @@
-export interface worldEvent  {
+export interface worldEvent {
     facility_id: string;
     faction_old: string;
     faction_new: string;
@@ -10,5 +10,4 @@ export interface worldEvent  {
     event_type: string;
     table_type: string;
     outfit_id: string;
-    [prop: string]: unknown;
 }

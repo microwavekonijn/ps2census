@@ -1,5 +1,4 @@
-export interface resistType  {
+export interface resistType {
     resist_type_id: string;
     description: string;
-    [prop: string]: unknown;
 }

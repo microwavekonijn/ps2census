@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface skillCategory  {
+export interface skillCategory {
     skill_category_id: string;
     skill_set_id: string;
     skill_set_index: string;
@@ -10,5 +10,4 @@ export interface skillCategory  {
     image_set_id: string;
     image_id: string;
     image_path: string;
-    [prop: string]: unknown;
 }

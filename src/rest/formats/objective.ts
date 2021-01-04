@@ -1,4 +1,4 @@
-export interface objective  {
+export interface objective {
     objective_id: string;
     objective_type_id: string;
     objective_group_id: string;
@@ -11,5 +11,4 @@ export interface objective  {
     param7: string;
     param8: string;
     param9: string;
-    [prop: string]: unknown;
 }

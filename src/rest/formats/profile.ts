@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface profile  {
+export interface profile {
     profile_id: string;
     profile_type_id: string;
     profile_type_description: string;
@@ -14,5 +14,4 @@ export interface profile  {
     backpedal_speed_modifier: string;
     sprint_speed_modifier: string;
     strafe_speed_modifier: string;
-    [prop: string]: unknown;
 }

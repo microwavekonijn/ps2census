@@ -1,4 +1,4 @@
-export interface objectiveType  {
+export interface objectiveType {
     objective_type_id: string;
     description: string;
     param1: string;
@@ -10,5 +10,4 @@ export interface objectiveType  {
     param7: string;
     param8: string;
     param9: string;
-    [prop: string]: unknown;
 }

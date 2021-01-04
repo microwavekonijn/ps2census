@@ -1,4 +1,4 @@
-export interface zoneEffectType  {
+export interface zoneEffectType {
     zone_effect_type_id: string;
     description: string;
     param1: string;
@@ -19,5 +19,4 @@ export interface zoneEffectType  {
     string2: string;
     string3: string;
     string4: string;
-    [prop: string]: unknown;
 }

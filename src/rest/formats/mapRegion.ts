@@ -1,4 +1,4 @@
-export interface mapRegion  {
+export interface mapRegion {
     map_region_id: string;
     zone_id: string;
     facility_id: string;
@@ -10,5 +10,4 @@ export interface mapRegion  {
     location_z: string;
     reward_amount: string;
     reward_currency_id: string;
-    [prop: string]: unknown;
 }

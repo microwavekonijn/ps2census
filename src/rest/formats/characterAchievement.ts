@@ -1,4 +1,4 @@
-export interface characterAchievement  {
+export interface characterAchievement {
     character_id: string;
     achievement_id: string;
     start: string;
@@ -7,5 +7,4 @@ export interface characterAchievement  {
     finish_date: string;
     last_save: string;
     last_save_date: string;
-    [prop: string]: unknown;
 }

@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface fireMode  {
+export interface fireMode {
     fire_mode_id: string;
     item_id: string;
     type: string;
@@ -31,5 +31,4 @@ export interface fireMode  {
     indirect_damage_min_range: string;
     indirect_damage_target_type: string;
     indirect_damage_resist_type: string
-    [prop: string]: unknown;
 }

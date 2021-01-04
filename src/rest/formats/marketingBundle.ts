@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface marketingBundle  {
+export interface marketingBundle {
     marketing_bundle_id: string;
     name: Lang;
     description: Lang;
@@ -8,5 +8,4 @@ export interface marketingBundle  {
     station_cash_price: string;
     cert_price: string;
     release_time: string;
-    [prop: string]: unknown;
 }

@@ -1,7 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface directiveTreeCategory  {
+export interface directiveTreeCategory {
     directive_tree_category_id: string;
     name: Lang;
-    [prop: string]: unknown;
 }

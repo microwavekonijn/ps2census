@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface weaponDatasheet  {
+export interface weaponDatasheet {
     item_id: string;
     damage: string;
     damage_min: string;
@@ -22,5 +22,4 @@ export interface weaponDatasheet  {
     show_clip_size: string;
     show_fire_modes: string;
     show_range: string;
-    [prop: string]: unknown;
 }

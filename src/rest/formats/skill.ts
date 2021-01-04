@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface skill  {
+export interface skill {
     skill_id: string;
     skill_line_id: string;
     skill_line_index: string;
@@ -11,5 +11,4 @@ export interface skill  {
     image_set_id: string;
     image_id: string;
     image_path: string
-    [prop: string]: unknown;
 }

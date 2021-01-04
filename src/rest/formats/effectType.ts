@@ -1,4 +1,4 @@
-export interface effectType  {
+export interface effectType {
     effect_type_id: string;
     description: string;
     param1: string;
@@ -14,5 +14,4 @@ export interface effectType  {
     param11: string;
     param12: string;
     param13: string;
-    [prop: string]: unknown;
 }

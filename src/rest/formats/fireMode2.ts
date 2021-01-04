@@ -1,6 +1,6 @@
 import { Lang } from '../types/response';
 
-export interface fireMode2  {
+export interface fireMode2 {
     fire_mode_id: string;
     fire_mode_type_id: string;
     ability_id: string;
@@ -89,5 +89,4 @@ export interface fireMode2  {
     min_damage_range: string;
     shield_bypass_pct: string;
     description: Lang;
-    [prop: string]: unknown;
 }
