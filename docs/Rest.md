@@ -41,7 +41,7 @@ Joins another collection into the results. Accepts an array of:
   to?: string,
   list?: boolean, // default false
   inject_at?: string,
-  terms?: {}, // Query the join
+  terms?: {}, // GetQuery the join
   outer?: boolean, // default true, true outer join, false inner join
   show?: string[], // Which fields to include in the result
   hide?: string[], // Which fields to exclude from the result

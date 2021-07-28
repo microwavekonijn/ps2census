@@ -1,36 +1,27 @@
-import { EventEmitter } from 'events';
-import { ClientOptions} from './types/client.options';
-import { StreamManager } from './stream.manager';
-import { PS2Environment } from '../types/ps2.options';
-import { GetMethod } from '../rest/getFactory';
-import { CharacterManager } from './managers/character.manager';
-import { Cache } from './utils/cache';
-import { resolve } from '../rest/commands/resolve';
-import { query } from '../rest/query';
-import { RestManager } from './managers/rest.manager';
-import { EventStreamSubscription } from './types/stream.options';
-import { ClientEvents } from './types/client.events';
+import {EventEmitter} from '../utils/events';
+import {StreamManager} from './stream.manager';
+import {PS2Environment} from '../types/ps2.options';
+import {EventStreamManagerOptions, EventStreamSubscription} from './types/stream.options';
+import {ClientEvents} from './types/client.events';
+import {RestClient, RestOptions} from '../rest';
+import {CharacterManager, CharacterManagerOptions} from './managers';
 
-declare interface Client {
-    on<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
-    once<E extends keyof ClientEvents>(event: E, listener: (...data: ClientEvents[E]) => void): this;
+export interface ClientOptions {
+    streamManager?: EventStreamManagerOptions;
+    rest?: Omit<RestOptions, 'serviceId'>,
+    characterManager?: CharacterManagerOptions;
 }
 
-class Client extends EventEmitter {
-    /**
-     * @type {PS2Environment} the environment the client is configured for
-     */
-    readonly environment: PS2Environment;
-
+export class CensusClient extends EventEmitter<ClientEvents> {
     /**
      * @type{StreamManager?} the event stream manager
      */
     private readonly streamManager: StreamManager;
 
     /**
-     * @type {GetMethod} Get method to fetch data from the Rest API
+     * @type {RestClient} Client to fetch data from the Rest API
      */
-    readonly restManager: RestManager;
+    readonly rest: RestClient;
 
     /**
      * @type {CharacterManager} The character manager for Census API requests
@@ -39,31 +30,27 @@ class Client extends EventEmitter {
 
     /**
      * @param {string} serviceId service Id for the Census API
+     * @param {PS2Environment} environment the environment the client is configured for
      * @param {ClientOptions} config
      */
     constructor(
         readonly serviceId: string,
+        readonly environment: PS2Environment,
         {
-            environment = 'ps2',
-            streamManagerConfig,
-            restManager,
+            streamManager,
+            rest,
             characterManager,
         }: ClientOptions = {},
     ) {
         super();
 
         this.serviceId = serviceId;
-        this.environment = environment;
 
-        this.restManager = new RestManager(this, restManager);
+        this.rest = new RestClient({serviceId, ...rest});
 
-        this.characterManager = new CharacterManager(
-            this,
-            characterManager?.cache ?? new Cache(),
-            characterManager?.request ?? resolve(query('character'), ['outfit_member_extended']),
-        );
+        this.characterManager = new CharacterManager(this, characterManager,);
 
-        this.streamManager = new StreamManager(this, streamManagerConfig);
+        this.streamManager = new StreamManager(this, streamManager);
     }
 
     /**
@@ -129,8 +116,4 @@ class Client extends EventEmitter {
     get subscription(): EventStreamSubscription {
         return this.streamManager.subscriptionManager.subscription;
     }
-
-
 }
-
-export { Client };

@@ -1,9 +1,9 @@
 export interface CacheContract {
     put(key: string, data: any): Promise<void>;
 
-    remember(key: string, cb: () => Promise<any>): Promise<any>;
+    fetch(key: string): Promise<any | null>;
 
-    forget(key: string): Promise<boolean>;
+    forget(key: string): Promise<void>;
 
     forgetAll(): Promise<void>;
 }

@@ -1,0 +1,3 @@
+[submodule "census-index"]
+	path = census-index
+	url = git@github.com:microwavekonijn/census-index.git

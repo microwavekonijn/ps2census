@@ -1,10 +1,10 @@
-import { Client, Events, Kill } from '../src';
+import { CensusClient, Events, Kill } from '../src';
 
 function name({character_id, name}: any) {
     return name && name.first ? name.first : `Unknown(${character_id})`;
 }
 
-const client = new Client(process.argv[2], {
+const client = new CensusClient(process.argv[2], {
     streamManagerConfig: {
         subscription: {
             characters: ['all'],

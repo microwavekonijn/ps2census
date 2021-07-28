@@ -1,21 +1,21 @@
-import { Client } from '../census.client';
-import { PS2EventData } from '../types/ps2.events';
-import { Events } from '../constants/client.constants';
-import { unixToDate } from '../../utils/formatters';
+import {CensusClient} from '../census.client';
+import {PS2EventData} from '../types/ps2.events';
+import {unixToDate} from '../../utils/formatters';
+import {ClientEvents} from '../types';
 
 export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
-    readonly emit: Events;
+    readonly emit: keyof ClientEvents;
 
     readonly event_name: string;
     readonly timestamp: Date;
     readonly world_id: string;
 
     /**
-     * @param {Client} client
+     * @param {CensusClient} client
      * @param {PS2EventData} raw
      */
     constructor(
-        protected readonly client: Client,
+        protected readonly client: CensusClient,
         readonly raw: T,
     ) {
         this.hydrateObject(raw);

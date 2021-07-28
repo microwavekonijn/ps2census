@@ -1,13 +1,13 @@
-import { CensusRestException, CensusServerError } from '../../rest';
-import { Query } from '../../rest/types/query';
+import {CensusRestException, CensusServerError} from '../../rest';
+import {Collections} from '../../rest/collections';
 
 export class MaxRetryException extends Error {
     constructor(
-        readonly query: Query<any, any>,
+        readonly collection: Collections,
         readonly conditions: Record<any, any>,
         readonly attempts: (CensusRestException | CensusServerError)[],
     ) {
-        super('Beep');
+        super(`Unable to retrieve data from "${collection}": ${JSON.stringify(conditions)}`);
 
         this.name = 'MaxRetryException';
     }

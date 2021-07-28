@@ -15,11 +15,11 @@ import {
     SkillAdded,
     VehicleDestroy,
 } from '../events';
-import { EventStreamSubscribed } from './stream.events';
+import {EventStreamSubscribed} from './stream.events';
 
 export type ClientEvents = {
     ready: [],
-    disconnected: [],
+    disconnected: [number?, string?],
     reconnecting: [],
     error: [Error],
     warn: [Error],

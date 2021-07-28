@@ -1,25 +1,11 @@
-export interface Resolvable<R> {
-    resolve: R;
-}
+import {CValue} from './census';
 
-export interface Countable {
-}
+export type Conditions<C> = { [key: string]: CValue };
 
-export interface Limitable {
-}
+export type Format<C> = any;
 
-export interface Startable {
-}
+export type Paths<C> = string;
 
-export interface DefaultCollection extends Countable, Limitable, Startable {
-}
+export type PartialPaths<C> = string;
 
-interface Conditioned<S extends Record<any, any>> {
-    conditions: S;
-}
-
-export type Conditions<C> = C extends Conditioned<infer S> ? S : never;
-
-export type Format<C> = C extends { format: infer F } ? F : never;
-
-export type Resolve<C> = C extends Resolvable<infer R> ? R : never;
+export type Resolvables<C> = string;

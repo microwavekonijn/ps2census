@@ -2,7 +2,7 @@ import { StreamHandlerContract as EventStreamHandlerContract } from './concerns/
 import { PS2EventData } from './types/ps2.events';
 import { StreamFilterContract } from './concerns/stream-filter.contract';
 import { PS2Event } from './events/ps2.event';
-import { Client } from './census.client';
+import { CensusClient } from './census.client';
 import { Events } from './constants/client.constants';
 import { endpointsToId } from './constants/ps2.constants';
 
@@ -27,11 +27,11 @@ export class StreamHandler implements EventStreamHandlerContract {
     static endpointsToId = endpointsToId;
 
     /**
-     * @param {Client} client
+     * @param {CensusClient} client
      * @param {StreamFilterContract} filter
      */
     constructor(
-        private readonly client: Client,
+        private readonly client: CensusClient,
         private readonly filter: StreamFilterContract,
     ) {
     }

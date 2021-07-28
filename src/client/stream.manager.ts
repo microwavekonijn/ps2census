@@ -1,4 +1,4 @@
-import { Client } from './census.client';
+import { CensusClient } from './census.client';
 import { EventStream } from './event.stream';
 import { Events } from './constants/client.constants';
 import Timeout = NodeJS.Timeout;
@@ -41,11 +41,11 @@ export class StreamManager {
     private readonly handler: StreamHandler;
 
     /**
-     * @param {Client} client
+     * @param {CensusClient} client
      * @param {EventStreamManagerOptions} config
      */
     constructor(
-        readonly client: Client,
+        readonly client: CensusClient,
         {
             subscription = {},
             streamConfig,

@@ -1,4 +1,4 @@
-import { Client } from './census.client';
+import { CensusClient } from './census.client';
 import { EventStream } from './event.stream';
 import { Events } from './constants/client.constants';
 import { PS2EventNames } from './types/ps2.events';
@@ -28,12 +28,12 @@ export class SubscriptionManager {
     private logicalAndCharactersWithWorlds: boolean;
 
     /**
-     * @param {Client} client the client used to emit debug events
+     * @param {CensusClient} client the client used to emit debug events
      * @param {EventStream} stream the stream to comment, like, and subscribe to
      * @param {EventStreamSubscription} subscription the initial subscription
      */
     constructor(
-        private readonly client: Client,
+        private readonly client: CensusClient,
         private readonly stream: EventStream,
         subscription: EventStreamSubscription = {},
     ) {

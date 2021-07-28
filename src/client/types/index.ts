@@ -1,5 +1,3 @@
-export * from './client.options';
-export * from './manager.options';
 export * from './stream.options';
 
 export * from './client.events';

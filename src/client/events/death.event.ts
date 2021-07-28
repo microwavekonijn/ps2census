@@ -3,8 +3,6 @@ import { CharacterEvent } from './character.event';
 import { Faction, Loadout, loadoutFactionMap, loadoutTypeMap } from '../constants/ps2.constants';
 import { DeathData } from '../..';
 import { numberStringToBoolean } from '../../utils/formatters';
-import { Character } from '../../rest/collections/character';
-import { Format } from '../../rest/types/collection';
 
 export enum Kill {
     Normal,
@@ -46,9 +44,9 @@ export class Death extends CharacterEvent {
     /**
      * Fetch the character data from the attacker
      *
-     * @return {Promise<Format<Character>>}
+     * @return {Promise<any>}
      */
-    attacker(): Promise<Format<Character>> {
+    attacker(): Promise<any> {
         return this.client.characterManager.fetch(this.attacker_character_id);
     }
 
@@ -119,7 +117,7 @@ export class Death extends CharacterEvent {
     get character_loadout(): Loadout {
         const loadout = Death.loadoutTypeMap.get(this.character_loadout_id);
 
-        if (loadout === undefined) throw new TypeError(`Unkown character_loadout_id when determining loadout: ${this.character_loadout_id}`);
+        if (loadout === undefined) throw new TypeError(`Unknown character_loadout_id when determining loadout: ${this.character_loadout_id}`);
 
         return loadout;
     }
