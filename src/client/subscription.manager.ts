@@ -2,7 +2,7 @@ import { CensusClient } from './census.client';
 import { EventStream } from './event.stream';
 import { Events } from './constants/client.constants';
 import { PS2EventNames } from './types/ps2.events';
-import { EventStreamSubscription } from './types/stream.options';
+import { EventStreamSubscription } from './types/event-stream-subscription';
 
 export class SubscriptionManager {
     private static readonly label = 'SubscriptionManager';

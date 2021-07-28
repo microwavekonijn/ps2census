@@ -6,15 +6,18 @@
 
 ## About
 
-The PS2 Census library is here to simplify the interaction with the Planetside 2 Census API for Javascript and Typescript projects.
+The PS2 Census library is here to simplify the interaction with the Planetside 2 Census API for Javascript and
+Typescript projects.
 
 ## Requirements
 
 ### Event Stream
+
 - Node.js v12+;
 - DBG Census API Service ID.
 
 ### Rest API
+
 - ES6;
 - DBG Census API Service ID(optional, but recommended).
 
@@ -32,32 +35,38 @@ For better performance it is recommended to install `bufferutil` and `utf-8-vali
 ### Event Stream
 
 ```js
-const { Client } = require('ps2census');
+const {Client} = require('ps2census');
 
 const subscriptions = [{
     worlds: ['10'],
     eventNames: ['MetagameEvent']
 }];
 
-const client = new Client('ServiceID', {
-        streamManagerConfig: {
-            subscriptions
-        },
-    });
+const client = new Client('ServiceID', 'ps2', {
+    streamManager: {subscriptions}
+});
 
 client.on('ps2Event', (event) => {
     // Handle the event, for more information see http://census.daybreakgames.com/#websocket-details
 });
 // or
-client.on('facilityControl', (event) => {}); // Note that the event always starts with a lower case letter
+client.on('facilityControl', (event) => {
+}); // Note that the event always starts with a lower case letter
 
-client.on('subscribed', (subscription) => {}); // Notification of a subscription made by the event stream
-client.on('duplicate', (event) => {}); // When a duplicate event has been received
-client.on('ready', () => {}); // Client is ready
-client.on('reconnecting', () => {}); // Client is reconnecting
-client.on('disconnected', () => {}); // Client got disconnected
-client.on('error', (error) => {}); // Error
-client.on('warn', (error) => {}); // Error, when receiving a corrupt message
+client.on('subscribed', (subscription) => {
+}); // Notification of a subscription made by the event stream
+client.on('duplicate', (event) => {
+}); // When a duplicate event has been received
+client.on('ready', () => {
+}); // Client is ready
+client.on('reconnecting', () => {
+}); // Client is reconnecting
+client.on('disconnected', () => {
+}); // Client got disconnected
+client.on('error', (error) => {
+}); // Error
+client.on('warn', (error) => {
+}); // Error, when receiving a corrupt message
 
 client.watch();
 
@@ -67,31 +76,26 @@ client.destroy();
 
 ### Rest API
 
-The Rest API is based on functional programming, which helps with functions like tree shaking(Webpack).
-This implementation can thus easily be minified and is perfect for browser based applications.
+The Rest API is based on functional programming, which helps with functions like tree shaking(Webpack). This
+implementation can thus easily be minified and is perfect for browser based applications.
 
 ```js
-const { rest } from 'ps2census';
+const {RestClient} = require('ps2census');
 
-const get = rest.getFactory('ps2ps4eu', 'serviceId');
+const client = new RestClient({serviceId: 'example'});
 
 // Get character with items
-get(
-  rest.resolve(
-    rest.exactMatchFirst(
-      rest.query('character')
-    ),
-    ['item'] , 
-  ),
-  { 'name.first_lower': '^microwave' },
-).then((characters) => {
-  // Process the data
-})
+client.get('character').resolve('item')
+    .exactMatchFirst(true)
+    .get('ps2ps4eu', {'name.first_lower': '^microwave'})
+    .then((characters) => {
+        // Process the data
+    });
 ```
 
-Note: First argument of any command function is the request object.
-There are also type guards that help with making sure in typescript that the chaining of commands are correct.
-If you encounter bugs or problems report them in the Census Rest API thread on GitHub.
+Note: First argument of any command function is the request object. There are also type guards that help with making
+sure in typescript that the chaining of commands are correct. If you encounter bugs or problems report them in the
+Census Rest API thread on GitHub.
 
 ## Documentation
 

@@ -1,7 +1,7 @@
 import {EventEmitter} from '../utils/events';
-import {StreamManager} from './stream.manager';
+import {EventStreamManagerOptions, StreamManager} from './stream.manager';
 import {PS2Environment} from '../types/ps2.options';
-import {EventStreamManagerOptions, EventStreamSubscription} from './types/stream.options';
+import {EventStreamSubscription} from './types/event-stream-subscription';
 import {ClientEvents} from './types/client.events';
 import {RestClient, RestOptions} from '../rest';
 import {CharacterManager, CharacterManagerOptions} from './managers';

@@ -1,26 +1,28 @@
-import { EventEmitter } from 'events';
-import WebSocket, { Data } from 'ws';
+import {EventEmitter} from 'events';
+import WebSocket, {Data} from 'ws';
 import Timeout = NodeJS.Timeout;
-import { Events, State } from './constants/client.constants';
-import { StreamHandlerContract } from './concerns/stream-handler.contract';
-import { PS2Environment } from '../types/ps2.options';
-import { EventStreamConfig, EventStreamSubscription } from './types/stream.options';
-import { EventStreamSubscribed } from './types';
+import {Events, State} from './constants/client.constants';
+import {StreamHandlerContract} from './concerns/stream-handler.contract';
+import {PS2Environment} from '../types/ps2.options';
+import {EventStreamSubscription} from './types/event-stream-subscription';
+import {EventStreamSubscribed} from './types';
+import {DuplicateFilter} from './utils/duplicate-filter';
+
+export interface EventStreamOptions {
+    environment?: PS2Environment;
+    connectionTimeout?: number;
+    heartbeatInterval?: number;
+    duplicateFilter?: DuplicateFilter | null;
+    emitter?: EventEmitter;
+}
 
 declare interface EventStream {
-    on(event: 'ready', listener: () => void): this;
-    on(event: 'destroyed', listener: () => void): this;
-    on(event: 'close', listener: (code: number, reason: string) => void): this;
-    on(event: 'error', listener: (e: Error) => void): this;
-    on(event: 'warn', listener: (e: Error) => void): this;
-    on(event: 'debug', listener: (info: string, label: string) => void): this;
-
-    once(event: 'ready', listener: () => void): this;
-    once(event: 'destroyed', listener: () => void): this;
-    once(event: 'close', listener: (code: number, reason: string) => void): this;
-    once(event: 'error', listener: (e: Error) => void): this;
-    once(event: 'warn', listener: (e: Error) => void): this;
-    once(event: 'debug', listener: (info: string, label: string) => void): this;
+    ready: [];
+    destroyed: [];
+    close: [code: number, reason: string];
+    error: [e: Error];
+    warn: [e: Error];
+    debug: [info: string, label: string];
 }
 
 class EventStream extends EventEmitter {
@@ -91,7 +93,7 @@ class EventStream extends EventEmitter {
     /**
      * @param serviceId
      * @param {StreamHandlerContract} handler
-     * @param {EventStreamConfig} config
+     * @param {EventStreamOptions} config
      */
     constructor(
         private readonly serviceId: string,
@@ -101,7 +103,7 @@ class EventStream extends EventEmitter {
             heartbeatInterval = 30000,
             emitter,
             environment = 'ps2',
-        }: EventStreamConfig = {},
+        }: EventStreamOptions = {},
     ) {
         super();
 
@@ -400,7 +402,12 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    subscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
+    subscribe({
+                  characters,
+                  worlds,
+                  eventNames,
+                  logicalAndCharactersWithWorlds
+              }: EventStreamSubscription): Promise<EventStreamSubscribed> {
         return this.updateSubscription({
             service: 'event',
             action: 'subscribe',
@@ -416,7 +423,12 @@ class EventStream extends EventEmitter {
      *
      * @param {EventStreamSubscription} subscription
      */
-    unsubscribe({characters, worlds, eventNames, logicalAndCharactersWithWorlds}: EventStreamSubscription): Promise<EventStreamSubscribed> {
+    unsubscribe({
+                    characters,
+                    worlds,
+                    eventNames,
+                    logicalAndCharactersWithWorlds
+                }: EventStreamSubscription): Promise<EventStreamSubscribed> {
         return this.updateSubscription({
             service: 'event',
             action: 'clearSubscribe',
@@ -497,4 +509,4 @@ class EventStream extends EventEmitter {
     }
 }
 
-export { EventStream };
+export {EventStream};

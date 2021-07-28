@@ -38,19 +38,19 @@
     "axios": "^0.21.1",
     "bufferutil": "^4.0.1",
     "utf-8-validate": "^5.0.2",
-    "ws": "^7.5.0"
+    "ws": "^7.5.3"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.1",
     "utf-8-validate": "^5.0.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.170",
-    "@types/node": "^14.17.4",
-    "@types/ws": "^7.4.5",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
-    "eslint": "^7.29.0",
+    "@types/lodash": "^4.14.171",
+    "@types/node": "^14.17.6",
+    "@types/ws": "^7.4.7",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
+    "eslint": "^7.31.0",
     "lodash": "^4.17.21",
     "mocha": "^8.4.0",
     "ts-node": "^10.1.0",
