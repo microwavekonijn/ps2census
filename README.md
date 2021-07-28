@@ -76,9 +76,6 @@ client.destroy();
 
 ### Rest API
 
-The Rest API is based on functional programming, which helps with functions like tree shaking(Webpack). This
-implementation can thus easily be minified and is perfect for browser based applications.
-
 ```js
 const {RestClient} = require('ps2census');
 
@@ -92,10 +89,6 @@ client.get('character').resolve('item')
         // Process the data
     });
 ```
-
-Note: First argument of any command function is the request object. There are also type guards that help with making
-sure in typescript that the chaining of commands are correct. If you encounter bugs or problems report them in the
-Census Rest API thread on GitHub.
 
 ## Documentation
 
