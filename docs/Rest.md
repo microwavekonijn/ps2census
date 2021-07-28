@@ -1,4 +1,4 @@
-# Rest API
+# Rest API(out of date)
 
 The rest API is exposed a `rest` from the entryfile.
 It is fully typed including the responses and handles the oddities of the Census Rest API.
