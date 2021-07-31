@@ -37,13 +37,15 @@ For better performance it is recommended to install `bufferutil` and `utf-8-vali
 ```js
 const { CensusClient } = require('ps2census');
 
-const subscriptions = [{
+const subscriptions = {
     worlds: ['10'],
     eventNames: ['MetagameEvent']
-}];
+}
 
 const client = new CensusClient('ServiceID', 'ps2', {
-    streamManager: {subscriptions}
+    streamManager: {
+        subscription: subscriptions
+    },
 });
 
 client.on('ps2Event', (event) => {
