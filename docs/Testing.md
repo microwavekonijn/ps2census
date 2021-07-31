@@ -6,9 +6,9 @@ You are able to emit fake events in order to test your application without requi
 
 ```js
 // This example assumes you have already initialised the CensusClient
-// See [README.md Event Stream example](../README.md#event-stream-1) on how to initialise the `client`
+// See the README.md Event stream example on how to initialise the `client`
 
-// A fake MetagameEvent occurring on Miller and continent Indar
+// A fake MetagameEvent occurring on Miller for the continent Indar
 const event = new MetagameEvent(client, {
     event_name: 'MetagameEvent',
     experience_bonus: '25.000000',
