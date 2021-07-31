@@ -24,7 +24,7 @@ jobs:
       - name: Install dependecies
         run: npm ci
       - name: Run
-        run: npx ts-node ./test/test.ts 5
+        run: npm run test-run
         env:
           SERVICE_ID: ${{ secrets.SERVICE_ID }}
           TIMEOUT: 15
