@@ -35,14 +35,14 @@ For better performance it is recommended to install `bufferutil` and `utf-8-vali
 ### Event Stream
 
 ```js
-const {Client} = require('ps2census');
+const { CensusClient } = require('ps2census');
 
 const subscriptions = [{
     worlds: ['10'],
     eventNames: ['MetagameEvent']
 }];
 
-const client = new Client('ServiceID', 'ps2', {
+const client = new CensusClient('ServiceID', 'ps2', {
     streamManager: {subscriptions}
 });
 
