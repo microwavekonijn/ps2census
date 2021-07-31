@@ -5,8 +5,10 @@
 You are able to emit fake events in order to test your application without requiring to wait for Census to emit such an event. Below is an example of how to trigger a `MetagameEvent` (an Alert):
 
 ```js
-const client = new Client();
+// This example assumes you have already initialised the CensusClient
+// See [README.md Event Stream example](../README.md#event-stream-1) on how to initialise the `client`
 
+// A fake MetagameEvent occurring on Miller and continent Indar
 const event = new MetagameEvent(client, {
     event_name: 'MetagameEvent',
     experience_bonus: '25.000000',
@@ -19,6 +21,7 @@ const event = new MetagameEvent(client, {
     metagame_event_state_name: 'started',
     timestamp: '123456789',
     world_id: '10',
+    zone_id: '2'
 });
 
 client.emit(Events.PS2_EVENT, event);
