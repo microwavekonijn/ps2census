@@ -1,10 +1,16 @@
 import {CensusClient, Events, Kill} from '../src';
+import {config as env} from 'dotenv';
+
+env();
 
 function name({character_id, name}: any) {
     return name && name.first ? name.first : `Unknown(${character_id})`;
 }
 
-const client = new CensusClient(process.argv[2], 'ps2', {
+if (!process.env.SERVICE_ID)
+    throw new Error('Missing environment variable SERVICE_ID');
+
+const client = new CensusClient(process.env.SERVICE_ID, 'ps2', {
     streamManager: {
         subscription: {
             characters: ['all'],
@@ -69,8 +75,8 @@ process.on('unhandledRejection', abort.bind(null, 1))
 
 client.watch();
 
-if (process.argv[3]) {
-    const t = Number.parseInt(process.argv[3], 10);
+if (process.env.TIMEOUT) {
+    const t = Number.parseInt(process.env.TIMEOUT, 10);
 
     if (isFinite(t)) {
         console.log(`Timeout to abort is set: ${t}s`);

@@ -202,13 +202,13 @@ class EventStream extends EventEmitter {
      * @param {WebSocket.Data} data
      */
     private onMessage(data: Data): void {
-        if (typeof data !== 'string') {
+        if (!(data instanceof Buffer)) {
             this.emitter.emit(Events.WARN, new TypeError(`Received data in unexpected format: ${data}`));
             return;
         }
 
         try {
-            const parsed = JSON.parse(data);
+            const parsed = JSON.parse(data.toString());
 
             this.onPackage(parsed);
         } catch (e) {
@@ -264,8 +264,11 @@ class EventStream extends EventEmitter {
     /**
      * Connection closed by server
      */
-    private onClose(code: number, reason: string): void {
-        this.emitter.emit(Events.DEBUG, `Connection closed. ${JSON.stringify({code, reason})}`, EventStream.label);
+    private onClose(code: number, reason: Buffer): void {
+        this.emitter.emit(Events.DEBUG, `Connection closed. ${JSON.stringify({
+            code,
+            reason: reason.toString()
+        })}`, EventStream.label);
 
         this.setHeartbeatTimer(-1);
         this.setConnectionTimeout(false);
