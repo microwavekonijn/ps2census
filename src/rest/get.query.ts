@@ -19,8 +19,6 @@ export class GetQuery<C extends Collections> {
     }
 
     /**
-     *
-     *
      * @param x
      */
     case(x: CBoolean): GetQuery<C> {
@@ -28,15 +26,13 @@ export class GetQuery<C extends Collections> {
     }
 
     /**
-     *
-     * @param field
+     * @param path
      */
-    distinct(field: Paths<C>): GetQuery<C> {
-        return this.clone().set('c:distinct', field);
+    distinct(path: Paths<C>): GetQuery<C> {
+        return this.clone().set('c:distinct', path);
     }
 
     /**
-     *
      * @param x
      */
     exactMatchFirst(x: CBoolean): GetQuery<C> {
@@ -44,19 +40,17 @@ export class GetQuery<C extends Collections> {
     }
 
     /**
-     *
-     * @param field
+     * @param path
      */
-    has(field: PartialPaths<C>): GetQuery<C> {
-        return this.clone().set('c:has', field);
+    has(path: PartialPaths<C>): GetQuery<C> {
+        return this.clone().set('c:has', path);
     }
 
     /**
-     *
-     * @param x
+     * @param paths
      */
-    hide(x: PartialPaths<C>[]): GetQuery<C> {
-        return this.clone().set('c:hide', x.join(','));
+    hide(...paths: PartialPaths<C>[]): GetQuery<C> {
+        return this.clone().set('c:hide', paths.join(','));
     }
 
     /**
@@ -92,7 +86,6 @@ export class GetQuery<C extends Collections> {
     }
 
     /**
-     *
      * @param x
      */
     limitPerDB(x: number): GetQuery<C> {
@@ -100,15 +93,13 @@ export class GetQuery<C extends Collections> {
     }
 
     /**
-     *
-     * @param x
+     * @param resolve
      */
-    resolve(...x: Resolve<C>[]): GetQuery<C> {
-        return this.clone().set('c:resolve', x.map(s => Array.isArray(s) ? `${s[0]}:${s[1]}` : s).join(','));
+    resolve(...resolve: Resolve<C>[]): GetQuery<C> {
+        return this.clone().set('c:resolve', resolve.map(s => Array.isArray(s) ? `${s[0]}(${s[1].join(',')})` : s).join(','));
     }
 
     /**
-     *
      * @param x
      */
     retry(x: CBoolean): GetQuery<C> {
@@ -116,15 +107,13 @@ export class GetQuery<C extends Collections> {
     }
 
     /**
-     *
-     * @param x
+     * @param paths
      */
-    show(x: PartialPaths<C>[]): GetQuery<C> {
-        return this.clone().set('c:show', x.join(','));
+    show(...paths: PartialPaths<C>[]): GetQuery<C> {
+        return this.clone().set('c:show', paths.join(','));
     }
 
     /**
-     *
      * @param x
      */
     sort(...x: Sort<C>[]): GetQuery<C> {
