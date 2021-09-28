@@ -49,7 +49,7 @@ async function run() {
         collectionType += `partialPaths: ${partialPaths.map(path => `'${path}'`).join(' | ')},`;
 
         // Conditions
-        collectionType += `conditions: {${Object.entries(conditions).map(([key, cond]) => `${formatKey(key)}: ${cond}`).join(',')}},`;
+        collectionType += `conditions: {${Object.entries(conditions).map(([key, cond]) => `${formatKey(key)}: ${Array.isArray(cond) ? cond.map(c => `'${c}'`).join(' | ') : cond}`).join(',')}},`;
 
         // Resolve
         if (resolve)

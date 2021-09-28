@@ -1,4 +1,4 @@
-import {CacheContract} from '../concerns/cache.contract';
+import {CacheContract} from  '../concerns/cache.contract';
 import {GetQuery} from '../../rest';
 import {CensusClient} from '../census.client';
 import {MaxRetryException} from '../exceptions/max-retry.exception';

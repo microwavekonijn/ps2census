@@ -111,7 +111,7 @@ export class StreamManager {
 
         try {
             await this.stream.connect();
-        } catch (e) {
+        } catch (e: any) {
             this.stream.removeListener(Events.STREAM_READY, ready);
 
             if ([403].includes(e.httpState)) {
@@ -147,7 +147,7 @@ export class StreamManager {
     private async reconnect(): Promise<void> {
         try {
             await this.stream.connect();
-        } catch (e) {
+        } catch (e: any) {
             if ([403].includes(e.httpState)) {
 
                 this.client.emit(Events.ERROR, new Error(`Service ID rejected while trying to reconnect.`));
