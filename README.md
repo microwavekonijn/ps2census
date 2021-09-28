@@ -84,7 +84,8 @@ const {RestClient} = require('ps2census');
 const client = new RestClient({serviceId: 'example'});
 
 // Get character with items
-client.get('character').resolve('item')
+client.getQueryBuilder('character')
+    .resolve('item')
     .exactMatchFirst(true)
     .get('ps2ps4eu', {'name.first_lower': '^microwave'})
     .then((characters) => {

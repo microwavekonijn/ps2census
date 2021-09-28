@@ -1,112 +1,113 @@
-export type Collections =
-    | "ability"
-    | "ability_type"
-    | "achievement"
-    | "armor_facing"
-    | "armor_info"
-    | "character"
-    | "character_name"
-    | "characters_achievement"
-    | "characters_currency"
-    | "characters_directive"
-    | "characters_directive_objective"
-    | "characters_directive_tier"
-    | "characters_directive_tree"
-    | "characters_event"
-    | "characters_event_grouped"
-    | "characters_friend"
-    | "characters_item"
-    | "characters_leaderboard"
-    | "characters_online_status"
-    | "characters_skill"
-    | "characters_stat"
-    | "characters_stat_by_faction"
-    | "characters_stat_history"
-    | "characters_weapon_stat"
-    | "characters_weapon_stat_by_faction"
-    | "characters_world"
-    | "currency"
-    | "directive"
-    | "directive_tier"
-    | "directive_tree"
-    | "directive_tree_category"
-    | "effect"
-    | "effect_type"
-    | "empire_scores"
-    | "event"
-    | "experience"
-    | "experience_rank"
-    | "facility_link"
-    | "facility_type"
-    | "faction"
-    | "fire_group"
-    | "fire_group_to_fire_mode"
-    | "fire_mode"
-    | "fire_mode_2"
-    | "fire_mode_to_projectile"
-    | "fire_mode_type"
-    | "image"
-    | "image_set"
-    | "image_set_default"
-    | "item"
-    | "item_attachment"
-    | "item_category"
-    | "item_profile"
-    | "item_to_weapon"
-    | "item_type"
-    | "leaderboard"
-    | "loadout"
-    | "map"
-    | "map_hex"
-    | "map_region"
-    | "marketing_bundle"
-    | "marketing_bundle_item"
-    | "marketing_bundle_with_1_item"
-    | "metagame_event"
-    | "metagame_event_state"
-    | "objective"
-    | "objective_set_to_objective"
-    | "objective_type"
-    | "outfit"
-    | "outfit_member"
-    | "outfit_member_extended"
-    | "outfit_rank"
-    | "player_state"
-    | "player_state_group"
-    | "player_state_group_2"
-    | "profile"
-    | "profile_2"
-    | "profile_armor_map"
-    | "profile_resist_map"
-    | "projectile"
-    | "projectile_flight_type"
-    | "region"
-    | "resist_info"
-    | "resist_type"
-    | "resource_type"
-    | "reward"
-    | "reward_group_to_reward"
-    | "reward_set_to_reward_group"
-    | "reward_type"
-    | "single_character_by_id"
-    | "skill"
-    | "skill_category"
-    | "skill_line"
-    | "skill_set"
-    | "target_type"
-    | "title"
-    | "vehicle"
-    | "vehicle_attachment"
-    | "vehicle_faction"
-    | "vehicle_skill_set"
-    | "weapon"
-    | "weapon_ammo_slot"
-    | "weapon_datasheet"
-    | "weapon_to_attachment"
-    | "weapon_to_fire_group"
-    | "world"
-    | "world_event"
-    | "world_stat_history"
-    | "zone"
-    | "zone_effect"
-    | "zone_effect_type";
+import {Ability} from './Ability';
+import {Achievement} from './Achievement';
+import {ArmorFacing} from './ArmorFacing';
+import {CharactersAchievement} from './CharactersAchievement';
+import {AbilityType} from './AbilityType';
+import {CharactersDirective} from './CharactersDirective';
+import {Character} from './Character';
+import {CharactersDirectiveTier} from './CharactersDirectiveTier';
+import {CharactersEvent} from './CharactersEvent';
+import {CharactersEventGrouped} from './CharactersEventGrouped';
+import {CharactersFriend} from './CharactersFriend';
+import {CharactersItem} from './CharactersItem';
+import {CharactersLeaderboard} from './CharactersLeaderboard';
+import {CharactersOnlineStatus} from './CharactersOnlineStatus';
+import {CharactersDirectiveObjective} from './CharactersDirectiveObjective';
+import {CharactersStat} from './CharactersStat';
+import {CharactersDirectiveTree} from './CharactersDirectiveTree';
+import {CharactersStatByFaction} from './CharactersStatByFaction';
+import {CharactersStatHistory} from './CharactersStatHistory';
+import {CharactersWeaponStatByFaction} from './CharactersWeaponStatByFaction';
+import {CharactersWeaponStat} from './CharactersWeaponStat';
+import {CharactersWorld} from './CharactersWorld';
+import {CharacterName} from './CharacterName';
+import {CharactersSkill} from './CharactersSkill';
+import {Directive} from './Directive';
+import {DirectiveTree} from './DirectiveTree';
+import {Effect} from './Effect';
+import {DirectiveTreeCategory} from './DirectiveTreeCategory';
+import {EffectType} from './EffectType';
+import {Event} from './Event';
+import {ExperienceRank} from './ExperienceRank';
+import {Experience} from './Experience';
+import {FacilityLink} from './FacilityLink';
+import {FacilityType} from './FacilityType';
+import {Faction} from './Faction';
+import {DirectiveTier} from './DirectiveTier';
+import {FireGroup} from './FireGroup';
+import {FireGroupToFireMode} from './FireGroupToFireMode';
+import {FireMode} from './FireMode';
+import {FireMode2} from './FireMode2';
+import {FireModeType} from './FireModeType';
+import {ImageSet} from './ImageSet';
+import {ImageSetDefault} from './ImageSetDefault';
+import {Item} from './Item';
+import {ItemAttachment} from './ItemAttachment';
+import {EmpireScores} from './EmpireScores';
+import {ArmorInfo} from './ArmorInfo';
+import {Image} from './Image';
+import {ItemCategory} from './ItemCategory';
+import {ItemType} from './ItemType';
+import {Leaderboard} from './Leaderboard';
+import {Map} from './Map';
+import {MapHex} from './MapHex';
+import {ItemProfile} from './ItemProfile';
+import {MapRegion} from './MapRegion';
+import {MarketingBundle} from './MarketingBundle';
+import {ItemToWeapon} from './ItemToWeapon';
+import {MarketingBundleItem} from './MarketingBundleItem';
+import {MarketingBundleWith1Item} from './MarketingBundleWith1Item';
+import {MetagameEventState} from './MetagameEventState';
+import {Objective} from './Objective';
+import {MetagameEvent} from './MetagameEvent';
+import {Outfit} from './Outfit';
+import {ObjectiveSetToObjective} from './ObjectiveSetToObjective';
+import {OutfitMemberExtended} from './OutfitMemberExtended';
+import {OutfitRank} from './OutfitRank';
+import {Loadout} from './Loadout';
+import {PlayerState} from './PlayerState';
+import {Currency} from './Currency';
+import {Profile} from './Profile';
+import {ObjectiveType} from './ObjectiveType';
+import {Profile2} from './Profile2';
+import {ProfileArmorMap} from './ProfileArmorMap';
+import {ProfileResistMap} from './ProfileResistMap';
+import {ProjectileFlightType} from './ProjectileFlightType';
+import {Region} from './Region';
+import {OutfitMember} from './OutfitMember';
+import {ResistInfo} from './ResistInfo';
+import {ResourceType} from './ResourceType';
+import {Reward} from './Reward';
+import {FireModeToProjectile} from './FireModeToProjectile';
+import {Projectile} from './Projectile';
+import {RewardSetToRewardGroup} from './RewardSetToRewardGroup';
+import {RewardType} from './RewardType';
+import {SingleCharacterById} from './SingleCharacterById';
+import {Skill} from './Skill';
+import {SkillCategory} from './SkillCategory';
+import {SkillSet} from './SkillSet';
+import {SkillLine} from './SkillLine';
+import {TargetType} from './TargetType';
+import {Title} from './Title';
+import {ResistType} from './ResistType';
+import {RewardGroupToReward} from './RewardGroupToReward';
+import {VehicleFaction} from './VehicleFaction';
+import {Vehicle} from './Vehicle';
+import {VehicleAttachment} from './VehicleAttachment';
+import {Weapon} from './Weapon';
+import {WeaponDatasheet} from './WeaponDatasheet';
+import {WeaponToAttachment} from './WeaponToAttachment';
+import {VehicleSkillSet} from './VehicleSkillSet';
+import {CharactersCurrency} from './CharactersCurrency';
+import {WeaponAmmoSlot} from './WeaponAmmoSlot';
+import {Zone} from './Zone';
+import {ZoneEffect} from './ZoneEffect';
+import {ZoneEffectType} from './ZoneEffectType';
+import {WorldEvent} from './WorldEvent';
+import {PlayerStateGroup2} from './PlayerStateGroup2';
+import {WeaponToFireGroup} from './WeaponToFireGroup';
+import {World} from './World';
+import {WorldStatHistory} from './WorldStatHistory';
+import {PlayerStateGroup} from './PlayerStateGroup';
+
+export type Collections = Ability | Achievement | ArmorFacing | CharactersAchievement | AbilityType | CharactersDirective | Character | CharactersDirectiveTier | CharactersEvent | CharactersEventGrouped | CharactersFriend | CharactersItem | CharactersLeaderboard | CharactersOnlineStatus | CharactersDirectiveObjective | CharactersStat | CharactersDirectiveTree | CharactersStatByFaction | CharactersStatHistory | CharactersWeaponStatByFaction | CharactersWeaponStat | CharactersWorld | CharacterName | CharactersSkill | Directive | DirectiveTree | Effect | DirectiveTreeCategory | EffectType | Event | ExperienceRank | Experience | FacilityLink | FacilityType | Faction | DirectiveTier | FireGroup | FireGroupToFireMode | FireMode | FireMode2 | FireModeType | ImageSet | ImageSetDefault | Item | ItemAttachment | EmpireScores | ArmorInfo | Image | ItemCategory | ItemType | Leaderboard | Map | MapHex | ItemProfile | MapRegion | MarketingBundle | ItemToWeapon | MarketingBundleItem | MarketingBundleWith1Item | MetagameEventState | Objective | MetagameEvent | Outfit | ObjectiveSetToObjective | OutfitMemberExtended | OutfitRank | Loadout | PlayerState | Currency | Profile | ObjectiveType | Profile2 | ProfileArmorMap | ProfileResistMap | ProjectileFlightType | Region | OutfitMember | ResistInfo | ResourceType | Reward | FireModeToProjectile | Projectile | RewardSetToRewardGroup | RewardType | SingleCharacterById | Skill | SkillCategory | SkillSet | SkillLine | TargetType | Title | ResistType | RewardGroupToReward | VehicleFaction | Vehicle | VehicleAttachment | Weapon | WeaponDatasheet | WeaponToAttachment | VehicleSkillSet | CharactersCurrency | WeaponAmmoSlot | Zone | ZoneEffect | ZoneEffectType | WorldEvent | PlayerStateGroup2 | WeaponToFireGroup | World | WorldStatHistory | PlayerStateGroup;

@@ -3,12 +3,12 @@ import {EventStreamManagerOptions, StreamManager} from './stream.manager';
 import {PS2Environment} from '../types/ps2.options';
 import {EventStreamSubscription} from './types/event-stream-subscription';
 import {ClientEvents} from './types/client.events';
-import {RestClient, RestOptions} from '../rest';
+import {RestClient, RestClientOptions} from '../rest';
 import {CharacterManager, CharacterManagerOptions} from './managers';
 
 export interface ClientOptions {
     streamManager?: EventStreamManagerOptions;
-    rest?: Omit<RestOptions, 'serviceId'>,
+    rest?: Omit<RestClientOptions, 'serviceId'>,
     characterManager?: CharacterManagerOptions;
 }
 

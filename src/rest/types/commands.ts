@@ -1,38 +1,51 @@
-import {Conditions, Format, PartialPaths, Paths, Resolvables} from './collection';
-import {CBoolean} from './census';
-import {Collections} from '../collections';
+import {CollectionNames, Conditions, PartialPaths, Paths, Resolvables} from './collection';
+import {CensusBoolean} from './census';
 
-export interface Join<C extends Collections, J extends Collections> {
+export type Commands =
+    | 'case'
+    | 'distinct'
+    | 'exactMatchFirst'
+    | 'has'
+    | 'hide'
+    | 'includeNull'
+    | 'join'
+    | 'lang'
+    | 'limit'
+    | 'limitPerDB'
+    | 'resolve'
+    | 'retry'
+    | 'show'
+    | 'sort'
+    | 'start'
+    | 'timing'
+    | 'tree';
+
+export type CommandParamKeys = `c:${Commands}`;
+
+export type CommandParams = { [K in CommandParamKeys]?: string | number | boolean };
+
+export interface Join<C extends CollectionNames, J extends CollectionNames> {
     type: J;
     on?: Paths<C>;
     to?: Paths<J>;
-    list?: CBoolean;
+    list?: CensusBoolean;
     inject_at?: string;
     terms?: Conditions<C>;
-    outer?: CBoolean;
+    outer?: CensusBoolean;
     show?: PartialPaths<C>[];
     hide?: PartialPaths<C>[];
     nested?: Join<J, any>[];
 }
 
-export type Resolve<C extends Collections> = Resolvables<C> | [Resolvables<C>, string[]];
+export type Resolve<C extends CollectionNames> = Resolvables<C> | [Resolvables<C>, string[]];
 
-export type Sort<C> = Paths<Format<C>> | [Paths<Format<C>>, 1 | -1];
+export type Sort<C extends CollectionNames> = Paths<C> | [Paths<C>, 1 | -1];
 
-export interface Tree<C> {
+export interface Tree<C extends CollectionNames> {
     field: Paths<C>;
     list?: 0 | 1;
     prefix?: string;
     start?: string;
-}
-
-export interface Lang {
-    en: string;
-    de: string;
-    es: string;
-    fr: string;
-    it: string;
-    tr: string;
 }
 
 export type Langs = 'en' | 'de' | 'es' | 'fr' | 'it' | 'tr';

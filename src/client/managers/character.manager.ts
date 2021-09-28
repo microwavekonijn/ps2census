@@ -13,6 +13,8 @@ export interface CharacterManagerOptions {
 export class CharacterManager {
     private readonly query: GetQuery<'character'>;
 
+    private readonly queue = new Map<string, Promise<any>>();
+
     private readonly cache: CacheContract;
 
     private readonly maxRetries: number;
@@ -22,10 +24,10 @@ export class CharacterManager {
         {
             retries,
             query,
-            cache
-        }: CharacterManagerOptions = {}
+            cache,
+        }: CharacterManagerOptions = {},
     ) {
-        this.query = this.client.rest.get('character');
+        this.query = this.client.rest.getQueryBuilder('character');
         if (query)
             this.query = query(this.query);
 
@@ -35,14 +37,21 @@ export class CharacterManager {
     }
 
     async fetch(id: string, force = false): Promise<any> {
-        // TODO: Multiple request can now run simultaneous while retrieving the same thing
+        if (this.queue.has(id))
+            return Object.assign({}, await this.queue.get(id)); // TODO: Deep clone the object
+
         if (!force) {
             const cache = await this.cache.fetch(id);
 
             if (cache) return cache;
         }
 
-        const data = await this.request(id);
+        const request = this.request(id);
+        this.queue.set(id, request);
+
+        const data = await request;
+        this.queue.delete(id);
+
         await this.cache.put(id, data);
 
         return data;

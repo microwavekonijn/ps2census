@@ -3,21 +3,30 @@ import {CensusServerError} from './exceptions/census-server.error';
 import {CensusRestException} from './exceptions/census-rest.exception';
 import {PS2Environment} from '../types/ps2.options';
 import {GetQuery} from './get.query';
-import {CValue} from './types/census';
-import {Conditions} from './types/collection';
-import {Collections} from './collections';
+import {CensusGetResponse} from './types/census';
+import {CollectionNames, Conditions, Params} from './types/collection';
+import {RestContract} from './concern/rest.contract';
 
-export interface RestOptions {
+export interface RestClientOptions {
     serviceId?: string;
-    httpsOnly?: boolean;
+    https?: boolean;
 }
 
-export class RestClient {
+/**
+ * A direct interface to interact with the Census api
+ */
+export class RestClient implements RestContract {
+    static readonly CENSUS_HTTP = 'http://census.daybreakgames.com';
+    static readonly CENSUS_HTTPS = 'https://census.daybreakgames.com';
+
+
     private api: AxiosInstance;
 
-    constructor({serviceId, httpsOnly = true}: RestOptions = {}) {
-        let baseUrl = `${httpsOnly ? 'https' : 'http'}://census.daybreakgames.com`;
+    constructor({serviceId, https = true}: RestClientOptions = {}) {
+        let baseUrl = https ? RestClient.CENSUS_HTTPS : RestClient.CENSUS_HTTP;
+
         if (serviceId) baseUrl += `/s:${serviceId}`;
+        else console.warn('RestClient is missing a ServiceID, it is recommended to use one. https://census.daybreakgames.com/#service-id');
 
         this.api = axios.create({
             baseURL: baseUrl,
@@ -36,20 +45,42 @@ export class RestClient {
         });
     }
 
-    get<C extends Collections>(collection: C): GetQuery<any> {
+    /**
+     * Create a new get query builder
+     *
+     * @param collection
+     */
+    getQueryBuilder<C extends CollectionNames>(collection: C): GetQuery<C> {
         return new GetQuery(this, collection);
     }
 
-    async count<C extends Collections>(environment: PS2Environment, collection: C, query: Conditions<C>): Promise<number> {
-        const {count} = await this.fetch<{ count: number }>(environment, 'count', collection, query);
+    /**
+     * Run a count query
+     *
+     * @param environment
+     * @param collection
+     * @param query
+     */
+    async count<C extends CollectionNames>(environment: PS2Environment, collection: C, query: Conditions<C>): Promise<number> {
+        const {data} = await this.api.get(
+            `/count/${environment}:v2/${collection}`,
+            {params: query},
+        );
 
-        return count;
+        return data.count;
     }
 
-    async fetch<T>(environment: PS2Environment, method: 'get' | 'count', collection: Collections, params: Record<string, CValue>): Promise<T> {
+    /**
+     * Execute a get query directly
+     *
+     * @param environment
+     * @param collection
+     * @param params
+     */
+    async get<C extends CollectionNames, R>(environment: PS2Environment, collection: C, params: Params<C>): Promise<CensusGetResponse<C, R>> {
         const {data} = await this.api.get(
-            `/${method}/${environment}:v2/${collection}`,
-            {params}
+            `/get/${environment}:v2/${collection}`,
+            {params},
         );
 
         return data;

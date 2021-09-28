@@ -122,12 +122,12 @@ export class SubscriptionManager {
     /**
      * Rerun all subscriptions
      *
-     * @param {boolean} reset When true unsubscribes to all events first
+     * @param {boolean} reset When true unsubscribes from all events first
      * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
      */
     async resubscribe(reset = false): Promise<boolean> {
         if (this.stream.isReady) {
-            if (reset) await this.unsubscribeAll();
+            if (reset) await this.stream.unsubscribeAll();
 
             await this.stream.subscribe(this.subscription);
 
