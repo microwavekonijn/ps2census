@@ -5,7 +5,7 @@ export * from './utils/census-response';
 export * from './collections';
 
 /** Utility */
-export * as commandTypes from './types/commands';
+export * from './types';
 
 /** Exceptions */
 export * from './exceptions/census-rest.exception';
