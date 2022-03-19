@@ -2,7 +2,8 @@
 
 [![CI](https://github.com/microwavekonijn/ps2census/workflows/CI/badge.svg)](https://github.com/microwavekonijn/ps2census/actions)
 [![npm version](https://badge.fury.io/js/ps2census.svg)](https://www.npmjs.com/package/ps2census)
-[![David DM Badge](https://david-dm.org/microwavekonijn/ps2census.svg)](https://david-dm.org/microwavekonijn/ps2census)
+[![Dependecies](https://img.shields.io/librariesio/github/microwavekonijn/ps2census)](https://libraries.io/github/microwavekonijn/ps2census)
+[![GitHub](https://img.shields.io/github/license/microwavekonijn/ps2census)](https://github.com/microwavekonijn/ps2census/blob/main/LICENSE)
 
 ## About
 
