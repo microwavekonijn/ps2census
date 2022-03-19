@@ -1,4 +1,4 @@
-import {CacheContract} from  '../concerns/cache.contract';
+import {CacheContract} from '../concerns/cache.contract';
 import {GetQuery} from '../../rest';
 import {CensusClient} from '../census.client';
 import {MaxRetryException} from '../exceptions/max-retry.exception';
@@ -55,6 +55,14 @@ export class CharacterManager {
         await this.cache.put(id, data);
 
         return data;
+    }
+
+    async forget(id: string): Promise<void> {
+        await this.cache.forget(id);
+    }
+
+    async forgetAll(): Promise<void> {
+        await this.cache.forgetAll();
     }
 
     private async request(id: string): Promise<any> {
