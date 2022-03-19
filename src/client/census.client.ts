@@ -46,7 +46,7 @@ export class CensusClient extends EventEmitter<ClientEvents> {
 
         this.serviceId = serviceId;
 
-        this.rest = new RestClient({serviceId, ...rest});
+        this.rest = new RestClient(environment, {serviceId, ...rest});
 
         this.characterManager = new CharacterManager(this, characterManager,);
 

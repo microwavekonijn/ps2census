@@ -74,7 +74,7 @@ export class CharacterManager {
 
         do {
             try {
-                const data = await this.query.get(this.client.environment, conditions);
+                const data = await this.query.get(conditions);
 
                 if (data.length <= 0)
                     throw new Error(`Census did not return a character for "${id}"`);

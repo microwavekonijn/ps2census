@@ -19,10 +19,9 @@ export class RestClient implements RestContract {
     static readonly CENSUS_HTTP = 'http://census.daybreakgames.com';
     static readonly CENSUS_HTTPS = 'https://census.daybreakgames.com';
 
-
     private api: AxiosInstance;
 
-    constructor({serviceId, https = true}: RestClientOptions = {}) {
+    constructor(readonly environment: PS2Environment,{serviceId, https = true}: RestClientOptions = {}) {
         let baseUrl = https ? RestClient.CENSUS_HTTPS : RestClient.CENSUS_HTTP;
 
         if (serviceId) baseUrl += `/s:${serviceId}`;
@@ -57,13 +56,12 @@ export class RestClient implements RestContract {
     /**
      * Run a count query
      *
-     * @param environment
      * @param collection
      * @param query
      */
-    async count<C extends CollectionNames>(environment: PS2Environment, collection: C, query: Conditions<C>): Promise<number> {
+    async count<C extends CollectionNames>(collection: C, query: Conditions<C>): Promise<number> {
         const {data} = await this.api.get(
-            `/count/${environment}:v2/${collection}`,
+            `/count/${this.environment}:v2/${collection}`,
             {params: query},
         );
 
@@ -73,13 +71,12 @@ export class RestClient implements RestContract {
     /**
      * Execute a get query directly
      *
-     * @param environment
      * @param collection
      * @param params
      */
-    async get<C extends CollectionNames, R>(environment: PS2Environment, collection: C, params: Params<C>): Promise<CensusGetResponse<C, R>> {
+    async get<C extends CollectionNames, R>(collection: C, params: Params<C>): Promise<CensusGetResponse<C, R>> {
         const {data} = await this.api.get(
-            `/get/${environment}:v2/${collection}`,
+            `/get/${this.environment}:v2/${collection}`,
             {params},
         );
 
