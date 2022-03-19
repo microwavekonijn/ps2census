@@ -1,4 +1,4 @@
-import {CacheContract} from  '../concerns/cache.contract';
+import {CacheContract} from '../concerns/cache.contract';
 import {GetQuery} from '../../rest';
 import {CensusClient} from '../census.client';
 import {MaxRetryException} from '../exceptions/max-retry.exception';
@@ -57,6 +57,14 @@ export class CharacterManager {
         return data;
     }
 
+    async forget(id: string): Promise<void> {
+        await this.cache.forget(id);
+    }
+
+    async forgetAll(): Promise<void> {
+        await this.cache.forgetAll();
+    }
+
     private async request(id: string): Promise<any> {
         const conditions = {character_id: id};
         let retries = this.maxRetries;
@@ -66,7 +74,7 @@ export class CharacterManager {
 
         do {
             try {
-                const data = await this.query.get(this.client.environment, conditions);
+                const data = await this.query.get(conditions);
 
                 if (data.length <= 0)
                     throw new Error(`Census did not return a character for "${id}"`);

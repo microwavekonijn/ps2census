@@ -1,6 +1,5 @@
 import {CollectionNames, Conditions, Format, PartialPaths, Paths} from './types/collection';
 import {CensusResponse} from './utils/census-response';
-import {PS2Environment} from '../types/ps2.options';
 import {CommandParamKeys, CommandParams, Join, Langs, Resolve, Sort, Tree} from './types/commands';
 import {CensusBoolean, CensusGetResponse} from './types/census';
 import {RestContract} from './concern/rest.contract';
@@ -153,13 +152,12 @@ export class GetQuery<C extends CollectionNames, R = Format<C>> {
     /**
      * Execute the query
      *
-     * @param environment the environment to query
      * @param query conditions to filter results
      */
-    async get(environment: PS2Environment, query: Conditions<C>): Promise<CensusResponse<R>> {
+    async get(query: Conditions<C> = {}): Promise<CensusResponse<R>> {
         return new CensusResponse(
             this.collection,
-            await this.census.get<C, CensusGetResponse<C, R>>(environment, this.collection, {...this.params, ...query}),
+            await this.census.get<C, CensusGetResponse<C, R>>(this.collection, {...this.params, ...query}),
         );
     }
 
