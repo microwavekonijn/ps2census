@@ -1,4 +1,4 @@
-import axios, {AxiosInstance} from 'axios';
+import Axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import {CensusServerError} from './exceptions/census-server.error';
 import {CensusRestException} from './exceptions/census-rest.exception';
 import {PS2Environment} from '../types/ps2.options';
@@ -9,7 +9,8 @@ import {RestContract} from './concern/rest.contract';
 
 export interface RestClientOptions {
     serviceId?: string;
-    https?: boolean;
+    baseURL?: string;
+    axios?: Pick<AxiosRequestConfig, 'timeout' | 'timeoutErrorMessage' | 'httpAgent' | 'httpsAgent' | 'proxy'>;
 }
 
 /**
@@ -21,14 +22,16 @@ export class RestClient implements RestContract {
 
     private api: AxiosInstance;
 
-    constructor(readonly environment: PS2Environment,{serviceId, https = true}: RestClientOptions = {}) {
-        let baseUrl = https ? RestClient.CENSUS_HTTPS : RestClient.CENSUS_HTTP;
-
-        if (serviceId) baseUrl += `/s:${serviceId}`;
+    constructor(readonly environment: PS2Environment, {
+        serviceId,
+        baseURL = RestClient.CENSUS_HTTPS,
+        axios = {}
+    }: RestClientOptions = {}) {
+        if (serviceId) baseURL += `/s:${serviceId}`;
         else console.warn('RestClient is missing a ServiceID, it is recommended to use one. https://census.daybreakgames.com/#service-id');
 
-        this.api = axios.create({
-            baseURL: baseUrl,
+        this.api = Axios.create({
+            baseURL,
             maxRedirects: 0,
             transformResponse(data) {
                 data = JSON.parse(data);
@@ -41,6 +44,7 @@ export class RestClient implements RestContract {
 
                 return data;
             },
+            ...axios
         });
     }
 
