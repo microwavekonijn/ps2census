@@ -67,11 +67,11 @@ const abort = (code = 0, e?: Error) => {
     process.exit(code);
 };
 
-process.on('unhandledRejection', abort.bind(null, 1))
-    .on('uncaughtException', abort.bind(null, 1))
-    .on('SIGINT', abort)
-    .on('SIGTERM', abort)
-    .on('exit', abort);
+process.on('unhandledRejection', abort.bind(null, 1) as any)
+    .on('uncaughtException', abort.bind(null, 1) as any)
+    .on('SIGINT', abort as any)
+    .on('SIGTERM', abort as any)
+    .on('exit', abort as any);
 
 client.watch();
 
