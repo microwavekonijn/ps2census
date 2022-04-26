@@ -1,40 +1,51 @@
-import {EventEmitter as BaseEmitter} from 'events';
+import { EventEmitter as BaseEmitter } from 'events';
 
 export type Events = Record<string | symbol, any[]>;
 
 declare interface EventEmitter<T extends Events = any> {
-    addListener<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
+  addListener<E extends keyof T>(
+    event: E,
+    listener: (...args: T[E]) => void,
+  ): this;
 
-    on<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
+  on<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
 
-    once<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
+  once<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
 
-    removeListener<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
+  removeListener<E extends keyof T>(
+    event: E,
+    listener: (...args: T[E]) => void,
+  ): this;
 
-    off<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
+  off<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
 
-    removeAllListeners<E extends keyof T>(event?: E): this;
+  removeAllListeners<E extends keyof T>(event?: E): this;
 
-    setMaxListeners(n: number): this;
+  setMaxListeners(n: number): this;
 
-    getMaxListeners(): number;
+  getMaxListeners(): number;
 
-    listeners<E extends keyof T>(event: E): Function[];
+  listeners<E extends keyof T>(event: E): Function[];
 
-    rawListeners<E extends keyof T>(event: E): Function[];
+  rawListeners<E extends keyof T>(event: E): Function[];
 
-    emit<E extends keyof T>(event: E, ...args: T[E]): boolean;
+  emit<E extends keyof T>(event: E, ...args: T[E]): boolean;
 
-    listenerCount<E extends keyof T>(event: E): number;
+  listenerCount<E extends keyof T>(event: E): number;
 
-    prependListener<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
+  prependListener<E extends keyof T>(
+    event: E,
+    listener: (...args: T[E]) => void,
+  ): this;
 
-    prependOnceListener<E extends keyof T>(event: E, listener: (...args: T[E]) => void): this;
+  prependOnceListener<E extends keyof T>(
+    event: E,
+    listener: (...args: T[E]) => void,
+  ): this;
 
-    eventNames<E extends keyof T>(): E[];
+  eventNames<E extends keyof T>(): E[];
 }
 
-class EventEmitter extends BaseEmitter {
-}
+class EventEmitter extends BaseEmitter {}
 
-export {EventEmitter};
+export { EventEmitter };

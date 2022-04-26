@@ -1,165 +1,179 @@
 import { CensusClient } from './census.client';
-import {EventStream, EventStreamOptions} from './event.stream';
+import { EventStream, EventStreamOptions } from './event.stream';
 import { Events } from './constants/client.constants';
 import Timeout = NodeJS.Timeout;
 import { StreamHandler } from './stream.handler';
 import { DuplicateFilter } from './utils/duplicate-filter';
 import { SubscriptionManager } from './subscription.manager';
-import {EventStreamSubscription} from './types/event-stream-subscription';
+import { EventStreamSubscription } from './types/event-stream-subscription';
 
 export interface EventStreamManagerOptions {
-    subscription?: EventStreamSubscription;
-    streamConfig?: EventStreamOptions;
+  subscription?: EventStreamSubscription;
+  streamConfig?: EventStreamOptions;
 }
 
 export class StreamManager {
-    private static readonly label = 'EventStreamManager';
+  private static readonly label = 'EventStreamManager';
+
+  /**
+   * The event stream
+   */
+  private readonly stream: EventStream;
+
+  /**
+   * @type {boolean} whether the connection has been destroyed
+   */
+  private destroyed = false;
+
+  /**
+   * @type {number} delay before trying to reconnect
+   */
+  private reconnectDelay = 2000;
+
+  /**
+   * @type {Timeout?} The reconnect timeout
+   */
+  private reconnectTimeout?: Timeout;
+
+  /**
+   * @type {EventStreamSubscription[]} Array of subscriptions
+   */
+  readonly subscriptionManager: SubscriptionManager;
+
+  /**
+   * @type {StreamHandler} handles events, and subscriptions
+   */
+  private readonly handler: StreamHandler;
+
+  /**
+   * @param {CensusClient} client
+   * @param {EventStreamManagerOptions} config
+   */
+  constructor(
+    readonly client: CensusClient,
+    { subscription = {}, streamConfig }: EventStreamManagerOptions = {},
+  ) {
+    this.handler = new StreamHandler(this.client, new DuplicateFilter());
+    this.stream = new EventStream(this.client.serviceId, this.handler, {
+      emitter: this.client,
+      environment: this.client.environment,
+      ...streamConfig,
+    });
+    this.subscriptionManager = new SubscriptionManager(
+      this.client,
+      this.stream,
+      subscription,
+    );
+
+    this.prepareEventStream();
+  }
+
+  /**
+   *
+   */
+  private prepareEventStream(): void {
+    /**
+     * Stream closed
+     */
+    this.stream.on(Events.STREAM_CLOSE, (code, reason) => {
+      if (this.destroyed) {
+        this.client.emit(Events.STREAM_DISCONNECTED, code, reason);
+        return;
+      }
+
+      this.client.emit(Events.STREAM_RECONNECTING);
+
+      void this.reconnect();
+    });
 
     /**
-     * The event stream
+     * Stream destroyed without connection
      */
-    private readonly stream: EventStream;
+    this.stream.on(Events.STREAM_DESTROYED, () => {
+      this.client.emit(Events.STREAM_RECONNECTING);
 
-    /**
-     * @type {boolean} whether the connection has been destroyed
-     */
-    private destroyed = false;
+      void this.reconnect();
+    });
+  }
 
-    /**
-     * @type {number} delay before trying to reconnect
-     */
-    private reconnectDelay = 2000;
+  /**
+   * Start connection
+   *
+   * @return {Promise<void>}
+   */
+  async connect(): Promise<void> {
+    if (this.stream.isReady) return;
 
-    /**
-     * @type {Timeout?} The reconnect timeout
-     */
-    private reconnectTimeout?: Timeout;
+    const ready = () => {
+      this.client.emit(Events.STREAM_READY);
+    };
 
-    /**
-     * @type {EventStreamSubscription[]} Array of subscriptions
-     */
-    readonly subscriptionManager: SubscriptionManager;
+    this.stream.once(Events.STREAM_READY, ready);
 
-    /**
-     * @type {StreamHandler} handles events, and subscriptions
-     */
-    private readonly handler: StreamHandler;
+    try {
+      await this.stream.connect();
+    } catch (e: any) {
+      this.stream.removeListener(Events.STREAM_READY, ready);
 
-    /**
-     * @param {CensusClient} client
-     * @param {EventStreamManagerOptions} config
-     */
-    constructor(
-        readonly client: CensusClient,
-        {
-            subscription = {},
-            streamConfig,
-        }: EventStreamManagerOptions = {},
-    ) {
-        this.handler = new StreamHandler(this.client, new DuplicateFilter());
-        this.stream = new EventStream(this.client.serviceId, this.handler, {
-            emitter: this.client,
-            environment: this.client.environment,
-            ...streamConfig,
-        });
-        this.subscriptionManager = new SubscriptionManager(this.client, this.stream, subscription);
+      if ([403].includes(e.httpState)) {
+        throw new Error(`Service ID rejected.`);
+      } else {
+        throw e;
+      }
+    }
+  }
 
-        this.prepareEventStream();
+  /**
+   * Bye bye
+   *
+   * @return {Promise<void>}
+   */
+  disconnect(): void {
+    if (this.destroyed) return;
+    this.destroyed = true;
+
+    this.client.emit(
+      Events.DEBUG,
+      `Manager disconnected.`,
+      StreamManager.label,
+    );
+
+    if (this.reconnectTimeout) {
+      clearTimeout(this.reconnectTimeout);
+      delete this.reconnectTimeout;
     }
 
-    /**
-     *
-     */
-    private prepareEventStream(): void {
-        /**
-         * Stream closed
-         */
-        this.stream.on(Events.STREAM_CLOSE, (code, reason) => {
-            if (this.destroyed) {
-                this.client.emit(Events.STREAM_DISCONNECTED, code, reason);
-                return;
-            }
+    this.stream.destroy({ code: 1000, emit: false });
+  }
 
-            this.client.emit(Events.STREAM_RECONNECTING);
+  /**
+   * Connection has done something, now we need a new one
+   */
+  private async reconnect(): Promise<void> {
+    try {
+      await this.stream.connect();
+    } catch (e: any) {
+      if ([403].includes(e.httpState)) {
+        this.client.emit(
+          Events.ERROR,
+          new Error(`Service ID rejected while trying to reconnect.`),
+        );
+        this.disconnect();
 
-            void this.reconnect();
-        });
+        return;
+      }
 
-        /**
-         * Stream destroyed without connection
-         */
-        this.stream.on(Events.STREAM_DESTROYED, () => {
-            this.client.emit(Events.STREAM_RECONNECTING);
+      this.client.emit(
+        Events.DEBUG,
+        `Reconnect failed, trying again in ${this.reconnectDelay}ms.`,
+        StreamManager.label,
+      );
 
-            void this.reconnect();
-        });
+      if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);
+      this.reconnectTimeout = setTimeout(
+        () => this.reconnect(),
+        this.reconnectDelay,
+      );
     }
-
-    /**
-     * Start connection
-     *
-     * @return {Promise<void>}
-     */
-    async connect(): Promise<void> {
-        if (this.stream.isReady) return;
-
-        const ready = () => {
-            this.client.emit(Events.STREAM_READY);
-        };
-
-        this.stream.once(Events.STREAM_READY, ready);
-
-        try {
-            await this.stream.connect();
-        } catch (e: any) {
-            this.stream.removeListener(Events.STREAM_READY, ready);
-
-            if ([403].includes(e.httpState)) {
-                throw new Error(`Service ID rejected.`);
-            } else {
-                throw e;
-            }
-        }
-    }
-
-    /**
-     * Bye bye
-     *
-     * @return {Promise<void>}
-     */
-    disconnect(): void {
-        if (this.destroyed) return;
-        this.destroyed = true;
-
-        this.client.emit(Events.DEBUG, `Manager disconnected.`, StreamManager.label);
-
-        if (this.reconnectTimeout) {
-            clearTimeout(this.reconnectTimeout);
-            delete this.reconnectTimeout;
-        }
-
-        this.stream.destroy({code: 1000, emit: false});
-    }
-
-    /**
-     * Connection has done something, now we need a new one
-     */
-    private async reconnect(): Promise<void> {
-        try {
-            await this.stream.connect();
-        } catch (e: any) {
-            if ([403].includes(e.httpState)) {
-
-                this.client.emit(Events.ERROR, new Error(`Service ID rejected while trying to reconnect.`));
-                this.disconnect();
-
-                return;
-            }
-
-            this.client.emit(Events.DEBUG, `Reconnect failed, trying again in ${this.reconnectDelay}ms.`, StreamManager.label);
-
-            if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);
-            this.reconnectTimeout = setTimeout(() => this.reconnect(), this.reconnectDelay);
-        }
-    }
+  }
 }

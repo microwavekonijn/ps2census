@@ -1,0 +1,19 @@
+name: Linting
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  compile-test:
+    runs-on: ubuntu-latest
+    environment:
+      name: test
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependecies
+        run: npm ci
+      - name: Lint
+        run: npm run lint

@@ -9,8 +9,6 @@ on:
 jobs:
   compile-test:
     runs-on: ubuntu-latest
-    environment:
-      name: test
     steps:
       - uses: actions/checkout@v2
       - name: Install dependecies
@@ -21,6 +19,8 @@ jobs:
         run: npm test
   run-test:
     runs-on: ubuntu-latest
+    environment:
+      name: test
     steps:
       - uses: actions/checkout@v2
       - name: Install dependecies

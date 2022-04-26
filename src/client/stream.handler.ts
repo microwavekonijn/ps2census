@@ -24,104 +24,103 @@ import { VehicleDestroy } from './events/vehicle-destroy.event';
 import { stringToBoolean } from '../utils/formatters';
 
 export class StreamHandler implements EventStreamHandlerContract {
-    static endpointsToId = endpointsToId;
+  static endpointsToId = endpointsToId;
 
-    /**
-     * @param {CensusClient} client
-     * @param {StreamFilterContract} filter
-     */
-    constructor(
-        private readonly client: CensusClient,
-        private readonly filter: StreamFilterContract,
-    ) {
+  /**
+   * @param {CensusClient} client
+   * @param {StreamFilterContract} filter
+   */
+  constructor(
+    private readonly client: CensusClient,
+    private readonly filter: StreamFilterContract,
+  ) {}
+
+  /**
+   * Handles the event
+   *
+   * @param {PS2EventData} event
+   */
+  handleEvent(event: PS2EventData): void {
+    const wrapped = this.wrapEvent(event);
+
+    if (!this.filter.filter(wrapped)) {
+      setImmediate(() => {
+        this.client.emit(Events.PS2_EVENT, wrapped);
+        this.client.emit(wrapped.emit, wrapped);
+      });
+    } else {
+      setImmediate(() => {
+        this.client.emit(Events.PS2_DUPLICATE, wrapped);
+      });
     }
+  }
 
-    /**
-     * Handles the event
-     *
-     * @param {PS2EventData} event
-     */
-    handleEvent(event: PS2EventData): void {
-        const wrapped = this.wrapEvent(event);
+  /**
+   * Handler whenever a subscription notification comes in
+   *
+   * @param subscription
+   */
+  handleSubscription(subscription: any): void {
+    setImmediate(() => {
+      this.client.emit(Events.PS2_SUBSCRIBED, subscription);
+    });
+  }
 
-        if (!this.filter.filter(wrapped)) {
-            setImmediate(() => {
-                this.client.emit(Events.PS2_EVENT, wrapped);
-                this.client.emit(wrapped.emit, wrapped);
-            });
-        } else {
-            setImmediate(() => {
-                this.client.emit(Events.PS2_DUPLICATE, wrapped);
-            });
-        }
+  /**
+   * Handler whenever a service state changed notification comes in
+   *
+   * @param state
+   */
+  handleServerStateChanged(state: any): void {
+    const id = StreamHandler.endpointsToId.get(state.detail);
+
+    if (id) {
+      const online = stringToBoolean(state.online);
+
+      setImmediate(() => {
+        this.client.emit(Events.PS2_SERVICE_STATE, id, online);
+      });
     }
+  }
 
-    /**
-     * Handler whenever a subscription notification comes in
-     *
-     * @param subscription
-     */
-    handleSubscription(subscription: any): void {
-        setImmediate(() => {
-            this.client.emit(Events.PS2_SUBSCRIBED, subscription);
-        });
+  /**
+   * Factory that wraps events, I don't know what more to say
+   *
+   * @param {PS2EventData} event
+   * @return {PS2Event}
+   */
+  private wrapEvent(event: PS2EventData): PS2Event {
+    switch (event.event_name) {
+      case 'AchievementEarned':
+        return new AchievementEarned(this.client, event);
+      case 'BattleRankUp':
+        return new BattleRankUpEvent(this.client, event);
+      case 'ContinentLock':
+        return new ContinentLock(this.client, event);
+      case 'ContinentUnlock':
+        return new ContinentUnlock(this.client, event);
+      case 'Death':
+        return new Death(this.client, event);
+      case 'FacilityControl':
+        return new FacilityControl(this.client, event);
+      case 'GainExperience':
+        return new GainExperience(this.client, event);
+      case 'ItemAdded':
+        return new ItemAdded(this.client, event);
+      case 'MetagameEvent':
+        return new MetagameEvent(this.client, event);
+      case 'PlayerFacilityCapture':
+        return new PlayerFacilityCapture(this.client, event);
+      case 'PlayerFacilityDefend':
+        return new PlayerFacilityDefend(this.client, event);
+      case 'PlayerLogin':
+        return new PlayerLogin(this.client, event);
+      case 'PlayerLogout':
+        return new PlayerLogout(this.client, event);
+      case 'SkillAdded':
+        return new SkillAdded(this.client, event);
+      case 'VehicleDestroy':
+        return new VehicleDestroy(this.client, event);
     }
-
-    /**
-     * Handler whenever a service state changed notification comes in
-     *
-     * @param state
-     */
-    handleServerStateChanged(state: any): void {
-        const id = StreamHandler.endpointsToId.get(state.detail);
-
-        if (id) {
-            const online = stringToBoolean(state.online);
-
-            setImmediate(() => {
-                this.client.emit(Events.PS2_SERVICE_STATE, id, online);
-            });
-        }
-    }
-
-    /**
-     * Factory that wraps events, I don't know what more to say
-     *
-     * @param {PS2EventData} event
-     * @return {PS2Event}
-     */
-    private wrapEvent(event: PS2EventData): PS2Event {
-        switch (event.event_name) {
-            case 'AchievementEarned':
-                return new AchievementEarned(this.client, event);
-            case 'BattleRankUp':
-                return new BattleRankUpEvent(this.client, event);
-            case 'ContinentLock':
-                return new ContinentLock(this.client, event);
-            case 'ContinentUnlock':
-                return new ContinentUnlock(this.client, event);
-            case 'Death':
-                return new Death(this.client, event);
-            case 'FacilityControl':
-                return new FacilityControl(this.client, event);
-            case 'GainExperience':
-                return new GainExperience(this.client, event);
-            case 'ItemAdded':
-                return new ItemAdded(this.client, event);
-            case 'MetagameEvent':
-                return new MetagameEvent(this.client, event);
-            case 'PlayerFacilityCapture':
-                return new PlayerFacilityCapture(this.client, event);
-            case 'PlayerFacilityDefend':
-                return new PlayerFacilityDefend(this.client, event);
-            case 'PlayerLogin':
-                return new PlayerLogin(this.client, event);
-            case 'PlayerLogout':
-                return new PlayerLogout(this.client, event);
-            case 'SkillAdded':
-                return new SkillAdded(this.client, event);
-            case 'VehicleDestroy':
-                return new VehicleDestroy(this.client, event);
-        }
-    }
+  }
 }

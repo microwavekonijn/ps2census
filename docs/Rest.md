@@ -15,25 +15,33 @@ Note that that everything is typed which makes it really usefull to catch mistak
 ## Commands
 
 #### `rest.caseSensitive(request, sensitive = false)`
+
 Whether the query should be case sensitive.
 
 #### `rest.distinct(request, field)`
+
 Returns an array of distinct values of a field.
 
 #### `rest.exactMatchFirst(request, exactMatchFirst = true)`
+
 When using search modifiers exact matches are moved to the first position in the array.
 
 #### `rest.has(request, field)`
+
 Filter by pressence of a field.
 
 #### `rest.hide(request, fields)`
+
 Remove fields from the results. Accepts an array of strings.
 
 #### `rest.includeNull(request, field)`
+
 Exposes a field even though it might be empty in the results.
 
 #### `rest.join(request, joins)`
+
 Joins another collection into the results. Accepts an array of:
+
 ```ts
 {
   type: collection,
@@ -51,36 +59,47 @@ Joins another collection into the results. Accepts an array of:
 To use extend a join with a join use a tuple where the second item is an array like above, like `[join, extended_joins]`.
 
 #### `rest.lang(request, lang)`
+
 Set a language. Currently accepts en, de, fr, es, it, tr.
 
 #### `rest.limit(request, limit)`
+
 Set a maximum limit on the amount of items returned.
 
 #### `rest.limitPerDB(request, limit)`
+
 Set a maximum limit on the amount of items returned per database.
 This command is mainly for the character collection as it is distributed across multiple databases.
 
 #### `rest.resovle(request, resolve)`
+
 Collections come with joins that can easily be added using a keyword. Resolve accepts an array of strings.
 
 #### `rest.retry(request, boolean = false)`
+
 Whether to retry when a request fails.
 
 #### `rest.show(request, fields)`
+
 Only accepts specified fields in the result. Accepts an array of strings.
 
 #### `rest.sort(request, fields)`
+
 How to sort the results.
 Accepts an array of either fieldname or a tuple of a fieldname followed by the direction(either `1` or `-1`).
 
 #### `rest.start(request, start)`
+
 Skips the specified amount of rows. Be aware of the character collections, see `rest.limitPerDB`.
 
 #### `rest.timing(request, timing = true)`
+
 Wheter to time the query. Note the results are ingored until support is added.
 
 #### `rest.tree(request, tree)`
+
 Groups the items by field. Accepts:
+
 ```ts
 {
   field: string,
