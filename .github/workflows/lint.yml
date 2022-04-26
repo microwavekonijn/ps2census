@@ -7,10 +7,8 @@ on:
   pull_request:
 
 jobs:
-  compile-test:
+  lint:
     runs-on: ubuntu-latest
-    environment:
-      name: test
     steps:
       - uses: actions/checkout@v2
       - name: Install dependecies
