@@ -1,7 +1,7 @@
 import Timeout = NodeJS.Timeout;
 
 export class DecayingSet<T> {
-  private index: number = 0;
+  private index = 0;
 
   private readonly set: Array<Set<T>>;
 

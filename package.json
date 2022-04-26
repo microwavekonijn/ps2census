@@ -11,10 +11,12 @@
     "LICENSE"
   ],
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "npm run clean && tsc",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
     "test": "echo \"No test specified\" && exit 0",
     "test-run": "ts-node ./test/test.ts",
+    "format": "prettier --write",
+    "lint": "eslint src",
     "prepublishOnly": "npm run build",
     "postversion": "git push && git push --tags",
     "prepare": "husky install"
@@ -53,10 +55,12 @@
     "@typescript-eslint/parser": "5.21.0",
     "dotenv": "16.0.0",
     "eslint": "8.14.0",
+    "eslint-config-prettier": "^8.5.0",
     "husky": "^7.0.0",
     "lerna-changelog": "^2.2.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
     "ts-node": "10.7.0",
     "typescript": "4.6.3"
   },

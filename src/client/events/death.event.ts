@@ -42,6 +42,7 @@ export class Death extends CharacterEvent {
    * @protected
    */
   protected cast(data: DeathData) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     this['is_headshot'] = numberStringToBoolean(data.is_headshot);
   }

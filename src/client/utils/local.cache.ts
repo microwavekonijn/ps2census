@@ -21,11 +21,7 @@ export class LocalCache implements CacheContract {
   }
 
   async fetch(key: string): Promise<any | null> {
-    let data = this.cache.get(key);
-
-    if (!data) return null;
-
-    return data;
+    return this.cache.get(key) ?? null;
   }
 
   async forget(key: string): Promise<void> {
