@@ -1,47 +1,44 @@
-import {CacheContract} from '../concerns/cache.contract';
+import { CacheContract } from '../concerns/cache.contract';
 
 export class LocalCacheOptions {
-    readonly maxEntries?: number;
+  readonly maxEntries?: number;
 }
 
 export class LocalCache implements CacheContract {
-    private readonly cache = new Map<string, any>();
+  private readonly cache = new Map<string, any>();
 
-    private readonly maxEntries: number;
+  private readonly maxEntries: number;
 
-    constructor(
-        options?: LocalCacheOptions
-    ) {
-        this.maxEntries = options?.maxEntries ?? 1000;
-    }
+  constructor(options?: LocalCacheOptions) {
+    this.maxEntries = options?.maxEntries ?? 1000;
+  }
 
-    async put(key: string, data: any): Promise<void> {
-        if (!this.cache.has(key) && this.cache.size >= this.maxEntries)
-            this.pruneOldest();
+  async put(key: string, data: any): Promise<void> {
+    if (!this.cache.has(key) && this.cache.size >= this.maxEntries)
+      this.pruneOldest();
 
-        this.cache.set(key, data);
-    }
+    this.cache.set(key, data);
+  }
 
-    async fetch(key: string): Promise<any | null> {
-        let data = this.cache.get(key);
+  async fetch(key: string): Promise<any | null> {
+    let data = this.cache.get(key);
 
-        if (!data)
-            return null;
+    if (!data) return null;
 
-        return data;
-    }
+    return data;
+  }
 
-    async forget(key: string): Promise<void> {
-        this.cache.delete(key);
-    }
+  async forget(key: string): Promise<void> {
+    this.cache.delete(key);
+  }
 
-    async forgetAll(): Promise<void> {
-        this.cache.clear();
-    }
+  async forgetAll(): Promise<void> {
+    this.cache.clear();
+  }
 
-    private pruneOldest(): void {
-        const [[key]] = this.cache;
+  private pruneOldest(): void {
+    const [[key]] = this.cache;
 
-        this.cache.delete(key);
-    }
+    this.cache.delete(key);
+  }
 }

@@ -10,18 +10,18 @@ You are able to emit fake events in order to test your application without requi
 
 // A fake MetagameEvent occurring on Miller for the continent Indar
 const event = new MetagameEvent(client, {
-    event_name: 'MetagameEvent',
-    experience_bonus: '25.000000',
-    faction_nc: '6.274510',
-    faction_tr: '19.607843',
-    faction_vs: '9.803922',
-    instance_id: '12358',
-    metagame_event_id: '190',
-    metagame_event_state: '137',
-    metagame_event_state_name: 'started',
-    timestamp: '123456789',
-    world_id: '10',
-    zone_id: '2'
+  event_name: 'MetagameEvent',
+  experience_bonus: '25.000000',
+  faction_nc: '6.274510',
+  faction_tr: '19.607843',
+  faction_vs: '9.803922',
+  instance_id: '12358',
+  metagame_event_id: '190',
+  metagame_event_state: '137',
+  metagame_event_state_name: 'started',
+  timestamp: '123456789',
+  world_id: '10',
+  zone_id: '2',
 });
 
 client.emit(Events.PS2_EVENT, event);

@@ -39,37 +39,29 @@ For better performance it is recommended to install `bufferutil` and `utf-8-vali
 const { CensusClient } = require('ps2census');
 
 const subscriptions = {
-    worlds: ['10'],
-    eventNames: ['MetagameEvent']
-}
+  worlds: ['10'],
+  eventNames: ['MetagameEvent'],
+};
 
 const client = new CensusClient('ServiceID', 'ps2', {
-    streamManager: {
-        subscription: subscriptions
-    },
+  streamManager: {
+    subscription: subscriptions,
+  },
 });
 
-client.on('ps2Event', (event) => {
-    // Handle the event, for more information see http://census.daybreakgames.com/#websocket-details
+client.on('ps2Event', event => {
+  // Handle the event, for more information see http://census.daybreakgames.com/#websocket-details
 });
 // or
-client.on('facilityControl', (event) => {
-}); // Note that the event always starts with a lower case letter
+client.on('facilityControl', event => {}); // Note that the event always starts with a lower case letter
 
-client.on('subscribed', (subscription) => {
-}); // Notification of a subscription made by the event stream
-client.on('duplicate', (event) => {
-}); // When a duplicate event has been received
-client.on('ready', () => {
-}); // Client is ready
-client.on('reconnecting', () => {
-}); // Client is reconnecting
-client.on('disconnected', () => {
-}); // Client got disconnected
-client.on('error', (error) => {
-}); // Error
-client.on('warn', (error) => {
-}); // Error, when receiving a corrupt message
+client.on('subscribed', subscription => {}); // Notification of a subscription made by the event stream
+client.on('duplicate', event => {}); // When a duplicate event has been received
+client.on('ready', () => {}); // Client is ready
+client.on('reconnecting', () => {}); // Client is reconnecting
+client.on('disconnected', () => {}); // Client got disconnected
+client.on('error', error => {}); // Error
+client.on('warn', error => {}); // Error, when receiving a corrupt message
 
 client.watch();
 
@@ -80,18 +72,19 @@ client.destroy();
 ### Rest API
 
 ```js
-const {RestClient} = require('ps2census');
+const { RestClient } = require('ps2census');
 
-const client = new RestClient({serviceId: 'example'});
+const client = new RestClient({ serviceId: 'example' });
 
 // Get character with items
-client.getQueryBuilder('character')
-    .resolve('item')
-    .exactMatchFirst(true)
-    .get('ps2ps4eu', {'name.first_lower': '^microwave'})
-    .then((characters) => {
-        // Process the data
-    });
+client
+  .getQueryBuilder('character')
+  .resolve('item')
+  .exactMatchFirst(true)
+  .get('ps2ps4eu', { 'name.first_lower': '^microwave' })
+  .then(characters => {
+    // Process the data
+  });
 ```
 
 ## Documentation

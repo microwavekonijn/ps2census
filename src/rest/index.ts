@@ -10,4 +10,3 @@ export * from './types';
 /** Exceptions */
 export * from './exceptions/census-rest.exception';
 export * from './exceptions/census-server.error';
-

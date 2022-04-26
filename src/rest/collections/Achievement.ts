@@ -1,1 +1,97 @@
-export type Achievement = {collection: 'achievement',format: {'achievement_id': string,'item_id': string,'objective_group_id': string,'reward_id': string,'repeatable': string,'name': {'de': string,'en': string,'es': string,'fr': string,'it': string,'tr': string},'description': {'de': string,'en': string,'es': string,'fr': string,'it': string,'tr': string},'image_set_id': string,'image_id': string,'image_path': string},paths: 'achievement_id' | 'item_id' | 'objective_group_id' | 'reward_id' | 'repeatable' | 'name.de' | 'name.en' | 'name.es' | 'name.fr' | 'name.it' | 'name.tr' | 'description.de' | 'description.en' | 'description.es' | 'description.fr' | 'description.it' | 'description.tr' | 'image_set_id' | 'image_id' | 'image_path',partialPaths: 'achievement_id' | 'item_id' | 'objective_group_id' | 'reward_id' | 'repeatable' | 'name' | 'name.de' | 'name.en' | 'name.es' | 'name.fr' | 'name.it' | 'name.tr' | 'description' | 'description.de' | 'description.en' | 'description.es' | 'description.fr' | 'description.it' | 'description.tr' | 'image_set_id' | 'image_id' | 'image_path',conditions: {'achievement_id'?: string,'description'?: string,'description.de'?: string,'description.en'?: string,'description.es'?: string,'description.fr'?: string,'description.it'?: string,'description.tr'?: string,'image_id'?: string,'image_path'?: string,'image_set_id'?: string,'item_id'?: string,'name'?: string,'name.de'?: string,'name.en'?: string,'name.es'?: string,'name.fr'?: string,'name.it'?: string,'name.tr'?: string,'objective_group_id'?: string,'repeatable'?: string,'reward_id'?: string},};
+export type Achievement = {
+  collection: 'achievement';
+  format: {
+    achievement_id: string;
+    item_id: string;
+    objective_group_id: string;
+    reward_id: string;
+    repeatable: string;
+    name: {
+      de: string;
+      en: string;
+      es: string;
+      fr: string;
+      it: string;
+      tr: string;
+    };
+    description: {
+      de: string;
+      en: string;
+      es: string;
+      fr: string;
+      it: string;
+      tr: string;
+    };
+    image_set_id: string;
+    image_id: string;
+    image_path: string;
+  };
+  paths:
+    | 'achievement_id'
+    | 'item_id'
+    | 'objective_group_id'
+    | 'reward_id'
+    | 'repeatable'
+    | 'name.de'
+    | 'name.en'
+    | 'name.es'
+    | 'name.fr'
+    | 'name.it'
+    | 'name.tr'
+    | 'description.de'
+    | 'description.en'
+    | 'description.es'
+    | 'description.fr'
+    | 'description.it'
+    | 'description.tr'
+    | 'image_set_id'
+    | 'image_id'
+    | 'image_path';
+  partialPaths:
+    | 'achievement_id'
+    | 'item_id'
+    | 'objective_group_id'
+    | 'reward_id'
+    | 'repeatable'
+    | 'name'
+    | 'name.de'
+    | 'name.en'
+    | 'name.es'
+    | 'name.fr'
+    | 'name.it'
+    | 'name.tr'
+    | 'description'
+    | 'description.de'
+    | 'description.en'
+    | 'description.es'
+    | 'description.fr'
+    | 'description.it'
+    | 'description.tr'
+    | 'image_set_id'
+    | 'image_id'
+    | 'image_path';
+  conditions: {
+    achievement_id?: string;
+    description?: string;
+    'description.de'?: string;
+    'description.en'?: string;
+    'description.es'?: string;
+    'description.fr'?: string;
+    'description.it'?: string;
+    'description.tr'?: string;
+    image_id?: string;
+    image_path?: string;
+    image_set_id?: string;
+    item_id?: string;
+    name?: string;
+    'name.de'?: string;
+    'name.en'?: string;
+    'name.es'?: string;
+    'name.fr'?: string;
+    'name.it'?: string;
+    'name.tr'?: string;
+    objective_group_id?: string;
+    repeatable?: string;
+    reward_id?: string;
+  };
+};

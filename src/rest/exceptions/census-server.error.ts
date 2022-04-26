@@ -1,10 +1,10 @@
 export class CensusServerError extends Error {
-    readonly code: string;
+  readonly code: string;
 
-    constructor(data: any) {
-        super(data.errorMessage ?? 'Error message not supplied');
+  constructor(data: any) {
+    super(data.errorMessage ?? 'Error message not supplied');
 
-        this.name = 'CensusServerError';
-        this.code = data.errorCode;
-    }
+    this.name = 'CensusServerError';
+    this.code = data.errorCode;
+  }
 }
