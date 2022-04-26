@@ -17,6 +17,7 @@
     "test-run": "ts-node ./test/test.ts",
     "format": "prettier --write",
     "lint": "eslint src",
+    "changelog": "lerna-changelog",
     "prepublishOnly": "npm run build",
     "postversion": "git push && git push --tags",
     "prepare": "husky install"
@@ -63,6 +64,16 @@
     "rimraf": "^3.0.2",
     "ts-node": "10.7.0",
     "typescript": "4.6.3"
+  },
+  "changelog": {
+    "labels": {
+      "type: feature :tada:": "Features",
+      "type: bug :sob:": "Bug fixes",
+      "type: enhancement :wolf:": "Enhancements",
+      "type: docs :page_facing_up:": "Docs",
+      "type: code style": "Code style tweaks",
+      "dependencies": "Dependencies"
+    }
   },
   "lint-staged": {
     "{src,test}/**/*.{ts,json}": [
