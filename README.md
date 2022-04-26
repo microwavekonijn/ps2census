@@ -97,10 +97,6 @@ client
 Please make sure not to create duplicate issues. When making a PR make sure to check if eslint doesn't report any
 problems.
 
-## Support
-
-https://discord.gg/Pv48tERQyX
-
 ## Disclaimer
 
 The PS2 Census Library comes with no warranties. This software is as is and usage is at the developer/users own
