@@ -34,8 +34,9 @@ export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
    * @param data
    * @protected
    */
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  protected cast(data: T): void {}
+  protected cast(data: T): void {
+    // void
+  }
 
   /**
    * @return {string} hash of the event
