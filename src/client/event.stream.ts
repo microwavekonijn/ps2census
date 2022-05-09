@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import WebSocket, { Data } from 'ws';
+import WebSocket, { ClientOptions, Data } from 'ws';
 import Timeout = NodeJS.Timeout;
 import { Events, State } from './constants/client.constants';
 import { StreamHandlerContract } from './concerns/stream-handler.contract';
@@ -13,6 +13,7 @@ export interface EventStreamOptions {
   connectionTimeout?: number;
   heartbeatInterval?: number;
   duplicateFilter?: DuplicateFilter | null;
+  wsOptions?: ClientOptions;
   emitter?: EventEmitter;
 }
 
@@ -66,6 +67,11 @@ class EventStream extends EventEmitter {
   private connection?: WebSocket;
 
   /**
+   * @type {ClientOptions?} Websocket options used to establish stream
+   */
+  private readonly wsOptions?: ClientOptions;
+
+  /**
    * @type {number} Unix time when client got connected
    */
   private connectedAt?: number;
@@ -105,6 +111,7 @@ class EventStream extends EventEmitter {
       heartbeatInterval = 30000,
       emitter,
       environment = 'ps2',
+      wsOptions,
     }: EventStreamOptions = {},
   ) {
     super();
@@ -113,6 +120,7 @@ class EventStream extends EventEmitter {
     this.emitter = emitter ?? this;
     this.heartbeatInterval = heartbeatInterval;
     this.connectionTimeoutTime = connectionTimeout;
+    this.wsOptions = wsOptions;
   }
 
   /**
@@ -188,7 +196,10 @@ class EventStream extends EventEmitter {
       this.connectedAt = Date.now();
       this.setConnectionTimeout(true);
 
-      const ws = (this.connection = new WebSocket(this.gatewayUri));
+      const ws = (this.connection = new WebSocket(
+        this.gatewayUri,
+        this.wsOptions,
+      ));
 
       ws.on('open', this.onOpen.bind(this));
       ws.on('message', this.onMessage.bind(this));
