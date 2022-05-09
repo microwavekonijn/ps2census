@@ -18,6 +18,11 @@ const client = new CensusClient(process.env.SERVICE_ID, 'ps2', {
       eventNames: ['Death'],
       logicalAndCharactersWithWorlds: true,
     },
+    streamConfig: {
+      wsOptions: {
+        rejectUnauthorized: Boolean(process.env.IGNORE_FAILED_CERT),
+      },
+    },
   },
 });
 
