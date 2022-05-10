@@ -2,15 +2,60 @@ import { EventEmitter } from '../utils/events';
 import { EventStreamManagerOptions, StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
 import { EventStreamSubscription } from './types/event-stream-subscription';
-import { ClientEvents } from './types/client.events';
 import { RestClient, RestClientOptions } from '../rest';
 import { CharacterManager, CharacterManagerOptions } from './managers';
+import {
+  AchievementEarned,
+  BattleRankUpEvent,
+  ContinentLock,
+  Death,
+  FacilityControl,
+  GainExperience,
+  ItemAdded,
+  MetagameEvent,
+  PlayerFacilityCapture,
+  PlayerFacilityDefend,
+  PlayerLogin,
+  PlayerLogout,
+  PS2Event,
+  SkillAdded,
+  VehicleDestroy,
+} from './events';
+import { EventStreamSubscribed } from './types';
 
 export interface ClientOptions {
   streamManager?: EventStreamManagerOptions;
   rest?: Omit<RestClientOptions, 'serviceId'>;
   characterManager?: CharacterManagerOptions;
 }
+
+export type ClientEvents = {
+  ready: [];
+  disconnected: [number?, string?];
+  reconnecting: [];
+  error: [Error];
+  warn: [Error];
+  debug: [string, string];
+  duplicate: [PS2Event];
+  subscribed: [EventStreamSubscribed];
+  serviceState: [string, boolean];
+  ps2Event: [PS2Event];
+  achievementEarned: [AchievementEarned];
+  battleRankUp: [BattleRankUpEvent];
+  death: [Death];
+  gainExperience: [GainExperience];
+  itemAdded: [ItemAdded];
+  playerFacilityCapture: [PlayerFacilityCapture];
+  playerFacilityDefend: [PlayerFacilityDefend];
+  playerLogin: [PlayerLogin];
+  playerLogout: [PlayerLogout];
+  skillAdded: [SkillAdded];
+  vehicleDestroy: [VehicleDestroy];
+  continentLock: [ContinentLock];
+  continentUnlock: [ContinentLock];
+  facilityControl: [FacilityControl];
+  metagameEvent: [MetagameEvent];
+};
 
 export class CensusClient extends EventEmitter<ClientEvents> {
   /**
