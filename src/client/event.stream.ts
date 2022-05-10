@@ -1,18 +1,16 @@
 import { EventEmitter } from 'events';
 import WebSocket, { ClientOptions, Data } from 'ws';
-import Timeout = NodeJS.Timeout;
 import { Events, State } from './constants/client.constants';
 import { StreamHandlerContract } from './concerns/stream-handler.contract';
 import { PS2Environment } from '../types/ps2.options';
 import { EventStreamSubscription } from './types/event-stream-subscription';
 import { EventStreamSubscribed } from './types';
-import { DuplicateFilter } from './utils/duplicate-filter';
+import Timeout = NodeJS.Timeout;
 
 export interface EventStreamOptions {
-  environment?: PS2Environment;
   connectionTimeout?: number;
   heartbeatInterval?: number;
-  duplicateFilter?: DuplicateFilter | null;
+  endpoint?: string;
   wsOptions?: ClientOptions;
   emitter?: EventEmitter;
 }
@@ -32,9 +30,9 @@ class EventStream extends EventEmitter {
   private static readonly baseUri = 'wss://push.planetside2.com/streaming';
 
   /**
-   * The environment to stream
+   * @type {string} The endpoint url for the Census stream
    */
-  private readonly environment: PS2Environment;
+  private readonly gatewayUri: string;
 
   /**
    * @type {number} Period of the heartbeat in milliseconds
@@ -99,28 +97,31 @@ class EventStream extends EventEmitter {
   >();
 
   /**
-   * @param serviceId
+   * @param {string} serviceId
+   * @param {PS2Environment} environment
    * @param {StreamHandlerContract} handler
    * @param {EventStreamOptions} config
    */
   constructor(
     private readonly serviceId: string,
+    private readonly environment: PS2Environment,
     private readonly handler: StreamHandlerContract,
     {
       connectionTimeout = 20000,
       heartbeatInterval = 30000,
       emitter,
-      environment = 'ps2',
+      endpoint = EventStream.baseUri,
       wsOptions,
     }: EventStreamOptions = {},
   ) {
     super();
 
-    this.environment = environment;
-    this.emitter = emitter ?? this;
+    this.gatewayUri = `${endpoint}?environment=${this.environment}&service-id=s:${this.serviceId}`;
     this.heartbeatInterval = heartbeatInterval;
     this.connectionTimeoutTime = connectionTimeout;
     this.wsOptions = wsOptions;
+
+    this.emitter = emitter ?? this;
   }
 
   /**
@@ -206,13 +207,6 @@ class EventStream extends EventEmitter {
       ws.on('close', this.onClose.bind(this));
       ws.on('error', this.onError.bind(this));
     });
-  }
-
-  /**
-   * @return {string} Gateway to connect to
-   */
-  private get gatewayUri(): string {
-    return `${EventStream.baseUri}?environment=${this.environment}&service-id=s:${this.serviceId}`;
   }
 
   /**

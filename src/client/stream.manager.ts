@@ -54,11 +54,15 @@ export class StreamManager {
     { subscription = {}, streamConfig }: EventStreamManagerOptions = {},
   ) {
     this.handler = new StreamHandler(this.client, new DuplicateFilter());
-    this.stream = new EventStream(this.client.serviceId, this.handler, {
-      emitter: this.client,
-      environment: this.client.environment,
-      ...streamConfig,
-    });
+    this.stream = new EventStream(
+      this.client.serviceId,
+      this.client.environment,
+      this.handler,
+      {
+        emitter: this.client,
+        ...streamConfig,
+      },
+    );
     this.subscriptionManager = new SubscriptionManager(
       this.client,
       this.stream,

@@ -1,7 +1,6 @@
-import { CensusClient } from '../census.client';
+import { CensusClient, ClientEvents } from '../census.client';
 import { PS2EventData } from '../types/ps2.events';
 import { unixToDate } from '../../utils/formatters';
-import { ClientEvents } from '../types';
 
 export abstract class PS2Event<T extends PS2EventData = PS2EventData> {
   readonly emit: keyof ClientEvents;
