@@ -1,8 +1,7 @@
-import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 
 export class PlayerLogout extends CharacterEvent {
-  readonly emit = Events.PS2_LOGOUT;
+  readonly emit = 'playerLogout';
 
   readonly event_name: 'PlayerLogout';
 

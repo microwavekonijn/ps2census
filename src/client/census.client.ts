@@ -1,16 +1,60 @@
-import { EventEmitter } from '../utils/events';
-import { EventStreamManagerOptions, StreamManager } from './stream.manager';
+import { EventEmitter } from 'eventemitter3';
+import { StreamManagerOptions, StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
-import { EventStreamSubscription } from './types/event-stream-subscription';
-import { ClientEvents } from './types/client.events';
 import { RestClient, RestClientOptions } from '../rest';
 import { CharacterManager, CharacterManagerOptions } from './managers';
+import {
+  AchievementEarned,
+  BattleRankUpEvent,
+  ContinentLock,
+  Death,
+  FacilityControl,
+  GainExperience,
+  ItemAdded,
+  MetagameEvent,
+  PlayerFacilityCapture,
+  PlayerFacilityDefend,
+  PlayerLogin,
+  PlayerLogout,
+  PS2Event,
+  SkillAdded,
+  VehicleDestroy,
+} from './events';
+import { EventSubscribed, EventSubscription } from './types';
 
 export interface ClientOptions {
-  streamManager?: EventStreamManagerOptions;
+  streamManager?: StreamManagerOptions;
   rest?: Omit<RestClientOptions, 'serviceId'>;
   characterManager?: CharacterManagerOptions;
 }
+
+export type ClientEvents = {
+  ready: () => void;
+  disconnected: (code?: number, reason?: string) => void;
+  reconnecting: () => void;
+  error: (err: Error) => void;
+  warn: (err: Error) => void;
+  debug: (info: string) => void;
+  duplicate: (event: PS2Event) => void;
+  subscribed: (subscription: EventSubscribed) => void;
+  serviceState: (detail: string, online: boolean) => void;
+  ps2Event: (event: PS2Event) => void;
+  achievementEarned: (event: AchievementEarned) => void;
+  battleRankUp: (event: BattleRankUpEvent) => void;
+  death: (event: Death) => void;
+  gainExperience: (event: GainExperience) => void;
+  itemAdded: (event: ItemAdded) => void;
+  playerFacilityCapture: (event: PlayerFacilityCapture) => void;
+  playerFacilityDefend: (event: PlayerFacilityDefend) => void;
+  playerLogin: (event: PlayerLogin) => void;
+  playerLogout: (event: PlayerLogout) => void;
+  skillAdded: (event: SkillAdded) => void;
+  vehicleDestroy: (event: VehicleDestroy) => void;
+  continentLock: (event: ContinentLock) => void;
+  continentUnlock: (event: ContinentLock) => void;
+  facilityControl: (event: FacilityControl) => void;
+  metagameEvent: (event: MetagameEvent) => void;
+};
 
 export class CensusClient extends EventEmitter<ClientEvents> {
   /**
@@ -68,29 +112,31 @@ export class CensusClient extends EventEmitter<ClientEvents> {
   /**
    * Make a subscription to the stream
    *
-   * @param {EventStreamSubscription} subscription
-   * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
+   * @param {EventSubscription} subscription
+   * @return {Promise<EventSubscribed | null>}
    */
-  subscribe(subscription: EventStreamSubscription): Promise<boolean> {
+  subscribe(subscription: EventSubscription): Promise<EventSubscribed | null> {
     return this.streamManager.subscriptionManager.subscribe(subscription);
   }
 
   /**
    * Remove a subscription from the stream
    *
-   * @param {EventStreamSubscription} subscription
-   * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
+   * @param {EventSubscription} subscription
+   * @return {Promise<EventSubscribed | null>}
    */
-  unsubscribe(subscription: EventStreamSubscription): Promise<boolean> {
+  unsubscribe(
+    subscription: EventSubscription,
+  ): Promise<EventSubscribed | null> {
     return this.streamManager.subscriptionManager.unsubscribe(subscription);
   }
 
   /**
    * Purge all subscriptions
    *
-   * @return {Promise<boolean>} whether it has been run(depends on stream being ready)
+   * @return {Promise<EventSubscribed | null>}
    */
-  unsubscribeAll(): Promise<boolean> {
+  unsubscribeAll(): Promise<EventSubscribed | null> {
     return this.streamManager.subscriptionManager.unsubscribeAll();
   }
 
@@ -102,14 +148,5 @@ export class CensusClient extends EventEmitter<ClientEvents> {
    */
   resubscribe(reset = false): Promise<boolean> {
     return this.streamManager.subscriptionManager.resubscribe(reset);
-  }
-
-  /**
-   * Get the current subscription
-   *
-   * @return {EventStreamSubscription}
-   */
-  get subscription(): EventStreamSubscription {
-    return this.streamManager.subscriptionManager.subscription;
   }
 }

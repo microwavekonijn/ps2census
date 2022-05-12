@@ -1,8 +1,7 @@
-import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 
 export class AchievementEarned extends CharacterEvent {
-  readonly emit = Events.PS2_ACHIEVEMENT;
+  readonly emit = 'achievementEarned';
 
   readonly achievement_id: string;
   readonly event_name: 'AchievementEarned';

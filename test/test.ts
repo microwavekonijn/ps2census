@@ -1,4 +1,4 @@
-import { CensusClient, Events, Kill } from '../src';
+import { CensusClient, Kill } from '../src';
 import { config as env } from 'dotenv';
 
 env();
@@ -18,10 +18,8 @@ const client = new CensusClient(process.env.SERVICE_ID, 'ps2', {
       eventNames: ['Death'],
       logicalAndCharactersWithWorlds: true,
     },
-    streamConfig: {
-      wsOptions: {
-        rejectUnauthorized: Boolean(process.env.IGNORE_FAILED_CERT),
-      },
+    wsOptions: {
+      rejectUnauthorized: Boolean(process.env.IGNORE_FAILED_CERT),
     },
   },
 });
@@ -31,9 +29,9 @@ client.on('reconnecting', () => console.log('Reconnecting'));
 client.on('disconnected', () => console.log('Disconnected'));
 client.on('warn', e => console.log(e));
 client.on('subscribed', s => console.log(JSON.stringify(s)));
-client.on('debug', (info, label) => console.log(`${label}: ${info}`));
+client.on('debug', info => console.log(info));
 
-client.on(Events.PS2_DEATH, async e => {
+client.on('death', async e => {
   if (e.attacker_character_id === '0' || e.character_id === '0') return;
 
   const [victim, attacker] = await Promise.all([e.character(), e.attacker()]);
@@ -54,9 +52,7 @@ client.on(Events.PS2_DEATH, async e => {
   }
 });
 
-client.on(Events.PS2_DUPLICATE, e =>
-  console.log('Duplicate', JSON.stringify(e)),
-);
+client.on('duplicate', e => console.log('Duplicate', JSON.stringify(e)));
 
 let aborting = false;
 const abort = (code = 0, e?: Error) => {

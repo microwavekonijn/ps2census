@@ -1,24 +1,20 @@
 import { CensusClient } from './census.client';
-import { EventStream, EventStreamOptions } from './event.stream';
-import { Events } from './constants/client.constants';
+import { StreamClient, StreamClientOptions } from '../stream/stream.client';
 import Timeout = NodeJS.Timeout;
 import { StreamHandler } from './stream.handler';
 import { DuplicateFilter } from './utils/duplicate-filter';
 import { SubscriptionManager } from './subscription.manager';
-import { EventStreamSubscription } from './types/event-stream-subscription';
+import { EventSubscription } from './types/event-subscription.types';
 
-export interface EventStreamManagerOptions {
-  subscription?: EventStreamSubscription;
-  streamConfig?: EventStreamOptions;
+export interface StreamManagerOptions extends StreamClientOptions {
+  subscription?: EventSubscription;
 }
 
 export class StreamManager {
-  private static readonly label = 'EventStreamManager';
-
   /**
    * The event stream
    */
-  private readonly stream: EventStream;
+  private readonly stream: StreamClient;
 
   /**
    * @type {boolean} whether the connection has been destroyed
@@ -36,7 +32,7 @@ export class StreamManager {
   private reconnectTimeout?: Timeout;
 
   /**
-   * @type {EventStreamSubscription[]} Array of subscriptions
+   * @type {SubscriptionManager} Manages the subscription
    */
   readonly subscriptionManager: SubscriptionManager;
 
@@ -47,22 +43,28 @@ export class StreamManager {
 
   /**
    * @param {CensusClient} client
-   * @param {EventStreamManagerOptions} config
+   * @param {StreamManagerOptions} options
    */
   constructor(
     readonly client: CensusClient,
-    { subscription = {}, streamConfig }: EventStreamManagerOptions = {},
+    options: StreamManagerOptions = {},
   ) {
-    this.handler = new StreamHandler(this.client, new DuplicateFilter());
-    this.stream = new EventStream(this.client.serviceId, this.handler, {
-      emitter: this.client,
-      environment: this.client.environment,
-      ...streamConfig,
-    });
+    this.stream = new StreamClient(
+      this.client.serviceId,
+      this.client.environment,
+      options,
+    );
+
+    this.handler = new StreamHandler(
+      this.client,
+      this.stream,
+      new DuplicateFilter(),
+    );
+
     this.subscriptionManager = new SubscriptionManager(
       this.client,
       this.stream,
-      subscription,
+      options.subscription,
     );
 
     this.prepareEventStream();
@@ -75,13 +77,13 @@ export class StreamManager {
     /**
      * Stream closed
      */
-    this.stream.on(Events.STREAM_CLOSE, (code, reason) => {
+    this.stream.on('close', (code, reason) => {
       if (this.destroyed) {
-        this.client.emit(Events.STREAM_DISCONNECTED, code, reason);
+        this.client.emit('disconnected', code, reason);
         return;
       }
 
-      this.client.emit(Events.STREAM_RECONNECTING);
+      this.client.emit('reconnecting');
 
       void this.reconnect();
     });
@@ -89,10 +91,22 @@ export class StreamManager {
     /**
      * Stream destroyed without connection
      */
-    this.stream.on(Events.STREAM_DESTROYED, () => {
-      this.client.emit(Events.STREAM_RECONNECTING);
+    this.stream.on('destroyed', () => {
+      this.client.emit('reconnecting');
 
       void this.reconnect();
+    });
+
+    this.stream.on('error', error => {
+      this.client.emit('error', error);
+    });
+
+    this.stream.on('warn', error => {
+      this.client.emit('warn', error);
+    });
+
+    this.stream.on('debug', info => {
+      this.client.emit('debug', info);
     });
   }
 
@@ -105,15 +119,15 @@ export class StreamManager {
     if (this.stream.isReady) return;
 
     const ready = () => {
-      this.client.emit(Events.STREAM_READY);
+      this.client.emit('ready');
     };
 
-    this.stream.once(Events.STREAM_READY, ready);
+    this.stream.once('ready', ready);
 
     try {
       await this.stream.connect();
     } catch (e: any) {
-      this.stream.removeListener(Events.STREAM_READY, ready);
+      this.stream.removeListener('ready', ready);
 
       if ([403].includes(e.httpState)) {
         throw new Error(`Service ID rejected.`);
@@ -132,11 +146,7 @@ export class StreamManager {
     if (this.destroyed) return;
     this.destroyed = true;
 
-    this.client.emit(
-      Events.DEBUG,
-      `Manager disconnected.`,
-      StreamManager.label,
-    );
+    this.client.emit('debug', `Manager disconnected.`);
 
     if (this.reconnectTimeout) {
       clearTimeout(this.reconnectTimeout);
@@ -155,7 +165,7 @@ export class StreamManager {
     } catch (e: any) {
       if ([403].includes(e.httpState)) {
         this.client.emit(
-          Events.ERROR,
+          'error',
           new Error(`Service ID rejected while trying to reconnect.`),
         );
         this.disconnect();
@@ -164,9 +174,8 @@ export class StreamManager {
       }
 
       this.client.emit(
-        Events.DEBUG,
+        'debug',
         `Reconnect failed, trying again in ${this.reconnectDelay}ms.`,
-        StreamManager.label,
       );
 
       if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);

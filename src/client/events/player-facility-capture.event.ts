@@ -1,8 +1,7 @@
-import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 
 export class PlayerFacilityCapture extends CharacterEvent {
-  readonly emit = Events.PS2_CAPTURE;
+  readonly emit = 'playerFacilityCapture';
 
   readonly event_name: 'PlayerFacilityCapture';
   readonly facility_id: string;

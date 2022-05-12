@@ -1,8 +1,7 @@
 import { PS2Event } from './ps2.event';
-import { Events } from '../constants/client.constants';
 
 export class ContinentUnlock extends PS2Event {
-  readonly emit = Events.PS2_UNLOCK;
+  readonly emit = 'continentUnlock';
 
   event_name: 'ContinentUnlock';
   event_type: string;
