@@ -73,20 +73,3 @@ export const loadoutTypeMap = new Map<string, Loadout>([
   ['32', Loadout.HeavyAssault],
   ['45', Loadout.MAX],
 ]);
-
-export const endpointsToId = new Map<string, string>([
-  // PC
-  ['EventServerEndpoint_Connery_1', '1'],
-  ['EventServerEndpoint_Miller_10', '10'],
-  ['EventServerEndpoint_Cobalt_13', '13'],
-  ['EventServerEndpoint_Emerald_17', '17'],
-  ['EventServerEndpoint_Jaeger_19', '19'],
-  ['EventServerEndpoint_SolTech_40', '40'],
-  // PS4eu
-  ['EventServerEndpoint_2000_Ceres', '2000'],
-  // PS4us, what the f*ck
-  [
-    'EventServerEndpoint_1000_Genudine_1001_Palos_1002_Crux_1003_Searhus_1004_Xelas',
-    '1000',
-  ],
-]);

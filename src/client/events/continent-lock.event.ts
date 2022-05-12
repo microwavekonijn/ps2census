@@ -1,8 +1,7 @@
 import { PS2Event } from './ps2.event';
-import { Events } from '../constants/client.constants';
 
 export class ContinentLock extends PS2Event {
-  readonly emit = Events.PS2_LOCK;
+  readonly emit = 'continentLock';
 
   event_name: 'ContinentLock';
   event_type: string;

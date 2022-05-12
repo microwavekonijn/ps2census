@@ -1,8 +1,7 @@
-import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 
 export class ItemAdded extends CharacterEvent {
-  readonly emit = Events.PS2_ITEM;
+  readonly emit = 'itemAdded';
 
   readonly context: string;
   readonly event_name: 'ItemAdded';

@@ -1,4 +1,3 @@
-import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 import {
   Faction,
@@ -25,7 +24,7 @@ export class VehicleDestroy extends CharacterEvent {
   static loadoutFactionMap = loadoutFactionMap;
   static loadoutTypeMap = loadoutTypeMap;
 
-  readonly emit = Events.PS2_VEHICLE_DESTROYED;
+  readonly emit = 'vehicleDestroy';
 
   readonly attacker_character_id: string;
   readonly attacker_loadout_id: string;

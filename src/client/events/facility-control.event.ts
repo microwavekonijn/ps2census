@@ -1,8 +1,7 @@
 import { PS2Event } from './ps2.event';
-import { Events } from '../constants/client.constants';
 
 export class FacilityControl extends PS2Event {
-  readonly emit = Events.PS2_CONTROL;
+  readonly emit = 'facilityControl';
 
   readonly duration_held: string;
   readonly event_name: 'FacilityControl';

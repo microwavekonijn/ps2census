@@ -64,20 +64,17 @@ export class CharacterManager {
     let retries = this.maxRetries;
     const attempts = [];
 
-    this.client.emit(
-      'debug',
-      `Fetching character with id "${id}" from Census`,
-      CharacterManager.name,
-    );
+    this.client.emit('debug', `Fetching character with id "${id}" from Census`);
 
     do {
       try {
         const data = await this.query.get(conditions);
 
-        if (data.length <= 0)
-          throw new Error(`Census did not return a character for "${id}"`);
+        if (data.length > 0) return data[0];
 
-        return data[0];
+        attempts.push(
+          new Error(`Census did not return a character for "${id}"`),
+        );
       } catch (e) {
         attempts.push(e);
       }

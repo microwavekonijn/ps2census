@@ -1,8 +1,7 @@
 import { PS2Event } from './ps2.event';
-import { Events } from '../constants/client.constants';
 
 export class MetagameEvent extends PS2Event {
-  readonly emit = Events.PS2_META_EVENT;
+  readonly emit = 'metagameEvent';
 
   readonly event_name: 'MetagameEvent';
   readonly experience_bonus: string;

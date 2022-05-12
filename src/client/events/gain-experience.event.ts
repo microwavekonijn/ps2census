@@ -1,8 +1,7 @@
-import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 
 export class GainExperience extends CharacterEvent {
-  readonly emit = Events.PS2_EXPERIENCE;
+  readonly emit = 'gainExperience';
 
   readonly amount: string;
   readonly event_name: 'GainExperience';

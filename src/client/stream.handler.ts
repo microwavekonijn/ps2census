@@ -1,10 +1,9 @@
-import { StreamHandlerContract as EventStreamHandlerContract } from './concerns/stream-handler.contract';
-import { PS2EventData } from './types/ps2.events';
+import { PS2Event as PS2EventPayload } from '../stream/types/ps2.events';
 import { StreamFilterContract } from './concerns/stream-filter.contract';
 import { PS2Event } from './events/ps2.event';
 import { CensusClient } from './census.client';
-import { Events } from './constants/client.constants';
-import { endpointsToId } from './constants/ps2.constants';
+import { CensusMessages, StreamClient } from '../stream';
+import { stringToBoolean } from '../utils/formatters';
 
 import { AchievementEarned } from './events/achievement-earned.event';
 import { BattleRankUpEvent } from './events/battle-rank-up.event';
@@ -21,36 +20,56 @@ import { PlayerLogin } from './events/player-login.event';
 import { PlayerLogout } from './events/player-logout.event';
 import { SkillAdded } from './events/skill-added.event';
 import { VehicleDestroy } from './events/vehicle-destroy.event';
-import { stringToBoolean } from '../utils/formatters';
+import { EventSubscribed } from './types';
+import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 
-export class StreamHandler implements EventStreamHandlerContract {
-  static endpointsToId = endpointsToId;
-
+export class StreamHandler {
   /**
    * @param {CensusClient} client
+   * @param {StreamClient} stream
    * @param {StreamFilterContract} filter
    */
   constructor(
     private readonly client: CensusClient,
+    private readonly stream: StreamClient,
     private readonly filter: StreamFilterContract,
-  ) {}
+  ) {
+    this.prepareListeners();
+  }
+
+  private prepareListeners(): void {
+    this.stream.on('message', message => {
+      if (message.service === 'event') {
+        switch (message.type) {
+          case 'serviceStateChanged':
+            this.handleServerStateChanged(message);
+            break;
+          case 'serviceMessage':
+            this.handleEvent(message.payload);
+            break;
+        }
+      } else if (message.subscription) {
+        this.handleSubscription(message.subscription);
+      }
+    });
+  }
 
   /**
    * Handles the event
    *
-   * @param {PS2EventData} event
+   * @param {PS2Event} event
    */
-  handleEvent(event: PS2EventData): void {
+  private handleEvent(event: PS2EventPayload): void {
     const wrapped = this.wrapEvent(event);
 
     if (!this.filter.filter(wrapped)) {
       setImmediate(() => {
-        this.client.emit(Events.PS2_EVENT, wrapped);
+        this.client.emit('ps2Event', wrapped);
         this.client.emit(wrapped.emit, wrapped);
       });
     } else {
       setImmediate(() => {
-        this.client.emit(Events.PS2_DUPLICATE, wrapped);
+        this.client.emit('duplicate', wrapped);
       });
     }
   }
@@ -60,9 +79,9 @@ export class StreamHandler implements EventStreamHandlerContract {
    *
    * @param subscription
    */
-  handleSubscription(subscription: any): void {
+  private handleSubscription(subscription: EventSubscribed): void {
     setImmediate(() => {
-      this.client.emit(Events.PS2_SUBSCRIBED, subscription);
+      this.client.emit('subscribed', subscription);
     });
   }
 
@@ -71,14 +90,14 @@ export class StreamHandler implements EventStreamHandlerContract {
    *
    * @param state
    */
-  handleServerStateChanged(state: any): void {
-    const id = StreamHandler.endpointsToId.get(state.detail);
+  private handleServerStateChanged(state: ServiceStateChanged): void {
+    const id = state.detail.match(/\d+/)![0];
 
     if (id) {
       const online = stringToBoolean(state.online);
 
       setImmediate(() => {
-        this.client.emit(Events.PS2_SERVICE_STATE, id, online);
+        this.client.emit('serviceState', id, online);
       });
     }
   }
@@ -86,10 +105,10 @@ export class StreamHandler implements EventStreamHandlerContract {
   /**
    * Factory that wraps events, I don't know what more to say
    *
-   * @param {PS2EventData} event
+   * @param {PS2Event} event
    * @return {PS2Event}
    */
-  private wrapEvent(event: PS2EventData): PS2Event {
+  private wrapEvent(event: PS2EventPayload): PS2Event {
     switch (event.event_name) {
       case 'AchievementEarned':
         return new AchievementEarned(this.client, event);

@@ -1,4 +1,3 @@
-import { Events } from '../constants/client.constants';
 import { CharacterEvent } from './character.event';
 import {
   Faction,
@@ -6,8 +5,9 @@ import {
   loadoutFactionMap,
   loadoutTypeMap,
 } from '../constants/ps2.constants';
-import { DeathData } from '../..';
+import { PS2Events } from '../../stream/types/ps2.events';
 import { numberStringToBoolean } from '../../utils/formatters';
+import DeathPayload = PS2Events.Death;
 
 export enum Kill {
   Normal,
@@ -24,7 +24,7 @@ export class Death extends CharacterEvent {
   static loadoutFactionMap = loadoutFactionMap;
   static loadoutTypeMap = loadoutTypeMap;
 
-  readonly emit = Events.PS2_DEATH;
+  readonly emit = 'death';
 
   readonly attacker_character_id: string;
   readonly attacker_fire_mode_id: string;
@@ -38,10 +38,10 @@ export class Death extends CharacterEvent {
 
   /**
    * Cast is_headshot to boolean
-   * @param {DeathData} data
+   * @param {Death} data
    * @protected
    */
-  protected cast(data: DeathData) {
+  protected cast(data: DeathPayload) {
     (this as any)['is_headshot'] = numberStringToBoolean(data.is_headshot);
   }
 
