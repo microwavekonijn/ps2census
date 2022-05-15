@@ -22,7 +22,7 @@ import { PlayerLogin } from './events/player-login.event';
 import { PlayerLogout } from './events/player-logout.event';
 import { SkillAdded } from './events/skill-added.event';
 import { VehicleDestroy } from './events/vehicle-destroy.event';
-import { EventSubscribed } from './types';
+import { EventSubscribed } from './types/event-subscription.types';
 
 export class StreamHandler {
   /**
