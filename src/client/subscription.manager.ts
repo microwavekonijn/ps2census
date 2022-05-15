@@ -53,7 +53,7 @@ export class SubscriptionManager {
     this.stream.on('ready', async () => {
       this.client.emit('debug', `Subscribing to events`);
 
-      await this.commandHandler.subscribe({});
+      await this.commandHandler.subscribe(this.subscription);
     });
   }
 

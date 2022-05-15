@@ -113,7 +113,7 @@ export class CommandHandler {
     queue: Queue<CommandCallback<T>>,
     command: CensusCommand,
   ): Promise<T> {
-    return new Promise((resolve, reject) => {
+    return new Promise<T>((resolve, reject) => {
       if (!this.stream.isReady)
         reject(new StreamClosedException('Stream is closed'));
 
@@ -122,7 +122,7 @@ export class CommandHandler {
         reject,
       });
 
-      this.stream.send(command).catch();
+      this.stream.send(command).catch(reject);
     });
   }
 }
