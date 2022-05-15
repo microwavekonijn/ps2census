@@ -1,4 +1,7 @@
-export * from './rest.client';
+export {
+  RestClient as Client,
+  RestClientOptions as ClientOptions,
+} from './rest.client';
 export * from './get.query';
 
 export * from './utils/census-response';

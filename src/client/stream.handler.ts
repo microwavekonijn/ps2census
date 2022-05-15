@@ -2,8 +2,10 @@ import { PS2Event as PS2EventPayload } from '../stream/types/ps2.events';
 import { StreamFilterContract } from './concerns/stream-filter.contract';
 import { PS2Event } from './events/ps2.event';
 import { CensusClient } from './census.client';
-import { CensusMessages, StreamClient } from '../stream';
+import { StreamClient } from '../stream/stream.client';
+import { CensusMessages } from '../stream/types/messages.types';
 import { stringToBoolean } from '../utils/formatters';
+import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 
 import { AchievementEarned } from './events/achievement-earned.event';
 import { BattleRankUpEvent } from './events/battle-rank-up.event';
@@ -21,7 +23,6 @@ import { PlayerLogout } from './events/player-logout.event';
 import { SkillAdded } from './events/skill-added.event';
 import { VehicleDestroy } from './events/vehicle-destroy.event';
 import { EventSubscribed } from './types';
-import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 
 export class StreamHandler {
   /**
@@ -88,7 +89,7 @@ export class StreamHandler {
   /**
    * Handler whenever a service state changed notification comes in
    *
-   * @param state
+   * @param {ServiceStateChanged} state
    */
   private handleServerStateChanged(state: ServiceStateChanged): void {
     const id = state.detail.match(/\d+/)![0];

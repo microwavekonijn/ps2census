@@ -1,7 +1,7 @@
 import { EventEmitter } from 'eventemitter3';
 import { StreamManagerOptions, StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
-import { RestClient, RestClientOptions } from '../rest';
+import { RestClient, RestClientOptions } from '../rest/rest.client';
 import { CharacterManager, CharacterManagerOptions } from './managers';
 import {
   AchievementEarned,

@@ -5,7 +5,7 @@ import { CensusMessage } from './types/messages.types';
 import { CensusCommand } from './types/command.types';
 import Timeout = NodeJS.Timeout;
 
-export enum State {
+enum State {
   IDLE,
   CONNECTING,
   NEARLY,

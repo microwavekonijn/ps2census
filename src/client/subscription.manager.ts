@@ -2,7 +2,7 @@ import { CensusClient } from './census.client';
 import { StreamClient } from '../stream/stream.client';
 import { PS2EventNames } from '../stream/types/ps2.events';
 import { EventSubscribed, EventSubscription } from './types';
-import { CensusCommands } from '../stream';
+import { CensusCommands } from '../stream/types/command.types';
 import Subscribe = CensusCommands.Subscribe;
 import ClearSubscribe = CensusCommands.ClearSubscribe;
 
