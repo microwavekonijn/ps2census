@@ -1,5 +1,5 @@
 import { CacheContract } from '../concerns/cache.contract';
-import { GetQuery } from '../../rest';
+import { GetQuery } from '../../rest/get.query';
 import { CensusClient } from '../census.client';
 import { MaxRetryException } from '../exceptions/max-retry.exception';
 import { LocalCache } from '../utils/local.cache';

@@ -2,8 +2,10 @@ import { PS2Event as PS2EventPayload } from '../stream/types/ps2.events';
 import { StreamFilterContract } from './concerns/stream-filter.contract';
 import { PS2Event } from './events/ps2.event';
 import { CensusClient } from './census.client';
-import { CensusMessages, StreamClient } from '../stream';
+import { StreamClient } from '../stream/stream.client';
+import { CensusMessages } from '../stream/types/messages.types';
 import { stringToBoolean } from '../utils/formatters';
+import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 
 import { AchievementEarned } from './events/achievement-earned.event';
 import { BattleRankUpEvent } from './events/battle-rank-up.event';
@@ -20,8 +22,7 @@ import { PlayerLogin } from './events/player-login.event';
 import { PlayerLogout } from './events/player-logout.event';
 import { SkillAdded } from './events/skill-added.event';
 import { VehicleDestroy } from './events/vehicle-destroy.event';
-import { EventSubscribed } from './types';
-import ServiceStateChanged = CensusMessages.ServiceStateChanged;
+import { EventSubscribed } from './types/event-subscription.types';
 
 export class StreamHandler {
   /**
@@ -62,6 +63,8 @@ export class StreamHandler {
   private handleEvent(event: PS2EventPayload): void {
     const wrapped = this.wrapEvent(event);
 
+    if (!wrapped) return;
+
     if (!this.filter.filter(wrapped)) {
       setImmediate(() => {
         this.client.emit('ps2Event', wrapped);
@@ -88,7 +91,7 @@ export class StreamHandler {
   /**
    * Handler whenever a service state changed notification comes in
    *
-   * @param state
+   * @param {ServiceStateChanged} state
    */
   private handleServerStateChanged(state: ServiceStateChanged): void {
     const id = state.detail.match(/\d+/)![0];
@@ -108,7 +111,7 @@ export class StreamHandler {
    * @param {PS2Event} event
    * @return {PS2Event}
    */
-  private wrapEvent(event: PS2EventPayload): PS2Event {
+  private wrapEvent(event: PS2EventPayload): PS2Event | undefined {
     switch (event.event_name) {
       case 'AchievementEarned':
         return new AchievementEarned(this.client, event);

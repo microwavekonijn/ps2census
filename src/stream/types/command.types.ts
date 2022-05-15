@@ -30,6 +30,7 @@ export namespace CensusCommands {
         characters?: string[];
         eventNames?: ('all' | PS2EventNames)[];
         worlds?: string[];
+        logicalAndCharactersWithWorlds?: boolean;
       };
 
   export type RecentCharacters = {

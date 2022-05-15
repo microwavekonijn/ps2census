@@ -1,10 +1,11 @@
 import { CensusClient } from './census.client';
 import { StreamClient, StreamClientOptions } from '../stream/stream.client';
-import Timeout = NodeJS.Timeout;
 import { StreamHandler } from './stream.handler';
 import { DuplicateFilter } from './utils/duplicate-filter';
 import { SubscriptionManager } from './subscription.manager';
 import { EventSubscription } from './types/event-subscription.types';
+import { CommandHandler } from './command.handler';
+import Timeout = NodeJS.Timeout;
 
 export interface StreamManagerOptions extends StreamClientOptions {
   subscription?: EventSubscription;
@@ -15,6 +16,21 @@ export class StreamManager {
    * The event stream
    */
   private readonly stream: StreamClient;
+
+  /**
+   * @type {SubscriptionManager} Manages the subscription
+   */
+  readonly subscriptionManager: SubscriptionManager;
+
+  /**
+   * @type {StreamHandler} handles events, and subscriptions
+   */
+  private readonly streamHandler: StreamHandler;
+
+  /**
+   * @type {CommandHandler} handles commands
+   */
+  readonly commandHandler: CommandHandler;
 
   /**
    * @type {boolean} whether the connection has been destroyed
@@ -32,16 +48,6 @@ export class StreamManager {
   private reconnectTimeout?: Timeout;
 
   /**
-   * @type {SubscriptionManager} Manages the subscription
-   */
-  readonly subscriptionManager: SubscriptionManager;
-
-  /**
-   * @type {StreamHandler} handles events, and subscriptions
-   */
-  private readonly handler: StreamHandler;
-
-  /**
    * @param {CensusClient} client
    * @param {StreamManagerOptions} options
    */
@@ -55,15 +61,18 @@ export class StreamManager {
       options,
     );
 
-    this.handler = new StreamHandler(
+    this.streamHandler = new StreamHandler(
       this.client,
       this.stream,
       new DuplicateFilter(),
     );
 
+    this.commandHandler = new CommandHandler(this.stream);
+
     this.subscriptionManager = new SubscriptionManager(
       this.client,
       this.stream,
+      this.commandHandler,
       options.subscription,
     );
 

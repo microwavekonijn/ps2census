@@ -1,7 +1,7 @@
 import { EventEmitter } from 'eventemitter3';
 import { StreamManagerOptions, StreamManager } from './stream.manager';
 import { PS2Environment } from '../types/ps2.options';
-import { RestClient, RestClientOptions } from '../rest';
+import { RestClient, RestClientOptions } from '../rest/rest.client';
 import { CharacterManager, CharacterManagerOptions } from './managers';
 import {
   AchievementEarned,
@@ -134,9 +134,9 @@ export class CensusClient extends EventEmitter<ClientEvents> {
   /**
    * Purge all subscriptions
    *
-   * @return {Promise<EventSubscribed | null>}
+   * @return {Promise<void>}
    */
-  unsubscribeAll(): Promise<EventSubscribed | null> {
+  unsubscribeAll(): Promise<void> {
     return this.streamManager.subscriptionManager.unsubscribeAll();
   }
 
@@ -148,5 +148,23 @@ export class CensusClient extends EventEmitter<ClientEvents> {
    */
   resubscribe(reset = false): Promise<boolean> {
     return this.streamManager.subscriptionManager.resubscribe(reset);
+  }
+
+  /**
+   * Get all the recent character ids
+   *
+   * @return {Promise<string[]>} the list of character ids
+   */
+  recentCharacters(): Promise<string[]> {
+    return this.streamManager.commandHandler.recentCharacters();
+  }
+
+  /**
+   * Get the number of recent characters
+   *
+   * @return {Promise<number>} the number of recent characters
+   */
+  recentCharacterCount(): Promise<number> {
+    return this.streamManager.commandHandler.recentCharacterCount();
   }
 }

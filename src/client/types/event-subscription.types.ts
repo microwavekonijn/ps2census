@@ -1,4 +1,5 @@
-import { CensusCommands, CensusMessages } from '../../stream';
+import { CensusMessages } from '../../stream/types/messages.types';
+import { CensusCommands } from '../../stream/types/command.types';
 import Subscribe = CensusCommands.Subscribe;
 import Subscription = CensusMessages.Subscription;
 

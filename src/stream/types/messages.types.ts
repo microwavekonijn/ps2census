@@ -23,7 +23,12 @@ export namespace CensusMessages {
   export type ServiceMessage = {
     service: 'event';
     type: 'serviceMessage';
-    payload: PS2Event;
+    payload:
+      | PS2Event
+      | {
+          recent_character_id_count: number;
+          recent_character_id_list?: string[];
+        };
   };
 
   export type Subscription = {

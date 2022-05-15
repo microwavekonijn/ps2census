@@ -2,9 +2,7 @@ import { CensusClient } from './census.client';
 import { StreamClient } from '../stream/stream.client';
 import { PS2EventNames } from '../stream/types/ps2.events';
 import { EventSubscribed, EventSubscription } from './types';
-import { CensusCommands } from '../stream';
-import Subscribe = CensusCommands.Subscribe;
-import ClearSubscribe = CensusCommands.ClearSubscribe;
+import { CommandHandler } from './command.handler';
 
 export class SubscriptionManager {
   /**
@@ -28,20 +26,15 @@ export class SubscriptionManager {
   private logicalAndCharactersWithWorlds: boolean;
 
   /**
-   * Queue that contains handlers for subscription response from the event stream
-   */
-  private readonly subscriptionResponseQueue = new Set<
-    (subscription: EventSubscribed) => void
-  >();
-
-  /**
    * @param {CensusClient} client the client used to emit debug events
    * @param {StreamClient} stream the stream to comment, like, and subscribe to
+   * @param {CommandHandler} commandHandler handles rpc of the stream
    * @param {EventSubscription} subscription the initial subscription
    */
   constructor(
     private readonly client: CensusClient,
     private readonly stream: StreamClient,
+    private readonly commandHandler: CommandHandler,
     subscription: EventSubscription = {},
   ) {
     this.characters = new Set(subscription.characters);
@@ -57,15 +50,10 @@ export class SubscriptionManager {
    * Registers important stream events
    */
   private registerClientEvents(): void {
-    this.stream.on('ready', () => {
+    this.stream.on('ready', async () => {
       this.client.emit('debug', `Subscribing to events`);
 
-      void this.stream.send(this.subscription);
-    });
-
-    this.stream.on('message', message => {
-      if ('subscription' in message)
-        this.handleSubscription(message.subscription);
+      await this.commandHandler.subscribe(this.subscription);
     });
   }
 
@@ -79,16 +67,14 @@ export class SubscriptionManager {
     worlds,
     eventNames,
     logicalAndCharactersWithWorlds,
-  }: EventSubscription): Promise<EventSubscribed | null> {
+  }: EventSubscription): Promise<EventSubscribed> {
     characters?.forEach(character => this.characters.add(character));
     worlds?.forEach(world => this.worlds.add(world));
     eventNames?.forEach(eventName => this.eventNames.add(eventName));
     this.logicalAndCharactersWithWorlds =
       logicalAndCharactersWithWorlds ?? this.logicalAndCharactersWithWorlds;
 
-    return this.updateSubscription({
-      service: 'event',
-      action: 'subscribe',
+    return this.commandHandler.subscribe({
       characters,
       worlds,
       eventNames,
@@ -106,16 +92,14 @@ export class SubscriptionManager {
     worlds,
     eventNames,
     logicalAndCharactersWithWorlds,
-  }: EventSubscription): Promise<EventSubscribed | null> {
+  }: EventSubscription): Promise<EventSubscribed> {
     characters?.forEach(character => this.characters.delete(character));
     worlds?.forEach(world => this.worlds.delete(world));
     eventNames?.forEach(eventName => this.eventNames.delete(eventName));
     this.logicalAndCharactersWithWorlds =
       logicalAndCharactersWithWorlds ?? this.logicalAndCharactersWithWorlds;
 
-    return this.updateSubscription({
-      service: 'event',
-      action: 'clearSubscribe',
+    return this.commandHandler.clearSubscribe({
       characters,
       worlds,
       eventNames,
@@ -126,17 +110,13 @@ export class SubscriptionManager {
   /**
    * Purge all subscriptions
    */
-  unsubscribeAll(): Promise<EventSubscribed | null> {
+  async unsubscribeAll(): Promise<void> {
     this.characters.clear();
     this.worlds.clear();
     this.eventNames.clear();
     this.logicalAndCharactersWithWorlds = false;
 
-    return this.updateSubscription({
-      service: 'event',
-      action: 'clearSubscribe',
-      all: 'true',
-    });
+    await this.commandHandler.clearSubscribeAll();
   }
 
   /**
@@ -149,7 +129,7 @@ export class SubscriptionManager {
     if (this.stream.isReady) {
       if (reset) await this.unsubscribeAll();
 
-      await this.stream.send(this.subscription);
+      await this.commandHandler.subscribe(this.subscription);
 
       return true;
     }
@@ -158,61 +138,12 @@ export class SubscriptionManager {
   }
 
   /**
-   * Handles incoming subscriptions so they can resolve a promise
-   * Note: The assumption is made that the messages are send in order
-   *
-   * @param {EventSubscribed} subscription
-   * @private
-   */
-  private handleSubscription(subscription: EventSubscribed): void {
-    const [resolver] = this.subscriptionResponseQueue;
-
-    if (resolver) {
-      this.subscriptionResponseQueue.delete(resolver);
-
-      resolver(subscription);
-    }
-  }
-
-  /**
-   * Update the event stream subscription
-   *
-   * @param {Subscribe | ClearSubscribe} command
-   * @return {Promise<EventSubscribed>}
-   * @private
-   */
-  private updateSubscription(
-    command: Subscribe | ClearSubscribe,
-  ): Promise<EventSubscribed | null> {
-    return new Promise(resolve => {
-      if (!this.stream.isReady) resolve(null);
-
-      const closed = () => {
-        this.subscriptionResponseQueue.delete(success);
-      };
-
-      const success = (subscription: EventSubscribed) => {
-        this.stream.off('close', closed);
-        resolve(subscription);
-      };
-
-      this.stream.once('close', closed);
-
-      this.subscriptionResponseQueue.add(success);
-
-      this.stream.send(command).catch();
-    });
-  }
-
-  /**
    * Get current subscription
    *
    * @return {Subscribe}
    */
-  private get subscription(): Subscribe {
+  private get subscription(): EventSubscription {
     return {
-      service: 'event',
-      action: 'subscribe',
       characters: Array.from(this.characters),
       worlds: Array.from(this.worlds),
       eventNames: Array.from(this.eventNames),
