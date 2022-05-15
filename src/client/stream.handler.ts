@@ -63,6 +63,8 @@ export class StreamHandler {
   private handleEvent(event: PS2EventPayload): void {
     const wrapped = this.wrapEvent(event);
 
+    if (!wrapped) return;
+
     if (!this.filter.filter(wrapped)) {
       setImmediate(() => {
         this.client.emit('ps2Event', wrapped);
@@ -109,7 +111,7 @@ export class StreamHandler {
    * @param {PS2Event} event
    * @return {PS2Event}
    */
-  private wrapEvent(event: PS2EventPayload): PS2Event {
+  private wrapEvent(event: PS2EventPayload): PS2Event | undefined {
     switch (event.event_name) {
       case 'AchievementEarned':
         return new AchievementEarned(this.client, event);
