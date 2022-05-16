@@ -72,16 +72,16 @@ client.destroy();
 ### Rest API
 
 ```js
-const { RestClient } = require('ps2census');
+const { Rest } = require('ps2census');
 
-const client = new RestClient({ serviceId: 'example' });
+const client = new Rest.Client('ps2ps4eu', { serviceId: 'example' });
 
 // Get character with items
 client
   .getQueryBuilder('character')
   .resolve('item')
   .exactMatchFirst(true)
-  .get('ps2ps4eu', { 'name.first_lower': '^microwave' })
+  .get({ 'name.first_lower': '^microwave' })
   .then(characters => {
     // Process the data
   });
