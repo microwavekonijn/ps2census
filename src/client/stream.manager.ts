@@ -33,9 +33,9 @@ export class StreamManager {
   readonly commandHandler: CommandHandler;
 
   /**
-   * @type {boolean} whether the connection has been destroyed
+   * @type {boolean} whether the connection has been started
    */
-  private destroyed = false;
+  private isStarted = false;
 
   /**
    * @type {number} delay before trying to reconnect
@@ -87,7 +87,7 @@ export class StreamManager {
      * Stream closed
      */
     this.stream.on('close', (code, reason) => {
-      if (this.destroyed) {
+      if (!this.isStarted) {
         this.client.emit('disconnected', code, reason);
         return;
       }
@@ -125,7 +125,8 @@ export class StreamManager {
    * @return {Promise<void>}
    */
   async connect(): Promise<void> {
-    if (this.stream.isReady) return;
+    if (this.isStarted) return;
+    this.isStarted = true;
 
     const ready = () => {
       this.client.emit('ready');
@@ -136,7 +137,7 @@ export class StreamManager {
     try {
       await this.stream.connect();
     } catch (e: any) {
-      this.stream.removeListener('ready', ready);
+      this.stream.off('ready', ready);
 
       if ([403].includes(e.httpState)) {
         throw new Error(`Service ID rejected.`);
@@ -152,8 +153,8 @@ export class StreamManager {
    * @return {Promise<void>}
    */
   disconnect(): void {
-    if (this.destroyed) return;
-    this.destroyed = true;
+    if (!this.isStarted) return;
+    this.isStarted = false;
 
     this.client.emit('debug', `Manager disconnected.`);
 
