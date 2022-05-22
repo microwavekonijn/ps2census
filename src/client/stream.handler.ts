@@ -100,7 +100,7 @@ export class StreamHandler {
       const online = stringToBoolean(state.online);
 
       setImmediate(() => {
-        this.client.emit('serviceState', id, online);
+        this.client.emit('serviceState', id, online, state.detail);
       });
     }
   }
