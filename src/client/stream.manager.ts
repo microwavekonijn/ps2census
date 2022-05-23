@@ -6,6 +6,7 @@ import { SubscriptionManager } from './subscription.manager';
 import { EventSubscription } from './types/event-subscription.types';
 import { CommandHandler } from './command.handler';
 import Timeout = NodeJS.Timeout;
+import { ServiceIdRejectException } from './exceptions/service-id-reject.exception';
 
 export interface StreamManagerOptions extends StreamClientOptions {
   subscription?: EventSubscription;
@@ -138,9 +139,10 @@ export class StreamManager {
       await this.stream.connect();
     } catch (e: any) {
       this.stream.off('ready', ready);
+      this.isStarted = false;
 
       if ([403].includes(e.httpState)) {
-        throw new Error(`Service ID rejected.`);
+        throw new ServiceIdRejectException(`Service ID rejected.`);
       } else {
         throw e;
       }
