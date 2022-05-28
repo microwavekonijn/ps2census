@@ -13,7 +13,11 @@ export namespace CensusCommands {
     service: 'event';
     action: 'subscribe';
     characters?: string[];
-    eventNames?: ('all' | PS2EventNames)[];
+    eventNames?: (
+      | 'all'
+      | PS2EventNames
+      | `GainExperience_experience_id_${number}`
+    )[];
     worlds?: string[];
     logicalAndCharactersWithWorlds?: boolean;
   };
@@ -28,7 +32,11 @@ export namespace CensusCommands {
         service: 'event';
         action: 'clearSubscribe';
         characters?: string[];
-        eventNames?: ('all' | PS2EventNames)[];
+        eventNames?: (
+          | 'all'
+          | PS2EventNames
+          | `GainExperience_experience_id_${number}`
+        )[];
         worlds?: string[];
         logicalAndCharactersWithWorlds?: boolean;
       };
