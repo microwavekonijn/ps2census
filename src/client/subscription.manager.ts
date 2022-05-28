@@ -18,7 +18,9 @@ export class SubscriptionManager {
   /**
    * Events to listen to
    */
-  private readonly eventNames: Set<'all' | PS2EventNames>;
+  private readonly eventNames: Set<
+    'all' | PS2EventNames | `GainExperience_experience_id_${number}`
+  >;
 
   /**
    * Whether both worlds and characters should match
