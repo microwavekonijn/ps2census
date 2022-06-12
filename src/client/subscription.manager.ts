@@ -164,7 +164,7 @@ export class SubscriptionManager {
    */
   async resubscribe(reset = false): Promise<boolean> {
     if (this.stream.isReady) {
-      if (reset) await this.unsubscribeAll();
+      if (reset) await this.commandHandler.clearSubscribeAll();
 
       await this.commandHandler.subscribe(this.subscription);
 
