@@ -151,6 +151,15 @@ export class CensusClient extends EventEmitter<ClientEvents> {
   }
 
   /**
+   * Verifies if the subscription matches with what is expected
+   *
+   * @return {Promise<boolean>} whether the subscription is correct
+   */
+  verifySubscription(): Promise<boolean> {
+    return this.streamManager.subscriptionManager.verifySubscription();
+  }
+
+  /**
    * Get all the recent character ids
    *
    * @return {Promise<string[]>} the list of character ids

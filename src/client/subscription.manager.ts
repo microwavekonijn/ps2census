@@ -122,6 +122,41 @@ export class SubscriptionManager {
   }
 
   /**
+   * Verifies if the subscription matches with what is expected
+   *
+   * @return {Promise<boolean>} whether the subscription is correct
+   */
+  async verifySubscription(): Promise<boolean> {
+    const subscription = await this.commandHandler.subscribe({});
+
+    if (
+      this.logicalAndCharactersWithWorlds !=
+      subscription.logicalAndCharactersWithWorlds
+    )
+      return false;
+
+    if (this.characters.has('all')) {
+      if (!('characters' in subscription)) return false;
+    } else {
+      if (
+        !('characterCount' in subscription) ||
+        subscription.characterCount != this.characters.size
+      )
+        return false;
+    }
+
+    for (const world of this.worlds) {
+      if (!subscription.worlds.some(id => world == id)) return false;
+    }
+
+    for (const event of this.eventNames) {
+      if (!subscription.eventNames.some(name => event == name)) return false;
+    }
+
+    return true;
+  }
+
+  /**
    * Rerun all subscriptions
    *
    * @param {boolean} reset When true unsubscribes from all events first
