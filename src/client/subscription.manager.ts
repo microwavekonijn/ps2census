@@ -3,6 +3,7 @@ import { StreamClient } from '../stream/stream.client';
 import { PS2EventNames } from '../stream/types/ps2.events';
 import { EventSubscribed, EventSubscription } from './types';
 import { CommandHandler } from './command.handler';
+import { StreamClosedException } from './exceptions';
 
 export class SubscriptionManager {
   /**
@@ -55,7 +56,11 @@ export class SubscriptionManager {
     this.stream.on('ready', async () => {
       this.client.emit('debug', `Subscribing to events`);
 
-      await this.commandHandler.subscribe(this.subscription);
+      try {
+        await this.commandHandler.subscribe(this.subscription);
+      } catch (err) {
+        if (!(err instanceof StreamClosedException)) throw err;
+      }
     });
   }
 
