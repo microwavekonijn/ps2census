@@ -171,6 +171,7 @@ export namespace PS2Events {
     timestamp: string;
     world_id: string;
     instance_id: string;
+    zone_id: string;
   };
 }
 

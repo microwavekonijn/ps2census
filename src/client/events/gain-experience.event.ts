@@ -1,4 +1,4 @@
-import { CharacterEvent } from './character.event';
+import { CharacterEvent } from './base/character.event';
 
 export class GainExperience extends CharacterEvent {
   readonly emit = 'gainExperience';
@@ -8,7 +8,6 @@ export class GainExperience extends CharacterEvent {
   readonly experience_id: string;
   readonly loadout_id: string;
   readonly other_id: string;
-  readonly zone_id: string;
 
   /**
    * Fetch the character data of other if any

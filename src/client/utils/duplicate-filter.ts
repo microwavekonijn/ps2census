@@ -1,5 +1,5 @@
 import { StreamFilterContract } from '../concerns/stream-filter.contract';
-import { PS2Event } from '../events/ps2.event';
+import { PS2Event } from '../events/base/ps2.event';
 import { DecayingSet } from './decaying-set';
 
 export class DuplicateFilter implements StreamFilterContract {

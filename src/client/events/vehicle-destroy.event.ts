@@ -1,11 +1,5 @@
-import { CharacterEvent } from './character.event';
-import {
-  Faction,
-  factionMap,
-  Loadout,
-  loadoutFactionMap,
-  loadoutTypeMap,
-} from '../constants/ps2.constants';
+import { Faction, factionMap } from '../constants/ps2.constants';
+import { AttackerEvent } from './base/attacker.event';
 
 export enum Destroy {
   Normal,
@@ -16,34 +10,18 @@ export enum Destroy {
   Undetermined,
 }
 
-export class VehicleDestroy extends CharacterEvent {
+export class VehicleDestroy extends AttackerEvent {
   /**
    * Can be overwritten if necessary
    */
   static factionMap = factionMap;
-  static loadoutFactionMap = loadoutFactionMap;
-  static loadoutTypeMap = loadoutTypeMap;
 
   readonly emit = 'vehicleDestroy';
 
-  readonly attacker_character_id: string;
-  readonly attacker_loadout_id: string;
-  readonly attacker_vehicle_id: string;
-  readonly attacker_weapon_id: string;
   readonly event_name: 'VehicleDestroy';
   readonly facility_id: string;
   readonly faction_id: string;
   readonly vehicle_id: string;
-  readonly zone_id: string;
-
-  /**
-   * Fetch the character data from the attacker
-   *
-   * @return {Promise<any>}
-   */
-  attacker(): Promise<any> {
-    return this.client.characterManager.fetch(this.attacker_character_id);
-  }
 
   /**
    * Vehicle was abandoned(friendly destroys are not counted)
@@ -86,24 +64,6 @@ export class VehicleDestroy extends CharacterEvent {
   }
 
   /**
-   * Faction of the attacker
-   *
-   * @return {Faction}
-   */
-  get attacker_faction(): Faction {
-    const faction = VehicleDestroy.loadoutFactionMap.get(
-      this.attacker_loadout_id,
-    );
-
-    if (faction === undefined)
-      throw new TypeError(
-        `Unknown attacker_loadout_id when determining faction: ${this.attacker_loadout_id}`,
-      );
-
-    return faction;
-  }
-
-  /**
    * Faction of victim
    *
    * @return {Faction}
@@ -117,22 +77,6 @@ export class VehicleDestroy extends CharacterEvent {
       );
 
     return faction;
-  }
-
-  /**
-   * Attacker was playing as
-   *
-   * @return {Loadout}
-   */
-  get attacker_loadout(): Loadout {
-    const loadout = VehicleDestroy.loadoutTypeMap.get(this.attacker_loadout_id);
-
-    if (loadout === undefined)
-      throw new TypeError(
-        `Unknown attacker_loadout_id when determining loadout: ${this.attacker_loadout_id}`,
-      );
-
-    return loadout;
   }
 
   toHash(): string {

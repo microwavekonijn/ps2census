@@ -1,6 +1,6 @@
-import { CharacterEvent } from './character.event';
+import { CharacterWorldEvent } from './base/character-world.event';
 
-export class PlayerLogout extends CharacterEvent {
+export class PlayerLogout extends CharacterWorldEvent {
   readonly emit = 'playerLogout';
 
   readonly event_name: 'PlayerLogout';
