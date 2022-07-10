@@ -23,7 +23,7 @@ export abstract class AttackerEvent extends CharacterEvent {
    *
    * @return {Promise<any>}
    */
-  attacker(): Promise<any> {
+  attacker<T = any>(): Promise<T> {
     return this.client.characterManager.fetch(this.attacker_character_id);
   }
 
