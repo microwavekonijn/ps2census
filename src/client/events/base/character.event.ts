@@ -8,7 +8,7 @@ export abstract class CharacterEvent extends ZoneEvent {
    *
    * @return {Promise<any>}
    */
-  character(): Promise<any> {
+  character<T = any>(): Promise<T> {
     return this.client.characterManager.fetch(this.character_id);
   }
 }

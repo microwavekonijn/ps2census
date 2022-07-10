@@ -31,7 +31,7 @@ export class CharacterManager {
     this.cache = cache ?? new LocalCache();
   }
 
-  async fetch(id: string, force = false): Promise<any> {
+  async fetch<T = any>(id: string, force = false): Promise<T> {
     if (this.queue.has(id)) return Object.assign({}, await this.queue.get(id)); // TODO: Deep clone the object
 
     if (!force) {
