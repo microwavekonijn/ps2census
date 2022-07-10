@@ -1,6 +1,6 @@
 import { PS2Event as PS2EventPayload } from '../stream/types/ps2.events';
 import { StreamFilterContract } from './concerns/stream-filter.contract';
-import { PS2Event } from './events/ps2.event';
+import { PS2Event } from './events/base/ps2.event';
 import { CensusClient } from './census.client';
 import { StreamClient } from '../stream/stream.client';
 import { CensusMessages } from '../stream/types/messages.types';

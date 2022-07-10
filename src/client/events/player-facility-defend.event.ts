@@ -1,4 +1,4 @@
-import { CharacterEvent } from './character.event';
+import { CharacterEvent } from './base/character.event';
 
 export class PlayerFacilityDefend extends CharacterEvent {
   readonly emit = 'playerFacilityDefend';
@@ -6,7 +6,6 @@ export class PlayerFacilityDefend extends CharacterEvent {
   readonly event_name: 'PlayerFacilityDefend';
   readonly facility_id: string;
   readonly outfit_id: string;
-  readonly zone_id: string;
 
   toHash(): string {
     return `PlayerFacilityDefend:${this.character_id}:${this.timestamp}`;

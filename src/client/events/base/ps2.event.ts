@@ -1,6 +1,6 @@
-import { CensusClient, ClientEvents } from '../census.client';
-import { PS2Event as PS2EventPayload } from '../../stream/types/ps2.events';
-import { unixToDate } from '../../utils/formatters';
+import { CensusClient, ClientEvents } from '../../census.client';
+import { PS2Event as PS2EventPayload } from '../../../stream/types/ps2.events';
+import { unixToDate } from '../../../utils/formatters';
 
 export abstract class PS2Event<T extends PS2EventPayload = PS2EventPayload> {
   readonly emit: keyof ClientEvents;

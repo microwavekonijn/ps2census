@@ -1,6 +1,6 @@
 import { PS2Event } from './ps2.event';
 
-export abstract class CharacterEvent extends PS2Event {
+export abstract class CharacterWorldEvent extends PS2Event {
   readonly character_id: string;
 
   /**

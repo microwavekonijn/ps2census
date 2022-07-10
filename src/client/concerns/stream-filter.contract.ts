@@ -1,4 +1,4 @@
-import { PS2Event } from '../events/ps2.event';
+import { PS2Event } from '../events/base/ps2.event';
 
 export interface StreamFilterContract {
   filter(event: PS2Event): boolean;

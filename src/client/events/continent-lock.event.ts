@@ -1,6 +1,6 @@
-import { PS2Event } from './ps2.event';
+import { WorldEvent } from './base/world.event';
 
-export class ContinentLock extends PS2Event {
+export class ContinentLock extends WorldEvent {
   readonly emit = 'continentLock';
 
   event_name: 'ContinentLock';
@@ -11,7 +11,6 @@ export class ContinentLock extends PS2Event {
   tr_population: string;
   triggering_faction: string;
   vs_population: string;
-  zone_id: string;
 
   toHash(): string {
     return `ContinentLock:${this.world_id}:${this.zone_id}:${this.timestamp}`;

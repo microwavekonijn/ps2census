@@ -1,12 +1,7 @@
-import { CharacterEvent } from './character.event';
-import {
-  Faction,
-  Loadout,
-  loadoutFactionMap,
-  loadoutTypeMap,
-} from '../constants/ps2.constants';
+import { Faction, Loadout } from '../constants/ps2.constants';
 import { PS2Events } from '../../stream/types/ps2.events';
 import { numberStringToBoolean } from '../../utils/formatters';
+import { AttackerEvent } from './base/attacker.event';
 import DeathPayload = PS2Events.Death;
 
 export enum Kill {
@@ -17,24 +12,13 @@ export enum Kill {
   Undetermined,
 }
 
-export class Death extends CharacterEvent {
-  /**
-   * Can be overwritten if necessary
-   */
-  static loadoutFactionMap = loadoutFactionMap;
-  static loadoutTypeMap = loadoutTypeMap;
-
+export class Death extends AttackerEvent {
   readonly emit = 'death';
 
-  readonly attacker_character_id: string;
   readonly attacker_fire_mode_id: string;
-  readonly attacker_loadout_id: string;
-  readonly attacker_vehicle_id: string;
-  readonly attacker_weapon_id: string;
   readonly character_loadout_id: string;
   readonly event_name: 'Death';
   readonly is_headshot: boolean;
-  readonly zone_id: string;
 
   /**
    * Cast is_headshot to boolean
@@ -43,15 +27,6 @@ export class Death extends CharacterEvent {
    */
   protected cast(data: DeathPayload) {
     (this as any)['is_headshot'] = numberStringToBoolean(data.is_headshot);
-  }
-
-  /**
-   * Fetch the character data from the attacker
-   *
-   * @return {Promise<any>}
-   */
-  attacker(): Promise<any> {
-    return this.client.characterManager.fetch(this.attacker_character_id);
   }
 
   /**
@@ -73,22 +48,6 @@ export class Death extends CharacterEvent {
   }
 
   /**
-   * Faction of the attacker
-   *
-   * @return {Faction}
-   */
-  get attacker_faction(): Faction {
-    const faction = Death.loadoutFactionMap.get(this.attacker_loadout_id);
-
-    if (faction === undefined)
-      throw new TypeError(
-        `Unknown attacker_loadout_id when determining faction: ${this.attacker_loadout_id}`,
-      );
-
-    return faction;
-  }
-
-  /**
    * Faction of victim
    *
    * @return {Faction}
@@ -102,22 +61,6 @@ export class Death extends CharacterEvent {
       );
 
     return faction;
-  }
-
-  /**
-   * Attacker was playing as
-   *
-   * @return {Loadout}
-   */
-  get attacker_loadout(): Loadout {
-    const loadout = Death.loadoutTypeMap.get(this.attacker_loadout_id);
-
-    if (loadout === undefined)
-      throw new TypeError(
-        `Unknown attacker_loadout_id when determining loadout: ${this.attacker_loadout_id}`,
-      );
-
-    return loadout;
   }
 
   /**
