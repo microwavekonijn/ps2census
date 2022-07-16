@@ -5,8 +5,8 @@ import { DuplicateFilter } from './utils/duplicate-filter';
 import { SubscriptionManager } from './subscription.manager';
 import { EventSubscription } from './types/event-subscription.types';
 import { CommandHandler } from './command.handler';
-import Timeout = NodeJS.Timeout;
 import { ServiceIdRejectException } from './exceptions/service-id-reject.exception';
+import Timeout = NodeJS.Timeout;
 
 export interface StreamManagerOptions extends StreamClientOptions {
   subscription?: EventSubscription;
@@ -87,7 +87,7 @@ export class StreamManager {
     /**
      * Stream closed
      */
-    this.stream.on('close', (code, reason) => {
+    this.stream.on('close', ({ code, reason }) => {
       if (!this.isStarted) {
         this.client.emit('disconnected', code, reason);
         return;
@@ -102,6 +102,8 @@ export class StreamManager {
      * Stream destroyed without connection
      */
     this.stream.on('destroyed', () => {
+      if (!this.isStarted) return;
+
       this.client.emit('reconnecting');
 
       void this.reconnect();

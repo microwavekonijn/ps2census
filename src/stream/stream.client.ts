@@ -23,7 +23,7 @@ export interface StreamClientOptions {
 type StreamClientEvents = {
   ready: () => void;
   destroyed: () => void;
-  close: (code: number, info: string) => void;
+  close: (info: { code: number; reason: string }) => void;
   error: (err: Error) => void;
   warn: (err: Error) => void;
   debug: (info: string) => void;
@@ -263,7 +263,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
     this.cleanupConnection();
 
     this.state = State.DISCONNECTED;
-    this.emit('close', code, reason.toString());
+    this.emit('close', { code, reason: reason.toString() });
   }
 
   /**

@@ -19,17 +19,19 @@ const client = new CensusClient(process.env.SERVICE_ID, 'ps2', {
       logicalAndCharactersWithWorlds: true,
     },
     wsOptions: {
-      rejectUnauthorized: Boolean(process.env.IGNORE_FAILED_CERT),
+      rejectUnauthorized:
+        process.env.IGNORE_FAILED_CERT?.toLowerCase() == 'true',
     },
   },
 });
 
-client.on('ready', () => console.log('Ready'));
-client.on('reconnecting', () => console.log('Reconnecting'));
-client.on('disconnected', () => console.log('Disconnected'));
-client.on('warn', e => console.log(e));
-client.on('subscribed', s => console.log(JSON.stringify(s)));
-client.on('debug', info => console.log(info));
+client
+  .on('ready', () => console.log('Ready'))
+  .on('reconnecting', () => console.log('Reconnecting'))
+  .on('disconnected', () => console.log('Disconnected'))
+  .on('warn', e => console.log(e))
+  .on('subscribed', s => console.log(JSON.stringify(s)))
+  .on('debug', info => console.debug(info));
 
 client.on('death', async e => {
   if (e.attacker_character_id === '0' || e.character_id === '0') return;
@@ -55,11 +57,11 @@ client.on('death', async e => {
 client.on('duplicate', e => console.log('Duplicate', JSON.stringify(e)));
 
 let aborting = false;
-const abort = (code = 0, e?: Error) => {
+const abort = (code = 0, err?: Error) => {
   if (aborting) return;
   aborting = true;
 
-  if (e) console.error(e);
+  if (err) console.error(err);
 
   console.log('Bye bye');
   client.destroy();
