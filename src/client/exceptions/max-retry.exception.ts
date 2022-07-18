@@ -12,6 +12,6 @@ export class MaxRetryException extends Error {
       )}`,
     );
 
-    this.name = 'MaxRetryException';
+    this.name = MaxRetryException.name;
   }
 }

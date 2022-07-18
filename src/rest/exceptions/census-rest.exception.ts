@@ -2,7 +2,7 @@ export class CensusRestException extends Error {
   constructor(message: string) {
     super(message);
 
-    this.name = 'CensusRestException';
+    this.name = CensusRestException.name;
   }
 
   hasNoData(): boolean {

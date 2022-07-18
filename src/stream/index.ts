@@ -5,3 +5,4 @@ import {
 
 export { Client, ClientOptions };
 export * from './types';
+export * from './exceptions';

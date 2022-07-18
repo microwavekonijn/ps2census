@@ -3,7 +3,7 @@ import { StreamClient } from '../stream/stream.client';
 import { PS2EventNames } from '../stream/types/ps2.events';
 import { EventSubscribed, EventSubscription } from './types';
 import { CommandHandler } from './command.handler';
-import { StreamClosedException } from './exceptions';
+import { StreamResponseException } from './exceptions/stream-response.exception';
 
 export class SubscriptionManager {
   /**
@@ -59,7 +59,7 @@ export class SubscriptionManager {
       try {
         await this.commandHandler.subscribe(this.subscription);
       } catch (err) {
-        if (!(err instanceof StreamClosedException)) throw err;
+        if (!(err instanceof StreamResponseException)) throw err;
       }
     });
   }
