@@ -90,7 +90,7 @@ export class StreamManager {
     /**
      * Stream closed
      */
-    this.stream.on('close', ({ code, reason }) => {
+    this.stream.on('close', (code, reason) => {
       if (!this.isStarted) {
         this.client.emit('disconnected', code, reason);
         return;

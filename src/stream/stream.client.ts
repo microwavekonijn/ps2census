@@ -3,7 +3,6 @@ import WebSocket, { ClientOptions, Data } from 'ws';
 import { PS2Environment } from '../types/ps2.options';
 import { CensusMessage } from './types/messages.types';
 import { CensusCommand } from './types/command.types';
-import { StreamCloseResponse } from './concerns/stream-close.response';
 import { StreamDestroyedException } from './exceptions/stream-destroyed.exception';
 import { StreamClosedException } from './exceptions/stream-closed.exception';
 import Timeout = NodeJS.Timeout;
@@ -26,7 +25,7 @@ export interface StreamClientOptions {
 type StreamClientEvents = {
   ready: () => void;
   destroyed: () => void;
-  close: (info: StreamCloseResponse) => void;
+  close: (code: number, reason?: string) => void;
   error: (err: Error) => void;
   warn: (err: Error) => void;
   debug: (info: string) => void;
@@ -143,9 +142,9 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
         reject(new StreamDestroyedException());
       };
 
-      const closed = (info: StreamCloseResponse) => {
+      const closed = (code: number, reason?: string) => {
         cleanup();
-        reject(new StreamClosedException(info));
+        reject(new StreamClosedException(code, reason));
       };
 
       const cleanup = () => {
@@ -267,7 +266,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
     this.cleanupConnection();
 
     this.state = State.DISCONNECTED;
-    this.emit('close', { code, reason: reason.toString() });
+    this.emit('close', code, reason.length ? reason.toString() : undefined);
   }
 
   /**
