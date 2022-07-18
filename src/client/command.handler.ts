@@ -2,7 +2,7 @@ import { StreamClient } from '../stream/stream.client';
 import { EventSubscribed, EventSubscription } from './types';
 import { Queue } from './utils/queue';
 import { CensusCommand } from '../stream';
-import { StreamClosedException } from './exceptions/stream-closed.exception';
+import { StreamResponseException } from './exceptions/stream-response.exception';
 
 interface CommandCallback<T> {
   resolve(data: T): void;
@@ -45,7 +45,7 @@ export class CommandHandler {
           this.subscriptionQueue
             .dequeue()
             .reject(
-              new StreamClosedException(
+              new StreamResponseException(
                 'Stream closed before receiving response',
               ),
             );
@@ -54,7 +54,7 @@ export class CommandHandler {
           this.recentCharacterQueue
             .dequeue()
             .reject(
-              new StreamClosedException(
+              new StreamResponseException(
                 'Stream closed before receiving response',
               ),
             );
@@ -113,10 +113,10 @@ export class CommandHandler {
     queue: Queue<CommandCallback<T>>,
     command: CensusCommand,
   ): Promise<T> {
-    return new Promise<T>((resolve, reject) => {
-      if (!this.stream.isReady)
-        reject(new StreamClosedException('Stream is closed'));
+    if (!this.stream.isReady)
+      return Promise.reject(new StreamResponseException('Stream is closed'));
 
+    return new Promise<T>((resolve, reject) => {
       this.stream
         .send(command)
         .then(() => {

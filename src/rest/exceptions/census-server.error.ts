@@ -4,7 +4,7 @@ export class CensusServerError extends Error {
   constructor(data: any) {
     super(data.errorMessage ?? 'Error message not supplied');
 
-    this.name = 'CensusServerError';
+    this.name = CensusServerError.name;
     this.code = data.errorCode;
   }
 }

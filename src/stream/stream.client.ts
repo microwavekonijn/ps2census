@@ -3,6 +3,9 @@ import WebSocket, { ClientOptions, Data } from 'ws';
 import { PS2Environment } from '../types/ps2.options';
 import { CensusMessage } from './types/messages.types';
 import { CensusCommand } from './types/command.types';
+import { StreamCloseResponse } from './concerns/stream-close.response';
+import { StreamDestroyedException } from './exceptions/stream-destroyed.exception';
+import { StreamClosedException } from './exceptions/stream-closed.exception';
 import Timeout = NodeJS.Timeout;
 
 enum State {
@@ -23,7 +26,7 @@ export interface StreamClientOptions {
 type StreamClientEvents = {
   ready: () => void;
   destroyed: () => void;
-  close: (info: { code: number; reason: string }) => void;
+  close: (info: StreamCloseResponse) => void;
   error: (err: Error) => void;
   warn: (err: Error) => void;
   debug: (info: string) => void;
@@ -130,32 +133,33 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
       return Promise.resolve();
 
     return new Promise((resolve, reject) => {
-      const accept = () => {
+      const ready = () => {
         cleanup();
         resolve();
       };
 
-      const decline = (...e: any[]) => {
+      const destroyed = () => {
         cleanup();
-        reject(e);
+        reject(new StreamDestroyedException());
+      };
+
+      const closed = (info: StreamCloseResponse) => {
+        cleanup();
+        reject(new StreamClosedException(info));
       };
 
       const cleanup = () => {
-        this.removeListener('ready', accept);
-        this.removeListener('destroyed', decline);
-        this.removeListener('close', decline);
+        this.removeListener('ready', ready)
+          .removeListener('destroyed', destroyed)
+          .removeListener('close', closed);
       };
 
-      this.once('ready', accept);
-      this.once('destroyed', decline);
-      this.once('close', decline);
+      this.once('ready', ready)
+        .once('destroyed', destroyed)
+        .once('close', closed);
 
-      if (this.connection && this.connection.readyState === WebSocket.OPEN) {
+      if (this.connection && this.state == State.READY) {
         this.emit('debug', `Open connection found, continuing operations.`);
-
-        // Assume everything is fine
-        this.state = State.READY;
-        this.emit('ready');
 
         return;
       }
@@ -176,10 +180,10 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
         this.wsOptions,
       ));
 
-      ws.on('open', this.onOpen.bind(this));
-      ws.on('message', this.onMessage.bind(this));
-      ws.on('close', this.onClose.bind(this));
-      ws.on('error', this.onError.bind(this));
+      ws.on('open', this.onOpen.bind(this))
+        .on('message', this.onMessage.bind(this))
+        .on('close', this.onClose.bind(this))
+        .on('error', this.onError.bind(this));
     });
   }
 

@@ -10,6 +10,7 @@ import Timeout = NodeJS.Timeout;
 
 export interface StreamManagerOptions extends StreamClientOptions {
   subscription?: EventSubscription;
+  reconnectDelay?: number;
 }
 
 export class StreamManager {
@@ -41,7 +42,7 @@ export class StreamManager {
   /**
    * @type {number} delay before trying to reconnect
    */
-  private reconnectDelay = 2000;
+  private readonly reconnectDelay: number;
 
   /**
    * @type {Timeout?} The reconnect timeout
@@ -76,6 +77,8 @@ export class StreamManager {
       this.commandHandler,
       options.subscription,
     );
+
+    this.reconnectDelay = options.reconnectDelay ?? 2000;
 
     this.prepareEventStream();
   }
@@ -174,29 +177,27 @@ export class StreamManager {
    * Connection has done something, now we need a new one
    */
   private async reconnect(): Promise<void> {
-    try {
-      await this.stream.connect();
-    } catch (e: any) {
-      if ([403].includes(e.httpState)) {
+    if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);
+
+    this.reconnectTimeout = setTimeout(async () => {
+      try {
+        await this.stream.connect();
+      } catch (e: any) {
+        if ([403].includes(e.httpState)) {
+          this.client.emit(
+            'error',
+            new Error(`Service ID rejected while trying to reconnect.`),
+          );
+          this.disconnect();
+
+          return;
+        }
+
         this.client.emit(
-          'error',
-          new Error(`Service ID rejected while trying to reconnect.`),
+          'debug',
+          `Reconnect failed, trying again in ${this.reconnectDelay}ms.`,
         );
-        this.disconnect();
-
-        return;
       }
-
-      this.client.emit(
-        'debug',
-        `Reconnect failed, trying again in ${this.reconnectDelay}ms.`,
-      );
-
-      if (this.reconnectTimeout) clearTimeout(this.reconnectTimeout);
-      this.reconnectTimeout = setTimeout(
-        () => this.reconnect(),
-        this.reconnectDelay,
-      );
-    }
+    }, this.reconnectDelay);
   }
 }
