@@ -23,7 +23,9 @@ export abstract class AttackerEvent extends CharacterEvent {
    *
    * @return {Promise<any>}
    */
-  attacker<T = any>(): Promise<T> {
+  attacker<T = any>(): Promise<T | undefined> {
+    if (this.attacker_character_id == '0') return Promise.resolve(undefined);
+
     return this.client.characterManager.fetch(this.attacker_character_id);
   }
 
