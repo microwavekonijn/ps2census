@@ -14,7 +14,7 @@ export class GainExperience extends CharacterEvent {
    *
    * @return {Promise<any | undefined>}
    */
-  async other(): Promise<any | undefined> {
+  async other<T>(): Promise<T | undefined> {
     if (this.other_id.length == 19)
       return this.client.characterManager.fetch(this.character_id);
   }
