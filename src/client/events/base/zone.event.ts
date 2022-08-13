@@ -8,6 +8,6 @@ export abstract class ZoneEvent extends PS2Event {
   }
 
   get zoneInstanceId(): number {
-    return (Number.parseInt(this.zone_id, 10) & 0xffff0000) >> 16;
+    return (Number.parseInt(this.zone_id, 10) & 0xffff0000) >>> 16;
   }
 }
