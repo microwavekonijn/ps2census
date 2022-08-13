@@ -41,30 +41,30 @@
   "homepage": "https://github.com/microwavekonijn/ps2census#readme",
   "dependencies": {
     "axios": "0.27.2",
-    "eventemitter3": "^4.0.7",
-    "ws": "8.7.0"
+    "eventemitter3": "4.0.7",
+    "ws": "8.8.1"
   },
   "optionalDependencies": {
     "bufferutil": "4.0.6",
     "utf-8-validate": "5.0.9"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.0.1",
-    "@commitlint/config-angular": "17.0.0",
-    "@types/node": "12.20.52",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-angular": "17.0.3",
+    "@types/node": "18.7.3",
     "@types/ws": "8.5.3",
-    "@typescript-eslint/eslint-plugin": "5.26.0",
-    "@typescript-eslint/parser": "5.26.0",
+    "@typescript-eslint/eslint-plugin": "5.33.0",
+    "@typescript-eslint/parser": "5.33.0",
     "dotenv": "16.0.1",
-    "eslint": "8.16.0",
+    "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "husky": "8.0.1",
     "lerna-changelog": "2.2.0",
-    "lint-staged": "12.4.2",
-    "prettier": "2.6.2",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
     "rimraf": "3.0.2",
-    "ts-node": "10.8.0",
-    "typescript": "4.7.2"
+    "ts-node": "10.9.1",
+    "typescript": "4.7.4"
   },
   "changelog": {
     "labels": {
