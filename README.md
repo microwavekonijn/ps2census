@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/microwavekonijn/ps2census/workflows/CI/badge.svg)](https://github.com/microwavekonijn/ps2census/actions)
 [![npm version](https://badge.fury.io/js/ps2census.svg)](https://www.npmjs.com/package/ps2census)
-[![Dependecies](https://img.shields.io/librariesio/github/microwavekonijn/ps2census)](https://libraries.io/github/microwavekonijn/ps2census)
+[![Dependencies](https://badges.depfu.com/badges/3a82f9d026a51daf0decae84eafa7845/overview.svg)](https://depfu.com/github/microwavekonijn/ps2census?project_id=36268)
 [![GitHub](https://img.shields.io/github/license/microwavekonijn/ps2census)](https://github.com/microwavekonijn/ps2census/blob/main/LICENSE)
 
 ## About
