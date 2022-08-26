@@ -1,6 +1,7 @@
 import { CharacterEvent } from './character.event';
 import {
   Faction,
+  factionMap,
   Loadout,
   loadoutFactionMap,
   loadoutTypeMap,
@@ -12,11 +13,13 @@ export abstract class AttackerEvent extends CharacterEvent {
    */
   static loadoutFactionMap = loadoutFactionMap;
   static loadoutTypeMap = loadoutTypeMap;
+  static factionMap = factionMap;
 
   readonly attacker_character_id: string;
   readonly attacker_loadout_id: string;
   readonly attacker_vehicle_id: string;
   readonly attacker_weapon_id: string;
+  readonly team_id: string;
 
   /**
    * Fetch the character data from the attacker
@@ -61,5 +64,21 @@ export abstract class AttackerEvent extends CharacterEvent {
       );
 
     return loadout;
+  }
+
+  /**
+   * Team the victim belongs to
+   *
+   * @return {Faction}
+   */
+  get team(): Faction {
+    const team = AttackerEvent.factionMap.get(this.team_id);
+
+    if (team === undefined)
+      throw new TypeError(
+        `Unknown team_id when determining team: ${this.team_id}`,
+      );
+
+    return team;
   }
 }

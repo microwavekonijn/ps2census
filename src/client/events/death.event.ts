@@ -9,16 +9,17 @@ export enum Kill {
   TeamKill,
   Suicide,
   RestrictedArea,
-  Undetermined,
 }
 
 export class Death extends AttackerEvent {
   readonly emit = 'death';
 
   readonly attacker_fire_mode_id: string;
+  readonly attacker_team_id: string;
   readonly character_loadout_id: string;
   readonly event_name: 'Death';
   readonly is_headshot: boolean;
+  readonly is_critical: boolean;
 
   /**
    * Cast is_headshot to boolean
@@ -27,6 +28,7 @@ export class Death extends AttackerEvent {
    */
   protected cast(data: DeathPayload) {
     (this as any)['is_headshot'] = numberStringToBoolean(data.is_headshot);
+    (this as any)['is_critical'] = numberStringToBoolean(data.is_critical);
   }
 
   /**
@@ -38,13 +40,23 @@ export class Death extends AttackerEvent {
     if (this.attacker_character_id === '0') return Kill.RestrictedArea;
     if (this.attacker_character_id === this.character_id) return Kill.Suicide;
 
-    const attacker = this.attacker_faction;
-    const possibleVictim = this.character_faction;
+    return this.attacker_team === this.team ? Kill.TeamKill : Kill.Normal;
+  }
 
-    if (attacker == Faction.NSO || possibleVictim == Faction.NSO)
-      return Kill.Undetermined;
+  /**
+   * Team the attacker belongs to
+   *
+   * @return {Faction}
+   */
+  get attacker_team(): Faction {
+    const team = AttackerEvent.factionMap.get(this.attacker_team_id);
 
-    return attacker === possibleVictim ? Kill.TeamKill : Kill.Normal;
+    if (team === undefined)
+      throw new TypeError(
+        `Unknown attacker_team_id when determining team: ${this.attacker_team_id}`,
+      );
+
+    return team;
   }
 
   /**

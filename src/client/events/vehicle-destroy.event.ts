@@ -48,7 +48,7 @@ export class VehicleDestroy extends AttackerEvent {
     if (this.attacker_character_id === '0') return Destroy.Game;
 
     const attacker_faction = this.attacker_faction;
-    const victim_faction = this.character_faction;
+    const victim_faction = this.team_id;
 
     if (
       this.attacker_character_id === this.character_id &&
