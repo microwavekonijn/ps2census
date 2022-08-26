@@ -23,13 +23,15 @@ export namespace PS2Events {
     attacker_character_id: string;
     attacker_fire_mode_id: string;
     attacker_loadout_id: string;
+    attacker_team_id: string;
     attacker_vehicle_id: string;
     attacker_weapon_id: string;
     character_id: string;
     character_loadout_id: string;
     event_name: 'Death';
-    // is_critical: string,
+    is_critical: string;
     is_headshot: string;
+    team_id: string;
     timestamp: string;
     // vehicle_id: string,
     world_id: string;
@@ -111,6 +113,7 @@ export namespace PS2Events {
     event_name: 'VehicleDestroy';
     facility_id: string;
     faction_id: string;
+    team_id: string;
     timestamp: string;
     vehicle_id: string;
     world_id: string;
