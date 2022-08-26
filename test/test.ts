@@ -48,9 +48,6 @@ client.on('death', async e => {
     case Kill.TeamKill:
       console.log(`${name(victim)} was teamkilled by ${name(attacker)}`);
       break;
-    case Kill.Undetermined:
-      console.log(`${name(victim)} was NSOed by ${name(attacker)}`);
-      break;
   }
 });
 
