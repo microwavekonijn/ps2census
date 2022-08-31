@@ -7,7 +7,6 @@ export enum Destroy {
   SelfDestruct,
   Neutral,
   Game,
-  Undetermined,
 }
 
 export class VehicleDestroy extends AttackerEvent {
@@ -47,7 +46,7 @@ export class VehicleDestroy extends AttackerEvent {
     if (this.faction_id === '0') return Destroy.Neutral;
     if (this.attacker_character_id === '0') return Destroy.Game;
 
-    const attacker_faction = this.attacker_faction;
+    const attacker_faction = this.attacker_team_id;
     const victim_faction = this.team_id;
 
     if (
@@ -55,8 +54,6 @@ export class VehicleDestroy extends AttackerEvent {
       attacker_faction === victim_faction
     )
       return Destroy.SelfDestruct;
-    if (attacker_faction === Faction.NSO || victim_faction === Faction.NSO)
-      return Destroy.Undetermined;
 
     return attacker_faction === victim_faction
       ? Destroy.Friendly

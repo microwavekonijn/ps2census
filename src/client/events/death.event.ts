@@ -15,7 +15,6 @@ export class Death extends AttackerEvent {
   readonly emit = 'death';
 
   readonly attacker_fire_mode_id: string;
-  readonly attacker_team_id: string;
   readonly character_loadout_id: string;
   readonly event_name: 'Death';
   readonly is_headshot: boolean;
@@ -41,22 +40,6 @@ export class Death extends AttackerEvent {
     if (this.attacker_character_id === this.character_id) return Kill.Suicide;
 
     return this.attacker_team === this.team ? Kill.TeamKill : Kill.Normal;
-  }
-
-  /**
-   * Team the attacker belongs to
-   *
-   * @return {Faction}
-   */
-  get attacker_team(): Faction {
-    const team = AttackerEvent.factionMap.get(this.attacker_team_id);
-
-    if (team === undefined)
-      throw new TypeError(
-        `Unknown attacker_team_id when determining team: ${this.attacker_team_id}`,
-      );
-
-    return team;
   }
 
   /**
