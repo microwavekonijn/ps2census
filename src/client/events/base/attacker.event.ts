@@ -16,6 +16,7 @@ export abstract class AttackerEvent extends CharacterEvent {
   static factionMap = factionMap;
 
   readonly attacker_character_id: string;
+  readonly attacker_team_id: string;
   readonly attacker_loadout_id: string;
   readonly attacker_vehicle_id: string;
   readonly attacker_weapon_id: string;
@@ -30,6 +31,22 @@ export abstract class AttackerEvent extends CharacterEvent {
     if (this.attacker_character_id == '0') return Promise.resolve(undefined);
 
     return this.client.characterManager.fetch(this.attacker_character_id);
+  }
+
+  /**
+   * Team the attacker belongs to
+   *
+   * @return {Faction}
+   */
+  get attacker_team(): Faction {
+    const team = AttackerEvent.factionMap.get(this.attacker_team_id);
+
+    if (team === undefined)
+      throw new TypeError(
+        `Unknown attacker_team_id when determining team: ${this.attacker_team_id}`,
+      );
+
+    return team;
   }
 
   /**

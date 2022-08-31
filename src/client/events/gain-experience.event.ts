@@ -8,6 +8,7 @@ export class GainExperience extends CharacterEvent {
   readonly experience_id: string;
   readonly loadout_id: string;
   readonly other_id: string;
+  readonly team_id: string;
 
   /**
    * Fetch the character data of other if any

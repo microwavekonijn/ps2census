@@ -45,6 +45,7 @@ export namespace PS2Events {
     experience_id: string;
     loadout_id: string;
     other_id: string;
+    team_id: string;
     timestamp: string;
     world_id: string;
     zone_id: string;
@@ -107,6 +108,7 @@ export namespace PS2Events {
   export type VehicleDestroy = {
     attacker_character_id: string;
     attacker_loadout_id: string;
+    attacker_team_id: string;
     attacker_vehicle_id: string;
     attacker_weapon_id: string;
     character_id: string;
