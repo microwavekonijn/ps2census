@@ -1,6 +1,7 @@
 import { CharacterEvent } from './base/character.event';
+import { PS2Events } from '../../stream';
 
-export class AchievementEarned extends CharacterEvent {
+export class AchievementEarned extends CharacterEvent<PS2Events.AchievementEarned> {
   readonly emit = 'achievementEarned';
 
   readonly achievement_id: string;

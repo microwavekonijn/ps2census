@@ -1,6 +1,7 @@
 import { CharacterEvent } from './base/character.event';
+import { PS2Events } from '../../stream';
 
-export class GainExperience extends CharacterEvent {
+export class GainExperience extends CharacterEvent<PS2Events.GainExperience> {
   readonly emit = 'gainExperience';
 
   readonly amount: string;

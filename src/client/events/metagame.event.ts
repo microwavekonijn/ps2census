@@ -1,6 +1,7 @@
 import { WorldEvent } from './base/world.event';
+import { PS2Events } from '../../stream';
 
-export class MetagameEvent extends WorldEvent {
+export class MetagameEvent extends WorldEvent<PS2Events.MetagameEvent> {
   readonly emit = 'metagameEvent';
 
   readonly event_name: 'MetagameEvent';

@@ -6,8 +6,11 @@ import {
   loadoutFactionMap,
   loadoutTypeMap,
 } from '../../constants';
+import { PS2Event as PS2EventPayload } from '../../../stream';
 
-export abstract class AttackerEvent extends CharacterEvent {
+export abstract class AttackerEvent<
+  T extends PS2EventPayload,
+> extends CharacterEvent<T> {
   /**
    * Can be overwritten if necessary
    */
@@ -16,11 +19,11 @@ export abstract class AttackerEvent extends CharacterEvent {
   static factionMap = factionMap;
 
   readonly attacker_character_id: string;
-  readonly attacker_team_id: string;
+  readonly attacker_team_id: Faction;
   readonly attacker_loadout_id: string;
   readonly attacker_vehicle_id: string;
   readonly attacker_weapon_id: string;
-  readonly team_id: string;
+  readonly team_id: Faction;
 
   /**
    * Fetch the character data from the attacker

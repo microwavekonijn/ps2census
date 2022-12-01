@@ -1,6 +1,7 @@
 import { WorldEvent } from './base/world.event';
+import { PS2Events } from '../../stream';
 
-export class FacilityControl extends WorldEvent {
+export class FacilityControl extends WorldEvent<PS2Events.FacilityControl> {
   readonly emit = 'facilityControl';
 
   readonly duration_held: string;

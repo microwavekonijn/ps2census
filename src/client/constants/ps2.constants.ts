@@ -1,7 +1,8 @@
 export enum Faction {
+  NONE = '0',
+  VS = '1',
   NC = '2',
   TR = '3',
-  VS = '1',
   NSO = '4',
 }
 

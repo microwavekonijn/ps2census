@@ -1,5 +1,6 @@
 import { Faction, factionMap } from '../constants/ps2.constants';
 import { AttackerEvent } from './base/attacker.event';
+import { PS2Events } from '../../stream';
 
 export enum Destroy {
   Normal,
@@ -9,7 +10,7 @@ export enum Destroy {
   Game,
 }
 
-export class VehicleDestroy extends AttackerEvent {
+export class VehicleDestroy extends AttackerEvent<PS2Events.VehicleDestroy> {
   /**
    * Can be overwritten if necessary
    */
@@ -19,7 +20,7 @@ export class VehicleDestroy extends AttackerEvent {
 
   readonly event_name: 'VehicleDestroy';
   readonly facility_id: string;
-  readonly faction_id: string;
+  readonly faction_id: Faction;
   readonly vehicle_id: string;
 
   /**

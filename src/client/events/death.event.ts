@@ -11,7 +11,7 @@ export enum Kill {
   RestrictedArea,
 }
 
-export class Death extends AttackerEvent {
+export class Death extends AttackerEvent<PS2Events.Death> {
   readonly emit = 'death';
 
   readonly attacker_fire_mode_id: string;
@@ -26,8 +26,8 @@ export class Death extends AttackerEvent {
    * @protected
    */
   protected cast(data: DeathPayload) {
-    (this as any)['is_headshot'] = numberStringToBoolean(data.is_headshot);
-    (this as any)['is_critical'] = numberStringToBoolean(data.is_critical);
+    (this as any).is_headshot = numberStringToBoolean(data.is_headshot);
+    (this as any).is_critical = numberStringToBoolean(data.is_critical);
   }
 
   /**

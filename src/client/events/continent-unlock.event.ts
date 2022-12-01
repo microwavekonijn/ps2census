@@ -1,6 +1,7 @@
 import { WorldEvent } from './base/world.event';
+import { PS2Events } from '../../stream';
 
-export class ContinentUnlock extends WorldEvent {
+export class ContinentUnlock extends WorldEvent<PS2Events.ContinentUnlock> {
   readonly emit = 'continentUnlock';
 
   event_name: 'ContinentUnlock';

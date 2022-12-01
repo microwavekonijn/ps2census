@@ -1,6 +1,7 @@
 import { CharacterEvent } from './base/character.event';
+import { PS2Events } from '../../stream';
 
-export class BattleRankUpEvent extends CharacterEvent {
+export class BattleRankUpEvent extends CharacterEvent<PS2Events.BattleRankUp> {
   readonly emit = 'battleRankUp';
 
   readonly battle_rank: string;

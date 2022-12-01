@@ -1,6 +1,7 @@
 import { WorldEvent } from './base/world.event';
+import { PS2Events } from '../../stream';
 
-export class ContinentLock extends WorldEvent {
+export class ContinentLock extends WorldEvent<PS2Events.ContinentLock> {
   readonly emit = 'continentLock';
 
   event_name: 'ContinentLock';

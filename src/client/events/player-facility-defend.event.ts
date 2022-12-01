@@ -1,6 +1,7 @@
 import { CharacterEvent } from './base/character.event';
+import { PS2Events } from '../../stream';
 
-export class PlayerFacilityDefend extends CharacterEvent {
+export class PlayerFacilityDefend extends CharacterEvent<PS2Events.PlayerFacilityDefend> {
   readonly emit = 'playerFacilityDefend';
 
   readonly event_name: 'PlayerFacilityDefend';
