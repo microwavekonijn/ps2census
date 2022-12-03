@@ -1,8 +1,12 @@
-import { ZoneEvent } from './zone.event';
-import { PS2Event as PS2EventPayload } from '../../../stream';
+import { ZoneEvent, ZoneEventPayload } from './zone.event';
+
+export type CharacterEventPayload = Extract<
+  ZoneEventPayload,
+  { character_id: string }
+>;
 
 export abstract class CharacterEvent<
-  T extends PS2EventPayload,
+  T extends CharacterEventPayload,
 > extends ZoneEvent<T> {
   readonly character_id: string;
 

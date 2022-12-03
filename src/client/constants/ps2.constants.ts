@@ -15,12 +15,6 @@ export enum Loadout {
   MAX,
 }
 
-export const factionMap = new Map<string, Faction>([
-  ['1', Faction.VS],
-  ['2', Faction.NC],
-  ['3', Faction.TR],
-]);
-
 export const loadoutFactionMap = new Map<string, Faction>([
   ['1', Faction.NC],
   ['3', Faction.NC],

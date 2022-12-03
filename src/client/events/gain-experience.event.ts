@@ -1,15 +1,25 @@
 import { CharacterEvent } from './base/character.event';
 import { PS2Events } from '../../stream';
+import { Faction } from '../constants';
+import { PS2Event } from './base/ps2.event';
 
 export class GainExperience extends CharacterEvent<PS2Events.GainExperience> {
   readonly emit = 'gainExperience';
 
-  readonly amount: string;
+  readonly amount: number;
   readonly event_name: 'GainExperience';
   readonly experience_id: string;
   readonly loadout_id: string;
   readonly other_id: string;
-  readonly team_id: string;
+  readonly team_id: Faction;
+
+  constructor(
+    ...params: ConstructorParameters<typeof PS2Event<PS2Events.GainExperience>>
+  ) {
+    super(...params);
+
+    this.amount = Number.parseInt(params[GainExperience.DATA].amount, 10);
+  }
 
   /**
    * Fetch the character data of other if any

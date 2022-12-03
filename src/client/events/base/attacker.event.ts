@@ -1,22 +1,31 @@
-import { CharacterEvent } from './character.event';
+import { CharacterEvent, CharacterEventPayload } from './character.event';
 import {
   Faction,
-  factionMap,
   Loadout,
   loadoutFactionMap,
   loadoutTypeMap,
 } from '../../constants';
-import { PS2Event as PS2EventPayload } from '../../../stream';
+
+export type AttackerEventPayload = Extract<
+  CharacterEventPayload,
+  {
+    attacker_character_id: string;
+    attacker_team_id: string;
+    attacker_loadout_id: string;
+    attacker_vehicle_id: string;
+    attacker_weapon_id: string;
+    team_id: string;
+  }
+>;
 
 export abstract class AttackerEvent<
-  T extends PS2EventPayload,
+  T extends AttackerEventPayload,
 > extends CharacterEvent<T> {
   /**
    * Can be overwritten if necessary
    */
   static loadoutFactionMap = loadoutFactionMap;
   static loadoutTypeMap = loadoutTypeMap;
-  static factionMap = factionMap;
 
   readonly attacker_character_id: string;
   readonly attacker_team_id: Faction;
@@ -37,37 +46,15 @@ export abstract class AttackerEvent<
   }
 
   /**
-   * Team the attacker belongs to
-   *
-   * @return {Faction}
-   */
-  get attacker_team(): Faction {
-    const team = AttackerEvent.factionMap.get(this.attacker_team_id);
-
-    if (team === undefined)
-      throw new TypeError(
-        `Unknown attacker_team_id when determining team: ${this.attacker_team_id}`,
-      );
-
-    return team;
-  }
-
-  /**
    * Faction of the attacker
    *
    * @return {Faction}
    */
   get attacker_faction(): Faction {
-    const faction = AttackerEvent.loadoutFactionMap.get(
-      this.attacker_loadout_id,
+    return (
+      AttackerEvent.loadoutFactionMap.get(this.attacker_loadout_id) ??
+      Faction.NONE
     );
-
-    if (faction === undefined)
-      throw new TypeError(
-        `Unknown attacker_loadout_id when determining faction: ${this.attacker_loadout_id}`,
-      );
-
-    return faction;
   }
 
   /**
@@ -84,21 +71,5 @@ export abstract class AttackerEvent<
       );
 
     return loadout;
-  }
-
-  /**
-   * Team the victim belongs to
-   *
-   * @return {Faction}
-   */
-  get team(): Faction {
-    const team = AttackerEvent.factionMap.get(this.team_id);
-
-    if (team === undefined)
-      throw new TypeError(
-        `Unknown team_id when determining team: ${this.team_id}`,
-      );
-
-    return team;
   }
 }

@@ -1,5 +1,6 @@
 import { CharacterEvent } from './base/character.event';
 import { PS2Events } from '../../stream';
+import { PS2Event } from './base/ps2.event';
 
 export class ItemAdded extends CharacterEvent<PS2Events.ItemAdded> {
   readonly emit = 'itemAdded';
@@ -9,13 +10,12 @@ export class ItemAdded extends CharacterEvent<PS2Events.ItemAdded> {
   readonly item_count: number;
   readonly item_id: string;
 
-  /**
-   * Cast item_count to number
-   * @param {ItemAdded} data
-   * @protected
-   */
-  protected cast(data: PS2Events.ItemAdded) {
-    (this as any).item_count = Number.parseInt(data.item_count, 10);
+  constructor(
+    ...params: ConstructorParameters<typeof PS2Event<PS2Events.ItemAdded>>
+  ) {
+    super(...params);
+
+    this.item_count = Number.parseInt(params[ItemAdded.DATA].item_count, 10);
   }
 
   toHash(): string {

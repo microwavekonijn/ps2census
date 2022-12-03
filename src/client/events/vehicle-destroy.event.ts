@@ -1,4 +1,4 @@
-import { Faction, factionMap } from '../constants/ps2.constants';
+import { Faction } from '../constants/ps2.constants';
 import { AttackerEvent } from './base/attacker.event';
 import { PS2Events } from '../../stream';
 
@@ -11,11 +11,6 @@ export enum Destroy {
 }
 
 export class VehicleDestroy extends AttackerEvent<PS2Events.VehicleDestroy> {
-  /**
-   * Can be overwritten if necessary
-   */
-  static factionMap = factionMap;
-
   readonly emit = 'vehicleDestroy';
 
   readonly event_name: 'VehicleDestroy';
@@ -34,7 +29,7 @@ export class VehicleDestroy extends AttackerEvent<PS2Events.VehicleDestroy> {
     return (
       this.attacker_character_id === this.character_id &&
       (this.attacker_character_id === '0' ||
-        this.attacker_faction !== this.character_faction)
+        this.attacker_faction !== this.team_id)
     );
   }
 
@@ -44,37 +39,18 @@ export class VehicleDestroy extends AttackerEvent<PS2Events.VehicleDestroy> {
    * @return {Destroy}
    */
   get kill_type(): Destroy {
-    if (this.faction_id === '0') return Destroy.Neutral;
+    if (this.faction_id === Faction.NONE) return Destroy.Neutral;
     if (this.attacker_character_id === '0') return Destroy.Game;
-
-    const attacker_faction = this.attacker_team_id;
-    const victim_faction = this.team_id;
 
     if (
       this.attacker_character_id === this.character_id &&
-      attacker_faction === victim_faction
+      this.attacker_team_id === this.team_id
     )
       return Destroy.SelfDestruct;
 
-    return attacker_faction === victim_faction
+    return this.attacker_team_id === this.team_id
       ? Destroy.Friendly
       : Destroy.Normal;
-  }
-
-  /**
-   * Faction of victim
-   *
-   * @return {Faction}
-   */
-  get character_faction(): Faction {
-    const faction = VehicleDestroy.factionMap.get(this.faction_id);
-
-    if (faction === undefined)
-      throw new TypeError(
-        `Unknown faction_id when determining faction: ${this.faction_id}`,
-      );
-
-    return faction;
   }
 
   toHash(): string {

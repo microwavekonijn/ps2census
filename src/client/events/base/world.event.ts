@@ -1,6 +1,5 @@
-import { ZoneEvent } from './zone.event';
-import { PS2Event as PS2EventPayload } from '../../../stream';
+import { ZoneEvent, ZoneEventPayload } from './zone.event';
 
 export abstract class WorldEvent<
-  T extends PS2EventPayload,
+  T extends ZoneEventPayload,
 > extends ZoneEvent<T> {}
