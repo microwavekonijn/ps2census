@@ -1,6 +1,7 @@
 import { CharacterWorldEvent } from './base/character-world.event';
+import { PS2Events } from '../../stream';
 
-export class PlayerLogout extends CharacterWorldEvent {
+export class PlayerLogout extends CharacterWorldEvent<PS2Events.PlayerLogout> {
   readonly emit = 'playerLogout';
 
   readonly event_name: 'PlayerLogout';

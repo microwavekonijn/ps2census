@@ -5,7 +5,7 @@ import { RestClient, RestClientOptions } from '../rest/rest.client';
 import { CharacterManager, CharacterManagerOptions } from './managers';
 import {
   AchievementEarned,
-  BattleRankUpEvent,
+  BattleRankUp,
   ContinentLock,
   Death,
   FacilityControl,
@@ -35,12 +35,12 @@ export type ClientEvents = {
   error: (err: Error) => void;
   warn: (err: Error) => void;
   debug: (info: string) => void;
-  duplicate: (event: PS2Event) => void;
+  duplicate: (event: PS2Event<any>) => void;
   subscribed: (subscription: EventSubscribed) => void;
   serviceState: (worldId: string, online: boolean, detail: string) => void;
-  ps2Event: (event: PS2Event) => void;
+  ps2Event: (event: PS2Event<any>) => void;
   achievementEarned: (event: AchievementEarned) => void;
-  battleRankUp: (event: BattleRankUpEvent) => void;
+  battleRankUp: (event: BattleRankUp) => void;
   death: (event: Death) => void;
   gainExperience: (event: GainExperience) => void;
   itemAdded: (event: ItemAdded) => void;

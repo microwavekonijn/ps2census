@@ -1,6 +1,7 @@
 import { CharacterEvent } from './base/character.event';
+import { PS2Events } from '../../stream';
 
-export class SkillAdded extends CharacterEvent {
+export class SkillAdded extends CharacterEvent<PS2Events.SkillAdded> {
   readonly emit = 'skillAdded';
 
   readonly event_name: 'SkillAdded';

@@ -31,7 +31,7 @@ export class DuplicateFilter implements StreamFilterContract {
    * @param {PS2Event} event
    * @return {boolean} whether it has been recorded before
    */
-  filter(event: PS2Event): boolean {
+  filter(event: PS2Event<any>): boolean {
     if (this.ignore.includes(event.event_name)) return false;
 
     const hash = event.toHash();

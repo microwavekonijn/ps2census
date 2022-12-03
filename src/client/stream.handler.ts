@@ -8,7 +8,7 @@ import { stringToBoolean } from '../utils/formatters';
 import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 
 import { AchievementEarned } from './events/achievement-earned.event';
-import { BattleRankUpEvent } from './events/battle-rank-up.event';
+import { BattleRankUp } from './events/battle-rank-up.event';
 import { ContinentLock } from './events/continent-lock.event';
 import { ContinentUnlock } from './events/continent-unlock.event';
 import { Death } from './events/death.event';
@@ -111,12 +111,12 @@ export class StreamHandler {
    * @param {PS2Event} event
    * @return {PS2Event}
    */
-  private wrapEvent(event: PS2EventPayload): PS2Event | undefined {
+  private wrapEvent(event: PS2EventPayload): PS2Event<any> | undefined {
     switch (event.event_name) {
       case 'AchievementEarned':
         return new AchievementEarned(this.client, event);
       case 'BattleRankUp':
-        return new BattleRankUpEvent(this.client, event);
+        return new BattleRankUp(this.client, event);
       case 'ContinentLock':
         return new ContinentLock(this.client, event);
       case 'ContinentUnlock':

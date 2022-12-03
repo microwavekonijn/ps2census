@@ -1,3 +1,5 @@
-import { ZoneEvent } from './zone.event';
+import { ZoneEvent, ZoneEventPayload } from './zone.event';
 
-export abstract class WorldEvent extends ZoneEvent {}
+export abstract class WorldEvent<
+  T extends ZoneEventPayload,
+> extends ZoneEvent<T> {}

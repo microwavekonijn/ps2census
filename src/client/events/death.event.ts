@@ -2,7 +2,7 @@ import { Faction, Loadout } from '../constants/ps2.constants';
 import { PS2Events } from '../../stream/types/ps2.events';
 import { numberStringToBoolean } from '../../utils/formatters';
 import { AttackerEvent } from './base/attacker.event';
-import DeathPayload = PS2Events.Death;
+import { PS2Event } from './base/ps2.event';
 
 export enum Kill {
   Normal,
@@ -11,7 +11,7 @@ export enum Kill {
   RestrictedArea,
 }
 
-export class Death extends AttackerEvent {
+export class Death extends AttackerEvent<PS2Events.Death> {
   readonly emit = 'death';
 
   readonly attacker_fire_mode_id: string;
@@ -20,14 +20,13 @@ export class Death extends AttackerEvent {
   readonly is_headshot: boolean;
   readonly is_critical: boolean;
 
-  /**
-   * Cast is_headshot to boolean
-   * @param {Death} data
-   * @protected
-   */
-  protected cast(data: DeathPayload) {
-    (this as any)['is_headshot'] = numberStringToBoolean(data.is_headshot);
-    (this as any)['is_critical'] = numberStringToBoolean(data.is_critical);
+  constructor(
+    ...params: ConstructorParameters<typeof PS2Event<PS2Events.Death>>
+  ) {
+    super(...params);
+
+    this.is_headshot = numberStringToBoolean(params[Death.DATA].is_headshot);
+    this.is_critical = numberStringToBoolean(params[Death.DATA].is_critical);
   }
 
   /**
@@ -39,7 +38,7 @@ export class Death extends AttackerEvent {
     if (this.attacker_character_id === '0') return Kill.RestrictedArea;
     if (this.attacker_character_id === this.character_id) return Kill.Suicide;
 
-    return this.attacker_team === this.team ? Kill.TeamKill : Kill.Normal;
+    return this.attacker_team_id === this.team_id ? Kill.TeamKill : Kill.Normal;
   }
 
   /**
@@ -48,14 +47,9 @@ export class Death extends AttackerEvent {
    * @return {Faction}
    */
   get character_faction(): Faction {
-    const faction = Death.loadoutFactionMap.get(this.character_loadout_id);
-
-    if (faction === undefined)
-      throw new TypeError(
-        `Unknown character_loadout_id when determining faction: ${this.character_loadout_id}`,
-      );
-
-    return faction;
+    return (
+      Death.loadoutFactionMap.get(this.character_loadout_id) ?? Faction.NONE
+    );
   }
 
   /**
