@@ -106,7 +106,7 @@ export class CensusClient extends EventEmitter<ClientEvents> {
    * Doom and destruction, WUHAHAHAHA!
    */
   destroy(): void {
-    this.streamManager?.disconnect();
+    this.streamManager.disconnect();
   }
 
   /**
