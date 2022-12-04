@@ -180,10 +180,10 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
         this.wsOptions,
       ));
 
-      ws.on('open', this.onOpen.bind(this))
-        .on('message', this.onMessage.bind(this))
-        .on('close', this.onClose.bind(this))
-        .on('error', this.onError.bind(this));
+      ws.onopen = this.onOpen.bind(this);
+      ws.onmessage = this.onMessage.bind(this);
+      ws.onclose = this.onClose.bind(this);
+      ws.onerror = this.onError.bind(this);
     });
   }
 
@@ -200,8 +200,15 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    *
    * @param {WebSocket.Data} data
    */
-  private onMessage(data: Data): void {
-    if (!(data instanceof Buffer)) {
+  private onMessage(event: WebSocket.MessageEvent): void {
+    const { data } = event;
+
+    let parse: (data: any) => CensusMessage;
+    if (typeof data === 'string') {
+      parse = (data: string) => JSON.parse(data);
+    } else if (data instanceof Buffer) {
+      parse = (data: Buffer) => JSON.parse(data.toString());
+    } else {
       this.emit(
         'warn',
         new TypeError(`Received data in unexpected format: ${data}`),
@@ -210,7 +217,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
     }
 
     try {
-      const parsed = JSON.parse(data.toString());
+      const parsed = parse(data);
 
       this.onPackage(parsed);
     } catch (err) {
@@ -253,7 +260,9 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   /**
    * Connection closed by server
    */
-  private onClose(code: number, reason: Buffer): void {
+  private onClose(event: WebSocket.CloseEvent): void {
+    const { code, reason } = event;
+
     this.emit(
       'debug',
       `Connection closed. ${JSON.stringify({
@@ -275,8 +284,8 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    *
    * @param {Error} error
    */
-  private onError(error: Error): void {
-    this.emit('error', error);
+  private onError(event: WebSocket.ErrorEvent): void {
+    this.emit('error', event.error);
   }
 
   /**
