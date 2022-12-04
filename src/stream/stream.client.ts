@@ -1,5 +1,6 @@
 import { EventEmitter } from 'eventemitter3';
-import WebSocket, { ClientOptions, Data } from 'ws';
+import { ClientOptions, Data } from 'ws';
+import WebSocket from 'isomorphic-ws';
 import { PS2Environment } from '../types/ps2.options';
 import { CensusMessage } from './types/messages.types';
 import { CensusCommand } from './types/command.types';
