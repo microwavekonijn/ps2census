@@ -203,12 +203,11 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   private onMessage(event: WebSocket.MessageEvent): void {
     const { data } = event;
 
-    let parse: (data: any) => CensusMessage;
-    if (typeof data === 'string') {
-      parse = (data: string) => JSON.parse(data);
-    } else if (data instanceof Buffer) {
-      parse = (data: Buffer) => JSON.parse(data.toString());
-    } else {
+    const isExpectedFormat =
+      typeof data === 'string' ||
+      (typeof Buffer !== 'undefined' && data instanceof Buffer);
+
+    if (!isExpectedFormat) {
       this.emit(
         'warn',
         new TypeError(`Received data in unexpected format: ${data}`),
@@ -217,7 +216,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
     }
 
     try {
-      const parsed = parse(data);
+      const parsed = JSON.parse(data.toString());
 
       this.onPackage(parsed);
     } catch (err) {
