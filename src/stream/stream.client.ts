@@ -8,6 +8,8 @@ import { StreamDestroyedException } from './exceptions/stream-destroyed.exceptio
 import { StreamClosedException } from './exceptions/stream-closed.exception';
 import Timeout = NodeJS.Timeout;
 
+import nextTick from '../utils/next-tick';
+
 enum State {
   IDLE,
   CONNECTING,
@@ -251,7 +253,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
       this.acknowledgeHeartbeat();
     }
 
-    setImmediate(() => {
+    nextTick(() => {
       this.emit('message', data);
     });
   }
