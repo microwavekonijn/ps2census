@@ -10,7 +10,6 @@ import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 import { AchievementEarned } from './events/achievement-earned.event';
 import { BattleRankUp } from './events/battle-rank-up.event';
 import { ContinentLock } from './events/continent-lock.event';
-import { ContinentUnlock } from './events/continent-unlock.event';
 import { Death } from './events/death.event';
 import { FacilityControl } from './events/facility-control.event';
 import { GainExperience } from './events/gain-experience.event';
@@ -119,8 +118,6 @@ export class StreamHandler {
         return new BattleRankUp(this.client, event);
       case 'ContinentLock':
         return new ContinentLock(this.client, event);
-      case 'ContinentUnlock':
-        return new ContinentUnlock(this.client, event);
       case 'Death':
         return new Death(this.client, event);
       case 'FacilityControl':
