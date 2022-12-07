@@ -4,7 +4,6 @@ export * from './achievement-earned.event';
 export * from './battle-rank-up.event';
 export * from './base/character.event';
 export * from './continent-lock.event';
-export * from './continent-unlock.event';
 export * from './death.event';
 export * from './facility-control.event';
 export * from './gain-experience.event';

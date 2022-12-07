@@ -138,20 +138,6 @@ export namespace PS2Events {
     zone_id: string;
   };
 
-  export type ContinentUnlock = {
-    event_name: 'ContinentUnlock';
-    event_type: string;
-    metagame_event_id: string;
-    nc_population: string;
-    previous_faction: string;
-    timestamp: string;
-    tr_population: string;
-    triggering_faction: string;
-    vs_population: string;
-    world_id: string;
-    zone_id: string;
-  };
-
   export type FacilityControl = {
     duration_held: string;
     event_name: 'FacilityControl';
@@ -193,7 +179,6 @@ export type PS2Event =
   | PS2Events.SkillAdded
   | PS2Events.VehicleDestroy
   | PS2Events.ContinentLock
-  | PS2Events.ContinentUnlock
   | PS2Events.FacilityControl
   | PS2Events.MetagameEvent;
 

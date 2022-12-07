@@ -51,7 +51,6 @@ export type ClientEvents = {
   skillAdded: (event: SkillAdded) => void;
   vehicleDestroy: (event: VehicleDestroy) => void;
   continentLock: (event: ContinentLock) => void;
-  continentUnlock: (event: ContinentLock) => void;
   facilityControl: (event: FacilityControl) => void;
   metagameEvent: (event: MetagameEvent) => void;
 };
