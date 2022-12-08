@@ -410,17 +410,11 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   /**
    * @param data
    */
-  send(data: CensusCommand): Promise<void> {
-    return new Promise((resolve, reject) => {
-      if (!this.connection) {
-        reject(new Error(`Connection not available`));
-        return;
-      }
+  send(data: CensusCommand): void {
+    if (!this.connection) throw new Error(`Connection not available`);
 
-      this.connection.send(JSON.stringify(data), err => {
-        if (err) reject(err);
-        else resolve();
-      });
+    this.connection.send(JSON.stringify(data), err => {
+      if (err) this.emit('error', err);
     });
   }
 }
