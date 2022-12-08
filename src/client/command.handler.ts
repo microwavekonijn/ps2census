@@ -117,15 +117,12 @@ export class CommandHandler {
       return Promise.reject(new StreamResponseException('Stream is closed'));
 
     return new Promise<T>((resolve, reject) => {
-      this.stream
-        .send(command)
-        .then(() => {
-          queue.enqueue({
-            resolve,
-            reject,
-          });
-        })
-        .catch(reject);
+      this.stream.send(command);
+
+      queue.enqueue({
+        resolve,
+        reject,
+      });
     });
   }
 }

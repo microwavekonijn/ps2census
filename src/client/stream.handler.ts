@@ -23,6 +23,8 @@ import { SkillAdded } from './events/skill-added.event';
 import { VehicleDestroy } from './events/vehicle-destroy.event';
 import { EventSubscribed } from './types/event-subscription.types';
 
+import nextTick from '../utils/next-tick';
+
 export class StreamHandler {
   /**
    * @param {CensusClient} client
@@ -65,12 +67,12 @@ export class StreamHandler {
     if (!wrapped) return;
 
     if (!this.filter.filter(wrapped)) {
-      setImmediate(() => {
+      nextTick(() => {
         this.client.emit('ps2Event', wrapped);
         this.client.emit(wrapped.emit, wrapped);
       });
     } else {
-      setImmediate(() => {
+      nextTick(() => {
         this.client.emit('duplicate', wrapped);
       });
     }
@@ -82,7 +84,7 @@ export class StreamHandler {
    * @param subscription
    */
   private handleSubscription(subscription: EventSubscribed): void {
-    setImmediate(() => {
+    nextTick(() => {
       this.client.emit('subscribed', subscription);
     });
   }
@@ -98,7 +100,7 @@ export class StreamHandler {
     if (id) {
       const online = stringToBoolean(state.online);
 
-      setImmediate(() => {
+      nextTick(() => {
         this.client.emit('serviceState', id, online, state.detail);
       });
     }

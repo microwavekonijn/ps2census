@@ -1,11 +1,14 @@
 import { EventEmitter } from 'eventemitter3';
-import WebSocket, { ClientOptions, Data } from 'ws';
+import { ClientOptions, Data } from 'ws';
+import WebSocket from 'isomorphic-ws';
 import { PS2Environment } from '../types/ps2.options';
 import { CensusMessage } from './types/messages.types';
 import { CensusCommand } from './types/command.types';
 import { StreamDestroyedException } from './exceptions/stream-destroyed.exception';
 import { StreamClosedException } from './exceptions/stream-closed.exception';
 import Timeout = NodeJS.Timeout;
+
+import nextTick from '../utils/next-tick';
 
 enum State {
   IDLE,
@@ -179,10 +182,10 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
         this.wsOptions,
       ));
 
-      ws.on('open', this.onOpen.bind(this))
-        .on('message', this.onMessage.bind(this))
-        .on('close', this.onClose.bind(this))
-        .on('error', this.onError.bind(this));
+      ws.onopen = this.onOpen.bind(this);
+      ws.onmessage = this.onMessage.bind(this);
+      ws.onclose = this.onClose.bind(this);
+      ws.onerror = this.onError.bind(this);
     });
   }
 
@@ -199,8 +202,14 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    *
    * @param {WebSocket.Data} data
    */
-  private onMessage(data: Data): void {
-    if (!(data instanceof Buffer)) {
+  private onMessage(event: WebSocket.MessageEvent): void {
+    const { data } = event;
+
+    const isExpectedFormat =
+      typeof data === 'string' ||
+      (typeof Buffer !== 'undefined' && data instanceof Buffer);
+
+    if (!isExpectedFormat) {
       this.emit(
         'warn',
         new TypeError(`Received data in unexpected format: ${data}`),
@@ -244,7 +253,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
       this.acknowledgeHeartbeat();
     }
 
-    setImmediate(() => {
+    nextTick(() => {
       this.emit('message', data);
     });
   }
@@ -252,7 +261,9 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   /**
    * Connection closed by server
    */
-  private onClose(code: number, reason: Buffer): void {
+  private onClose(event: WebSocket.CloseEvent): void {
+    const { code, reason } = event;
+
     this.emit(
       'debug',
       `Connection closed. ${JSON.stringify({
@@ -274,16 +285,17 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    *
    * @param {Error} error
    */
-  private onError(error: Error): void {
-    this.emit('error', error);
+  private onError(event: WebSocket.ErrorEvent): void {
+    this.emit('error', event.error);
   }
 
   /**
    * If a connection exists cleanup listeners
    */
   private cleanupConnection(): void {
-    this.connection?.removeAllListeners();
-    this.connection?.on('error', () => null);
+    if (!this.connection) return;
+    this.connection.onopen = this.connection.onclose = this.connection.onmessage = null;
+    this.connection.onerror = () => null;
   }
 
   /**
@@ -398,17 +410,11 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   /**
    * @param data
    */
-  send(data: CensusCommand): Promise<void> {
-    return new Promise((resolve, reject) => {
-      if (!this.connection) {
-        reject(new Error(`Connection not available`));
-        return;
-      }
+  send(data: CensusCommand): void {
+    if (!this.connection) throw new Error(`Connection not available`);
 
-      this.connection.send(JSON.stringify(data), err => {
-        if (err) reject(err);
-        else resolve();
-      });
+    this.connection.send(JSON.stringify(data), err => {
+      if (err) this.emit('error', err);
     });
   }
 }

@@ -5,7 +5,7 @@ export class DecayingSet<T> {
 
   private readonly set: Array<Set<T>>;
 
-  private timeout: Timeout;
+  private timeout: Timeout | number;
 
   constructor(private readonly partitions: number, decay: number) {
     this.set = [];
@@ -19,7 +19,7 @@ export class DecayingSet<T> {
       this.set[this.index].clear();
     }, decay / partitions);
 
-    this.timeout.unref();
+    this.timeout.unref && this.timeout.unref();
   }
 
   add(value: T): this {
