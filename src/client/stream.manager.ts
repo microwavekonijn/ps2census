@@ -6,6 +6,7 @@ import { SubscriptionManager } from './subscription.manager';
 import { EventSubscription } from './types/event-subscription.types';
 import { CommandHandler } from './command.handler';
 import { ServiceIdRejectException } from './exceptions/service-id-reject.exception';
+import nextTick from '../utils/next-tick';
 import Timeout = NodeJS.Timeout;
 
 export interface StreamManagerOptions extends StreamClientOptions {
@@ -92,11 +93,11 @@ export class StreamManager {
      */
     this.stream.on('close', (code, reason) => {
       if (!this.isStarted) {
-        this.client.emit('disconnected', code, reason);
+        nextTick(() => this.client.emit('disconnected', code, reason));
         return;
       }
 
-      this.client.emit('reconnecting');
+      nextTick(() => this.client.emit('reconnecting'));
 
       void this.reconnect();
     });
@@ -107,7 +108,7 @@ export class StreamManager {
     this.stream.on('destroyed', () => {
       if (!this.isStarted) return;
 
-      this.client.emit('reconnecting');
+      nextTick(() => this.client.emit('reconnecting'));
 
       void this.reconnect();
     });
@@ -135,7 +136,7 @@ export class StreamManager {
     this.isStarted = true;
 
     const ready = () => {
-      this.client.emit('ready');
+      nextTick(() => this.client.emit('ready'));
     };
 
     this.stream.once('ready', ready);
@@ -163,7 +164,7 @@ export class StreamManager {
     if (!this.isStarted) return;
     this.isStarted = false;
 
-    this.client.emit('debug', `Manager disconnected.`);
+    nextTick(() => this.client.emit('debug', `Manager disconnected.`));
 
     if (this.reconnectTimeout) {
       clearTimeout(this.reconnectTimeout);
@@ -184,18 +185,22 @@ export class StreamManager {
         await this.stream.connect();
       } catch (e: any) {
         if ([403].includes(e.httpState)) {
-          this.client.emit(
-            'error',
-            new Error(`Service ID rejected while trying to reconnect.`),
+          nextTick(() =>
+            this.client.emit(
+              'error',
+              new Error(`Service ID rejected while trying to reconnect.`),
+            ),
           );
           this.disconnect();
 
           return;
         }
 
-        this.client.emit(
-          'debug',
-          `Reconnect failed, trying again in ${this.reconnectDelay}ms.`,
+        nextTick(() =>
+          this.client.emit(
+            'debug',
+            `Reconnect failed, trying again in ${this.reconnectDelay}ms.`,
+          ),
         );
       }
     }, this.reconnectDelay);

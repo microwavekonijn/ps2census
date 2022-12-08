@@ -3,6 +3,7 @@ import { GetQuery } from '../../rest/get.query';
 import { CensusClient } from '../census.client';
 import { MaxRetryException } from '../exceptions/max-retry.exception';
 import { LocalCache } from '../utils/local.cache';
+import nextTick from '../../utils/next-tick';
 
 export interface CharacterManagerOptions {
   retries?: number;
@@ -64,7 +65,12 @@ export class CharacterManager {
     let retries = this.maxRetries;
     const attempts = [];
 
-    this.client.emit('debug', `Fetching character with id "${id}" from Census`);
+    nextTick(() =>
+      this.client.emit(
+        'debug',
+        `Fetching character with id "${id}" from Census`,
+      ),
+    );
 
     do {
       try {

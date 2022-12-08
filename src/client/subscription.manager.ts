@@ -4,6 +4,7 @@ import { PS2EventNames } from '../stream/types/ps2.events';
 import { EventSubscribed, EventSubscription } from './types';
 import { CommandHandler } from './command.handler';
 import { StreamResponseException } from './exceptions/stream-response.exception';
+import nextTick from '../utils/next-tick';
 
 export class SubscriptionManager {
   /**
@@ -54,7 +55,7 @@ export class SubscriptionManager {
    */
   private registerClientEvents(): void {
     this.stream.on('ready', async () => {
-      this.client.emit('debug', `Subscribing to events`);
+      nextTick(() => this.client.emit('debug', `Subscribing to events`));
 
       try {
         await this.commandHandler.subscribe(this.subscription);
