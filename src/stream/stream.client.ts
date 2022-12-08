@@ -1,14 +1,14 @@
 import { EventEmitter } from 'eventemitter3';
-import { ClientOptions, Data } from 'ws';
+import { ClientOptions } from 'ws';
 import WebSocket from 'isomorphic-ws';
 import { PS2Environment } from '../types/ps2.options';
 import { CensusMessage } from './types/messages.types';
 import { CensusCommand } from './types/command.types';
 import { StreamDestroyedException } from './exceptions/stream-destroyed.exception';
 import { StreamClosedException } from './exceptions/stream-closed.exception';
-import Timeout = NodeJS.Timeout;
 
 import nextTick from '../utils/next-tick';
+import Timeout = NodeJS.Timeout;
 
 enum State {
   IDLE,
@@ -161,17 +161,21 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
         .once('close', closed);
 
       if (this.connection && this.state == State.READY) {
-        this.emit('debug', `Open connection found, continuing operations.`);
+        nextTick(() =>
+          this.emit('debug', `Open connection found, continuing operations.`),
+        );
 
         return;
       }
 
       if (this.connection) {
-        this.emit('debug', `Connection found, destroying connection.`);
+        nextTick(() =>
+          this.emit('debug', `Connection found, destroying connection.`),
+        );
         this.destroy({ emit: false });
       }
 
-      this.emit('debug', `Connecting.`);
+      nextTick(() => this.emit('debug', `Connecting.`));
 
       this.state = State.CONNECTING;
       this.connectedAt = Date.now();
@@ -193,14 +197,14 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    * client successfully connected
    */
   private onOpen(): void {
-    this.emit('debug', `Established connection.`);
+    nextTick(() => this.emit('debug', `Established connection.`));
     this.state = State.NEARLY;
   }
 
   /**
    * Handles messages received from the gateway
    *
-   * @param {WebSocket.Data} data
+   * @param {WebSocket.MessageEvent} event
    */
   private onMessage(event: WebSocket.MessageEvent): void {
     const { data } = event;
@@ -210,9 +214,11 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
       (typeof Buffer !== 'undefined' && data instanceof Buffer);
 
     if (!isExpectedFormat) {
-      this.emit(
-        'warn',
-        new TypeError(`Received data in unexpected format: ${data}`),
+      nextTick(() =>
+        this.emit(
+          'warn',
+          new TypeError(`Received data in unexpected format: ${data}`),
+        ),
       );
       return;
     }
@@ -222,14 +228,14 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
 
       this.onPackage(parsed);
     } catch (err) {
-      this.emit('warn', err as Error);
+      nextTick(() => this.emit('warn', err as Error));
     }
   }
 
   /**
    * Handles the data received
    *
-   * @param data
+   * @param {CensusMessage} data
    */
   private onPackage(data: CensusMessage): void {
     if (
@@ -241,7 +247,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
         this.setConnectionTimeout(false);
         this.setHeartbeatTimer(this.heartbeatInterval);
         this.state = State.READY;
-        this.emit('ready');
+        nextTick(() => this.emit('ready'));
       } else {
         this.destroy();
       }
@@ -253,9 +259,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
       this.acknowledgeHeartbeat();
     }
 
-    nextTick(() => {
-      this.emit('message', data);
-    });
+    nextTick(() => this.emit('message', data));
   }
 
   /**
@@ -264,12 +268,14 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   private onClose(event: WebSocket.CloseEvent): void {
     const { code, reason } = event;
 
-    this.emit(
-      'debug',
-      `Connection closed. ${JSON.stringify({
-        code,
-        reason: reason.toString(),
-      })}`,
+    nextTick(() =>
+      this.emit(
+        'debug',
+        `Connection closed. ${JSON.stringify({
+          code,
+          reason: reason.toString(),
+        })}`,
+      ),
     );
 
     this.setHeartbeatTimer(-1);
@@ -277,16 +283,18 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
     this.cleanupConnection();
 
     this.state = State.DISCONNECTED;
-    this.emit('close', code, reason.length ? reason.toString() : undefined);
+    nextTick(() =>
+      this.emit('close', code, reason.length ? reason.toString() : undefined),
+    );
   }
 
   /**
    * Relays error from the websocket connection to the client
    *
-   * @param {Error} error
+   * @param {ErrorEvent} event
    */
   private onError(event: WebSocket.ErrorEvent): void {
-    this.emit('error', event.error);
+    nextTick(() => this.emit('error', event.error));
   }
 
   /**
@@ -294,7 +302,10 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    */
   private cleanupConnection(): void {
     if (!this.connection) return;
-    this.connection.onopen = this.connection.onclose = this.connection.onmessage = null;
+    this.connection.onopen =
+      this.connection.onclose =
+      this.connection.onmessage =
+        null;
     this.connection.onerror = () => null;
   }
 
@@ -320,12 +331,12 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
           // Beep beep
         }
 
-        if (emit) this.emit('destroyed');
+        if (emit) nextTick(() => this.emit('destroyed'));
       }
 
       this.connection = undefined;
     } else if (emit) {
-      if (emit) this.emit('destroyed');
+      if (emit) nextTick(() => this.emit('destroyed'));
     }
 
     this.state = State.DISCONNECTED;
@@ -339,16 +350,16 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   private setConnectionTimeout(toggle: boolean): void {
     if (!toggle) {
       if (this.connectionTimeout) {
-        this.emit('debug', `Connection timeout cleared`);
+        nextTick(() => this.emit('debug', `Connection timeout cleared`));
         clearTimeout(this.connectionTimeout);
         delete this.connectionTimeout;
       }
       return;
     }
 
-    this.emit('debug', `Connection timeout set`);
+    nextTick(() => this.emit('debug', `Connection timeout set`));
     this.connectionTimeout = setTimeout(() => {
-      this.emit('debug', `Connection timed out.`);
+      nextTick(() => this.emit('debug', `Connection timed out.`));
       this.destroy({ code: 1001 });
     }, this.connectionTimeoutTime);
   }
@@ -361,7 +372,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
   private setHeartbeatTimer(interval: number): void {
     if (interval < 0) {
       if (this.heartbeatTimer) {
-        this.emit('debug', `Clearing heartbeat interval.`);
+        nextTick(() => this.emit('debug', `Clearing heartbeat interval.`));
 
         clearInterval(this.heartbeatTimer);
         delete this.heartbeatTimer;
@@ -369,7 +380,9 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
       return;
     }
 
-    this.emit('debug', `Setting heartbeat interval(${interval}ms).`);
+    nextTick(() =>
+      this.emit('debug', `Setting heartbeat interval(${interval}ms).`),
+    );
 
     if (this.heartbeatTimer) clearInterval(this.heartbeatTimer);
 
@@ -384,15 +397,17 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    */
   private resetHeartbeat(): void {
     if (!this.heartbeatAcknowledged) {
-      this.emit(
-        'debug',
-        `Heartbeat not been received, assume connection has gone bad.`,
+      nextTick(() =>
+        this.emit(
+          'debug',
+          `Heartbeat not been received, assume connection has gone bad.`,
+        ),
       );
       this.destroy({ code: 1001 });
       return;
     }
 
-    this.emit('debug', `Reset heartbeat acknowledgement.`);
+    nextTick(() => this.emit('debug', `Reset heartbeat acknowledgement.`));
 
     this.heartbeatAcknowledged = false;
   }
@@ -401,7 +416,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    * Acknowledges a heartbeat send from the gateway
    */
   private acknowledgeHeartbeat(): void {
-    this.emit('debug', `Heartbeat acknowledged.`);
+    nextTick(() => this.emit('debug', `Heartbeat acknowledged.`));
 
     this.heartbeatAcknowledged = true;
     this.lastHeartbeat = Date.now();
@@ -414,7 +429,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
     if (!this.connection) throw new Error(`Connection not available`);
 
     this.connection.send(JSON.stringify(data), err => {
-      if (err) this.emit('error', err);
+      if (err) nextTick(() => this.emit('error', err));
     });
   }
 }

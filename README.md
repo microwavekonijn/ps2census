@@ -14,7 +14,7 @@ Typescript projects.
 
 ### Event Stream
 
-- Node.js v12+;
+- Node.js v12+ or any modern browser with WebSocket support;
 - DBG Census API Service ID.
 
 ### Rest API
@@ -53,15 +53,23 @@ client.on('ps2Event', event => {
   // Handle the event, for more information see http://census.daybreakgames.com/#websocket-details
 });
 // or
-client.on('facilityControl', event => {}); // Note that the event always starts with a lower case letter
+client.on('facilityControl', event => {
+}); // Note that the event always starts with a lower case letter
 
-client.on('subscribed', subscription => {}); // Notification of a subscription made by the event stream
-client.on('duplicate', event => {}); // When a duplicate event has been received
-client.on('ready', () => {}); // Client is ready
-client.on('reconnecting', () => {}); // Client is reconnecting
-client.on('disconnected', () => {}); // Client got disconnected
-client.on('error', error => {}); // Error
-client.on('warn', error => {}); // Error, when receiving a corrupt message
+client.on('subscribed', subscription => {
+}); // Notification of a subscription made by the event stream
+client.on('duplicate', event => {
+}); // When a duplicate event has been received
+client.on('ready', () => {
+}); // Client is ready
+client.on('reconnecting', () => {
+}); // Client is reconnecting
+client.on('disconnected', () => {
+}); // Client got disconnected
+client.on('error', error => {
+}); // Error
+client.on('warn', error => {
+}); // Error, when receiving a corrupt message
 
 client.watch();
 
@@ -87,9 +95,28 @@ client
   });
 ```
 
+## Nanite Systems ESS
+
+With the Census ESS being having some issues the [NS ESS](https://nanite-systems.net) has made its entrance. Basic
+usage with Typescript:
+
+```ts
+new CensusClient('serviceid', 'ps2', {
+  streamManager: {
+    endpoint: 'wss://push.nanite-systems.net/streaming',
+  },
+});
+// or
+new CensusClient('serviceid', 'all' as any, {
+  streamManager: {
+    endpoint: 'wss://push.nanite-systems.net/streaming',
+  },
+});
+```
+
 ## Documentation
 
-- [Rest API](https://github.com/microwavekonijn/ps2census/tree/master/docs/Rest.md);
+- [Stream Client](https://github.com/microwavekonijn/ps2census/tree/master/docs/Stream.md);
 - [Testing Stream](https://github.com/microwavekonijn/ps2census/tree/master/docs/Testing.md).
 
 ## Contribution
