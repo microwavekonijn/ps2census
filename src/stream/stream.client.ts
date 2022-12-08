@@ -294,7 +294,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    */
   private cleanupConnection(): void {
     if (!this.connection) return;
-    this.connection.removeAllListeners();
+    this.connection.onopen = this.connection.onclose = this.connection.onmessage = null;
     this.connection.onerror = () => null;
   }
 
