@@ -26,8 +26,8 @@ jobs:
       - name: Create PR or publish
         uses: changesets/action@v1
         with:
-          publish: npm publish
+          publish: changeset publish
           commit: 'chore: release'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
