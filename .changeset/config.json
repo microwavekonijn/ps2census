@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "microwavekonijn/ps2census"
+    }
+  ],
+  "commit": false,
+  "access": "public",
+  "baseBranch": "main"
+}
