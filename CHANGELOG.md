@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.5.3
+
+### Patch Changes
+
+- [#107](https://github.com/microwavekonijn/ps2census/pull/107) [`8d7f07f`](https://github.com/microwavekonijn/ps2census/commit/8d7f07fcbe0659cadc525889094d69ea2b067742) Thanks [@depfu](https://github.com/apps/depfu)! - Update all npm dependencies (2023-02-19)
+
 ## 4.5.2
 
 ### Patch Changes
