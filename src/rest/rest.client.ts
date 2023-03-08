@@ -20,7 +20,6 @@ export interface RestClientOptions {
  * A direct interface to interact with the Census api
  */
 export class RestClient implements RestContract {
-  static readonly CENSUS_HTTP = 'http://census.daybreakgames.com';
   static readonly CENSUS_HTTPS = 'https://census.daybreakgames.com';
 
   private api: AxiosInstance;
