@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.5.4
+
+### Patch Changes
+
+- [#109](https://github.com/microwavekonijn/ps2census/pull/109) [`13f6043`](https://github.com/microwavekonijn/ps2census/commit/13f60434f525ca560590189d9add4d21c171110b) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - removed http rest endpoint, updated dependencies and removed lerna script
+
 ## 4.5.3
 
 ### Patch Changes
