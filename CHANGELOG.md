@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.5.5
+
+### Patch Changes
+
+- [#111](https://github.com/microwavekonijn/ps2census/pull/111) [`a05b3a2`](https://github.com/microwavekonijn/ps2census/commit/a05b3a2d660368f11b0c141904498975a95ba7a0) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - fix: release script
+
 ## 4.5.4
 
 ### Patch Changes
