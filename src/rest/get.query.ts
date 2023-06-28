@@ -172,13 +172,13 @@ export class GetQuery<C extends CollectionNames, R = Format<C>> {
    *
    * @param query conditions to filter results
    */
-  async get(query: Conditions<C> = {}): Promise<CensusResponse<R>> {
+  async get(query?: Conditions<C>): Promise<CensusResponse<R>> {
     return new CensusResponse(
       this.collection,
-      await this.census.get<C, CensusGetResponse<C, R>>(this.collection, {
-        ...this.params,
-        ...query,
-      }),
+      await this.census.get<C, CensusGetResponse<C, R>>(
+        this.collection,
+        Object.assign({}, this.params, query),
+      ),
     );
   }
 
