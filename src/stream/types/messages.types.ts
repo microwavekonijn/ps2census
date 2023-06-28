@@ -35,13 +35,21 @@ export namespace CensusMessages {
     subscription:
       | {
           characters: ['all'];
-          eventNames: ('all' | PS2EventNames)[];
+          eventNames: (
+            | 'all'
+            | PS2EventNames
+            | `GainExperience_experience_id_${number}`
+          )[];
           worlds: string[];
           logicalAndCharactersWithWorlds: boolean;
         }
       | {
           characterCount: number;
-          eventNames: ('all' | PS2EventNames)[];
+          eventNames: (
+            | 'all'
+            | PS2EventNames
+            | `GainExperience_experience_id_${number}`
+          )[];
           worlds: string[];
           logicalAndCharactersWithWorlds: boolean;
         };
