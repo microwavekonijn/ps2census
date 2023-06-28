@@ -1,5 +1,13 @@
 # ps2census
 
+## 4.5.6
+
+### Patch Changes
+
+- [#114](https://github.com/microwavekonijn/ps2census/pull/114) [`a872408`](https://github.com/microwavekonijn/ps2census/commit/a87240816220d9d3c6ce0ab64ea8ad22552e5fb2) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - Subscription message missing GainExperience id filter from `eventNames`
+
+- [#113](https://github.com/microwavekonijn/ps2census/pull/113) [`9ebcce6`](https://github.com/microwavekonijn/ps2census/commit/9ebcce664d003b28621698ad058a3de781ba6289) Thanks [@depfu](https://github.com/apps/depfu)! - Update all npm dependencies (2023-06-28)
+
 ## 4.5.5
 
 ### Patch Changes
