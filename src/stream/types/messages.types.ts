@@ -17,6 +17,7 @@ export namespace CensusMessages {
   export type Heartbeat = {
     service: 'event';
     type: 'heartbeat';
+    timestamp: string;
     online: { [K: string]: 'true' | 'false' };
   };
 
