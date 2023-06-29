@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.5.7
+
+### Patch Changes
+
+- [#116](https://github.com/microwavekonijn/ps2census/pull/116) [`1d5a25b`](https://github.com/microwavekonijn/ps2census/commit/1d5a25ba1f3bd14871623017fa18b76c1502ecb9) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - Update heartbeat message type to support newly added timestamp field
+
 ## 4.5.6
 
 ### Patch Changes
