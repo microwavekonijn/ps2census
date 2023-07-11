@@ -5,7 +5,6 @@ import { CensusClient } from './census.client';
 import { StreamClient } from '../stream/stream.client';
 import { CensusMessages } from '../stream/types/messages.types';
 import { stringToBoolean } from '../utils/formatters';
-import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 
 import { AchievementEarned } from './events/achievement-earned.event';
 import { BattleRankUp } from './events/battle-rank-up.event';
@@ -24,6 +23,7 @@ import { VehicleDestroy } from './events/vehicle-destroy.event';
 import { EventSubscribed } from './types/event-subscription.types';
 
 import nextTick from '../utils/next-tick';
+import ServiceStateChanged = CensusMessages.ServiceStateChanged;
 
 export class StreamHandler {
   /**
@@ -40,18 +40,18 @@ export class StreamHandler {
   }
 
   private prepareListeners(): void {
-    this.stream.on('message', message => {
-      if (message.service === 'event') {
-        switch (message.type) {
+    this.stream.on('message', msg => {
+      if ('service' in msg && msg.service === 'event') {
+        switch (msg.type) {
           case 'serviceStateChanged':
-            this.handleServerStateChanged(message);
+            this.handleServerStateChanged(msg);
             break;
           case 'serviceMessage':
-            this.handleEvent(message.payload);
+            if ('event_name' in msg.payload) this.handleEvent(msg.payload);
             break;
         }
-      } else if (message.subscription) {
-        this.handleSubscription(message.subscription);
+      } else if ('subscription' in msg && msg.subscription) {
+        this.handleSubscription(msg.subscription);
       }
     });
   }
