@@ -2,7 +2,10 @@ import { EventEmitter } from 'eventemitter3';
 import { ClientOptions } from 'ws';
 import WebSocket from 'isomorphic-ws';
 import { PS2Environment } from '../types/ps2.options';
-import { CensusMessage } from './types/messages.types';
+import {
+  CensusMessage,
+  CensusMessageWithoutEcho,
+} from './types/messages.types';
 import { CensusCommand } from './types/command.types';
 import { StreamDestroyedException } from './exceptions/stream-destroyed.exception';
 import { StreamClosedException } from './exceptions/stream-closed.exception';
@@ -32,7 +35,7 @@ type StreamClientEvents = {
   error: (err: Error) => void;
   warn: (err: Error) => void;
   debug: (info: string) => void;
-  message: (message: CensusMessage) => void;
+  message: (message: CensusMessageWithoutEcho) => void;
 };
 
 export class StreamClient extends EventEmitter<StreamClientEvents> {
@@ -237,7 +240,7 @@ export class StreamClient extends EventEmitter<StreamClientEvents> {
    *
    * @param {CensusMessage} data
    */
-  private onPackage(data: CensusMessage): void {
+  private onPackage(data: CensusMessageWithoutEcho): void {
     if (
       'service' in data &&
       data.service === 'push' &&

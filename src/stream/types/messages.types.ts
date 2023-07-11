@@ -63,14 +63,15 @@ export namespace CensusMessages {
     };
   };
 
-  export type Echo = any;
+  export type Echo = unknown;
 }
 
-export type CensusMessage =
+export type CensusMessageWithoutEcho =
   | CensusMessages.ConnectionStateChanged
   | CensusMessages.ServiceStateChanged
   | CensusMessages.Heartbeat
   | CensusMessages.ServiceMessage
   | CensusMessages.Subscription
-  | CensusMessages.Help
-  | CensusMessages.Echo;
+  | CensusMessages.Help;
+
+export type CensusMessage = CensusMessageWithoutEcho | CensusMessages.Echo;
