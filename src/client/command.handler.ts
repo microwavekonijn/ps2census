@@ -27,15 +27,16 @@ export class CommandHandler {
   }
 
   private prepareListeners(): void {
-    this.stream.on('message', message => {
+    this.stream.on('message', msg => {
       if (
-        message.service === 'event' &&
-        message.type == 'serviceMessage' &&
-        'recent_character_id_count' in message.payload
+        'service' in msg &&
+        msg.service === 'event' &&
+        msg.type == 'serviceMessage' &&
+        'recent_character_id_count' in msg.payload
       ) {
-        this.recentCharacterQueue.dequeue().resolve(message.payload);
-      } else if (message.subscription) {
-        this.subscriptionQueue.dequeue().resolve(message.subscription);
+        this.recentCharacterQueue.dequeue().resolve(msg.payload);
+      } else if ('subscription' in msg) {
+        this.subscriptionQueue.dequeue().resolve(msg.subscription);
       }
     });
 

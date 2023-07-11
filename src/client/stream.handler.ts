@@ -50,7 +50,7 @@ export class StreamHandler {
             if ('event_name' in msg.payload) this.handleEvent(msg.payload);
             break;
         }
-      } else if ('subscription' in msg && msg.subscription) {
+      } else if ('subscription' in msg) {
         this.handleSubscription(msg.subscription);
       }
     });
