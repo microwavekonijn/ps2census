@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declarationDir": "./dist/types",
+    "removeComments": false,
+    "declaration": true,
+    "emitDeclarationOnly": true
+  },
+}

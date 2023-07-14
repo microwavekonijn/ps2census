@@ -40,26 +40,25 @@ export class CommandHandler {
       }
     });
 
-    for (const event of ['close', 'destroy'])
-      this.stream.on('close', () => {
-        while (this.subscriptionQueue.size)
-          this.subscriptionQueue
-            .dequeue()
-            .reject(
-              new StreamResponseException(
-                'Stream closed before receiving response',
-              ),
-            );
+    this.stream.on('close', () => {
+      while (this.subscriptionQueue.size)
+        this.subscriptionQueue
+          .dequeue()
+          .reject(
+            new StreamResponseException(
+              'Stream closed before receiving response',
+            ),
+          );
 
-        while (this.recentCharacterQueue.size)
-          this.recentCharacterQueue
-            .dequeue()
-            .reject(
-              new StreamResponseException(
-                'Stream closed before receiving response',
-              ),
-            );
-      });
+      while (this.recentCharacterQueue.size)
+        this.recentCharacterQueue
+          .dequeue()
+          .reject(
+            new StreamResponseException(
+              'Stream closed before receiving response',
+            ),
+          );
+    });
   }
 
   subscribe(subscription: EventSubscription): Promise<EventSubscribed> {
