@@ -1,5 +1,17 @@
 # ps2census
 
+## 4.6.0
+
+### Minor Changes
+
+- [#121](https://github.com/microwavekonijn/ps2census/pull/121) [`1169dcf`](https://github.com/microwavekonijn/ps2census/commit/1169dcfc594ad3f2de25d79724b80fbe6f54e7fd) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - Added ES support
+
+- [#119](https://github.com/microwavekonijn/ps2census/pull/119) [`3b341af`](https://github.com/microwavekonijn/ps2census/commit/3b341af87d537db6a1a99c86f6ea9db0ebd6d4cc) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - To improve the typing of messages received on the stream client echo is ignored. It will be up to the user to override the type using `CensusMessage`..
+
+### Patch Changes
+
+- [#121](https://github.com/microwavekonijn/ps2census/pull/121) [`1169dcf`](https://github.com/microwavekonijn/ps2census/commit/1169dcfc594ad3f2de25d79724b80fbe6f54e7fd) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - Minor fixes
+
 ## 4.5.7
 
 ### Patch Changes
