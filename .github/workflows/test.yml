@@ -7,7 +7,22 @@ on:
   pull_request:
 
 jobs:
+  compile-test:
+    name: Compile Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Compile
+        run: yarn build
+
   test:
+    name: Integration Test
     runs-on: ubuntu-latest
     environment:
       name: test
