@@ -8,25 +8,34 @@ on:
 
 jobs:
   compile-test:
+    name: Compile Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependecies
-        run: npm ci
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       - name: Compile
-        run: npm run build
-      - name: Test
-        run: npm test
-  run-test:
+        run: yarn build
+
+  test:
+    name: Integration Test
     runs-on: ubuntu-latest
     environment:
       name: test
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependecies
-        run: npm ci
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
       - name: Run
-        run: npm run test-run
+        run: yarn test
         env:
           SERVICE_ID: ${{ secrets.SERVICE_ID }}
           TIMEOUT: 15

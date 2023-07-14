@@ -51,7 +51,7 @@ client.on('death', async e => {
   }
 });
 
-client.on('duplicate', e => console.log('Duplicate', JSON.stringify(e)));
+client.on('duplicate', e => console.log('Duplicate', JSON.stringify(e.raw)));
 
 let aborting = false;
 const abort = (code = 0, err?: Error) => {

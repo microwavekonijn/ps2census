@@ -15,7 +15,7 @@ Typescript projects.
 
 ### Event Stream
 
-- Node.js v12+ or any modern browser with WebSocket support;
+- Node.js v14+ or any modern browser with WebSocket support;
 - DBG Census API Service ID.
 
 ### Rest API
