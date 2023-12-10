@@ -10,6 +10,8 @@ jobs:
     name: Analyze
     runs-on: ubuntu-latest
     permissions: read-all
+    environment:
+      name: SonarQube
     steps:
       - uses: actions/checkout@v2
         with:
