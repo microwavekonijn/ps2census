@@ -1,5 +1,15 @@
 # ps2census
 
+## 4.7.0
+
+### Minor Changes
+
+- [#128](https://github.com/microwavekonijn/ps2census/pull/128) [`a9130bc`](https://github.com/microwavekonijn/ps2census/commit/a9130bc96b0502de31f4d1069864a5171613c874) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - Fix subscription message and command related dto list_characters
+
+### Patch Changes
+
+- [#128](https://github.com/microwavekonijn/ps2census/pull/128) [`a9130bc`](https://github.com/microwavekonijn/ps2census/commit/a9130bc96b0502de31f4d1069864a5171613c874) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - Bump dependencies
+
 ## 4.6.0
 
 ### Minor Changes
