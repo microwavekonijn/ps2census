@@ -35,7 +35,7 @@ export namespace CensusMessages {
   export type Subscription = {
     subscription:
       | {
-          characters: ['all'];
+          characters: ['all'] | string[];
           eventNames: (
             | 'all'
             | PS2EventNames

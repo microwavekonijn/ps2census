@@ -20,6 +20,7 @@ export namespace CensusCommands {
     )[];
     worlds?: string[];
     logicalAndCharactersWithWorlds?: boolean;
+    list_characters?: boolean;
   };
 
   export type ClearSubscribe =
