@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.7.1
+
+### Patch Changes
+
+- [#130](https://github.com/microwavekonijn/ps2census/pull/130) [`0832632`](https://github.com/microwavekonijn/ps2census/commit/08326320b9f9e4d37cd3cb1b8edab0109c4299c5) Thanks [@petevdp](https://github.com/petevdp)! - fix(client): fix terms expression rendering
+
 ## 4.7.0
 
 ### Minor Changes
