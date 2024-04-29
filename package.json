@@ -1,6 +1,6 @@
 {
   "name": "ps2census",
-  "version": "4.7.0",
+  "version": "4.7.1",
   "description": "Client to connect to the PS2 Event Stream websocket.",
   "author": "Microwavekonijn",
   "license": "Apache-2.0",
