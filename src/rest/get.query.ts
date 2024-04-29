@@ -222,7 +222,7 @@ export class GetQuery<C extends CollectionNames, R = Format<C>> {
         // A term with a list of values is added multiple times due to the fact that Census is weird.
         if (join.terms)
           str += `^terms:${Object.entries(join.terms)
-            .map((k, v) =>
+            .map(([k, v]) =>
               Array.isArray(v)
                 ? v.map(sv => `${k}=${sv}`).join('`')
                 : `${k}=${v}`,
