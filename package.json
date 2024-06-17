@@ -70,7 +70,7 @@
     "axios": "1.6.7",
     "eventemitter3": "5.0.1",
     "isomorphic-ws": "5.0.0",
-    "ws": "8.16.0"
+    "ws": "8.17.1"
   },
   "peerDependencies": {
     "bufferutil": "^4.0.7",
