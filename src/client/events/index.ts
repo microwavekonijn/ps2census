@@ -6,6 +6,7 @@ export * from './base/character.event';
 export * from './continent-lock.event';
 export * from './death.event';
 export * from './facility-control.event';
+export * from './fish-scan.event';
 export * from './gain-experience.event';
 export * from './item-added.event';
 export * from './metagame.event';
