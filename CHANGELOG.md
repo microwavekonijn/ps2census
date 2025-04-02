@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.8.0
+
+### Minor Changes
+
+- [#138](https://github.com/microwavekonijn/ps2census/pull/138) [`252bef5`](https://github.com/microwavekonijn/ps2census/commit/252bef541b381b423594f604ce0cd1a0dbb9aa4c) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - feat: added support for fish scan events
+
 ## 4.7.2
 
 ### Patch Changes
