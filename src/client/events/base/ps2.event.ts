@@ -15,7 +15,10 @@ export abstract class PS2Event<T extends PS2EventPayload> {
    * @param {CensusClient} client
    * @param {PS2Event} raw
    */
-  constructor(protected readonly client: CensusClient, readonly raw: T) {
+  constructor(
+    protected readonly client: CensusClient,
+    readonly raw: T,
+  ) {
     Object.assign(this, raw, { timestamp: unixToDate(raw.timestamp) });
   }
 

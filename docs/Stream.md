@@ -29,7 +29,10 @@ client
   })
   .on('message', message => {
     if (message.service != 'event' || message.type != 'serviceMessage') return;
-    if ('event_name' in message.payload && message.payload.event_name == 'Death') {
+    if (
+      'event_name' in message.payload &&
+      message.payload.event_name == 'Death'
+    ) {
       const death = message.payload;
       // Do something
     }
@@ -38,7 +41,7 @@ client
     // Wait 5seconds then reconnect
     setTimeout(() => {
       client.connect();
-    }, 5000)
+    }, 5000);
   });
 
 client.connect();

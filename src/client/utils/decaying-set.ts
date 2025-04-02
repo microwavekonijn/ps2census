@@ -7,7 +7,10 @@ export class DecayingSet<T> {
 
   private timeout: Timeout | number;
 
-  constructor(private readonly partitions: number, decay: number) {
+  constructor(
+    private readonly partitions: number,
+    decay: number,
+  ) {
     this.set = [];
 
     for (let i = 0; i < partitions; i++) this.set.push(new Set());

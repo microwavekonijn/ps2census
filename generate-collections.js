@@ -13,10 +13,9 @@ async function run() {
 
   await Promise.all(
     files.map(async file => {
-      const { collection, conditions, format, resolve } = require(join(
-        COLLECTIONS_INPUT,
-        file,
-      ));
+      const { collection, conditions, format, resolve } = require(
+        join(COLLECTIONS_INPUT, file),
+      );
 
       const typeName = collection.replaceAll(/(?:^|_)([a-z0-9])/g, (_, s) =>
         s.toUpperCase(),
