@@ -38,6 +38,17 @@ export namespace PS2Events {
     zone_id: string;
   };
 
+  export type FishScan = {
+    character_id: string;
+    event_name: 'FishScan';
+    fish_id: string;
+    loadout_id: string;
+    team_id: string;
+    timestamp: string;
+    world_id: string;
+    zone_id: string;
+  };
+
   export type GainExperience = {
     amount: string;
     character_id: string;
@@ -170,6 +181,7 @@ export type PS2Event =
   | PS2Events.AchievementEarned
   | PS2Events.BattleRankUp
   | PS2Events.Death
+  | PS2Events.FishScan
   | PS2Events.GainExperience
   | PS2Events.ItemAdded
   | PS2Events.PlayerFacilityCapture

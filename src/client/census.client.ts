@@ -21,6 +21,7 @@ import {
   VehicleDestroy,
 } from './events';
 import { EventSubscribed, EventSubscription } from './types';
+import { FishScan } from './events/fish-scan.event';
 
 export interface ClientOptions {
   streamManager?: StreamManagerOptions;
@@ -42,6 +43,7 @@ export type ClientEvents = {
   achievementEarned: (event: AchievementEarned) => void;
   battleRankUp: (event: BattleRankUp) => void;
   death: (event: Death) => void;
+  fishScan: (event: FishScan) => void;
   gainExperience: (event: GainExperience) => void;
   itemAdded: (event: ItemAdded) => void;
   playerFacilityCapture: (event: PlayerFacilityCapture) => void;
