@@ -33,6 +33,7 @@ import { EmpireScores } from './EmpireScores';
 import { Experience } from './Experience';
 import { FacilityLink } from './FacilityLink';
 import { FacilityType } from './FacilityType';
+import { Fish } from './Fish';
 import { CharactersDirectiveObjective } from './CharactersDirectiveObjective';
 import { FireGroup } from './FireGroup';
 import { CharactersDirectiveTier } from './CharactersDirectiveTier';
@@ -146,6 +147,7 @@ export type Collections =
   | Experience
   | FacilityLink
   | FacilityType
+  | Fish
   | CharactersDirectiveObjective
   | FireGroup
   | CharactersDirectiveTier
