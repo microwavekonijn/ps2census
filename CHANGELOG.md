@@ -1,5 +1,15 @@
 # ps2census
 
+## 4.9.0
+
+### Minor Changes
+
+- [#141](https://github.com/microwavekonijn/ps2census/pull/141) [`576810e`](https://github.com/microwavekonijn/ps2census/commit/576810e6ab0193849ac3546149fcbe4d8394b569) Thanks [@microwavekonijn](https://github.com/microwavekonijn)! - Added support for the fish collection
+
+### Patch Changes
+
+- [#140](https://github.com/microwavekonijn/ps2census/pull/140) [`e7e2b11`](https://github.com/microwavekonijn/ps2census/commit/e7e2b111a110763fe5fa4e3d998e3d9c6b3607e6) Thanks [@depfu](https://github.com/apps/depfu)! - Update all Yarn dependencies (2025-04-22)
+
 ## 4.8.0
 
 ### Minor Changes
