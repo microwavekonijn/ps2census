@@ -16,6 +16,7 @@ jobs:
     name: Release
     if: github.repository == 'microwavekonijn/ps2census'
     runs-on: ubuntu-latest
+    permissions: write-all
     environment:
       name: release
     steps:
