@@ -10,12 +10,7 @@ export type MapHex = {
   };
   paths: 'zone_id' | 'map_region_id' | 'x' | 'y' | 'hex_type' | 'type_name';
   partialPaths:
-    | 'zone_id'
-    | 'map_region_id'
-    | 'x'
-    | 'y'
-    | 'hex_type'
-    | 'type_name';
+    'zone_id' | 'map_region_id' | 'x' | 'y' | 'hex_type' | 'type_name';
   conditions: {
     hex_type?: string;
     map_region_id?: string;

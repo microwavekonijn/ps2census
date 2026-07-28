@@ -46,8 +46,7 @@ export interface Join<C extends CollectionNames, J extends CollectionNames> {
 }
 
 export type Resolve<C extends CollectionNames> =
-  | Resolvables<C>
-  | [Resolvables<C>, string[]];
+  Resolvables<C> | [Resolvables<C>, string[]];
 
 export type Sort<C extends CollectionNames> = Paths<C> | [Paths<C>, 1 | -1];
 

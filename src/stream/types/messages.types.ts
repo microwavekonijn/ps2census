@@ -37,9 +37,7 @@ export namespace CensusMessages {
       | {
           characters: ['all'] | string[];
           eventNames: (
-            | 'all'
-            | PS2EventNames
-            | `GainExperience_experience_id_${number}`
+            'all' | PS2EventNames | `GainExperience_experience_id_${number}`
           )[];
           worlds: string[];
           logicalAndCharactersWithWorlds: boolean;
@@ -47,9 +45,7 @@ export namespace CensusMessages {
       | {
           characterCount: number;
           eventNames: (
-            | 'all'
-            | PS2EventNames
-            | `GainExperience_experience_id_${number}`
+            'all' | PS2EventNames | `GainExperience_experience_id_${number}`
           )[];
           worlds: string[];
           logicalAndCharactersWithWorlds: boolean;
