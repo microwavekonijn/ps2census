@@ -55,11 +55,11 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
+    "build": "concurrently 'pnpm:build:cjs' 'pnpm:build:es' 'pnpm:build:types'",
     "build:cjs": "tsc -p tsconfig.cjs.json",
     "build:es": "tsc -p tsconfig.es.json",
     "build:types": "tsc -p tsconfig.types.json",
-    "test": "ts-node ./test/test.ts",
+    "test": "tsx ./test/test.ts",
     "format": "prettier . --write",
     "lint": "prettier . --check",
     "prepublishOnly": "npm run build",
@@ -98,7 +98,7 @@
     "lint-staged": "^17.2.0",
     "prettier": "^3.9.6",
     "rimraf": "^6.1.3",
-    "ts-node": "^10.9.1",
+    "tsx": "^4.23.1",
     "typescript": "^7.0.2"
   },
   "lint-staged": {

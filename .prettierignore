@@ -2,3 +2,4 @@
 /node_modules
 /census-index
 /.changeset
+pnpm-lock.yaml
