@@ -18,6 +18,6 @@ jobs:
           node-version: 24
           cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --silent
       - name: Lint
-        run: yarn lint
+        run: pnpm lint

@@ -16,11 +16,11 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-          cache: 'yarn'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --silent
       - name: Compile
-        run: yarn build
+        run: pnpm build
 
   test:
     name: Integration Test
@@ -35,9 +35,9 @@ jobs:
           node-version: 24
           cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --silent
       - name: Run
-        run: yarn test
+        run: pnpm test
         env:
           SERVICE_ID: ${{ secrets.SERVICE_ID }}
           TIMEOUT: 15
