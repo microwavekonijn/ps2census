@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.9.2
+
+### Patch Changes
+
+- [#149](https://github.com/microwavekonijn/ps2census/pull/149) [`3882b0d`](https://github.com/microwavekonijn/ps2census/commit/3882b0d20fe445b12c7247c229838aa94f338071) Thanks [@depfu](https://github.com/apps/depfu)! - Update all Yarn dependencies (2026-07-28)
+
 ## 4.9.1
 
 ### Patch Changes
