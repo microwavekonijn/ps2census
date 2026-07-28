@@ -9,11 +9,7 @@ export type VehicleAttachment = {
   };
   paths: 'item_id' | 'vehicle_id' | 'faction_id' | 'description' | 'slot_id';
   partialPaths:
-    | 'item_id'
-    | 'vehicle_id'
-    | 'faction_id'
-    | 'description'
-    | 'slot_id';
+    'item_id' | 'vehicle_id' | 'faction_id' | 'description' | 'slot_id';
   conditions: {
     description?: string;
     faction_id?: string;
