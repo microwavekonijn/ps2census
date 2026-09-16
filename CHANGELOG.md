@@ -1,5 +1,11 @@
 # ps2census
 
+## 4.9.3
+
+### Patch Changes
+
+- [#173](https://github.com/microwavekonijn/ps2census/pull/173) [`0c58192`](https://github.com/microwavekonijn/ps2census/commit/0c5819216f28afeac94f76d097db5447426a9126) Thanks [@depfu](https://github.com/apps/depfu)! - Update all pnpm dependencies (2026-09-16)
+
 ## 4.9.2
 
 ### Patch Changes
