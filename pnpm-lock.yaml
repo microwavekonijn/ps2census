@@ -19,13 +19,13 @@ importers:
         version: 5.0.4
       isomorphic-ws:
         specifier: 5.0.0
-        version: 5.0.0(ws@8.21.3(bufferutil@4.1.0)(utf-8-validate@6.0.6))
+        version: 5.0.0(ws@8.22.0(bufferutil@4.1.0)(utf-8-validate@6.0.6))
       utf-8-validate:
         specifier: '>=5.0.10'
         version: 6.0.6
       ws:
-        specifier: 8.21.3
-        version: 8.21.3(bufferutil@4.1.0)(utf-8-validate@6.0.6)
+        specifier: 8.22.0
+        version: 8.22.0(bufferutil@4.1.0)(utf-8-validate@6.0.6)
     devDependencies:
       '@changesets/changelog-github':
         specifier: ^1.0.1
@@ -1034,8 +1034,8 @@ packages:
     resolution: {integrity: sha512-42AtmgqjV+X1VpdOfyTGOYRi0/zsoLqtXQckTmqTeybT+BDIbM/Guxo7x3pE2vtpr1ok6xRqM9OpBe+Jyoqyww==}
     engines: {node: '>=18'}
 
-  ws@8.21.3:
-    resolution: {integrity: sha512-201TZ/kPWxoPr/OKWjquZR1SWKXcvxdH+e1xrx89b3YbmzLMFCLfnaG1HFIgWzJOEWZ7MvpK++odZufgYR50Rw==}
+  ws@8.22.0:
+    resolution: {integrity: sha512-Ydggc987+RO0AnWtZ/7Wq9FtNvcrL1b/RO0ud9mWjUPgDrsAAwQSF51sm2hm1XofbU/4jkpGEsLFsZZxU+1DOg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -1779,9 +1779,9 @@ snapshots:
 
   is-plain-obj@4.1.0: {}
 
-  isomorphic-ws@5.0.0(ws@8.21.3(bufferutil@4.1.0)(utf-8-validate@6.0.6)):
+  isomorphic-ws@5.0.0(ws@8.22.0(bufferutil@4.1.0)(utf-8-validate@6.0.6)):
     dependencies:
-      ws: 8.21.3(bufferutil@4.1.0)(utf-8-validate@6.0.6)
+      ws: 8.22.0(bufferutil@4.1.0)(utf-8-validate@6.0.6)
 
   jiti@2.6.1: {}
 
@@ -1954,7 +1954,7 @@ snapshots:
       string-width: 7.2.0
       strip-ansi: 7.2.0
 
-  ws@8.21.3(bufferutil@4.1.0)(utf-8-validate@6.0.6):
+  ws@8.22.0(bufferutil@4.1.0)(utf-8-validate@6.0.6):
     optionalDependencies:
       bufferutil: 4.1.0
       utf-8-validate: 6.0.6
